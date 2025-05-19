@@ -1,12 +1,15 @@
-# 기본 의존성
-importlib-metadata==8.6.1
+# 기본 의존성 - 현재 환경의 버전과 일치시키기
+importlib-metadata==8.7.0  # 8.6.1에서 변경 (현재 설치된 버전으로)
 zipp>=3.20
 
-# 핵심 패키지
-torch==2.6.0+cu124
+# 핵심 패키지 - CUDA 12.4와 호환되는 버전
+torch==2.6.0+cu124  # 현재 환경에 맞음
 numpy==2.0.2
 pandas==2.2.2
 pydantic==2.11.4
+
+# CUDA 관련 패키지 - 버전 충돌 해결
+# 이미 설치된 NVIDIA 패키지 버전을 유지 (다운그레이드 하지 않음)
 
 # 웹 프레임워크
 streamlit==1.45.1
@@ -28,4 +31,4 @@ chromadb==1.0.9
 sentence-transformers==4.1.0
 
 # 유틸리티
-python-dotenv==1.1.0 
+python-dotenv==1.1.0
