@@ -1,5 +1,5 @@
 # 기본 의존성
-importlib-metadata==8.7.0  # 변경: 8.6.1 -> 8.7.0 (현재 설치된 버전)
+importlib-metadata==8.7.0  # 현재 설치된 버전 유지
 zipp>=3.20
 
 # 핵심 패키지
@@ -17,14 +17,15 @@ uvicorn[standard]==0.34.2
 langchain==0.3.25
 langchain-openai==0.3.17
 langchain-anthropic==0.3.13
+langchain-community>=0.2.0  # 추가: chromadb 등 벡터 스토어 지원 포함
 
 # PDF 처리
 pypdf==5.5.0
 pdf2image==1.17.0
 pillow==11.2.1
 
-# 벡터 DB 및 임베딩 - 변경된 부분
-# chromadb==1.0.9  # 이 라인을 주석 처리하고 아래처럼 설치
+# 벡터 DB 및 임베딩
+# chromadb 제거 - langchain-community가 호환되는 버전을 가져옴
 sentence-transformers==4.1.0
 
 # 유틸리티
