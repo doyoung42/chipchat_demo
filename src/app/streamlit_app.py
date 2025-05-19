@@ -7,12 +7,16 @@ import json
 from typing import Dict, Any, Optional
 import tempfile
 import os
+import sys
 
-from ..config.settings import STREAMLIT_CONFIG, PDF_VIEWER_CONFIG
-from ..models.embedding import EmbeddingModel
-from ..models.llm import LLMModel
-from ..utils.pdf_processor import PDFProcessor
-from ..utils.vector_store import VectorStore
+# Add src directory to Python path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+from src.config.settings import STREAMLIT_CONFIG, PDF_VIEWER_CONFIG
+from src.models.embedding import EmbeddingModel
+from src.models.llm import LLMModel
+from src.utils.pdf_processor import PDFProcessor
+from src.utils.vector_store import VectorStore
 
 # Initialize session state
 if "pdf_processor" not in st.session_state:
