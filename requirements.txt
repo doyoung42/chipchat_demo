@@ -1,15 +1,31 @@
+# 기본 의존성
+importlib-metadata==8.6.1
+zipp>=3.20
+
+# 핵심 패키지
+torch==2.6.0+cu124
+numpy==2.0.2
+pandas==2.2.2
+pydantic==2.11.4
+
+# 웹 프레임워크
 streamlit==1.45.1
+streamlit-option-menu==0.3.12
+uvicorn[standard]==0.34.2
+
+# LangChain 관련
 langchain==0.3.25
 langchain-openai==0.3.17
 langchain-anthropic==0.3.13
+
+# PDF 처리
 pypdf==5.5.0
-python-dotenv==1.1.0
-chromadb==1.0.9
-sentence-transformers==4.1.0
-pydantic==2.11.4
-numpy==2.0.2
-pandas==2.2.2
 pdf2image==1.17.0
 pillow==11.2.1
-streamlit-option-menu==0.3.12
-uvicorn[standard]==0.34.2 
+
+# 벡터 DB 및 임베딩
+chromadb==1.0.9
+sentence-transformers==4.1.0
+
+# 유틸리티
+python-dotenv==1.1.0 
