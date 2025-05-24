@@ -176,60 +176,44 @@ def setup_sidebar():
     """Setup the sidebar with controls."""
     with st.sidebar:
         st.header("Settings")
-        
-        # API 토큰 설정
-        st.subheader("API Tokens")
-        
-        # HuggingFace 토큰
-        hf_token = st.text_input(
-            "HuggingFace API Token",
-            type="password",
-            value=st.session_state.token_manager.get_token('huggingface') or "",
-            key="hf_token"
-        )
+        # LLM 모델/토큰
+        st.subheader("API Tokens & LLM Model")
+        hf_token = st.text_input("HuggingFace API Token", type="password", value=st.session_state.token_manager.get_token('huggingface') or "", key="hf_token")
         if hf_token:
             st.session_state.token_manager.set_token('huggingface', hf_token)
-        
-        # LLM Model Selection
-        model_type = st.selectbox(
-            "Select LLM Model",
-            ["gpt4", "claude"],
-            index=0,
-            key="model_type"
-        )
-        
-        # LLM API 토큰
-        if model_type == "gpt4":
-            api_key = st.text_input(
-                "OpenAI API Key",
-                type="password",
-                value=st.session_state.token_manager.get_token('openai') or "",
-                key="openai_token"
-            )
-            if api_key:
-                st.session_state.token_manager.set_token('openai', api_key)
-        else:  # claude
-            api_key = st.text_input(
-                "Anthropic API Key",
-                type="password",
-                value=st.session_state.token_manager.get_token('anthropic') or "",
-                key="anthropic_token"
-            )
-            if api_key:
-                st.session_state.token_manager.set_token('anthropic', api_key)
-        
-        # Apply settings
-        if st.button("Apply Settings"):
-            if api_key:
+        openai_token = st.text_input("OpenAI API Key", type="password", value=st.session_state.token_manager.get_token('openai') or "", key="openai_token")
+        if openai_token:
+            st.session_state.token_manager.set_token('openai', openai_token)
+        anthropic_token = st.text_input("Anthropic API Key", type="password", value=st.session_state.token_manager.get_token('anthropic') or "", key="anthropic_token")
+        if anthropic_token:
+            st.session_state.token_manager.set_token('anthropic', anthropic_token)
+        # 사용 가능한 모델만 선택지로 노출
+        available_models = []
+        if openai_token:
+            available_models += ["gpt-3.5-turbo", "gpt-4-turbo-preview"]
+        if anthropic_token:
+            available_models += ["claude-3-haiku-20240307", "claude-3-sonnet-20240229"]
+        model_type = st.selectbox("Select LLM Model", available_models, key="model_type") if available_models else None
+        if model_type and (openai_token or anthropic_token):
+            if st.button("LLM 모델 적용"):
                 try:
-                    st.session_state.llm_model = LLMModel(model_type, api_key)
-                    st.success("Settings applied successfully!")
-                    logger.info(f"LLM model initialized: {model_type}")
+                    if "gpt" in model_type:
+                        st.session_state.llm_model = LLMModel("gpt4", openai_token)
+                    elif "claude" in model_type:
+                        st.session_state.llm_model = LLMModel("claude", anthropic_token)
+                    st.success(f"{model_type} 모델 적용 완료!")
                 except Exception as e:
-                    logger.error(f"Error initializing LLM model: {str(e)}")
-                    st.error("LLM 모델 초기화 중 오류가 발생했습니다. API 토큰을 확인해주세요.")
-            else:
-                st.error("Please enter an API key")
+                    st.error(f"LLM 모델 초기화 오류: {str(e)}")
+        # PDF 파일 선택
+        st.subheader("PDF 파일 선택")
+        available_pdfs = get_available_pdfs()
+        selected_pdf = st.selectbox("기존 PDF 파일 선택", options=available_pdfs, format_func=lambda x: x.name if hasattr(x, 'name') else str(x), key="existing_pdf") if available_pdfs else None
+        if selected_pdf:
+            if st.button("PDF 선택 완료"):
+                st.session_state.current_pdf = selected_pdf
+                st.session_state.chunks = None  # 새 파일 선택 시 청킹 초기화
+                st.session_state.search_results = None
+                st.success(f"{selected_pdf.name if hasattr(selected_pdf, 'name') else str(selected_pdf)} 선택 완료!")
 
 def process_pdf():
     """Process the uploaded PDF file."""
@@ -288,11 +272,12 @@ def display_llm_prompting():
 Your task is to extract and organize key specifications and information from the provided datasheet.
 Focus on technical details, specifications, and important characteristics of the component.
 Maintain accuracy and use the original terminology from the datasheet.""",
-        height=150
+        height=400,
+        key="system_prompt"
     )
     
     # RAG settings
-    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True)
+    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, key="use_rag")
     
     # Output format prompt
     output_format = st.text_area(
@@ -310,7 +295,8 @@ Maintain accuracy and use the original terminology from the datasheet.""",
     "applications": ["string"],
     "notes": "string"
 }""",
-        height=150
+        height=200,
+        key="output_format"
     )
     
     # Generate button
@@ -365,49 +351,60 @@ def main():
         initialize_page()
         setup_sidebar()
         
-        # PDF 파일 선택 섹션
-        st.header("PDF 파일 선택")
-        
-        # 기존 PDF 파일 목록 표시
-        available_pdfs = get_available_pdfs()
-        if available_pdfs:
-            st.subheader("업로드된 PDF 파일")
-            selected_pdf = st.selectbox(
-                "기존 PDF 파일 선택",
-                options=available_pdfs,
-                format_func=lambda x: x.name,
-                key="existing_pdf"
-            )
-            
-            if selected_pdf:
-                st.session_state.current_pdf = selected_pdf
-                logger.info(f"Selected existing PDF: {selected_pdf}")
-        
-        # 새 PDF 파일 업로드
-        st.subheader("새 PDF 파일 업로드")
-        uploaded_file = st.file_uploader("PDF 파일 업로드", type=["pdf"])
-        if uploaded_file:
-            logger.info("New PDF file uploaded")
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-                tmp_file.write(uploaded_file.getvalue())
-                # 업로드된 파일을 uploads 디렉토리로 복사
-                upload_path = UPLOAD_DIR / uploaded_file.name
-                with open(upload_path, 'wb') as f:
-                    f.write(uploaded_file.getvalue())
-                st.session_state.current_pdf = upload_path
-                logger.info(f"PDF saved to: {upload_path}")
-        
-        if st.session_state.current_pdf:
-            if process_pdf():
-                # Create two columns for the main layout
-                col1, col2 = st.columns(2)
-                
-                with col1:
-                    st.header("PDF Analysis")
-                    display_chunks_and_search()
-                
-                with col2:
-                    display_llm_prompting()
+        if st.session_state.get("current_pdf"):
+            # PDF 분석(청킹)
+            if st.session_state.chunks is None:
+                if st.button("PDF 분석 시작"):
+                    process_pdf()
+            else:
+                # 검색 영역
+                st.header("PDF Analysis & Retrieval")
+                with st.form("search_form"):
+                    search_text = st.text_input("Search Text (예: voltage, 특징, 적용분야 등)", key="search_text")
+                    num_results = st.slider("Number of Results", 1, 10, 5, key="num_results")
+                    submitted = st.form_submit_button("검색")
+                if submitted and search_text:
+                    results = st.session_state.vector_store.similarity_search(search_text, k=num_results)
+                    st.session_state.search_results = results
+                if st.session_state.get("search_results"):
+                    st.subheader("Search Results")
+                    for i, result in enumerate(st.session_state.search_results, 1):
+                        st.text_area(f"Result {i}", result["text"], height=100)
+                # 전체 청크 보기
+                with st.expander("All Chunks", expanded=False):
+                    for i, chunk in enumerate(st.session_state.chunks, 1):
+                        st.text_area(f"Chunk {i}", chunk["text"], height=100)
+                # LLM 프롬프트
+                st.header("LLM Prompting")
+                system_prompt = st.text_area(
+                    "System Prompt",
+                    """You are an expert in analyzing electronic component datasheets. \nYour task is to extract and organize key specifications and information from the provided datasheet.\nFocus on technical details, specifications, and important characteristics of the component.\nMaintain accuracy and use the original terminology from the datasheet.""",
+                    height=400,
+                    key="system_prompt"
+                )
+                use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, key="use_rag")
+                output_format = st.text_area(
+                    "Output Format Instructions",
+                    """Please provide the analysis in the following JSON format:\n{\n    \"component_name\": \"string\",\n    \"specifications\": {\n        \"voltage\": \"string\",\n        \"current\": \"string\",\n        \"package\": \"string\",\n        \"temperature_range\": \"string\"\n    },\n    \"key_features\": [\"string\"],\n    \"applications\": [\"string\"],\n    \"notes\": \"string\"\n}""",
+                    height=200,
+                    key="output_format"
+                )
+                if st.button("Generate Analysis"):
+                    if not st.session_state.llm_model:
+                        st.error("Please configure LLM settings in the sidebar")
+                    else:
+                        context = ""
+                        if use_rag and st.session_state.get("search_results"):
+                            context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                        else:
+                            context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                        full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}"""
+                        response = st.session_state.llm_model.get_model().invoke(full_prompt)
+                        st.session_state.llm_response = response.content
+                        st.subheader("Analysis Results")
+                        st.json(st.session_state.llm_response)
+        else:
+            st.info("사이드바에서 PDF 파일을 선택하고 'PDF 선택 완료'를 눌러주세요.")
         
         logger.info("Application running successfully")
     except Exception as e:
