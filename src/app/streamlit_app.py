@@ -13,6 +13,15 @@ import logging
 import traceback
 from logging.handlers import RotatingFileHandler
 import platform
+import pandas as pd
+import numpy as np
+import pydantic
+import torch
+
+assert pd.__version__ >= "2.2.2", "pandas 버전이 너무 낮습니다. 구글 코랩 기본 버전을 사용하세요."
+assert np.__version__ >= "1.26.0", "numpy 버전이 너무 낮습니다. 구글 코랩 기본 버전을 사용하세요."
+assert int(pydantic.VERSION.split(".")[0]) >= 2, "pydantic 버전이 너무 낮습니다. 구글 코랩 기본 버전을 사용하세요."
+assert int(torch.__version__.split(".")[0]) >= 2, "torch 버전이 너무 낮습니다. 구글 코랩 기본 버전을 사용하세요."
 
 # Python 경로 설정
 current_dir = Path(__file__).parent.parent.parent

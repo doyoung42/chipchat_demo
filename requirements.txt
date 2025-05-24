@@ -1,33 +1,33 @@
 # 기본 의존성
-importlib-metadata==6.8.0
-zipp>=3.15.0
+importlib-metadata
+zipp
 
 # 핵심 패키지
-torch==2.0.1
-numpy==1.24.3
-pandas==2.0.3
-pydantic==1.10.12
+torch
+numpy
+pandas
+pydantic
 
 # 웹 프레임워크
-streamlit==1.24.0
-streamlit-option-menu==0.3.6
-uvicorn[standard]==0.23.2
+streamlit
+streamlit-option-menu
+uvicorn[standard]
 
 # LangChain 관련
-langchain==0.0.267
-langchain-openai==0.0.2
-langchain-anthropic==0.0.1
-langchain-community==0.0.10
+langchain
+langchain-openai
+langchain-anthropic
+langchain-community
 
 # PDF 처리
-pypdf==3.17.1
-pdf2image==1.16.3
-pillow==9.5.0
+pypdf
+pdf2image
+pillow
 
 # 벡터 DB 및 임베딩
-chromadb==0.3.29
-sentence-transformers==2.2.2
+chromadb
+sentence-transformers
 
 # 유틸리티
-python-dotenv==1.0.0
-PyYAML==6.0.1
+python-dotenv
+PyYAML
