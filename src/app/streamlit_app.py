@@ -14,6 +14,11 @@ import traceback
 from logging.handlers import RotatingFileHandler
 import platform
 
+# Python 경로 설정
+current_dir = Path(__file__).parent.parent.parent
+sys.path.append(str(current_dir))
+sys.path.append(str(current_dir / 'src'))
+
 # 로그 디렉토리 설정
 if platform.system() == 'Linux' and 'google.colab' in sys.modules:
     # Google Colab 환경
@@ -67,15 +72,13 @@ def setup_logging():
 setup_logging()
 logger = logging.getLogger(__name__)
 
-# Add src directory to Python path
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-from config.settings import STREAMLIT_CONFIG, UPLOAD_DIR
-from config.token_manager import TokenManager
-from models.embedding import EmbeddingModel
-from models.llm import LLMModel
-from utils.pdf_processor import PDFProcessor
-from utils.vector_store import VectorStore
+# Import after path setup
+from src.config.settings import STREAMLIT_CONFIG, UPLOAD_DIR
+from src.config.token_manager import TokenManager
+from src.models.embedding import EmbeddingModel
+from src.models.llm import LLMModel
+from src.utils.pdf_processor import PDFProcessor
+from src.utils.vector_store import VectorStore
 
 def initialize_session_state():
     """Initialize session state with error handling."""

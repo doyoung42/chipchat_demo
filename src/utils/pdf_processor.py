@@ -2,7 +2,7 @@
 PDF processing utilities for the Datasheet Analyzer.
 """
 from typing import List, Dict, Any
-import PyPDF2
+import pypdf
 from pathlib import Path
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from ..config.settings import CHUNK_SIZE, CHUNK_OVERLAP
@@ -32,7 +32,7 @@ class PDFProcessor:
             Extracted text
         """
         with open(pdf_path, 'rb') as file:
-            reader = PyPDF2.PdfReader(file)
+            reader = pypdf.PdfReader(file)
             text = ""
             for page in reader.pages:
                 text += page.extract_text() + "\n"
