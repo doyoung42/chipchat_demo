@@ -43,6 +43,8 @@ Thumbs.db
 
 # Project specific
 vector_store/
+logs/*
+!logs/.gitkeep
 *.log
 !src/app/streamlit_app.py
 
