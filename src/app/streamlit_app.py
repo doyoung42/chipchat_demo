@@ -9,35 +9,64 @@ import tempfile
 import os
 import sys
 import yaml
+import logging
+import traceback
+
+# 로깅 설정
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
 
 # Add src directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from config.settings import STREAMLIT_CONFIG
+from config.settings import STREAMLIT_CONFIG, UPLOAD_DIR
 from models.embedding import EmbeddingModel
 from models.llm import LLMModel
 from utils.pdf_processor import PDFProcessor
 from utils.vector_store import VectorStore
 
-# Initialize session state
-if "pdf_processor" not in st.session_state:
-    st.session_state.pdf_processor = PDFProcessor()
-if "embedding_model" not in st.session_state:
-    st.session_state.embedding_model = EmbeddingModel()
-if "vector_store" not in st.session_state:
-    st.session_state.vector_store = VectorStore(
-        st.session_state.embedding_model.get_langchain_embeddings()
-    )
-if "llm_model" not in st.session_state:
-    st.session_state.llm_model = None
-if "current_pdf" not in st.session_state:
-    st.session_state.current_pdf = None
-if "chunks" not in st.session_state:
-    st.session_state.chunks = None
-if "search_results" not in st.session_state:
-    st.session_state.search_results = None
-if "llm_response" not in st.session_state:
-    st.session_state.llm_response = None
+def initialize_session_state():
+    """Initialize session state with error handling."""
+    try:
+        logger.info("Initializing session state...")
+        if "pdf_processor" not in st.session_state:
+            st.session_state.pdf_processor = PDFProcessor()
+            logger.info("PDF processor initialized")
+        
+        if "embedding_model" not in st.session_state:
+            st.session_state.embedding_model = EmbeddingModel()
+            logger.info("Embedding model initialized")
+        
+        if "vector_store" not in st.session_state:
+            st.session_state.vector_store = VectorStore(
+                st.session_state.embedding_model.get_langchain_embeddings()
+            )
+            logger.info("Vector store initialized")
+        
+        if "llm_model" not in st.session_state:
+            st.session_state.llm_model = None
+            logger.info("LLM model state initialized")
+        
+        if "current_pdf" not in st.session_state:
+            st.session_state.current_pdf = None
+        
+        if "chunks" not in st.session_state:
+            st.session_state.chunks = None
+        
+        if "search_results" not in st.session_state:
+            st.session_state.search_results = None
+        
+        if "llm_response" not in st.session_state:
+            st.session_state.llm_response = None
+            
+        logger.info("Session state initialization completed")
+    except Exception as e:
+        logger.error(f"Error initializing session state: {str(e)}")
+        logger.error(traceback.format_exc())
+        st.error(f"초기화 중 오류가 발생했습니다: {str(e)}")
 
 def load_user_config():
     """Load user configuration from yaml file."""
@@ -100,12 +129,22 @@ def setup_sidebar():
 
 def process_pdf():
     """Process the uploaded PDF file."""
-    if st.session_state.current_pdf:
-        chunks = st.session_state.pdf_processor.process_pdf(st.session_state.current_pdf)
-        st.session_state.chunks = chunks
-        st.session_state.vector_store.create_store(chunks)
-        return True
-    return False
+    try:
+        if st.session_state.current_pdf:
+            logger.info(f"Processing PDF: {st.session_state.current_pdf}")
+            chunks = st.session_state.pdf_processor.process_pdf(st.session_state.current_pdf)
+            st.session_state.chunks = chunks
+            logger.info(f"Created {len(chunks)} chunks from PDF")
+            
+            st.session_state.vector_store.create_store(chunks)
+            logger.info("Vector store created successfully")
+            return True
+        return False
+    except Exception as e:
+        logger.error(f"Error processing PDF: {str(e)}")
+        logger.error(traceback.format_exc())
+        st.error(f"PDF 처리 중 오류가 발생했습니다: {str(e)}")
+        return False
 
 def display_chunks_and_search():
     """Display chunks and search functionality."""
@@ -199,30 +238,78 @@ Output Format Instructions:
         st.subheader("Analysis Results")
         st.json(st.session_state.llm_response)
 
+def get_available_pdfs():
+    """Get list of available PDF files from uploads directory."""
+    try:
+        if not UPLOAD_DIR.exists():
+            UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+            logger.info(f"Created uploads directory: {UPLOAD_DIR}")
+        
+        pdf_files = list(UPLOAD_DIR.glob("*.pdf"))
+        logger.info(f"Found {len(pdf_files)} PDF files in uploads directory")
+        return pdf_files
+    except Exception as e:
+        logger.error(f"Error getting available PDFs: {str(e)}")
+        logger.error(traceback.format_exc())
+        return []
+
 def main():
     """Main application function."""
-    initialize_page()
-    setup_sidebar()
-    
-    # PDF Upload
-    uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
-    if uploaded_file:
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-            tmp_file.write(uploaded_file.getvalue())
-            st.session_state.current_pdf = Path(tmp_file.name)
-    
-    if st.session_state.current_pdf:
-        process_pdf()
+    try:
+        logger.info("Starting application...")
+        initialize_session_state()
+        initialize_page()
+        setup_sidebar()
         
-        # Create two columns for the main layout
-        col1, col2 = st.columns(2)
+        # PDF 파일 선택 섹션
+        st.header("PDF 파일 선택")
         
-        with col1:
-            st.header("PDF Analysis")
-            display_chunks_and_search()
+        # 기존 PDF 파일 목록 표시
+        available_pdfs = get_available_pdfs()
+        if available_pdfs:
+            st.subheader("업로드된 PDF 파일")
+            selected_pdf = st.selectbox(
+                "기존 PDF 파일 선택",
+                options=available_pdfs,
+                format_func=lambda x: x.name,
+                key="existing_pdf"
+            )
+            
+            if selected_pdf:
+                st.session_state.current_pdf = selected_pdf
+                logger.info(f"Selected existing PDF: {selected_pdf}")
         
-        with col2:
-            display_llm_prompting()
+        # 새 PDF 파일 업로드
+        st.subheader("새 PDF 파일 업로드")
+        uploaded_file = st.file_uploader("PDF 파일 업로드", type=["pdf"])
+        if uploaded_file:
+            logger.info("New PDF file uploaded")
+            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+                tmp_file.write(uploaded_file.getvalue())
+                # 업로드된 파일을 uploads 디렉토리로 복사
+                upload_path = UPLOAD_DIR / uploaded_file.name
+                with open(upload_path, 'wb') as f:
+                    f.write(uploaded_file.getvalue())
+                st.session_state.current_pdf = upload_path
+                logger.info(f"PDF saved to: {upload_path}")
+        
+        if st.session_state.current_pdf:
+            if process_pdf():
+                # Create two columns for the main layout
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    st.header("PDF Analysis")
+                    display_chunks_and_search()
+                
+                with col2:
+                    display_llm_prompting()
+        
+        logger.info("Application running successfully")
+    except Exception as e:
+        logger.error(f"Error in main application: {str(e)}")
+        logger.error(traceback.format_exc())
+        st.error(f"애플리케이션 실행 중 오류가 발생했습니다: {str(e)}")
 
 if __name__ == "__main__":
     main() 
