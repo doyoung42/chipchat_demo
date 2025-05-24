@@ -322,9 +322,44 @@ Maintain accuracy and use the original terminology from the datasheet.""",
     # RAG 설정
     use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, help="체크하면 검색 결과만 사용, 체크 해제하면 전체 PDF 내용 사용", key="use_rag")
     
-    # RAG 설정에 따른 컨텍스트 설명
+    # RAG 설정에 따른 설명 및 추가 입력 필드
     if use_rag:
-        st.info("검색 결과만 LLM에 전달됩니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+        st.info("RAG 모드: 검색 결과를 LLM에 전달합니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+        
+        # RAG를 위한 별도 검색 쿼리 입력 필드
+        rag_query = st.text_input(
+            "RAG 검색 쿼리 (비워두면 왼쪽 검색 결과 사용)",
+            help="RAG를 위한 별도 검색 쿼리를 입력하세요. 비워두면 왼쪽 검색 결과를 사용합니다.",
+            key="rag_query"
+        )
+        
+        # RAG 검색 파라미터
+        col_rag1, col_rag2 = st.columns(2)
+        with col_rag1:
+            rag_num_results = st.slider("RAG 검색 결과 개수", 1, 20, 5, key="rag_num_results")
+        with col_rag2:
+            rag_threshold = st.slider("RAG 유사도 임계값", 0.0, 1.0, 0.7, step=0.05, key="rag_threshold")
+        
+        # RAG 검색 실행 버튼
+        if st.button("RAG 검색 실행"):
+            if rag_query:
+                # 별도 쿼리로 검색 실행
+                results = st.session_state.vector_store.similarity_search(
+                    rag_query, 
+                    k=rag_num_results,
+                    threshold=rag_threshold,
+                    use_mmr=False
+                )
+                st.session_state.rag_results = results
+                st.success(f"RAG 검색 완료: {len(results)}개의 결과를 찾았습니다.")
+                
+                # 검색 결과 미리보기
+                if results:
+                    with st.expander("RAG 검색 결과 미리보기", expanded=False):
+                        for i, result in enumerate(results, 1):
+                            st.text_area(f"RAG 결과 {i}", result["text"], height=100)
+            else:
+                st.warning("쿼리가 비어있어 왼쪽 검색 결과를 사용합니다.")
     else:
         st.info("전체 PDF 내용이 LLM에 전달됩니다.")
     
@@ -348,7 +383,7 @@ Maintain accuracy and use the original terminology from the datasheet.""",
         key="output_format"
     )
     
-    # Generate button
+    # Generate 버튼
     if st.button("Generate Analysis"):
         if not st.session_state.llm_model:
             st.error("Please configure LLM settings in the sidebar")
@@ -360,18 +395,27 @@ Maintain accuracy and use the original terminology from the datasheet.""",
         status_text.text("분석 준비 중...")
         
         try:
-            # Prepare context
-            if use_rag and st.session_state.search_results and len(st.session_state.search_results) > 0:
-                # RAG 사용 & 검색 결과가 있는 경우
-                context = "\n\n".join([r["text"] for r in st.session_state.search_results])
-                status_text.text(f"RAG 모드: {len(st.session_state.search_results)}개의 검색 결과 사용")
-            else:
-                # RAG 미사용 또는 검색 결과가 없는 경우
-                context = "\n\n".join([c["text"] for c in st.session_state.chunks])
-                if use_rag:
-                    status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+            # 컨텍스트 준비
+            context = ""
+            
+            # RAG 모드 사용 시
+            if use_rag:
+                # 1. RAG 검색 결과가 있는지 확인
+                if hasattr(st.session_state, 'rag_results') and st.session_state.rag_results:
+                    context = "\n\n".join([r["text"] for r in st.session_state.rag_results])
+                    status_text.text(f"RAG 모드: RAG 검색 결과 {len(st.session_state.rag_results)}개 사용")
+                # 2. 왼쪽 검색 결과가 있는지 확인
+                elif st.session_state.get("search_results") and len(st.session_state.search_results) > 0:
+                    context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                    status_text.text(f"RAG 모드: 왼쪽 검색 결과 {len(st.session_state.search_results)}개 사용")
+                # 3. 둘 다 없으면 전체 PDF 사용
                 else:
-                    status_text.text("전체 PDF 내용 사용")
+                    context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                    status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+            # RAG 모드 미사용 시
+            else:
+                context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                status_text.text("전체 PDF 내용 사용")
             
             progress_bar.progress(30)
             status_text.text("LLM에 요청 전송 중...")
@@ -519,9 +563,44 @@ Maintain accuracy and use the original terminology from the datasheet.""",
                     # RAG 설정
                     use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, help="체크하면 검색 결과만 사용, 체크 해제하면 전체 PDF 내용 사용", key="use_rag")
                     
-                    # RAG 설정에 따른 컨텍스트 설명
+                    # RAG 설정에 따른 설명 및 추가 입력 필드
                     if use_rag:
-                        st.info("검색 결과만 LLM에 전달됩니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+                        st.info("RAG 모드: 검색 결과를 LLM에 전달합니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+                        
+                        # RAG를 위한 별도 검색 쿼리 입력 필드
+                        rag_query = st.text_input(
+                            "RAG 검색 쿼리 (비워두면 왼쪽 검색 결과 사용)",
+                            help="RAG를 위한 별도 검색 쿼리를 입력하세요. 비워두면 왼쪽 검색 결과를 사용합니다.",
+                            key="rag_query"
+                        )
+                        
+                        # RAG 검색 파라미터
+                        col_rag1, col_rag2 = st.columns(2)
+                        with col_rag1:
+                            rag_num_results = st.slider("RAG 검색 결과 개수", 1, 20, 5, key="rag_num_results")
+                        with col_rag2:
+                            rag_threshold = st.slider("RAG 유사도 임계값", 0.0, 1.0, 0.7, step=0.05, key="rag_threshold")
+                        
+                        # RAG 검색 실행 버튼
+                        if st.button("RAG 검색 실행"):
+                            if rag_query:
+                                # 별도 쿼리로 검색 실행
+                                results = st.session_state.vector_store.similarity_search(
+                                    rag_query, 
+                                    k=rag_num_results,
+                                    threshold=rag_threshold,
+                                    use_mmr=False
+                                )
+                                st.session_state.rag_results = results
+                                st.success(f"RAG 검색 완료: {len(results)}개의 결과를 찾았습니다.")
+                                
+                                # 검색 결과 미리보기
+                                if results:
+                                    with st.expander("RAG 검색 결과 미리보기", expanded=False):
+                                        for i, result in enumerate(results, 1):
+                                            st.text_area(f"RAG 결과 {i}", result["text"], height=100)
+                            else:
+                                st.warning("쿼리가 비어있어 왼쪽 검색 결과를 사용합니다.")
                     else:
                         st.info("전체 PDF 내용이 LLM에 전달됩니다.")
                     
@@ -558,17 +637,25 @@ Maintain accuracy and use the original terminology from the datasheet.""",
                             try:
                                 # 컨텍스트 준비
                                 context = ""
-                                if use_rag and st.session_state.get("search_results") and len(st.session_state.search_results) > 0:
-                                    # RAG 사용 & 검색 결과가 있는 경우
-                                    context = "\n\n".join([r["text"] for r in st.session_state.search_results])
-                                    status_text.text(f"RAG 모드: {len(st.session_state.search_results)}개의 검색 결과 사용")
-                                else:
-                                    # RAG 미사용 또는 검색 결과가 없는 경우
-                                    context = "\n\n".join([c["text"] for c in st.session_state.chunks])
-                                    if use_rag:
-                                        status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+                                
+                                # RAG 모드 사용 시
+                                if use_rag:
+                                    # 1. RAG 검색 결과가 있는지 확인
+                                    if hasattr(st.session_state, 'rag_results') and st.session_state.rag_results:
+                                        context = "\n\n".join([r["text"] for r in st.session_state.rag_results])
+                                        status_text.text(f"RAG 모드: RAG 검색 결과 {len(st.session_state.rag_results)}개 사용")
+                                    # 2. 왼쪽 검색 결과가 있는지 확인
+                                    elif st.session_state.get("search_results") and len(st.session_state.search_results) > 0:
+                                        context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                                        status_text.text(f"RAG 모드: 왼쪽 검색 결과 {len(st.session_state.search_results)}개 사용")
+                                    # 3. 둘 다 없으면 전체 PDF 사용
                                     else:
-                                        status_text.text("전체 PDF 내용 사용")
+                                        context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                                        status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+                                # RAG 모드 미사용 시
+                                else:
+                                    context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                                    status_text.text("전체 PDF 내용 사용")
                                 
                                 progress_bar.progress(30)
                                 status_text.text("LLM에 요청 전송 중...")

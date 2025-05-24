@@ -61,12 +61,16 @@ class VectorStore:
         # 검색 방법 선택 (MMR 또는 일반 유사도 검색)
         if use_mmr:
             # MMR 검색 (다양한 결과)
-            results = self.vector_store.max_marginal_relevance_search_with_score(
+            # Chroma에서는 max_marginal_relevance_search_with_score가 아닌 max_marginal_relevance_search를 사용
+            docs = self.vector_store.max_marginal_relevance_search(
                 query, 
                 k=k,
                 fetch_k=k*2,  # 더 많은 후보를 가져와서 다양성을 높임
                 lambda_mult=diversity  # 다양성 파라미터 (0: 다양성 최대, 1: 유사도 최대)
             )
+            
+            # 일반 검색과 형식을 맞추기 위해 임의의 스코어 부여
+            results = [(doc, 0.5) for doc in docs]  # 임의의 중간 스코어 부여
         else:
             # 일반 유사도 검색
             results = self.vector_store.similarity_search_with_score(query, k=k)
@@ -75,7 +79,11 @@ class VectorStore:
         filtered_results = []
         for doc, score in results:
             # 스코어 정규화 (0~1 범위로 변환, 높을수록 더 유사)
-            normalized_score = 1.0 - (score / 2.0)  # 원래 스코어가 거리 기반이므로 변환
+            if use_mmr:
+                # MMR은 이미 정렬된 결과이므로 높은 스코어 부여
+                normalized_score = 0.8 - (0.1 * filtered_results.count(doc))  # 순서에 따라 약간 차등
+            else:
+                normalized_score = 1.0 - (score / 2.0)  # 원래 스코어가 거리 기반이므로 변환
             
             # 임계값 이상인 결과만 포함
             if normalized_score >= threshold:
