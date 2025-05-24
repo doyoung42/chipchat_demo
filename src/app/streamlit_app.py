@@ -308,21 +308,27 @@ def display_llm_prompting():
     """Display LLM prompting interface."""
     st.header("LLM Prompting")
     
-    # System prompt
+    # System prompt (높이 절반으로 줄임)
     system_prompt = st.text_area(
         "System Prompt",
         """You are an expert in analyzing electronic component datasheets. 
 Your task is to extract and organize key specifications and information from the provided datasheet.
 Focus on technical details, specifications, and important characteristics of the component.
 Maintain accuracy and use the original terminology from the datasheet.""",
-        height=400,
+        height=200,  # 기존 400에서 200으로 줄임
         key="system_prompt"
     )
     
-    # RAG settings
-    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, key="use_rag")
+    # RAG 설정
+    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, help="체크하면 검색 결과만 사용, 체크 해제하면 전체 PDF 내용 사용", key="use_rag")
     
-    # Output format prompt
+    # RAG 설정에 따른 컨텍스트 설명
+    if use_rag:
+        st.info("검색 결과만 LLM에 전달됩니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+    else:
+        st.info("전체 PDF 내용이 LLM에 전달됩니다.")
+    
+    # Output format prompt (높이 2배로 늘림)
     output_format = st.text_area(
         "Output Format Instructions",
         """Please provide the analysis in the following JSON format:
@@ -338,7 +344,7 @@ Maintain accuracy and use the original terminology from the datasheet.""",
     "applications": ["string"],
     "notes": "string"
 }""",
-        height=200,
+        height=400,  # 기존 200에서 400으로 늘림
         key="output_format"
     )
     
@@ -355,16 +361,31 @@ Maintain accuracy and use the original terminology from the datasheet.""",
         
         try:
             # Prepare context
-            if use_rag and st.session_state.search_results:
+            if use_rag and st.session_state.search_results and len(st.session_state.search_results) > 0:
+                # RAG 사용 & 검색 결과가 있는 경우
                 context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                status_text.text(f"RAG 모드: {len(st.session_state.search_results)}개의 검색 결과 사용")
             else:
+                # RAG 미사용 또는 검색 결과가 없는 경우
                 context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                if use_rag:
+                    status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+                else:
+                    status_text.text("전체 PDF 내용 사용")
             
             progress_bar.progress(30)
             status_text.text("LLM에 요청 전송 중...")
                 
             # Prepare full prompt
-            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}\n\nIMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
+            full_prompt = f"""System: {system_prompt}
+
+Context from datasheet:
+{context}
+
+Output Format Instructions:
+{output_format}
+
+IMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
             
             progress_bar.progress(50)
             
@@ -425,89 +446,164 @@ def main():
                 if st.button("PDF 분석 시작"):
                     process_pdf()
             else:
-                # 검색 영역
-                st.header("PDF Analysis & Retrieval")
-                with st.form("search_form"):
-                    search_text = st.text_input("Search Text (예: voltage, 특징, 적용분야 등)", key="search_text")
-                    num_results = st.slider("Number of Results", 1, 10, 5, key="num_results")
-                    submitted = st.form_submit_button("검색")
-                if submitted and search_text:
-                    results = st.session_state.vector_store.similarity_search(search_text, k=num_results)
-                    st.session_state.search_results = results
-                if st.session_state.get("search_results"):
-                    st.subheader("Search Results")
-                    for i, result in enumerate(st.session_state.search_results, 1):
-                        st.text_area(f"Result {i}", result["text"], height=100)
-                # 전체 청크 보기
-                with st.expander("All Chunks", expanded=False):
-                    for i, chunk in enumerate(st.session_state.chunks, 1):
-                        st.text_area(f"Chunk {i}", chunk["text"], height=100)
-                # LLM 프롬프트
-                st.header("LLM Prompting")
-                system_prompt = st.text_area(
-                    "System Prompt",
-                    """You are an expert in analyzing electronic component datasheets. \nYour task is to extract and organize key specifications and information from the provided datasheet.\nFocus on technical details, specifications, and important characteristics of the component.\nMaintain accuracy and use the original terminology from the datasheet.""",
-                    height=400,
-                    key="system_prompt"
-                )
-                use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, key="use_rag")
-                output_format = st.text_area(
-                    "Output Format Instructions",
-                    """Please provide the analysis in the following JSON format:\n{\n    \"component_name\": \"string\",\n    \"specifications\": {\n        \"voltage\": \"string\",\n        \"current\": \"string\",\n        \"package\": \"string\",\n        \"temperature_range\": \"string\"\n    },\n    \"key_features\": [\"string\"],\n    \"applications\": [\"string\"],\n    \"notes\": \"string\"\n}""",
-                    height=200,
-                    key="output_format"
-                )
-                if st.button("Generate Analysis"):
-                    if not st.session_state.llm_model:
-                        st.error("Please configure LLM settings in the sidebar")
-                    else:
-                        # 프로그레스 바 추가
-                        progress_bar = st.progress(0)
-                        status_text = st.empty()
-                        status_text.text("분석 준비 중...")
+                # 2컬럼 레이아웃 설정
+                col1, col2 = st.columns(2)
+                
+                # 왼쪽 컬럼: PDF Analysis & Retrieval
+                with col1:
+                    st.header("PDF Analysis & Retrieval")
+                    
+                    # 검색 파라미터 설정
+                    st.subheader("검색 설정")
+                    with st.form("search_form"):
+                        search_text = st.text_input("Search Text (예: voltage, 특징, 적용분야 등)", key="search_text")
                         
-                        try:
-                            # 컨텍스트 준비
-                            context = ""
-                            if use_rag and st.session_state.get("search_results"):
-                                context = "\n\n".join([r["text"] for r in st.session_state.search_results])
-                            else:
-                                context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                        # 검색 파라미터 상세화
+                        st.write("검색 파라미터 설정")
+                        num_results = st.slider("검색 결과 개수", 1, 20, 5, key="num_results")
+                        search_threshold = st.slider("유사도 임계값", 0.0, 1.0, 0.7, step=0.05, key="search_threshold")
+                        search_method = st.selectbox(
+                            "검색 방법",
+                            ["Similarity", "MMR (Maximum Marginal Relevance)"],
+                            index=0,
+                            key="search_method"
+                        )
+                        
+                        if search_method == "MMR (Maximum Marginal Relevance)":
+                            diversity = st.slider("다양성 (높을수록 다양한 결과)", 0.0, 1.0, 0.3, step=0.05, key="diversity")
+                        else:
+                            diversity = 0.3  # 기본값
+                        
+                        submitted = st.form_submit_button("검색")
+                    
+                    if submitted and search_text:
+                        # 검색 방법에 따라 파라미터 설정
+                        use_mmr = search_method == "MMR (Maximum Marginal Relevance)"
+                        
+                        # 검색 실행
+                        results = st.session_state.vector_store.similarity_search(
+                            search_text, 
+                            k=num_results,
+                            threshold=search_threshold,
+                            use_mmr=use_mmr,
+                            diversity=diversity
+                        )
+                        st.session_state.search_results = results
+                    
+                    # 검색 결과 표시
+                    if st.session_state.get("search_results"):
+                        st.subheader("Search Results")
+                        for i, result in enumerate(st.session_state.search_results, 1):
+                            st.text_area(f"Result {i}", result["text"], height=100)
+                    
+                    # 전체 청크 보기
+                    with st.expander("All Chunks", expanded=False):
+                        for i, chunk in enumerate(st.session_state.chunks, 1):
+                            st.text_area(f"Chunk {i}", chunk["text"], height=100)
+                
+                # 오른쪽 컬럼: LLM Prompting
+                with col2:
+                    st.header("LLM Prompting")
+                    
+                    # System prompt (높이 절반으로 줄임)
+                    system_prompt = st.text_area(
+                        "System Prompt",
+                        """You are an expert in analyzing electronic component datasheets. 
+Your task is to extract and organize key specifications and information from the provided datasheet.
+Focus on technical details, specifications, and important characteristics of the component.
+Maintain accuracy and use the original terminology from the datasheet.""",
+                        height=200,  # 기존 400에서 200으로 줄임
+                        key="system_prompt"
+                    )
+                    
+                    # RAG 설정
+                    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True, help="체크하면 검색 결과만 사용, 체크 해제하면 전체 PDF 내용 사용", key="use_rag")
+                    
+                    # RAG 설정에 따른 컨텍스트 설명
+                    if use_rag:
+                        st.info("검색 결과만 LLM에 전달됩니다. 검색 결과가 없으면 전체 PDF 내용이 사용됩니다.")
+                    else:
+                        st.info("전체 PDF 내용이 LLM에 전달됩니다.")
+                    
+                    # Output format prompt (높이 2배로 늘림)
+                    output_format = st.text_area(
+                        "Output Format Instructions",
+                        """Please provide the analysis in the following JSON format:
+{
+    "component_name": "string",
+    "specifications": {
+        "voltage": "string",
+        "current": "string",
+        "package": "string",
+        "temperature_range": "string"
+    },
+    "key_features": ["string"],
+    "applications": ["string"],
+    "notes": "string"
+}""",
+                        height=400,  # 기존 200에서 400으로 늘림
+                        key="output_format"
+                    )
+                    
+                    # Generate 버튼
+                    if st.button("Generate Analysis"):
+                        if not st.session_state.llm_model:
+                            st.error("Please configure LLM settings in the sidebar")
+                        else:
+                            # 프로그레스 바 추가
+                            progress_bar = st.progress(0)
+                            status_text = st.empty()
+                            status_text.text("분석 준비 중...")
                             
-                            progress_bar.progress(30)
-                            status_text.text("LLM에 요청 전송 중...")
-                            
-                            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}\n\nIMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
-                            
-                            progress_bar.progress(50)
-                            
-                            # LLM 응답 생성
-                            response = st.session_state.llm_model.get_model().invoke(full_prompt)
-                            response_content = response.content
-                            
-                            # Claude가 반환한 응답에서 코드 블록 마크다운 제거
-                            response_content = response_content.replace("```json", "").replace("```", "").strip()
-                            
-                            st.session_state.llm_response = response_content
-                            
-                            progress_bar.progress(100)
-                            status_text.text("분석 완료!")
-                            
-                            # 결과 표시
-                            st.subheader("Analysis Results")
                             try:
-                                st.json(st.session_state.llm_response)
-                            except Exception as json_error:
-                                logger.error(f"JSON 파싱 오류: {str(json_error)}")
-                                st.error(f"JSON 형식이 올바르지 않습니다. 원본 응답을 표시합니다.")
-                                st.text_area("Raw Response", st.session_state.llm_response, height=400)
-                            
-                        except Exception as e:
-                            logger.error(f"Error generating LLM response: {str(e)}")
-                            logger.error(traceback.format_exc())
-                            st.error(f"LLM 응답 생성 중 오류가 발생했습니다: {str(e)}")
-                            progress_bar.empty()
-                            status_text.empty()
+                                # 컨텍스트 준비
+                                context = ""
+                                if use_rag and st.session_state.get("search_results") and len(st.session_state.search_results) > 0:
+                                    # RAG 사용 & 검색 결과가 있는 경우
+                                    context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                                    status_text.text(f"RAG 모드: {len(st.session_state.search_results)}개의 검색 결과 사용")
+                                else:
+                                    # RAG 미사용 또는 검색 결과가 없는 경우
+                                    context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                                    if use_rag:
+                                        status_text.text("검색 결과가 없어 전체 PDF 내용 사용")
+                                    else:
+                                        status_text.text("전체 PDF 내용 사용")
+                                
+                                progress_bar.progress(30)
+                                status_text.text("LLM에 요청 전송 중...")
+                                
+                                full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}\n\nIMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
+                                
+                                progress_bar.progress(50)
+                                
+                                # LLM 응답 생성
+                                response = st.session_state.llm_model.get_model().invoke(full_prompt)
+                                response_content = response.content
+                                
+                                # Claude가 반환한 응답에서 코드 블록 마크다운 제거
+                                response_content = response_content.replace("```json", "").replace("```", "").strip()
+                                
+                                st.session_state.llm_response = response_content
+                                
+                                progress_bar.progress(100)
+                                status_text.text("분석 완료!")
+                                
+                                # 결과 표시
+                                st.subheader("Analysis Results")
+                                try:
+                                    st.json(st.session_state.llm_response)
+                                except Exception as json_error:
+                                    logger.error(f"JSON 파싱 오류: {str(json_error)}")
+                                    st.error(f"JSON 형식이 올바르지 않습니다. 원본 응답을 표시합니다.")
+                                    st.text_area("Raw Response", st.session_state.llm_response, height=400)
+                                
+                            except Exception as e:
+                                logger.error(f"Error generating LLM response: {str(e)}")
+                                logger.error(traceback.format_exc())
+                                st.error(f"LLM 응답 생성 중 오류가 발생했습니다: {str(e)}")
+                                progress_bar.empty()
+                                status_text.empty()
         else:
             st.info("사이드바에서 PDF 파일을 선택하고 'PDF 선택 완료'를 눌러주세요.")
         

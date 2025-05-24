@@ -41,13 +41,16 @@ class VectorStore:
             persist_directory=str(VECTOR_STORE_DIR / self.collection_name)
         )
     
-    def similarity_search(self, query: str, k: int = 4) -> List[Dict[str, Any]]:
+    def similarity_search(self, query: str, k: int = 4, threshold: float = 0.0, use_mmr: bool = False, diversity: float = 0.3) -> List[Dict[str, Any]]:
         """
         Perform similarity search on the vector store.
         
         Args:
             query: Query text
             k: Number of results to return
+            threshold: Minimum similarity score threshold (0.0 to 1.0)
+            use_mmr: Whether to use MMR for diverse results
+            diversity: Diversity parameter for MMR (0.0 to 1.0)
             
         Returns:
             List of similar documents with metadata
@@ -55,15 +58,37 @@ class VectorStore:
         if not self.vector_store:
             raise ValueError("Vector store not initialized")
         
-        results = self.vector_store.similarity_search_with_score(query, k=k)
-        return [
-            {
-                "text": doc.page_content,
-                "metadata": doc.metadata,
-                "score": score
-            }
-            for doc, score in results
-        ]
+        # 검색 방법 선택 (MMR 또는 일반 유사도 검색)
+        if use_mmr:
+            # MMR 검색 (다양한 결과)
+            results = self.vector_store.max_marginal_relevance_search_with_score(
+                query, 
+                k=k,
+                fetch_k=k*2,  # 더 많은 후보를 가져와서 다양성을 높임
+                lambda_mult=diversity  # 다양성 파라미터 (0: 다양성 최대, 1: 유사도 최대)
+            )
+        else:
+            # 일반 유사도 검색
+            results = self.vector_store.similarity_search_with_score(query, k=k)
+        
+        # 결과를 스코어 기준으로 필터링 및 정렬
+        filtered_results = []
+        for doc, score in results:
+            # 스코어 정규화 (0~1 범위로 변환, 높을수록 더 유사)
+            normalized_score = 1.0 - (score / 2.0)  # 원래 스코어가 거리 기반이므로 변환
+            
+            # 임계값 이상인 결과만 포함
+            if normalized_score >= threshold:
+                filtered_results.append({
+                    "text": doc.page_content,
+                    "metadata": doc.metadata,
+                    "score": normalized_score
+                })
+        
+        # 스코어 기준 내림차순 정렬
+        filtered_results.sort(key=lambda x: x["score"], reverse=True)
+        
+        return filtered_results
     
     def clear_store(self):
         """
