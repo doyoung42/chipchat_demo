@@ -22,9 +22,8 @@ wheels/
 
 # Virtual Environment
 venv/
-ENV/
 env/
-.env
+ENV/
 
 # IDE
 .idea/
@@ -42,23 +41,12 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific
-vector_store/
-logs/*
-!logs/.gitkeep
-*.log
-!src/app/streamlit_app.py
-
-# Config and tokens
-config/
-tokens.json
-user_config.yaml
+logs/
+uploads/
 .env
-.env.*
+user_config.yaml
+tokens.json
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
-# Keep uploads directory but ignore its contents
-uploads/*
-!uploads/.gitkeep 
+*/.ipynb_checkpoints/* 
