@@ -250,7 +250,7 @@ def setup_sidebar():
                 st.session_state.pdf_analysis_complete = False  # 분석 상태 초기화
                 st.session_state.auto_start_analysis = True  # 자동 분석 시작 플래그 설정
                 st.success(f"{selected_pdf.name if hasattr(selected_pdf, 'name') else str(selected_pdf)} 선택 완료!")
-                st.experimental_rerun()  # 페이지 리로드하여 자동 분석 시작
+                st.rerun()  # 페이지 리로드하여 자동 분석 시작
 
 def process_pdf():
     """Process the uploaded PDF file."""
@@ -285,7 +285,7 @@ def process_pdf():
             st.session_state.pdf_analysis_complete = True
             
             # 페이지 리로드하여 다음 화면으로 자동 전환
-            st.experimental_rerun()
+            st.rerun()
             
             return True
         return False
