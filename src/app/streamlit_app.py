@@ -364,26 +364,30 @@ Maintain accuracy and use the original terminology from the datasheet.""",
             status_text.text("LLM에 요청 전송 중...")
                 
             # Prepare full prompt
-            full_prompt = f"""System: {system_prompt}
-
-Context from datasheet:
-{context}
-
-Output Format Instructions:
-{output_format}"""
+            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}\n\nIMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
             
             progress_bar.progress(50)
             
             # Get LLM response with timeout handling
             response = st.session_state.llm_model.get_model().invoke(full_prompt)
-            st.session_state.llm_response = response.content
+            response_content = response.content
+            
+            # Claude가 반환한 응답에서 코드 블록 마크다운 제거
+            response_content = response_content.replace("```json", "").replace("```", "").strip()
+            
+            st.session_state.llm_response = response_content
             
             progress_bar.progress(100)
             status_text.text("분석 완료!")
             
             # Display response
             st.subheader("Analysis Results")
-            st.json(st.session_state.llm_response)
+            try:
+                st.json(st.session_state.llm_response)
+            except Exception as json_error:
+                logger.error(f"JSON 파싱 오류: {str(json_error)}")
+                st.error(f"JSON 형식이 올바르지 않습니다. 원본 응답을 표시합니다.")
+                st.text_area("Raw Response", st.session_state.llm_response, height=400)
             
         except Exception as e:
             logger.error(f"Error generating LLM response: {str(e)}")
@@ -473,20 +477,30 @@ def main():
                             progress_bar.progress(30)
                             status_text.text("LLM에 요청 전송 중...")
                             
-                            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}"""
+                            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}\n\nIMPORTANT: Return only valid JSON without any markdown code blocks or backticks."""
                             
                             progress_bar.progress(50)
                             
                             # LLM 응답 생성
                             response = st.session_state.llm_model.get_model().invoke(full_prompt)
-                            st.session_state.llm_response = response.content
+                            response_content = response.content
+                            
+                            # Claude가 반환한 응답에서 코드 블록 마크다운 제거
+                            response_content = response_content.replace("```json", "").replace("```", "").strip()
+                            
+                            st.session_state.llm_response = response_content
                             
                             progress_bar.progress(100)
                             status_text.text("분석 완료!")
                             
                             # 결과 표시
                             st.subheader("Analysis Results")
-                            st.json(st.session_state.llm_response)
+                            try:
+                                st.json(st.session_state.llm_response)
+                            except Exception as json_error:
+                                logger.error(f"JSON 파싱 오류: {str(json_error)}")
+                                st.error(f"JSON 형식이 올바르지 않습니다. 원본 응답을 표시합니다.")
+                                st.text_area("Raw Response", st.session_state.llm_response, height=400)
                             
                         except Exception as e:
                             logger.error(f"Error generating LLM response: {str(e)}")
