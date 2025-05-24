@@ -187,6 +187,32 @@ def setup_sidebar():
         anthropic_token = st.text_input("Anthropic API Key", type="password", value=st.session_state.token_manager.get_token('anthropic') or "", key="anthropic_token")
         if anthropic_token:
             st.session_state.token_manager.set_token('anthropic', anthropic_token)
+            
+        # 임베딩 모델 선택
+        st.subheader("임베딩 모델 설정")
+        embedding_models = [
+            "sentence-transformers/paraphrase-MiniLM-L3-v2",
+            "sentence-transformers/all-MiniLM-L6-v2",
+            "sentence-transformers/multi-qa-MiniLM-L6-cos-v1"
+        ]
+        selected_model = st.selectbox(
+            "임베딩 모델 선택",
+            embedding_models,
+            index=0,
+            key="embedding_model_name"
+        )
+        
+        if st.button("임베딩 모델 적용"):
+            try:
+                hf_token = st.session_state.token_manager.get_token('huggingface')
+                st.session_state.embedding_model = EmbeddingModel(model_name=selected_model, hf_token=hf_token)
+                st.session_state.vector_store = VectorStore(
+                    st.session_state.embedding_model.get_langchain_embeddings()
+                )
+                st.success(f"{selected_model} 모델 적용 완료!")
+            except Exception as e:
+                st.error(f"임베딩 모델 초기화 오류: {str(e)}")
+            
         # 사용 가능한 모델만 선택지로 노출
         available_models = []
         if openai_token:
@@ -220,12 +246,29 @@ def process_pdf():
     try:
         if st.session_state.current_pdf:
             logger.info(f"Processing PDF: {st.session_state.current_pdf}")
+            
+            # 프로그레스 바 추가
+            progress_bar = st.progress(0)
+            status_text = st.empty()
+            
+            # 텍스트 추출
+            status_text.text("PDF에서 텍스트 추출 중...")
+            progress_bar.progress(20)
+            
             chunks = st.session_state.pdf_processor.process_pdf(st.session_state.current_pdf)
             st.session_state.chunks = chunks
             logger.info(f"Created {len(chunks)} chunks from PDF")
             
+            # 벡터 스토어 생성
+            status_text.text("벡터 스토어 생성 중...")
+            progress_bar.progress(60)
+            
             st.session_state.vector_store.create_store(chunks)
             logger.info("Vector store created successfully")
+            
+            # 완료
+            progress_bar.progress(100)
+            status_text.text("PDF 처리 완료!")
             return True
         return False
     except Exception as e:
@@ -305,28 +348,49 @@ Maintain accuracy and use the original terminology from the datasheet.""",
             st.error("Please configure LLM settings in the sidebar")
             return
             
-        # Prepare context
-        if use_rag and st.session_state.search_results:
-            context = "\n\n".join([r["text"] for r in st.session_state.search_results])
-        else:
-            context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+        # 프로그레스 바 추가
+        progress_bar = st.progress(0)
+        status_text = st.empty()
+        status_text.text("분석 준비 중...")
+        
+        try:
+            # Prepare context
+            if use_rag and st.session_state.search_results:
+                context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+            else:
+                context = "\n\n".join([c["text"] for c in st.session_state.chunks])
             
-        # Prepare full prompt
-        full_prompt = f"""System: {system_prompt}
+            progress_bar.progress(30)
+            status_text.text("LLM에 요청 전송 중...")
+                
+            # Prepare full prompt
+            full_prompt = f"""System: {system_prompt}
 
 Context from datasheet:
 {context}
 
 Output Format Instructions:
 {output_format}"""
-        
-        # Get LLM response
-        response = st.session_state.llm_model.get_model().invoke(full_prompt)
-        st.session_state.llm_response = response.content
-        
-        # Display response
-        st.subheader("Analysis Results")
-        st.json(st.session_state.llm_response)
+            
+            progress_bar.progress(50)
+            
+            # Get LLM response with timeout handling
+            response = st.session_state.llm_model.get_model().invoke(full_prompt)
+            st.session_state.llm_response = response.content
+            
+            progress_bar.progress(100)
+            status_text.text("분석 완료!")
+            
+            # Display response
+            st.subheader("Analysis Results")
+            st.json(st.session_state.llm_response)
+            
+        except Exception as e:
+            logger.error(f"Error generating LLM response: {str(e)}")
+            logger.error(traceback.format_exc())
+            st.error(f"LLM 응답 생성 중 오류가 발생했습니다: {str(e)}")
+            progress_bar.empty()
+            status_text.empty()
 
 def get_available_pdfs():
     """Get list of available PDF files from uploads directory."""
@@ -393,16 +457,43 @@ def main():
                     if not st.session_state.llm_model:
                         st.error("Please configure LLM settings in the sidebar")
                     else:
-                        context = ""
-                        if use_rag and st.session_state.get("search_results"):
-                            context = "\n\n".join([r["text"] for r in st.session_state.search_results])
-                        else:
-                            context = "\n\n".join([c["text"] for c in st.session_state.chunks])
-                        full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}"""
-                        response = st.session_state.llm_model.get_model().invoke(full_prompt)
-                        st.session_state.llm_response = response.content
-                        st.subheader("Analysis Results")
-                        st.json(st.session_state.llm_response)
+                        # 프로그레스 바 추가
+                        progress_bar = st.progress(0)
+                        status_text = st.empty()
+                        status_text.text("분석 준비 중...")
+                        
+                        try:
+                            # 컨텍스트 준비
+                            context = ""
+                            if use_rag and st.session_state.get("search_results"):
+                                context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+                            else:
+                                context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+                            
+                            progress_bar.progress(30)
+                            status_text.text("LLM에 요청 전송 중...")
+                            
+                            full_prompt = f"""System: {system_prompt}\n\nContext from datasheet:\n{context}\n\nOutput Format Instructions:\n{output_format}"""
+                            
+                            progress_bar.progress(50)
+                            
+                            # LLM 응답 생성
+                            response = st.session_state.llm_model.get_model().invoke(full_prompt)
+                            st.session_state.llm_response = response.content
+                            
+                            progress_bar.progress(100)
+                            status_text.text("분석 완료!")
+                            
+                            # 결과 표시
+                            st.subheader("Analysis Results")
+                            st.json(st.session_state.llm_response)
+                            
+                        except Exception as e:
+                            logger.error(f"Error generating LLM response: {str(e)}")
+                            logger.error(traceback.format_exc())
+                            st.error(f"LLM 응답 생성 중 오류가 발생했습니다: {str(e)}")
+                            progress_bar.empty()
+                            status_text.empty()
         else:
             st.info("사이드바에서 PDF 파일을 선택하고 'PDF 선택 완료'를 눌러주세요.")
         

@@ -30,19 +30,24 @@ class LLMModel:
         Returns:
             Initialized LLM model
         """
+        # 타임아웃 설정 추가 (600초)
+        request_timeout = 600.0
+        
         if self.model_type == "gpt4":
             return ChatOpenAI(
                 model_name=self.config["model_name"],
                 temperature=self.config["temperature"],
                 max_tokens=self.config["max_tokens"],
-                api_key=self.api_key
+                api_key=self.api_key,
+                request_timeout=request_timeout
             )
         elif self.model_type == "claude":
             return ChatAnthropic(
                 model_name=self.config["model_name"],
                 temperature=self.config["temperature"],
                 max_tokens=self.config["max_tokens"],
-                anthropic_api_key=self.api_key
+                anthropic_api_key=self.api_key,
+                timeout=request_timeout
             )
         else:
             raise ValueError(f"Unsupported model type: {self.model_type}")

@@ -19,9 +19,9 @@ UPLOAD_DIR.mkdir(exist_ok=True)
 VECTOR_STORE_DIR.mkdir(exist_ok=True)
 
 # Model settings
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
-CHUNK_SIZE = 1000
-CHUNK_OVERLAP = 200
+EMBEDDING_MODEL = "sentence-transformers/paraphrase-MiniLM-L3-v2"
+CHUNK_SIZE = 500
+CHUNK_OVERLAP = 50
 
 # LLM settings
 LLM_CONFIG: Dict[str, Any] = {

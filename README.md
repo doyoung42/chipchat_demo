@@ -7,7 +7,6 @@
 - PDF 데이터시트 업로드 및 분석
 - 주요 사양 자동 추출
 - RAG 기반 정보 검색
-- 다중 LLM 모델 지원 (GPT-4, Claude Sonnet 3.7)
 - JSON 형식의 구조화된 출력
 
 ## 설치 방법
@@ -36,7 +35,7 @@ pip install -r requirements.txt
 
 ### Google Colab에서 실행
 1. `main.ipynb` 노트북 열기
-2. GPU 런타임 설정 (T4 권장)
+2. GPU 런타임 설정
 3. 노트북 실행
 
 ### 로컬에서 실행
