@@ -22,7 +22,7 @@ langchain-community==0.0.10
 # PDF 처리
 pypdf==3.17.1
 pdf2image==1.16.3
-pillow==10.0.0
+pillow==9.5.0
 
 # 벡터 DB 및 임베딩
 chromadb==0.3.29
