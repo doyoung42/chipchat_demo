@@ -42,7 +42,8 @@ Thumbs.db
 
 # Project specific
 logs/
-uploads/
+uploads/*
+!uploads/.gitkeep
 .env
 user_config.yaml
 tokens.json
