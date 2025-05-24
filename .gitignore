@@ -48,6 +48,13 @@ logs/*
 *.log
 !src/app/streamlit_app.py
 
+# Config and tokens
+config/
+tokens.json
+user_config.yaml
+.env
+.env.*
+
 # Jupyter Notebook
 .ipynb_checkpoints
 */.ipynb_checkpoints/*

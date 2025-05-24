@@ -11,18 +11,67 @@ import sys
 import yaml
 import logging
 import traceback
+from logging.handlers import RotatingFileHandler
+import platform
+
+# 로그 디렉토리 설정
+if platform.system() == 'Linux' and 'google.colab' in sys.modules:
+    # Google Colab 환경
+    LOG_DIR = Path('/tmp/streamlit_logs')
+else:
+    # 로컬 환경
+    LOG_DIR = Path(__file__).parent.parent.parent / "logs"
+
+LOG_DIR.mkdir(exist_ok=True, parents=True)
+LOG_FILE = LOG_DIR / "streamlit.log"
 
 # 로깅 설정
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
+def setup_logging():
+    """Setup logging configuration."""
+    try:
+        # 기존 핸들러 제거
+        for handler in logging.root.handlers[:]:
+            logging.root.removeHandler(handler)
+        
+        # 로깅 설정
+        logging.basicConfig(
+            level=logging.DEBUG,  # 더 자세한 로깅을 위해 DEBUG 레벨로 설정
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            handlers=[
+                # 콘솔 출력
+                logging.StreamHandler(),
+                # 파일 출력 (최대 10MB, 최대 5개 파일 유지)
+                RotatingFileHandler(
+                    LOG_FILE,
+                    maxBytes=10*1024*1024,  # 10MB
+                    backupCount=5,
+                    encoding='utf-8'
+                )
+            ]
+        )
+        
+        # Streamlit 로거 설정
+        streamlit_logger = logging.getLogger('streamlit')
+        streamlit_logger.setLevel(logging.DEBUG)
+        
+        # 로깅 설정 완료 메시지
+        logging.info(f"Logging setup completed. Log file: {LOG_FILE}")
+        logging.info(f"Current working directory: {os.getcwd()}")
+        logging.info(f"Python path: {sys.path}")
+        
+    except Exception as e:
+        print(f"Error setting up logging: {str(e)}")
+        print(traceback.format_exc())
+
+# 로깅 설정 실행
+setup_logging()
 logger = logging.getLogger(__name__)
 
 # Add src directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 from config.settings import STREAMLIT_CONFIG, UPLOAD_DIR
+from config.token_manager import TokenManager
 from models.embedding import EmbeddingModel
 from models.llm import LLMModel
 from utils.pdf_processor import PDFProcessor
@@ -32,24 +81,46 @@ def initialize_session_state():
     """Initialize session state with error handling."""
     try:
         logger.info("Initializing session state...")
+        
+        # 토큰 관리자 초기화
+        if "token_manager" not in st.session_state:
+            st.session_state.token_manager = TokenManager()
+            logger.info("Token manager initialized")
+        
+        # PDF 프로세서 초기화
         if "pdf_processor" not in st.session_state:
             st.session_state.pdf_processor = PDFProcessor()
             logger.info("PDF processor initialized")
         
+        # 임베딩 모델 초기화
         if "embedding_model" not in st.session_state:
-            st.session_state.embedding_model = EmbeddingModel()
-            logger.info("Embedding model initialized")
+            try:
+                hf_token = st.session_state.token_manager.get_token('huggingface')
+                st.session_state.embedding_model = EmbeddingModel(hf_token=hf_token)
+                logger.info("Embedding model initialized")
+            except Exception as e:
+                logger.error(f"Error initializing embedding model: {str(e)}")
+                st.error("임베딩 모델 초기화 중 오류가 발생했습니다. HuggingFace 토큰을 확인해주세요.")
+                return False
         
+        # 벡터 스토어 초기화
         if "vector_store" not in st.session_state:
-            st.session_state.vector_store = VectorStore(
-                st.session_state.embedding_model.get_langchain_embeddings()
-            )
-            logger.info("Vector store initialized")
+            try:
+                st.session_state.vector_store = VectorStore(
+                    st.session_state.embedding_model.get_langchain_embeddings()
+                )
+                logger.info("Vector store initialized")
+            except Exception as e:
+                logger.error(f"Error initializing vector store: {str(e)}")
+                st.error("벡터 스토어 초기화 중 오류가 발생했습니다.")
+                return False
         
+        # LLM 모델 상태 초기화
         if "llm_model" not in st.session_state:
             st.session_state.llm_model = None
             logger.info("LLM model state initialized")
         
+        # 기타 상태 초기화
         if "current_pdf" not in st.session_state:
             st.session_state.current_pdf = None
         
@@ -63,10 +134,12 @@ def initialize_session_state():
             st.session_state.llm_response = None
             
         logger.info("Session state initialization completed")
+        return True
     except Exception as e:
         logger.error(f"Error initializing session state: {str(e)}")
         logger.error(traceback.format_exc())
         st.error(f"초기화 중 오류가 발생했습니다: {str(e)}")
+        return False
 
 def load_user_config():
     """Load user configuration from yaml file."""
@@ -92,8 +165,18 @@ def setup_sidebar():
     with st.sidebar:
         st.header("Settings")
         
-        # Load saved config
-        user_config = load_user_config()
+        # API 토큰 설정
+        st.subheader("API Tokens")
+        
+        # HuggingFace 토큰
+        hf_token = st.text_input(
+            "HuggingFace API Token",
+            type="password",
+            value=st.session_state.token_manager.get_token('huggingface') or "",
+            key="hf_token"
+        )
+        if hf_token:
+            st.session_state.token_manager.set_token('huggingface', hf_token)
         
         # LLM Model Selection
         model_type = st.selectbox(
@@ -103,27 +186,36 @@ def setup_sidebar():
             key="model_type"
         )
         
-        # API Key Input
-        api_key = st.text_input(
-            f"Enter {model_type.upper()} API Key",
-            type="password",
-            value=user_config.get("api_key", ""),
-            key="api_key"
-        )
-        
-        # Save settings
-        if st.button("Save Settings"):
-            save_user_config({
-                "model_type": model_type,
-                "api_key": api_key
-            })
-            st.success("Settings saved!")
+        # LLM API 토큰
+        if model_type == "gpt4":
+            api_key = st.text_input(
+                "OpenAI API Key",
+                type="password",
+                value=st.session_state.token_manager.get_token('openai') or "",
+                key="openai_token"
+            )
+            if api_key:
+                st.session_state.token_manager.set_token('openai', api_key)
+        else:  # claude
+            api_key = st.text_input(
+                "Anthropic API Key",
+                type="password",
+                value=st.session_state.token_manager.get_token('anthropic') or "",
+                key="anthropic_token"
+            )
+            if api_key:
+                st.session_state.token_manager.set_token('anthropic', api_key)
         
         # Apply settings
         if st.button("Apply Settings"):
             if api_key:
-                st.session_state.llm_model = LLMModel(model_type, api_key)
-                st.success("Settings applied successfully!")
+                try:
+                    st.session_state.llm_model = LLMModel(model_type, api_key)
+                    st.success("Settings applied successfully!")
+                    logger.info(f"LLM model initialized: {model_type}")
+                except Exception as e:
+                    logger.error(f"Error initializing LLM model: {str(e)}")
+                    st.error("LLM 모델 초기화 중 오류가 발생했습니다. API 토큰을 확인해주세요.")
             else:
                 st.error("Please enter an API key")
 
