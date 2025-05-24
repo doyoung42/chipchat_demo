@@ -22,8 +22,9 @@ wheels/
 
 # Virtual Environment
 venv/
-env/
 ENV/
+env/
+.env
 
 # IDE
 .idea/
@@ -31,15 +32,24 @@ ENV/
 *.swp
 *.swo
 
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# Environment variables
-.env
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
 # Project specific
 vector_store/
-uploads/
-*.pdf
 *.log
-user_config.yaml 
+!src/app/streamlit_app.py
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Keep uploads directory but ignore its contents
+uploads/*
+!uploads/.gitkeep 
