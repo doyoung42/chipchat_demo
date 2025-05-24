@@ -5,18 +5,28 @@ import os
 import sys
 import torch
 import subprocess
+import platform
 from pathlib import Path
 
 def check_gpu():
     """Check GPU availability and print information."""
-    print("Checking GPU availability...")
-    if torch.cuda.is_available():
-        print(f"PyTorch version: {torch.__version__}")
-        print(f"CUDA available: {torch.cuda.is_available()}")
-        print(f"Current GPU: {torch.cuda.get_device_name(0)}")
-        print(f"GPU memory allocated: {torch.cuda.memory_allocated(0) / 1024**2:.2f} MB")
-    else:
-        print("Warning: CUDA is not available. Running on CPU.")
+    print("Checking system information...")
+    print(f"Operating System: {platform.system()} {platform.release()}")
+    print(f"PyTorch version: {torch.__version__}")
+    
+    if platform.system() == "Darwin":  # macOS
+        if torch.backends.mps.is_available():
+            print("MPS (Metal Performance Shaders) is available")
+            print(f"Using device: {torch.backends.mps.get_device_name()}")
+        else:
+            print("MPS is not available, using CPU")
+    else:  # Linux/Windows
+        if torch.cuda.is_available():
+            print(f"CUDA available: {torch.cuda.is_available()}")
+            print(f"Current GPU: {torch.cuda.get_device_name(0)}")
+            print(f"GPU memory allocated: {torch.cuda.memory_allocated(0) / 1024**2:.2f} MB")
+        else:
+            print("Warning: CUDA is not available. Running on CPU.")
 
 def setup_environment():
     """Setup the Python environment."""
