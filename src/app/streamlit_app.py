@@ -145,6 +145,14 @@ def initialize_session_state():
         if "llm_response" not in st.session_state:
             st.session_state.llm_response = None
             
+        # PDF 분석 상태 플래그 추가
+        if "pdf_analysis_complete" not in st.session_state:
+            st.session_state.pdf_analysis_complete = False
+            
+        # PDF 분석 자동 시작 플래그 추가
+        if "auto_start_analysis" not in st.session_state:
+            st.session_state.auto_start_analysis = False
+            
         logger.info("Session state initialization completed")
         return True
     except Exception as e:
@@ -239,7 +247,10 @@ def setup_sidebar():
                 st.session_state.current_pdf = selected_pdf
                 st.session_state.chunks = None  # 새 파일 선택 시 청킹 초기화
                 st.session_state.search_results = None
+                st.session_state.pdf_analysis_complete = False  # 분석 상태 초기화
+                st.session_state.auto_start_analysis = True  # 자동 분석 시작 플래그 설정
                 st.success(f"{selected_pdf.name if hasattr(selected_pdf, 'name') else str(selected_pdf)} 선택 완료!")
+                st.experimental_rerun()  # 페이지 리로드하여 자동 분석 시작
 
 def process_pdf():
     """Process the uploaded PDF file."""
@@ -269,12 +280,20 @@ def process_pdf():
             # 완료
             progress_bar.progress(100)
             status_text.text("PDF 처리 완료!")
+            
+            # 분석 완료 플래그 설정
+            st.session_state.pdf_analysis_complete = True
+            
+            # 페이지 리로드하여 다음 화면으로 자동 전환
+            st.experimental_rerun()
+            
             return True
         return False
     except Exception as e:
         logger.error(f"Error processing PDF: {str(e)}")
         logger.error(traceback.format_exc())
         st.error(f"PDF 처리 중 오류가 발생했습니다: {str(e)}")
+        st.session_state.pdf_analysis_complete = False
         return False
 
 def display_chunks_and_search():
@@ -487,8 +506,16 @@ def main():
         if st.session_state.get("current_pdf"):
             # PDF 분석(청킹)
             if st.session_state.chunks is None:
-                if st.button("PDF 분석 시작"):
+                # 자동 분석 시작 플래그 확인
+                if st.session_state.get("auto_start_analysis", False):
+                    # 자동 분석 플래그 초기화
+                    st.session_state.auto_start_analysis = False
+                    # 자동으로 PDF 분석 시작
                     process_pdf()
+                else:
+                    # 수동 분석 버튼 표시
+                    if st.button("PDF 분석 시작"):
+                        process_pdf()
             else:
                 # 2컬럼 레이아웃 설정
                 col1, col2 = st.columns(2)
