@@ -8,11 +8,12 @@ from typing import Dict, Any, Optional
 import tempfile
 import os
 import sys
+import yaml
 
 # Add src directory to Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
-from config.settings import STREAMLIT_CONFIG, PDF_VIEWER_CONFIG
+from config.settings import STREAMLIT_CONFIG
 from models.embedding import EmbeddingModel
 from models.llm import LLMModel
 from utils.pdf_processor import PDFProcessor
@@ -31,10 +32,26 @@ if "llm_model" not in st.session_state:
     st.session_state.llm_model = None
 if "current_pdf" not in st.session_state:
     st.session_state.current_pdf = None
-if "specifications" not in st.session_state:
-    st.session_state.specifications = None
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
+if "chunks" not in st.session_state:
+    st.session_state.chunks = None
+if "search_results" not in st.session_state:
+    st.session_state.search_results = None
+if "llm_response" not in st.session_state:
+    st.session_state.llm_response = None
+
+def load_user_config():
+    """Load user configuration from yaml file."""
+    config_path = Path("user_config.yaml")
+    if config_path.exists():
+        with open(config_path, "r") as f:
+            return yaml.safe_load(f)
+    return {}
+
+def save_user_config(config: Dict[str, Any]):
+    """Save user configuration to yaml file."""
+    config_path = Path("user_config.yaml")
+    with open(config_path, "w") as f:
+        yaml.dump(config, f)
 
 def initialize_page():
     """Initialize the Streamlit page configuration."""
@@ -44,144 +61,168 @@ def initialize_page():
 def setup_sidebar():
     """Setup the sidebar with controls."""
     with st.sidebar:
-        st.header("Controls")
+        st.header("Settings")
         
-        # PDF Upload
-        uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
-        if uploaded_file:
-            with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
-                tmp_file.write(uploaded_file.getvalue())
-                st.session_state.current_pdf = Path(tmp_file.name)
+        # Load saved config
+        user_config = load_user_config()
         
         # LLM Model Selection
         model_type = st.selectbox(
             "Select LLM Model",
             ["gpt4", "claude"],
-            index=0
+            index=0,
+            key="model_type"
         )
         
         # API Key Input
         api_key = st.text_input(
             f"Enter {model_type.upper()} API Key",
-            type="password"
+            type="password",
+            value=user_config.get("api_key", ""),
+            key="api_key"
         )
         
-        # Apply and Reset buttons
-        col1, col2 = st.columns(2)
-        with col1:
-            if st.button("Apply"):
-                if api_key:
-                    st.session_state.llm_model = LLMModel(model_type, api_key)
-                    st.success("API key applied successfully!")
-                else:
-                    st.error("Please enter an API key")
+        # Save settings
+        if st.button("Save Settings"):
+            save_user_config({
+                "model_type": model_type,
+                "api_key": api_key
+            })
+            st.success("Settings saved!")
         
-        with col2:
-            if st.button("Reset"):
-                st.session_state.llm_model = None
-                st.session_state.specifications = None
-                st.session_state.chat_history = []
-                st.experimental_rerun()
+        # Apply settings
+        if st.button("Apply Settings"):
+            if api_key:
+                st.session_state.llm_model = LLMModel(model_type, api_key)
+                st.success("Settings applied successfully!")
+            else:
+                st.error("Please enter an API key")
 
 def process_pdf():
     """Process the uploaded PDF file."""
     if st.session_state.current_pdf:
         chunks = st.session_state.pdf_processor.process_pdf(st.session_state.current_pdf)
+        st.session_state.chunks = chunks
         st.session_state.vector_store.create_store(chunks)
         return True
     return False
 
-def display_pdf():
-    """Display the PDF viewer."""
-    if st.session_state.current_pdf:
-        st.components.v1.iframe(
-            str(st.session_state.current_pdf),
-            height=PDF_VIEWER_CONFIG["page_height"],
-            scrolling=True
-        )
+def display_chunks_and_search():
+    """Display chunks and search functionality."""
+    with st.expander("PDF Processing Settings", expanded=True):
+        # Embedding model parameters
+        chunk_size = st.slider("Chunk Size", 100, 2000, 500)
+        chunk_overlap = st.slider("Chunk Overlap", 0, 500, 50)
+        
+        # Search settings
+        search_text = st.text_input("Search Text")
+        num_results = st.slider("Number of Results", 1, 10, 5)
+        
+        if search_text:
+            results = st.session_state.vector_store.similarity_search(
+                search_text,
+                k=num_results
+            )
+            st.session_state.search_results = results
+            
+            st.subheader("Search Results")
+            for i, result in enumerate(results, 1):
+                st.text_area(f"Result {i}", result["text"], height=100)
+    
+    with st.expander("All Chunks", expanded=False):
+        if st.session_state.chunks:
+            for i, chunk in enumerate(st.session_state.chunks, 1):
+                st.text_area(f"Chunk {i}", chunk["text"], height=100)
 
-def extract_specifications():
-    """Extract specifications from the PDF."""
-    if not st.session_state.llm_model:
-        st.error("Please select a model and enter API key")
-        return
+def display_llm_prompting():
+    """Display LLM prompting interface."""
+    st.header("LLM Prompting")
     
-    # Create prompt for specification extraction
-    prompt = """
-    Please analyze the following datasheet and extract the following specifications:
-    1. Function/Purpose
-    2. Operating Voltage/Current Range
-    3. Package Type
-    4. Pin Descriptions
-    5. JEDEC Compliance
-    6. Key Diagrams
-    7. Other Important Specifications
-    
-    Please maintain the original terminology and model numbers as they appear in the datasheet.
-    Format the output in markdown.
-    """
-    
-    # Get relevant chunks
-    chunks = st.session_state.vector_store.similarity_search(prompt, k=5)
-    context = "\n\n".join([chunk["text"] for chunk in chunks])
-    
-    # Generate specifications
-    response = st.session_state.llm_model.get_model().invoke(
-        f"{prompt}\n\nContext:\n{context}"
+    # System prompt
+    system_prompt = st.text_area(
+        "System Prompt",
+        """You are an expert in analyzing electronic component datasheets. 
+Your task is to extract and organize key specifications and information from the provided datasheet.
+Focus on technical details, specifications, and important characteristics of the component.
+Maintain accuracy and use the original terminology from the datasheet.""",
+        height=150
     )
     
-    st.session_state.specifications = response.content
+    # RAG settings
+    use_rag = st.checkbox("Use RAG (Vector Store Search Results)", value=True)
+    
+    # Output format prompt
+    output_format = st.text_area(
+        "Output Format Instructions",
+        """Please provide the analysis in the following JSON format:
+{
+    "component_name": "string",
+    "specifications": {
+        "voltage": "string",
+        "current": "string",
+        "package": "string",
+        "temperature_range": "string"
+    },
+    "key_features": ["string"],
+    "applications": ["string"],
+    "notes": "string"
+}""",
+        height=150
+    )
+    
+    # Generate button
+    if st.button("Generate Analysis"):
+        if not st.session_state.llm_model:
+            st.error("Please configure LLM settings in the sidebar")
+            return
+            
+        # Prepare context
+        if use_rag and st.session_state.search_results:
+            context = "\n\n".join([r["text"] for r in st.session_state.search_results])
+        else:
+            context = "\n\n".join([c["text"] for c in st.session_state.chunks])
+            
+        # Prepare full prompt
+        full_prompt = f"""System: {system_prompt}
 
-def display_specifications():
-    """Display the extracted specifications."""
-    if st.session_state.specifications:
-        st.markdown(st.session_state.specifications)
+Context from datasheet:
+{context}
+
+Output Format Instructions:
+{output_format}"""
         
-        # Add feedback controls
-        st.text_area("Improvement Suggestions", key="feedback")
-        col1, col2, col3 = st.columns(3)
+        # Get LLM response
+        response = st.session_state.llm_model.get_model().invoke(full_prompt)
+        st.session_state.llm_response = response.content
         
-        with col1:
-            if st.button("Regenerate"):
-                st.session_state.chat_history.append({
-                    "role": "user",
-                    "content": st.session_state.feedback
-                })
-                extract_specifications()
-        
-        with col2:
-            if st.button("Reset Chain"):
-                st.session_state.chat_history = []
-                st.session_state.specifications = None
-        
-        with col3:
-            if st.button("Save Specifications"):
-                if st.session_state.current_pdf:
-                    output_file = st.session_state.current_pdf.with_suffix(".json")
-                    with open(output_file, "w") as f:
-                        json.dump({
-                            "specifications": st.session_state.specifications,
-                            "chat_history": st.session_state.chat_history
-                        }, f, indent=2)
-                    st.success(f"Specifications saved to {output_file}")
+        # Display response
+        st.subheader("Analysis Results")
+        st.json(st.session_state.llm_response)
 
 def main():
     """Main application function."""
     initialize_page()
     setup_sidebar()
     
-    # Create two columns for the main layout
-    col1, col2 = st.columns(2)
+    # PDF Upload
+    uploaded_file = st.file_uploader("Upload PDF", type=["pdf"])
+    if uploaded_file:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".pdf") as tmp_file:
+            tmp_file.write(uploaded_file.getvalue())
+            st.session_state.current_pdf = Path(tmp_file.name)
     
-    with col1:
-        st.header("PDF Viewer")
-        display_pdf()
-    
-    with col2:
-        st.header("Specifications")
-        if process_pdf():
-            extract_specifications()
-        display_specifications()
+    if st.session_state.current_pdf:
+        process_pdf()
+        
+        # Create two columns for the main layout
+        col1, col2 = st.columns(2)
+        
+        with col1:
+            st.header("PDF Analysis")
+            display_chunks_and_search()
+        
+        with col2:
+            display_llm_prompting()
 
 if __name__ == "__main__":
     main() 
