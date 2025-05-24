@@ -1,33 +1,33 @@
 # 기본 의존성
-importlib-metadata==8.7.0  # 현재 설치된 버전 유지
-zipp>=3.20
+importlib-metadata==6.8.0
+zipp>=3.15.0
 
 # 핵심 패키지
-torch==2.6.0+cu124
-numpy==2.0.2
-pandas==2.2.2
-pydantic==2.11.4
+torch==2.0.1
+numpy==1.24.3
+pandas==2.0.3
+pydantic==1.10.12
 
 # 웹 프레임워크
-streamlit==1.45.1
-streamlit-option-menu==0.3.12
-uvicorn[standard]==0.34.2
+streamlit==1.24.0
+streamlit-option-menu==0.3.6
+uvicorn[standard]==0.23.2
 
 # LangChain 관련
-langchain==0.3.25
-langchain-openai==0.3.17
-langchain-anthropic==0.3.13
-langchain-community>=0.2.0  # 추가: chromadb 등 벡터 스토어 지원 포함
+langchain==0.0.267
+langchain-openai==0.0.2
+langchain-anthropic==0.0.1
+langchain-community==0.0.10
 
 # PDF 처리
-pypdf==5.5.0
-pdf2image==1.17.0
-pillow==11.2.1
+pypdf==3.17.1
+pdf2image==1.16.3
+pillow==10.0.0
 
 # 벡터 DB 및 임베딩
-chromadb==0.4.24  # 추가: 벡터 데이터베이스
-sentence-transformers==4.1.0
+chromadb==0.3.29
+sentence-transformers==2.2.2
 
 # 유틸리티
-python-dotenv==1.1.0
-PyYAML==6.0.1  # 설정 파일 관리를 위한 YAML 지원
+python-dotenv==1.0.0
+PyYAML==6.0.1
