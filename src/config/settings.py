@@ -26,12 +26,12 @@ CHUNK_OVERLAP = 50
 # LLM settings
 LLM_CONFIG: Dict[str, Any] = {
     "gpt4": {
-        "model_name": "gpt-4-turbo-preview",
+        "model_name": "gpt-4o-2024-08-06",
         "temperature": 0.1,
         "max_tokens": 2000,
     },
     "claude": {
-        "model_name": "claude-3-sonnet-20240229",
+        "model_name": "claude-3-7-sonnet-20250219",
         "temperature": 0.1,
         "max_tokens": 2000,
     }
