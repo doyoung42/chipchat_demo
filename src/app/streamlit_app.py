@@ -28,6 +28,12 @@ current_dir = Path(__file__).parent.parent.parent
 sys.path.append(str(current_dir))
 sys.path.append(str(current_dir / 'src'))
 
+# 인코딩 설정 추가
+os.environ['PYTHONIOENCODING'] = 'utf-8'
+if sys.stdout.encoding != 'utf-8':
+    sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    sys.stderr = open(sys.stderr.fileno(), mode='w', encoding='utf-8', buffering=1)
+
 # 로그 디렉토리 설정
 if platform.system() == 'Linux' and 'google.colab' in sys.modules:
     # Google Colab 환경
@@ -417,6 +423,9 @@ IMPORTANT: Return only valid JSON without any markdown code blocks or backticks.
             response = st.session_state.llm_model.get_model().invoke(full_prompt)
             response_content = response.content
             
+            # 유니코드 문자 처리를 위한 인코딩 처리 추가
+            response_content = st.session_state.llm_model.process_response(response_content)
+            
             # Claude가 반환한 응답에서 코드 블록 마크다운 제거
             response_content = response_content.replace("```json", "").replace("```", "").strip()
             
@@ -616,6 +625,9 @@ Maintain accuracy and use the original terminology from the datasheet.""",
                                 # LLM 응답 생성
                                 response = st.session_state.llm_model.get_model().invoke(full_prompt)
                                 response_content = response.content
+                                
+                                # 유니코드 문자 처리를 위한 인코딩 처리 추가
+                                response_content = st.session_state.llm_model.process_response(response_content)
                                 
                                 # Claude가 반환한 응답에서 코드 블록 마크다운 제거
                                 response_content = response_content.replace("```json", "").replace("```", "").strip()

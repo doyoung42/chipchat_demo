@@ -69,4 +69,22 @@ class LLMModel:
             api_key: New API key
         """
         self.api_key = api_key
-        self.model = self._initialize_model() 
+        self.model = self._initialize_model()
+        
+    def process_response(self, response_content: str) -> str:
+        """
+        Process LLM response to handle unicode characters.
+        
+        Args:
+            response_content: Raw response content from LLM
+            
+        Returns:
+            Processed response content
+        """
+        # 유니코드 문자 처리를 위한 인코딩 처리
+        response_content = response_content.encode('utf-8', errors='replace').decode('utf-8')
+        
+        # 특수 문자 치환 (en dash 등)
+        response_content = response_content.replace('\u2013', '-').replace('\u2014', '--')
+        
+        return response_content 
