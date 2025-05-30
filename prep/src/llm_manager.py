@@ -1,19 +1,20 @@
 import json
 import requests
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple, Any
 
 class LLMManager:
-    def __init__(self, api_key: str, provider: str = "openai", claude_api_key: Optional[str] = None):
-        """LLM 관리자 초기화
+    def __init__(self, api_key: str, provider: str = "openai", model_name: Optional[str] = None, claude_api_key: Optional[str] = None):
+        """Initialize LLM Manager
         
         Args:
-            api_key: OpenAI API 키
-            provider: LLM 제공자 ("openai" 또는 "claude")
-            claude_api_key: Claude API 키 (provider가 "claude"일 때 필요)
+            api_key: OpenAI API key
+            provider: LLM provider ("openai" or "claude")
+            model_name: Model name to use (optional, defaults to provider's default model)
+            claude_api_key: Claude API key (required when provider is "claude")
         """
         self.provider = provider.lower()
         
-        # OpenAI 설정
+        # OpenAI settings
         self.openai_api_key = api_key
         self.openai_api_url = "https://api.openai.com/v1/chat/completions"
         self.openai_headers = {
@@ -21,7 +22,7 @@ class LLMManager:
             "Content-Type": "application/json"
         }
         
-        # Claude 설정
+        # Claude settings
         self.claude_api_key = claude_api_key
         self.claude_api_url = "https://api.anthropic.com/v1/messages"
         self.claude_headers = {
@@ -29,20 +30,67 @@ class LLMManager:
             "Content-Type": "application/json",
             "anthropic-version": "2023-06-01"
         }
+        
+        # Model configuration
+        self.model_name = model_name
+        
+        # Default models if none specified
+        self.default_openai_model = "gpt-3.5-turbo-0125"
+        self.default_claude_model = "claude-3-sonnet-20240229"
+        
+        # Available models
+        self.openai_models = [
+            "gpt-3.5-turbo-0125",
+            "gpt-4o-mini-2024-07-18"
+        ]
+        
+        self.claude_models = [
+            "claude-3-5-sonnet-20241022",
+            "claude-3-opus-20240229",
+            "claude-3-sonnet-20240229",
+            "claude-3-haiku-20240307"
+        ]
+    
+    def _get_model_name(self) -> str:
+        """Get the appropriate model name based on provider and user selection"""
+        if self.model_name:
+            return self.model_name
+        
+        # Return default model based on provider
+        if self.provider == "openai":
+            return self.default_openai_model
+        else:
+            return self.default_claude_model
+    
+    def set_model(self, model_name: str) -> None:
+        """Set the model to use for API calls
+        
+        Args:
+            model_name: Name of the model to use
+        
+        Raises:
+            ValueError: If the model name is not supported for the current provider
+        """
+        if self.provider == "openai" and model_name not in self.openai_models:
+            raise ValueError(f"Unsupported OpenAI model: {model_name}. Available models: {', '.join(self.openai_models)}")
+        elif self.provider == "claude" and model_name not in self.claude_models:
+            raise ValueError(f"Unsupported Claude model: {model_name}. Available models: {', '.join(self.claude_models)}")
+        
+        self.model_name = model_name
     
     def _call_llm(self, prompt: str) -> str:
-        """LLM API 호출"""
+        """Call LLM API"""
         if self.provider == "openai":
             return self._call_openai(prompt)
         elif self.provider == "claude":
             return self._call_claude(prompt)
         else:
-            raise ValueError(f"지원하지 않는 LLM 제공자: {self.provider}")
+            raise ValueError(f"Unsupported LLM provider: {self.provider}")
     
     def _call_openai(self, prompt: str) -> str:
-        """OpenAI API 호출"""
+        """Call OpenAI API"""
         data = {
-            "model": "gpt-3.5-turbo",
+            "model": self._get_model_name(),
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.7
         }
@@ -53,12 +101,12 @@ class LLMManager:
         return response.json()["choices"][0]["message"]["content"]
     
     def _call_claude(self, prompt: str) -> str:
-        """Claude API 호출"""
+        """Call Claude API"""
         if not self.claude_api_key:
-            raise ValueError("Claude API 키가 설정되지 않았습니다.")
+            raise ValueError("Claude API key has not been set.")
             
         data = {
-            "model": "claude-3-sonnet-20240229",
+            "model": self._get_model_name(),
             "messages": [{"role": "user", "content": prompt}],
             "max_tokens": 1000,
             "temperature": 0.7
@@ -70,39 +118,106 @@ class LLMManager:
         return response.json()["content"][0]["text"]
     
     def check_page_usefulness(self, page_text: str) -> bool:
-        """페이지의 유용성을 LLM을 통해 판단"""
-        prompt = f"""다음 텍스트가 데이터시트나 기술 문서에서 유용한 정보를 포함하고 있는지 판단해주세요.
-        유용한 정보란 제품 사양, 기술적 특성, 성능 지표 등을 의미합니다.
-        목차, 저작권 정보, 빈 페이지 등은 유용하지 않은 것으로 간주합니다.
+        """Judge the usefulness of a page through LLM"""
+        prompt = f"""Please determine if the following text contains useful information from a datasheet or technical document.
+        Useful information includes product specifications, technical characteristics, performance metrics, etc.
+        Table of contents, copyright information, blank pages, etc. are considered not useful.
         
-        텍스트:
+        Text:
         {page_text}
         
-        유용한 정보를 포함하고 있다면 'yes', 그렇지 않다면 'no'로만 답변해주세요."""
+        Please answer only with 'yes' if it contains useful information, or 'no' if it doesn't."""
         
         response = self._call_llm(prompt)
         return response.strip().lower() == 'yes'
     
-    def extract_features(self, pages: List[str]) -> Dict:
-        """유용한 페이지들에서 특징을 추출하여 JSON 형태로 반환"""
-        combined_text = "\n".join(pages)
+    def analyze_chunk(self, pages: List[str], page_numbers: List[int]) -> Tuple[bool, Dict[str, Any]]:
+        """Analyze a chunk of pages to evaluate the usefulness and key content of each page
         
-        prompt = """다음 텍스트에서 중요한 특징들을 추출하여 JSON 형태로 정리해주세요.
-        다음 형식으로 출력해주세요:
-        {
-            "product_name": "제품명",
-            "key_features": ["특징1", "특징2", ...],
-            "specifications": {
-                "spec1": "값1",
-                "spec2": "값2",
+        Args:
+            pages: List of page contents
+            page_numbers: List of page numbers
+            
+        Returns:
+            (Whether there is at least one useful page in the chunk, Dictionary of page information)
+        """
+        # Combine chunk contents (including page numbers)
+        combined_text = ""
+        for i, page in enumerate(pages):
+            combined_text += f"=== PAGE {page_numbers[i]} ===\n{page}\n\n"
+        
+        prompt = f"""The following text contains multiple pages extracted from a datasheet PDF.
+        For each page, please evaluate:
+        
+        1. Whether the page contains useful information (product specifications, technical characteristics, performance metrics, etc.)
+        2. If useful, extract the most important information from that page (exact text, not summarized)
+        
+        Non-useful content: covers, table of contents, copyright information, blank pages, indexes, etc.
+        
+        Text:
+        {combined_text}
+        
+        Please output in the following JSON format:
+        {{
+            "page_numbers": {{
+                "page_number1": {{
+                    "is_useful": true or false,
+                    "content": "Important information here if useful (exact text)"
+                }},
+                "page_number2": {{
+                    "is_useful": true or false,
+                    "content": "Important information here if useful (exact text)"
+                }},
                 ...
-            },
-            "applications": ["응용1", "응용2", ...],
-            "notes": "추가 참고사항"
-        }
+            }}
+        }}
         
-        텍스트:
-        {combined_text}"""
+        Please use the actual page numbers from the document.
+        """
+        
+        response = self._call_llm(prompt)
+        
+        try:
+            # Parse JSON response
+            result = json.loads(response)
+            page_info = result.get('page_numbers', {})
+            
+            # Check if there is at least one useful page
+            has_useful_page = any(info.get('is_useful', False) for info in page_info.values())
+            
+            return has_useful_page, page_info
+        except json.JSONDecodeError:
+            # Return empty result if JSON parsing fails
+            return False, {}
+    
+    def extract_features(self, pages: List[str]) -> str:
+        """Extract features from useful pages and return in JSON format"""
+        combined_text = "\n".join(pages)
+        return self.extract_features_from_content(combined_text)
+    
+    def extract_features_from_content(self, content: str) -> str:
+        """Extract features from the extracted content and return in JSON format"""
+        prompt = f"""You are an expert in analyzing electronic component datasheets. 
+Your task is to extract and organize key specifications and information from the provided datasheet.
+Focus on technical details, specifications, and important characteristics of the component.
+Maintain accuracy and use the original terminology from the datasheet.
+
+Please provide the analysis in the following JSON format:
+{{
+    "component_name": "string",
+    "specifications": {{
+        "voltage": "string",
+        "current": "string",
+        "package": "string",
+        "temperature_range": "string"
+    }},
+    "key_features": ["string"],
+    "applications": ["string"],
+    "notes": "string"
+}}
+
+Text:
+{content}"""
         
         response = self._call_llm(prompt)
         return response 

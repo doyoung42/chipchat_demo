@@ -4,17 +4,26 @@ import os
 from pathlib import Path
 from typing import List, Dict
 import openai
-from langchain.embeddings import OpenAIEmbeddings
+from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
 from google.colab import drive
 import pandas as pd
+
+# Import from the new directory structure
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
 
 # Google Drive 마운트
 drive.mount('/content/drive')
 
-# OpenAI API 키 설정
+# 환경 변수에서 경로 가져오기
+vectorstore_path = os.environ.get('VECTORSTORE_PATH', '/content/drive/MyDrive/vectorstore')
+json_folder_path = os.environ.get('JSON_FOLDER_PATH', '/content/drive/MyDrive/prep_json')
+prompt_templates_path = os.environ.get('PROMPT_TEMPLATES_PATH', '/content/drive/MyDrive/prompt_templates')
+
+# OpenAI API 키 설정 및 HuggingFace 토큰 설정
 openai.api_key = st.secrets["openai_api_key"]
+hf_token = st.secrets["hf_token"]
 
 # 세션 상태 초기화
 if 'vectorstore' not in st.session_state:
@@ -25,35 +34,22 @@ if 'retrieval_params' not in st.session_state:
         'threshold': 0.7
     }
 
-def load_json_files(folder_path: str) -> List[Dict]:
-    """JSON 파일들을 로드하여 리스트로 반환"""
-    json_files = Path(folder_path).glob("*.json")
-    return [json.loads(f.read_text()) for f in json_files]
-
-def create_vectorstore(json_data: List[Dict]) -> FAISS:
-    """JSON 데이터로부터 벡터 스토어 생성"""
-    # JSON 데이터를 텍스트로 변환
-    texts = []
-    for data in json_data:
-        text = f"Product: {data.get('product_name', '')}\n"
-        text += f"Features: {', '.join(data.get('key_features', []))}\n"
-        text += f"Specifications: {json.dumps(data.get('specifications', {}), indent=2)}\n"
-        text += f"Applications: {', '.join(data.get('applications', []))}\n"
-        text += f"Notes: {data.get('notes', '')}\n"
-        texts.append(text)
+def load_vectorstore():
+    """벡터 스토어 로드"""
+    if not Path(vectorstore_path).exists():
+        st.error(f"벡터 스토어 경로({vectorstore_path})가 존재하지 않습니다.")
+        return None
     
-    # 텍스트 분할
-    text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
-    )
-    texts = text_splitter.split_text("\n".join(texts))
-    
-    # 벡터 스토어 생성
-    embeddings = OpenAIEmbeddings()
-    vectorstore = FAISS.from_texts(texts, embeddings)
-    
-    return vectorstore
+    try:
+        embeddings = HuggingFaceEmbeddings(
+            model_name="sentence-transformers/all-MiniLM-L6-v2",
+            huggingface_api_token=hf_token
+        )
+        vectorstore = FAISS.load_local(vectorstore_path, embeddings)
+        return vectorstore
+    except Exception as e:
+        st.error(f"벡터 스토어 로드 중 오류가 발생했습니다: {str(e)}")
+        return None
 
 def main():
     st.title("ChipChat - 데이터시트 챗봇")
@@ -61,25 +57,21 @@ def main():
     # 사이드바 - 모드 선택
     mode = st.sidebar.selectbox(
         "Select Mode",
-        ["Vectorstore Creation", "Retrieval Test", "Chat"]
+        ["Retrieval Test", "Chat"]
     )
     
-    if mode == "Vectorstore Creation":
-        st.header("Vectorstore Creation")
+    # 앱 시작 시 벡터 스토어 로드
+    if st.session_state.vectorstore is None:
+        with st.spinner("벡터 스토어를 로드하는 중..."):
+            st.session_state.vectorstore = load_vectorstore()
         
-        json_folder = "/content/drive/MyDrive/processed_json"
-        vectorstore_path = "/content/drive/MyDrive/vectorstore"
-        
-        if st.button("Create Vectorstore"):
-            if not os.path.exists(vectorstore_path):
-                json_data = load_json_files(json_folder)
-                vectorstore = create_vectorstore(json_data)
-                vectorstore.save_local(vectorstore_path)
-                st.success("Vectorstore created successfully!")
-            else:
-                st.info("Vectorstore already exists!")
+        if st.session_state.vectorstore is None:
+            st.error("벡터 스토어를 로드할 수 없습니다. prep 모듈을 먼저 실행하여 벡터 스토어를 생성해주세요.")
+            return
+        else:
+            st.success("벡터 스토어가 성공적으로 로드되었습니다.")
     
-    elif mode == "Retrieval Test":
+    if mode == "Retrieval Test":
         st.header("Retrieval Test")
         
         col1, col2 = st.columns(2)
@@ -113,7 +105,7 @@ def main():
         st.header("Chat")
         
         # System prompt templates
-        templates_folder = "/content/drive/MyDrive/prompt_templates"
+        templates_folder = Path(prompt_templates_path)
         os.makedirs(templates_folder, exist_ok=True)
         
         # Load or create default template
@@ -122,16 +114,16 @@ def main():
             "post": "Please provide a clear and concise answer based on the retrieved information."
         }
         
-        template_file = Path(templates_folder) / "default_template.json"
+        template_file = templates_folder / "default_template.json"
         if not template_file.exists():
             with open(template_file, 'w') as f:
                 json.dump(default_template, f, indent=2)
         
         # Load templates
-        templates = [f.stem for f in Path(templates_folder).glob("*.json")]
+        templates = [f.stem for f in templates_folder.glob("*.json")]
         selected_template = st.selectbox("Select prompt template", templates)
         
-        with open(Path(templates_folder) / f"{selected_template}.json") as f:
+        with open(templates_folder / f"{selected_template}.json") as f:
             template = json.load(f)
         
         # Customize prompts

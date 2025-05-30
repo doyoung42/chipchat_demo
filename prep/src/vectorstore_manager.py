@@ -1,19 +1,22 @@
 import json
 from pathlib import Path
 from typing import List, Dict
-from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import HuggingFaceEmbeddings
 
 class VectorstoreManager:
-    def __init__(self, api_key: str):
+    def __init__(self, hf_token: str, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
         """벡터 스토어 관리자 초기화"""
-        self.embeddings = OpenAIEmbeddings(openai_api_key=api_key)
+        self.embeddings = HuggingFaceEmbeddings(
+            model_name=model_name,
+            huggingface_api_token=hf_token
+        )
         
     def load_json_files(self, folder_path: str) -> List[Dict]:
         """JSON 파일들을 로드하여 리스트로 반환"""
         json_files = Path(folder_path).glob("*.json")
-        return [json.loads(f.read_text()) for f in json_files]
+        return [json.loads(f.read_text(encoding='utf-8')) for f in json_files]
     
     def create_vectorstore(self, json_data: List[Dict]) -> FAISS:
         """JSON 데이터로부터 벡터 스토어 생성"""
@@ -22,7 +25,7 @@ class VectorstoreManager:
         for data in json_data:
             text = f"Product: {data.get('product_name', '')}\n"
             text += f"Features: {', '.join(data.get('key_features', []))}\n"
-            text += f"Specifications: {json.dumps(data.get('specifications', {}), indent=2)}\n"
+            text += f"Specifications: {json.dumps(data.get('specifications', {}), indent=2, ensure_ascii=False)}\n"
             text += f"Applications: {', '.join(data.get('applications', []))}\n"
             text += f"Notes: {data.get('notes', '')}\n"
             texts.append(text)
