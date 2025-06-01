@@ -4,22 +4,36 @@ import os
 from typing import Dict, List, Optional, Tuple, Any
 
 class LLMManager:
-    def __init__(self, provider: str = "openai", model_name: Optional[str] = None):
+    def __init__(self, provider: str = None, model_name: Optional[str] = None):
         """Initialize LLM Manager
         
         Args:
             provider: LLM provider ("openai" or "claude")
             model_name: Model name to use (optional, defaults to provider's default model)
         """
-        self.provider = provider.lower()
-        
-        # Load API keys from key.json
+        # Load API keys and selected models from key.json
         key_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'key.json')
         with open(key_path, 'r') as f:
             keys = json.load(f)
         
+        # Determine provider based on available API keys and selected models
+        if provider is None:
+            if keys.get('anthropic_api_key') and not keys.get('openai_api_key'):
+                self.provider = "claude"
+            elif keys.get('openai_api_key') and not keys.get('anthropic_api_key'):
+                self.provider = "openai"
+            else:
+                # If both keys are available, use the selected model from key.json
+                selected_models = keys.get('selected_models', {})
+                if selected_models.get('claude'):
+                    self.provider = "claude"
+                else:
+                    self.provider = "openai"
+        else:
+            self.provider = provider.lower()
+        
         # OpenAI settings
-        self.openai_api_key = keys['openai_api_key']
+        self.openai_api_key = keys.get('openai_api_key', '')
         self.openai_api_url = "https://api.openai.com/v1/chat/completions"
         self.openai_headers = {
             "Authorization": f"Bearer {self.openai_api_key}",
@@ -27,7 +41,7 @@ class LLMManager:
         }
         
         # Claude settings
-        self.claude_api_key = keys['anthropic_api_key']
+        self.claude_api_key = keys.get('anthropic_api_key', '')
         self.claude_api_url = "https://api.anthropic.com/v1/messages"
         self.claude_headers = {
             "x-api-key": self.claude_api_key,
@@ -46,6 +60,14 @@ class LLMManager:
         self.claude_models = models_config['claude_models']
         self.default_openai_model = models_config['default_model']['openai']
         self.default_claude_model = models_config['default_model']['claude']
+        
+        # If no model_name is provided, use the selected model from key.json
+        if self.model_name is None:
+            selected_models = keys.get('selected_models', {})
+            if self.provider == "claude" and selected_models.get('claude'):
+                self.model_name = selected_models['claude']
+            elif self.provider == "openai" and selected_models.get('openai'):
+                self.model_name = selected_models['openai']
     
     def _get_model_name(self) -> str:
         """Get the appropriate model name based on provider and user selection"""
@@ -100,18 +122,47 @@ class LLMManager:
         """Call Claude API"""
         if not self.claude_api_key:
             raise ValueError("Claude API key has not been set.")
-            
+        
+        # 현재 사용 중인 모델명 가져오기
+        model_name = self._get_model_name()
+        
+        # Claude API 헤더 설정 - 모든 Claude 모델에 적용
+        self.claude_headers = {
+            "x-api-key": self.claude_api_key,
+            "Content-Type": "application/json",
+            "anthropic-version": "2023-06-01"
+        }
+        
+        # 기본 요청 데이터 구성
         data = {
-            "model": self._get_model_name(),
+            "model": model_name,
             "messages": [{"role": "user", "content": prompt}],
-            "max_tokens": 1000,
             "temperature": 0.7
         }
         
-        response = requests.post(self.claude_api_url, headers=self.claude_headers, json=data)
-        response.raise_for_status()
+        # Claude 3 모델인 경우 (claude-3로 시작하는 모든 모델)
+        if "claude-3" in model_name:
+            data["max_tokens"] = 1000
+        else:
+            # Claude 2 이하 모델인 경우 (이전 API 형식 사용)
+            data["max_tokens_to_sample"] = 1000
         
-        return response.json()["content"][0]["text"]
+        try:
+            response = requests.post(self.claude_api_url, headers=self.claude_headers, json=data)
+            response.raise_for_status()
+            
+            # Claude 3 모델인 경우 응답 형식이 다름
+            if "claude-3" in model_name:
+                return response.json()["content"][0]["text"]
+            else:
+                # Claude 2 이하 모델인 경우
+                return response.json()["completion"]
+        except requests.exceptions.RequestException as e:
+            print(f"API 요청 오류: {e}")
+            if hasattr(e, 'response') and e.response is not None:
+                print(f"응답 상태 코드: {e.response.status_code}")
+                print(f"응답 내용: {e.response.text}")
+            raise
     
     def check_page_usefulness(self, page_text: str) -> bool:
         """Judge the usefulness of a page through LLM"""
