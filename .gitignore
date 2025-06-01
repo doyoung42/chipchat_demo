@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -20,10 +21,13 @@ wheels/
 .installed.cfg
 *.egg
 
-# Virtual Environment
-venv/
-env/
-ENV/
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Environment variables and secrets
+.env
+misc/key.json
 
 # IDE
 .idea/
@@ -31,29 +35,6 @@ ENV/
 *.swp
 *.swo
 
-# Project specific
-# Sensitive files
-**/misc/key.json
-.env
-user_config.yaml
-tokens.json
-
-# Data directories
-**/pdf_folder/
-**/pre_json_folder/
-**/result_json_folder/
-**/vectorstore_folder/
-**/logs/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-*/.ipynb_checkpoints/*
-
 # OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
 Thumbs.db

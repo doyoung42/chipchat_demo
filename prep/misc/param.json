@@ -8,9 +8,9 @@
             "save_combined": true
         },
         "folders": {
-            "pdf_folder": "pdf_folder",
-            "pre_json_folder": "pre_json_folder",
-            "result_json_folder": "result_json_folder"
+            "pdf_folder": "/content/drive/MyDrive/datasheets",
+            "pre_json_folder": "/content/drive/MyDrive/prep_json/pre_json",
+            "result_json_folder": "/content/drive/MyDrive/prep_json"
         }
     },
     "vectorstore": {
@@ -18,7 +18,7 @@
         "chunk_overlap": 200,
         "model_name": "sentence-transformers/all-MiniLM-L6-v2",
         "folders": {
-            "vectorstore_folder": "vectorstore_folder"
+            "vectorstore_folder": "/content/drive/MyDrive/vectorstore"
         }
     }
 } 
