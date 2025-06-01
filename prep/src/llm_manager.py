@@ -1,55 +1,51 @@
 import json
 import requests
+import os
 from typing import Dict, List, Optional, Tuple, Any
 
 class LLMManager:
-    def __init__(self, api_key: str, provider: str = "openai", model_name: Optional[str] = None, claude_api_key: Optional[str] = None):
+    def __init__(self, provider: str = "openai", model_name: Optional[str] = None):
         """Initialize LLM Manager
         
         Args:
-            api_key: OpenAI API key
             provider: LLM provider ("openai" or "claude")
             model_name: Model name to use (optional, defaults to provider's default model)
-            claude_api_key: Claude API key (required when provider is "claude")
         """
         self.provider = provider.lower()
         
+        # Load API keys from key.json
+        key_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'key.json')
+        with open(key_path, 'r') as f:
+            keys = json.load(f)
+        
         # OpenAI settings
-        self.openai_api_key = api_key
+        self.openai_api_key = keys['openai_api_key']
         self.openai_api_url = "https://api.openai.com/v1/chat/completions"
         self.openai_headers = {
-            "Authorization": f"Bearer {api_key}",
+            "Authorization": f"Bearer {self.openai_api_key}",
             "Content-Type": "application/json"
         }
         
         # Claude settings
-        self.claude_api_key = claude_api_key
+        self.claude_api_key = keys['anthropic_api_key']
         self.claude_api_url = "https://api.anthropic.com/v1/messages"
         self.claude_headers = {
-            "x-api-key": claude_api_key if claude_api_key else "",
+            "x-api-key": self.claude_api_key,
             "Content-Type": "application/json",
             "anthropic-version": "2023-06-01"
         }
         
+        # Load model configuration from models.json
+        models_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'models.json')
+        with open(models_path, 'r') as f:
+            models_config = json.load(f)
+        
         # Model configuration
         self.model_name = model_name
-        
-        # Default models if none specified
-        self.default_openai_model = "gpt-3.5-turbo-0125"
-        self.default_claude_model = "claude-3-sonnet-20240229"
-        
-        # Available models
-        self.openai_models = [
-            "gpt-3.5-turbo-0125",
-            "gpt-4o-mini-2024-07-18"
-        ]
-        
-        self.claude_models = [
-            "claude-3-5-sonnet-20241022",
-            "claude-3-opus-20240229",
-            "claude-3-sonnet-20240229",
-            "claude-3-haiku-20240307"
-        ]
+        self.openai_models = models_config['openai_models']
+        self.claude_models = models_config['claude_models']
+        self.default_openai_model = models_config['default_model']['openai']
+        self.default_claude_model = models_config['default_model']['claude']
     
     def _get_model_name(self) -> str:
         """Get the appropriate model name based on provider and user selection"""

@@ -1,74 +1,149 @@
+import os
 import json
+import logging
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional, Any
-from pypdf import PdfReader
+from typing import List, Dict, Any, Tuple
+from PyPDF2 import PdfReader, PdfWriter
 from .llm_manager import LLMManager
 
 class PDFProcessor:
-    def __init__(self, api_key: str, provider: str = "openai", claude_api_key: Optional[str] = None, chunk_size: int = 3):
-        """PDF 처리기 초기화
+    def __init__(self, llm_manager: LLMManager):
+        """Initialize PDF Processor
         
         Args:
-            api_key: OpenAI API 키
-            provider: LLM 제공자 ("openai" 또는 "claude")
-            claude_api_key: Claude API 키 (provider가 "claude"일 때 필요)
-            chunk_size: 한 번에 처리할 PDF 페이지 수
+            llm_manager: LLM Manager instance for text analysis
         """
-        self.llm_manager = LLMManager(api_key, provider, claude_api_key)
-        self.chunk_size = chunk_size
+        self.llm_manager = llm_manager
         
-    def extract_text_from_pdf(self, pdf_path: str) -> List[str]:
-        """PDF 파일에서 텍스트를 추출하여 페이지별로 리스트로 반환"""
-        reader = PdfReader(pdf_path)
-        pages = []
-        for page in reader.pages:
-            pages.append(page.extract_text())
-        return pages
+        # Load parameters from param.json
+        param_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'param.json')
+        with open(param_path, 'r') as f:
+            self.params = json.load(f)['pdf_processing']
+        
+        # Setup logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(levelname)s - %(message)s'
+        )
+        self.logger = logging.getLogger(__name__)
+        
+        # Create necessary directories
+        for folder in self.params['folders'].values():
+            os.makedirs(folder, exist_ok=True)
     
-    def process_pdf(self, pdf_path: str) -> Tuple[Dict[str, Any], List[int]]:
-        """PDF 파일을 처리하여 특징을 추출하고 유용한 페이지 번호를 반환
+    def process_pdf_folder(self):
+        """Process all PDFs in the configured folder"""
+        pdf_folder = self.params['folders']['pdf_folder']
+        pdf_files = list(Path(pdf_folder).glob("*.pdf"))
+        total_files = len(pdf_files)
         
-        1) PDF를 청크 단위로 나누어 각 청크의 유용성을 평가하고 필요한 내용 추출
-        2) 필요한 페이지들만 모아서 최종 분석 수행
+        self.logger.info(f"Found {total_files} PDF files to process")
+        
+        for idx, pdf_path in enumerate(pdf_files, 1):
+            self.logger.info(f"Processing file {idx}/{total_files}: {pdf_path.name}")
+            self.process_single_pdf(pdf_path)
+    
+    def process_single_pdf(self, pdf_path: Path):
+        """Process a single PDF file
+        
+        Args:
+            pdf_path: Path to the PDF file
         """
-        # PDF 텍스트 추출
-        pages = self.extract_text_from_pdf(pdf_path)
-        
-        # 청크 단위로 유용한 페이지 필터링 (divide and conquer)
-        useful_pages = []
-        useful_page_numbers = []
-        useful_content = []
-        
-        # 청크 단위로 나누어 처리
-        for i in range(0, len(pages), self.chunk_size):
-            chunk = pages[i:i+self.chunk_size]
-            chunk_pages = list(range(i+1, min(i+self.chunk_size+1, len(pages)+1)))
+        try:
+            # Read PDF
+            reader = PdfReader(pdf_path)
+            total_pages = len(reader.pages)
+            self.logger.info(f"PDF has {total_pages} pages")
             
-            # 청크의 유용성 평가 및 주요 내용 추출
-            is_useful, page_info = self.llm_manager.analyze_chunk(chunk, chunk_pages)
+            # Process pages in chunks
+            useful_pages = []
+            page_summaries = []
             
-            if is_useful:
-                for page_num, info in page_info.items():
-                    if info["is_useful"]:
-                        page_idx = int(page_num) - 1
-                        useful_pages.append(pages[page_idx])
-                        useful_page_numbers.append(int(page_num))
-                        useful_content.append({
-                            "page": int(page_num),
-                            "content": info["content"]
-                        })
+            for chunk_start in range(0, total_pages, self.params['pages_per_chunk']):
+                chunk_end = min(chunk_start + self.params['pages_per_chunk'], total_pages)
+                self.logger.info(f"Processing pages {chunk_start+1} to {chunk_end}")
+                
+                # Extract text from chunk
+                chunk_pages = []
+                chunk_page_numbers = []
+                for page_num in range(chunk_start, chunk_end):
+                    page = reader.pages[page_num]
+                    chunk_pages.append(page.extract_text())
+                    chunk_page_numbers.append(page_num + 1)
+                
+                # Analyze chunk
+                has_useful_pages, page_info = self.llm_manager.analyze_chunk(chunk_pages, chunk_page_numbers)
+                
+                if has_useful_pages:
+                    for page_num, info in page_info.items():
+                        if info['is_useful']:
+                            useful_pages.append(int(page_num))
+                            page_summaries.append({
+                                'page_number': int(page_num),
+                                'content': info['content']
+                            })
+            
+            # Save intermediate results
+            self._save_intermediate_results(pdf_path, useful_pages, page_summaries)
+            
+            # Generate final summaries
+            self._generate_final_summaries(pdf_path, useful_pages, page_summaries)
+            
+        except Exception as e:
+            self.logger.error(f"Error processing {pdf_path.name}: {str(e)}")
+    
+    def _save_intermediate_results(self, pdf_path: Path, useful_pages: List[int], page_summaries: List[Dict]):
+        """Save intermediate processing results
         
-        # 유용한 페이지가 있을 경우 최종 특징 추출
-        if useful_pages:
-            if len(useful_pages) <= 10:  # 유용한 페이지 수가 적은 경우 전체를 한 번에 처리
-                features_json = self.llm_manager.extract_features(useful_pages)
-                features = json.loads(features_json)
-            else:
-                # 유용한 콘텐츠만 모아서 처리
-                collected_content = "\n\n".join([f"Page {item['page']}: {item['content']}" for item in useful_content])
-                features_json = self.llm_manager.extract_features_from_content(collected_content)
-                features = json.loads(features_json)
+        Args:
+            pdf_path: Original PDF path
+            useful_pages: List of useful page numbers
+            page_summaries: List of page summaries
+        """
+        # Save filtered PDF
+        if self.params['output_formats']['save_filtered_pdf']:
+            writer = PdfWriter()
+            reader = PdfReader(pdf_path)
             
-            return features, useful_page_numbers
-        else:
-            return {}, [] 
+            for page_num in useful_pages:
+                writer.add_page(reader.pages[page_num - 1])
+            
+            filtered_pdf_path = Path(self.params['folders']['pre_json_folder']) / f"{pdf_path.stem}_filtered.pdf"
+            with open(filtered_pdf_path, 'wb') as f:
+                writer.write(f)
+            
+            self.logger.info(f"Saved filtered PDF: {filtered_pdf_path}")
+        
+        # Save page summaries
+        summary_path = Path(self.params['folders']['pre_json_folder']) / f"{pdf_path.stem}_summaries.json"
+        with open(summary_path, 'w', encoding='utf-8') as f:
+            json.dump({
+                'useful_pages': useful_pages,
+                'page_summaries': page_summaries
+            }, f, indent=2, ensure_ascii=False)
+        
+        self.logger.info(f"Saved page summaries: {summary_path}")
+    
+    def _generate_final_summaries(self, pdf_path: Path, useful_pages: List[int], page_summaries: List[Dict]):
+        """Generate final summaries using different approaches
+        
+        Args:
+            pdf_path: Original PDF path
+            useful_pages: List of useful page numbers
+            page_summaries: List of page summaries
+        """
+        # Combine all summaries
+        combined_text = "\n".join([summary['content'] for summary in page_summaries])
+        
+        # Generate summaries using different approaches
+        if self.params['output_formats']['save_summary_only']:
+            summary_result = self.llm_manager.extract_features_from_content(combined_text)
+            result_path = Path(self.params['folders']['result_json_folder']) / f"{pdf_path.stem}_R1.json"
+            with open(result_path, 'w', encoding='utf-8') as f:
+                f.write(summary_result)
+            self.logger.info(f"Saved summary-only result: {result_path}")
+        
+        if self.params['output_formats']['save_combined']:
+            # Here you would implement the combined approach (filtered PDF + summaries)
+            # This would require additional logic to combine both sources
+            pass 

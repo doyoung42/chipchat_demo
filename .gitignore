@@ -31,6 +31,24 @@ ENV/
 *.swp
 *.swo
 
+# Project specific
+# Sensitive files
+**/misc/key.json
+.env
+user_config.yaml
+tokens.json
+
+# Data directories
+**/pdf_folder/
+**/pre_json_folder/
+**/result_json_folder/
+**/vectorstore_folder/
+**/logs/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
 # OS
 .DS_Store
 .DS_Store?
@@ -39,11 +57,3 @@ ENV/
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Project specific
-logs/
-#uploads/*
-#!uploads/.gitkeep
-.env
-user_config.yaml
-tokens.json
