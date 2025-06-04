@@ -1,10 +1,11 @@
 import json
 import os
 from pathlib import Path
-from typing import List, Dict
+from typing import List, Dict, Any
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import HuggingFaceEmbeddings
+from langchain.schema import Document
 import faiss
 
 class VectorstoreManager:
@@ -42,32 +43,71 @@ class VectorstoreManager:
         return [json.loads(f.read_text(encoding='utf-8')) for f in json_files]
     
     def create_vectorstore(self, json_data: List[Dict]) -> FAISS:
-        """JSON 데이터로부터 벡터 스토어 생성"""
-        # JSON 데이터를 텍스트로 변환
-        texts = []
+        """JSON 데이터로부터 벡터 스토어 생성
+        
+        새로운 JSON 구조:
+        {
+            "filename": "example.pdf",
+            "metadata": { ... },
+            "page_summaries": [ ... ],
+            "category_chunks": { ... }
+        }
+        """
+        documents = []
+        
         for data in json_data:
-            text = f"Product: {data.get('component_name', '')}\n"
-            text += f"Features: {', '.join(data.get('key_features', []))}\n"
-            text += f"Specifications: {json.dumps(data.get('specifications', {}), indent=2, ensure_ascii=False)}\n"
-            text += f"Applications: {', '.join(data.get('applications', []))}\n"
-            text += f"Notes: {data.get('notes', '')}\n"
-            texts.append(text)
+            filename = data.get('filename', 'unknown.pdf')
+            metadata_base = {
+                'filename': filename,
+                'component_name': data.get('metadata', {}).get('component_name', ''),
+                'manufacturer': data.get('metadata', {}).get('manufacturer', ''),
+                'source': 'datasheet'
+            }
+            
+            # 1. Process category chunks (primary data source)
+            category_chunks = data.get('category_chunks', {})
+            for category, chunks in category_chunks.items():
+                for i, chunk in enumerate(chunks):
+                    # Create document with metadata
+                    chunk_metadata = metadata_base.copy()
+                    chunk_metadata.update({
+                        'category': category,
+                        'chunk_index': i,
+                        'content_type': 'category_chunk'
+                    })
+                    
+                    doc = Document(page_content=chunk, metadata=chunk_metadata)
+                    documents.append(doc)
+            
+            # 2. Process page summaries as additional chunks
+            for summary in data.get('page_summaries', []):
+                if summary.get('is_useful', False):
+                    page_content = summary.get('content', '')
+                    if page_content:
+                        # Create document with metadata
+                        page_metadata = metadata_base.copy()
+                        page_metadata.update({
+                            'page_number': summary.get('page_number', 0),
+                            'categories': summary.get('categories', []),
+                            'content_type': 'page_summary'
+                        })
+                        
+                        doc = Document(page_content=page_content, metadata=page_metadata)
+                        documents.append(doc)
         
-        # 텍스트 분할
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=self.params['chunk_size'],
-            chunk_overlap=self.params['chunk_overlap']
-        )
-        texts = text_splitter.split_text("\n".join(texts))
-        
-        # 벡터 스토어 생성 (GPU 사용)
-        vectorstore = FAISS.from_texts(texts, self.embeddings)
-        
-        # Move index to GPU
-        if hasattr(vectorstore, 'index'):
-            vectorstore.index = faiss.index_cpu_to_gpu(self.res, 0, vectorstore.index)
-        
-        return vectorstore
+        # Create vectorstore from documents
+        if documents:
+            # 벡터 스토어 생성 (GPU 사용)
+            vectorstore = FAISS.from_documents(documents, self.embeddings)
+            
+            # Move index to GPU
+            if hasattr(vectorstore, 'index'):
+                vectorstore.index = faiss.index_cpu_to_gpu(self.res, 0, vectorstore.index)
+            
+            return vectorstore
+        else:
+            # Create empty vectorstore if no documents
+            return FAISS.from_texts(["No data available"], self.embeddings)
     
     def save_vectorstore(self, vectorstore: FAISS, name: str):
         """벡터 스토어를 파일로 저장"""

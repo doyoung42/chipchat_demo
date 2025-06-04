@@ -267,4 +267,170 @@ Text:
 {content}"""
         
         response = self._call_llm(prompt)
-        return response 
+        return response
+        
+    def analyze_pages_with_categories(self, pages: List[str], page_numbers: List[int]) -> Dict[str, Any]:
+        """Analyze a chunk of pages to evaluate the usefulness and categorize content
+        
+        Args:
+            pages: List of page contents
+            page_numbers: List of page numbers
+            
+        Returns:
+            Dictionary containing page analysis with categories
+        """
+        # Combine chunk contents (including page numbers)
+        combined_text = ""
+        for i, page in enumerate(pages):
+            combined_text += f"=== PAGE {page_numbers[i]} ===\n{page}\n\n"
+        
+        prompt = f"""The following text contains multiple pages extracted from a datasheet PDF.
+        For each page, please evaluate:
+        
+        1. Whether the page contains useful information (product specifications, technical characteristics, performance metrics, etc.)
+        2. If useful, identify which category(s) the page belongs to from the following options:
+            - Product Summary
+            - Electrical Characteristics
+            - Application Circuits
+            - Mechanical Characteristics
+            - Reliability and Environmental Conditions
+            - Packaging Information
+        3. Extract the most important information from that page (exact text, not summarized)
+        
+        Non-useful content: covers, table of contents, copyright information, blank pages, indexes, etc.
+        
+        Text:
+        {combined_text}
+        
+        Please output in the following JSON format:
+        {{
+            "page_analysis": {{
+                "page_number1": {{
+                    "is_useful": true or false,
+                    "categories": ["Category1", "Category2"],
+                    "content": "Important information here if useful (exact text)"
+                }},
+                "page_number2": {{
+                    "is_useful": true or false,
+                    "categories": ["Category1"],
+                    "content": "Important information here if useful (exact text)"
+                }},
+                ...
+            }}
+        }}
+        
+        Please use the actual page numbers from the document.
+        """
+        
+        response = self._call_llm(prompt)
+        
+        try:
+            # Parse JSON response
+            result = json.loads(response)
+            page_analysis = result.get('page_analysis', {})
+            
+            # Return the page analysis with categories
+            return page_analysis
+        except json.JSONDecodeError:
+            # Return empty result if JSON parsing fails
+            return {}
+    
+    def create_semantic_chunks_for_category(self, category_name: str, category_content: str) -> List[str]:
+        """Create semantic chunks for a specific category
+        
+        Args:
+            category_name: Name of the category
+            category_content: Combined content for the category
+            
+        Returns:
+            List of semantic chunks
+        """
+        category_descriptions = {
+            "Product Summary": "Overview, key features, and general description of the product",
+            "Electrical Characteristics": "Voltage, current, power specifications, timing characteristics, and other electrical parameters",
+            "Application Circuits": "Example circuits, application notes, and implementation examples",
+            "Mechanical Characteristics": "Physical dimensions, form factor, mounting information, and mechanical specifications",
+            "Reliability and Environmental Conditions": "Operating conditions, temperature ranges, reliability tests, and environmental specifications",
+            "Packaging Information": "Package types, ordering information, marking details, and shipment specifications"
+        }
+        
+        description = category_descriptions.get(category_name, "")
+        
+        prompt = f"""You are an expert in analyzing electronic component datasheets.
+        Your task is to create semantic chunks from content related to "{category_name}".
+        
+        {description}
+        
+        Please divide the following text into 3-5 meaningful chunks that would be useful for vector search.
+        Each chunk should be self-contained and meaningful on its own.
+        Create chunks with some semantic overlap for better retrieval.
+        
+        Text related to {category_name}:
+        {category_content}
+        
+        Please output in the following JSON format:
+        {{
+            "chunks": [
+                "Chunk 1 content...",
+                "Chunk 2 content...",
+                "Chunk 3 content..."
+            ]
+        }}
+        """
+        
+        response = self._call_llm(prompt)
+        
+        try:
+            # Parse JSON response
+            result = json.loads(response)
+            chunks = result.get('chunks', [])
+            
+            return chunks
+        except json.JSONDecodeError:
+            # Return empty list if JSON parsing fails
+            return []
+    
+    def extract_metadata(self, all_useful_content: str) -> Dict[str, str]:
+        """Extract metadata from all useful content
+        
+        Args:
+            all_useful_content: Combined content from all useful pages
+            
+        Returns:
+            Dictionary containing metadata
+        """
+        prompt = f"""You are an expert in analyzing electronic component datasheets. 
+        Your task is to extract key metadata from the provided datasheet content.
+        
+        Please extract the following information:
+        - Component name/model
+        - Manufacturer
+        - Key specifications (brief)
+        - Main applications
+        
+        Text:
+        {all_useful_content}
+        
+        Please output in the following JSON format:
+        {{
+            "component_name": "string",
+            "manufacturer": "string",
+            "key_specifications": "string",
+            "applications": "string"
+        }}
+        """
+        
+        response = self._call_llm(prompt)
+        
+        try:
+            # Parse JSON response
+            result = json.loads(response)
+            return result
+        except json.JSONDecodeError:
+            # Return empty dictionary if JSON parsing fails
+            return {
+                "component_name": "",
+                "manufacturer": "",
+                "key_specifications": "",
+                "applications": ""
+            } 
