@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List, Dict, Any
 from langchain.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
 import faiss
 
@@ -16,6 +16,10 @@ class VectorstoreManager:
         with open(key_path, 'r') as f:
             keys = json.load(f)
         
+        # Set HuggingFace API key as environment variable
+        if keys.get('huggingface_api_key'):
+            os.environ["HUGGINGFACE_API_KEY"] = keys.get('huggingface_api_key')
+        
         # Load parameters from param.json
         param_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'param.json')
         with open(param_path, 'r') as f:
@@ -24,7 +28,6 @@ class VectorstoreManager:
         # Initialize embeddings with GPU support
         self.embeddings = HuggingFaceEmbeddings(
             model_name=params['vectorstore']['model_name'],
-            huggingface_api_token=keys.get('huggingface_api_key', ''),
             model_kwargs={'device': 'cuda'}  # Use GPU for embeddings
         )
         
