@@ -38,3 +38,6 @@ misc/key.json
 # OS
 .DS_Store
 Thumbs.db
+
+# Userdata
+prep/prep_data/
