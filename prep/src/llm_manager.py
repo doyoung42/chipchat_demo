@@ -164,111 +164,6 @@ class LLMManager:
                 print(f"응답 내용: {e.response.text}")
             raise
     
-    def check_page_usefulness(self, page_text: str) -> bool:
-        """Judge the usefulness of a page through LLM"""
-        prompt = f"""Please determine if the following text contains useful information from a datasheet or technical document.
-        Useful information includes product specifications, technical characteristics, performance metrics, etc.
-        Table of contents, copyright information, blank pages, etc. are considered not useful.
-        
-        Text:
-        {page_text}
-        
-        Please answer only with 'yes' if it contains useful information, or 'no' if it doesn't."""
-        
-        response = self._call_llm(prompt)
-        return response.strip().lower() == 'yes'
-    
-    def analyze_chunk(self, pages: List[str], page_numbers: List[int]) -> Tuple[bool, Dict[str, Any]]:
-        """Analyze a chunk of pages to evaluate the usefulness and key content of each page
-        
-        Args:
-            pages: List of page contents
-            page_numbers: List of page numbers
-            
-        Returns:
-            (Whether there is at least one useful page in the chunk, Dictionary of page information)
-        """
-        # Combine chunk contents (including page numbers)
-        combined_text = ""
-        for i, page in enumerate(pages):
-            combined_text += f"=== PAGE {page_numbers[i]} ===\n{page}\n\n"
-        
-        prompt = f"""The following text contains multiple pages extracted from a datasheet PDF.
-        For each page, please evaluate:
-        
-        1. Whether the page contains useful information (product specifications, technical characteristics, performance metrics, etc.)
-        2. If useful, extract the most important information from that page (exact text, not summarized)
-        
-        Non-useful content: covers, table of contents, copyright information, blank pages, indexes, etc.
-        
-        Text:
-        {combined_text}
-        
-        Please output in the following JSON format:
-        {{
-            "page_numbers": {{
-                "page_number1": {{
-                    "is_useful": true or false,
-                    "content": "Important information here if useful (exact text)"
-                }},
-                "page_number2": {{
-                    "is_useful": true or false,
-                    "content": "Important information here if useful (exact text)"
-                }},
-                ...
-            }}
-        }}
-        
-        Please use the actual page numbers from the document.
-        """
-        
-        response = self._call_llm(prompt)
-        
-        try:
-            # Parse JSON response
-            result = json.loads(response)
-            page_info = result.get('page_numbers', {})
-            
-            # Check if there is at least one useful page
-            has_useful_page = any(info.get('is_useful', False) for info in page_info.values())
-            
-            return has_useful_page, page_info
-        except json.JSONDecodeError:
-            # Return empty result if JSON parsing fails
-            return False, {}
-    
-    def extract_features(self, pages: List[str]) -> str:
-        """Extract features from useful pages and return in JSON format"""
-        combined_text = "\n".join(pages)
-        return self.extract_features_from_content(combined_text)
-    
-    def extract_features_from_content(self, content: str) -> str:
-        """Extract features from the extracted content and return in JSON format"""
-        prompt = f"""You are an expert in analyzing electronic component datasheets. 
-Your task is to extract and organize key specifications and information from the provided datasheet.
-Focus on technical details, specifications, and important characteristics of the component.
-Maintain accuracy and use the original terminology from the datasheet.
-
-Please provide the analysis in the following JSON format:
-{{
-    "component_name": "string",
-    "specifications": {{
-        "voltage": "string",
-        "current": "string",
-        "package": "string",
-        "temperature_range": "string"
-    }},
-    "key_features": ["string"],
-    "applications": ["string"],
-    "notes": "string"
-}}
-
-Text:
-{content}"""
-        
-        response = self._call_llm(prompt)
-        return response
-        
     def analyze_pages_with_categories(self, pages: List[str], page_numbers: List[int]) -> Dict[str, Any]:
         """Analyze a chunk of pages to evaluate the usefulness and categorize content
         
@@ -297,7 +192,9 @@ Text:
             - Packaging Information
         3. Extract the most important information from that page (exact text, not summarized)
         
-        Non-useful content: covers, table of contents, copyright information, blank pages, indexes, etc.
+        IMPORTANT: Pay special attention to summary pages that often appear at the beginning of datasheets. These pages typically contain critical overview information, key features, and condensed specifications. These summary pages SHOULD BE MARKED AS USEFUL and categorized as "Product Summary".
+        
+        Non-useful content: copyright notices, blank pages, detailed indexes, etc. Note that table of contents pages might be useful if they contain overview information along with the contents.
         
         Text:
         {combined_text}
@@ -335,12 +232,13 @@ Text:
             # Return empty result if JSON parsing fails
             return {}
     
-    def create_semantic_chunks_for_category(self, category_name: str, category_content: str) -> List[str]:
+    def create_semantic_chunks_for_category(self, category_name: str, category_content: str, target_part_number: str = None) -> List[str]:
         """Create semantic chunks for a specific category
         
         Args:
             category_name: Name of the category
             category_content: Combined content for the category
+            target_part_number: Specific part number to focus on (optional)
             
         Returns:
             List of semantic chunks
@@ -356,10 +254,19 @@ Text:
         
         description = category_descriptions.get(category_name, "")
         
+        part_specific_instruction = ""
+        if target_part_number:
+            part_specific_instruction = f"""
+        IMPORTANT: This datasheet may contain information about multiple components.
+        Focus ONLY on information related to part number: {target_part_number}.
+        When creating chunks, ONLY include information relevant to this specific part number.
+        """
+        
         prompt = f"""You are an expert in analyzing electronic component datasheets.
         Your task is to create semantic chunks from content related to "{category_name}".
         
         {description}
+        {part_specific_instruction}
         
         Please divide the following text into 3-5 meaningful chunks that would be useful for vector search.
         Each chunk should be self-contained and meaningful on its own.
@@ -390,17 +297,27 @@ Text:
             # Return empty list if JSON parsing fails
             return []
     
-    def extract_metadata(self, all_useful_content: str) -> Dict[str, str]:
+    def extract_metadata(self, all_useful_content: str, target_part_number: str = None) -> Dict[str, str]:
         """Extract metadata from all useful content
         
         Args:
             all_useful_content: Combined content from all useful pages
+            target_part_number: Specific part number to focus on (optional)
             
         Returns:
             Dictionary containing metadata
         """
+        part_specific_instruction = ""
+        if target_part_number:
+            part_specific_instruction = f"""
+        IMPORTANT: This datasheet contains information about multiple components. 
+        Focus ONLY on the component with part number: {target_part_number}.
+        Extract information ONLY related to this specific part number.
+        """
+            
         prompt = f"""You are an expert in analyzing electronic component datasheets. 
         Your task is to extract key metadata from the provided datasheet content.
+        {part_specific_instruction}
         
         Please extract the following information:
         - Component name/model
