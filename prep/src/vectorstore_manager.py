@@ -2,7 +2,7 @@ import json
 import os
 from pathlib import Path
 from typing import List, Dict, Any
-from langchain.vectorstores import FAISS
+from langchain_community.vectorstores import FAISS
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
