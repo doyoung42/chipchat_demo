@@ -28,6 +28,7 @@ wheels/
 # Environment variables and secrets
 .env
 prep/misc/key.json
+tokens.json
 
 # IDE
 .idea/
