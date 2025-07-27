@@ -27,7 +27,7 @@ wheels/
 
 # Environment variables and secrets
 .env
-misc/key.json
+prep/misc/key.json
 
 # IDE
 .idea/
@@ -41,3 +41,5 @@ Thumbs.db
 
 # Userdata
 prep/prep_data/
+prep/datasheets/
+prep/prep_json/
