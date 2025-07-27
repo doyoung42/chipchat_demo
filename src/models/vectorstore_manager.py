@@ -6,16 +6,28 @@ from typing import List, Dict, Any, Optional
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
+from ..config.settings import PATHS
 
 class VectorstoreManager:
     def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
-        """벡터 스토어 관리자 초기화 (CPU 전용)"""
+        """벡터 스토어 관리자 초기화 (CPU 전용)
+        
+        Args:
+            model_name: 사용할 임베딩 모델명
+        """
         # Setup logging
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
         
         # Load HuggingFace token from various sources
         hf_token = self._load_hf_token()
+        
+        # Use vectorstore path from settings (automatically detects environment)
+        self.vectorstore_folder = str(PATHS['vectorstore'])
+        self.logger.info(f"✅ 벡터스토어 경로 설정: {self.vectorstore_folder}")
+        
+        # Create vectorstore folder if it doesn't exist
+        os.makedirs(self.vectorstore_folder, exist_ok=True)
         
         # Initialize embeddings (CPU only for Google Colab compatibility)
         embedding_kwargs = {'model_name': model_name}
@@ -182,9 +194,11 @@ class VectorstoreManager:
             self.logger.warning("⚠️ 문서가 없어 빈 벡터스토어 생성")
             return FAISS.from_texts(["No data available"], self.embeddings)
     
-    def save_vectorstore(self, vectorstore: FAISS, path: str):
+    def save_vectorstore(self, vectorstore: FAISS, name: str):
         """벡터 스토어를 파일로 저장"""
         try:
+            path = os.path.join(self.vectorstore_folder, name)
+            
             # FAISS index is always CPU for CPU-only mode
             self.logger.info("💾 벡터스토어 저장 중 (CPU 모드)")
             
@@ -198,9 +212,10 @@ class VectorstoreManager:
             self.logger.error(f"❌ 벡터스토어 저장 실패: {str(e)}")
             raise
     
-    def load_vectorstore(self, path: str) -> FAISS:
+    def load_vectorstore(self, name: str) -> FAISS:
         """저장된 벡터 스토어를 로드"""
         try:
+            path = os.path.join(self.vectorstore_folder, name)
             self.logger.info(f"벡터스토어 로드 중: {path}")
             vectorstore = FAISS.load_local(
                 path, 
