@@ -1,0 +1,305 @@
+{
+  "metadata": {
+    "component_name": "NEX40400",
+    "manufacturer": "Nexperia",
+    "key_specifications": "High efficiency step-down converter, 4.5 V to 40 V input range, up to 600 mA output, low quiescent current (60 \u03bcA typical), synchronous operation, current mode control, ultra-low shutdown current (0.3 \u03bcA), PFM/FPWM mode options, adjustable switching frequency (1.05 MHz or 2.1 MHz), built-in protection features",
+    "applications": "Power step-down applications in industrial and automotive environments, battery-powered applications",
+    "grade": "B",
+    "maker_pn": "NEX040400"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The NEX40400 is a high efficiency step-down converter with low operating quiescent current of typically 60 \u00b5A. It provides up to 600 mA output with current mode control for fast loop response. The wide 4.5 V to 40 V input range is suitable for variety of the power step-down applications in industrial and automotive environments. 0.3 \u00b5A ultra-low shutdown supply current allows use in battery-powered applications.",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Ordering Information"
+      ],
+      "content": "Table 1. Ordering information\nPackageType number\nTemperature range Name Description Version\nNEX40400ADA\nNEX40400BDA\nNEX40400CDA\nNEX40400DDA\nNEX40400EDA\nNEX40400FDA\n-40 \u00b0C to +150 \u00b0C TSOT23-6 Plastic, surface-mounted package (TSOT23-6); 6 leads\nSOT8061-1",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Pinout",
+        "Device Comparison"
+      ],
+      "content": "Table 3. Pin description\nPin\nNumber Name\nI/O Description\n1 BOOT PWR Bootstrap capacitor connection for high-side FET drive. Connect 100 nF or larger capacitor between the BOOT pin and SW pin.\n2 GND PWR Power ground pin, internally connected to the source of low-side FET. Connect to system ground. Path to the input decoupling capacitor must be short.\n3 FB IN Inverting input of the error amplifier. Connect FB pin to the middle of a resistor divider of the converter output to set the target output voltage.\n4 EN IN Precision enable input of the converter. High level enables converter. Can be tied to VIN. Adjustable UVLO can be achieved by connecting EN to the middle of a resistor divider between VIN and ground.\n5 VIN PWR Power supply input for internal bias LDO and high-side FET. Place 2.2 \u00b5F or larger decoupling capacitor between VIN and ground close to this pin.\n6 SW OUT The switch pin is connected to the internal power MOSFET switches. Connect SW pin to the inductor of the output LC filter.\n\nTable 4. Device Comparison\nType number Operation Mode Spread Spectrum Switching Frequency\nNEX40400ADAZ PFM Off 2.1 MHz\nNEX40400BDAZ FPWM Off 2.1 MHz\nNEX40400CDAZ FPWM On 2.1 MHz\nNEX40400DDAZ PFM Off 1.05 MHz\nNEX40400EDAZ FPWM Off 1.05 MHz\nNEX40400FDAZ FPWM On 1.05 MHz",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "8.  Limiting values\nTable 5. Limiting values\nIn accordance with the Absolute Maximum Rating System (IEC 60134). Voltages are referenced to GND (ground = 0 V).\n\n9.  Recommended operating conditions\nTable 6. Recommended operating conditions\n\n10.  ESD ratings\nTable 7. ESD ratings\n\n11.  Thermal characteristics\nTable 8. Thermal characteristics",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "12.  Characteristics\n12.1.  Electrical characteristics\nTable 9. Electrical characteristics\nVVIN = 4.5 V to 40 V, typical values are at Tj = 25 \u00b0C (unless otherwise noted)\nTj = -40 \u00b0C to 150 \u00b0C",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "12.2.  Typical characteristics\nAt recommended operating conditions; voltages are referenced to GND (ground = 0 V); typical values are at 25 \u00b0C (unless otherwise noted).",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Nexperia NEX40400\n4.5 V to 40 V, 600 mA, synchronous step-down converter\n\nFig. 6. Efficiency versus load current\nFig. 7. Efficiency versus load current\nFig. 8. Efficiency versus load current\nFig. 9. Efficiency versus load current",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "PFM, VOUT = 5 V, fSW = 1.05 MHz\n\nFig. 10. Load regulation\nFig. 11. Load regulation\n\nPFM, VOUT = 5 V, fSW = 1.05 MHz\nFPWM, VOUT = 5 V, fSW = 2.1 MHz\n\nFig. 12. Line regulation\nFig. 13. Switching frequency foldback",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 14. Quiescent current versus ambient temperature\nFig. 15. VIN_UVLO versus ambient temperature\nFig. 16. Reference voltage versus ambient temperature\nFig. 17. HS and LS limits versus ambient temperature",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The NEX40400 is a fixed-frequency, synchronous step-down converter with low quiescent current consumption. It operates from 4.5 V to 40 V supply voltage, and capable of delivering up to 600 mA DC load current in a small solution size. There are six variants available that are suitable to various applications; refer to Section 7 for detailed information.",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "For Pulse Frequency Modulation (PFM) version, when the load current is lower than half of the peak-to-peak inductor current in CCM, the NEX40400 operates in Discontinuous Conduction Mode (DCM). In DCM operation, the LS switch is turned off when the inductor current drops to ILS_ZC threshold (30 mA typical) to reduce conduction loss and improve efficiency. At lower load, PFM mode is activated to maintain high efficiency operation the minimum peak inductor current IPEAK_MIN (150 mA typical) is reached, the switching frequency decreases to maintain regulation.",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The output voltage is set by a resistor divider from the output voltage to the FB pin. 1% tolerance resistors are recommended. Select the bottom-side resistor RFBB for the desired divider current and use below equation to calculate top-side resistor RFBT. RFBB in the range from 10 k\u03a9 to 100 k\u03a9 is recommended for most applications.",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "If the feedback voltage is lower than 40% of the VREF and the current of the LS switch triggers ILS_LIMIT for 256 consecutive cycles, hiccup current protection mode is activated. In hiccup mode, the regulator shuts down and keeps off for a period of hiccup, tHICCUP (120 ms typical for PFM variants; 15 ms for FPWM), before the NEX40400 tries to start again. If overcurrent or short-circuit fault condition still exist, hiccup repeats until the fault condition is removed. Hiccup mode reduces power dissipation under severe over-current conditions, prevents over-heating and potential damage to the device.",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "BOOT\nGND\nFB\nSW\nVIN\nEN\nNEX40400DDA\nCIN\n2.2 F\nCboot\n100 nF\nL 18 \nVOUT\n5 V (DC)\nVVIN\n24 V (DC)\nCOUT\n22 F\nRFBB\n20 k\nRFBT\n105 k",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "The input voltage ripple caused by the capacitance can be estimated with equation:\n\nWhere ILOAD is the maximum load current, and CIN is the input capacitance.\n\nThe output voltage ripple can be estimated with Equation:\n\nWhere L is the inductor value, RESR is the equivalent series resistance (ESR) value of the output capacitor, and COUT is output capacitance.\n\nIn the case of ceramic capacitors, the impedance at the switching frequency is dominated by the capacitance. The output voltage ripple is caused mainly by the capacitance. For simplification, the output voltage ripple can be estimated with Equation:",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Fig. 23. Start-up by VVIN\nFig. 24. Start-up by EN\nFig. 25. Load transient response\nFig. 26. Line transient response\nFig. 27. Short protection\nFig. 28. Short recovery",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Fig. 29. Example of NEX40400 PCB Layout",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 30. Package outline SOT8061-1 (TSOT23-6)",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Target applications.......................................................1\n4. Ordering information....................................................2\n5. Marking.......................................................................... 2\n6. Pinout.............................................................................3\n7. Device Comparison...................................................... 3\n8. Limiting values............................................................. 4\n9. Recommended operating conditions..........................4\n10. ESD ratings................................................................. 4\n11. Thermal characteristics..............................................4\n12. Characteristics............................................................5\n13. Functional description............................................. 10\n14. Application information........................................... 14",
+      "grade": "B",
+      "maker_pn": "NEX040400",
+      "part number": "1203-006931"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The NEX40400 is a high efficiency step-down converter with low operating quiescent current of typically 60 \u00b5A. It provides up to 600 mA output with current mode control for fast loop response. The wide 4.5 V to 40 V input range is suitable for variety of the power step-down applications in industrial and automotive environments.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "The NEX40400 is a fixed-frequency, synchronous step-down converter with low quiescent current consumption. It operates from 4.5 V to 40 V supply voltage, and capable of delivering up to 600 mA DC load current in a small solution size. There are six variants available that are suitable to various applications.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "The NEX40400 features low operating quiescent current, wide input voltage range, high output current capability, and small solution size. It is designed for power step-down applications in industrial and automotive environments, as well as battery-powered applications with its ultra-low shutdown current.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "8. Limiting values: Table 5 provides the limiting values for the device in accordance with the Absolute Maximum Rating System (IEC 60134). Voltages are referenced to GND (ground = 0 V). 9. Recommended operating conditions: Table 6 lists the recommended operating conditions for the device.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "10. ESD ratings: Table 7 provides the ESD ratings for the device. 11. Thermal characteristics: Table 8 lists the thermal characteristics of the device.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "12.1. Electrical characteristics: Table 9 provides the electrical characteristics of the device, including voltage, current, and timing specifications. The typical values are provided at Tj = 25 \u00b0C (unless otherwise noted) and for the input voltage range of VVIN = 4.5 V to 40 V. The operating temperature range is Tj = -40 \u00b0C to 150 \u00b0C.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "12.2. Typical characteristics: This section provides typical characteristic curves and descriptions for the device under recommended operating conditions, with voltages referenced to GND (ground = 0 V) and typical values at 25 \u00b0C (unless otherwise noted). The curves include efficiency versus load current (Figs. 6-9), load regulation (Figs. 10-11), line regulation (Fig. 12), switching frequency foldback (Fig. 13), quiescent current versus ambient temperature (Fig. 14), VIN_UVLO versus ambient temperature (Fig. 15), reference voltage versus ambient temperature (Fig. 16), and HS and LS limits versus ambient temperature (Fig. 17). It also describes the operation in Pulse Frequency Modulation (PFM) mode, Discontinuous Conduction Mode (DCM), and hiccup current protection mode.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "BOOT GND FB SW VIN EN NEX40400DDA CIN 2.2 F Cboot 100 nF L 18  VOUT 5 V (DC) VVIN 24 V (DC) COUT 22 F RFBB 20 k RFBT 105 k The input voltage ripple caused by the capacitance can be estimated with equation: Where ILOAD is the maximum load current, and CIN is the input capacitance.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "The output voltage ripple can be estimated with Equation: Where L is the inductor value, RESR is the equivalent series resistance (ESR) value of the output capacitor, and COUT is output capacitance. In the case of ceramic capacitors, the impedance at the switching frequency is dominated by the capacitance. The output voltage ripple is caused mainly by the capacitance. For simplification, the output voltage ripple can be estimated with Equation:",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "Fig. 23. Start-up by VVIN Fig. 24. Start-up by EN Fig. 25. Load transient response Fig. 26. Line transient response Fig. 27. Short protection Fig. 28. Short recovery",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "Fig. 29. Example of NEX40400 PCB Layout",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 30. Package outline SOT8061-1 (TSOT23-6). This chunk provides information about the package outline and type, specifically the SOT8061-1 or TSOT23-6 package, which is a small outline transistor package with 6 leads.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "Package outline and dimensions for the SOT8061-1 (TSOT23-6) package. This chunk would include details such as the package dimensions, lead pitch, and other physical characteristics of the TSOT23-6 package.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "Ordering and marking information for the SOT8061-1 (TSOT23-6) package. This chunk could cover details like the ordering codes, package markings, and any other relevant information for ordering and identifying this specific package type.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      },
+      {
+        "content": "Shipping and handling specifications for the SOT8061-1 (TSOT23-6) package. This chunk would provide information on how the packages are shipped, any special handling requirements, and other logistics details related to the packaging and transportation of this component package.",
+        "part number": "1203-006931.pdf",
+        "grade": "B",
+        "maker_pn": "NEX040400"
+      }
+    ]
+  },
+  "part number": "1203-006931"
+}

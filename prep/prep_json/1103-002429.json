@@ -1,0 +1,212 @@
+{
+  "metadata": {
+    "component_name": "CAT93C86B",
+    "manufacturer": "ON Semiconductor",
+    "key_specifications": "16-Kb Serial EEPROM memory device, configurable as 16-bit or 8-bit registers, self-timed internal write with auto-clear, Power-On Reset circuit, 1,000,000 program/erase cycles endurance, 100 years data retention, operating temperature range from -40\u00b0C to +125\u00b0C",
+    "applications": "The datasheet does not explicitly mention main applications, but based on it being a serial EEPROM memory device, potential applications could include data storage and configuration settings in embedded systems, industrial control, consumer electronics, and other applications requiring non-volatile memory.",
+    "grade": "D",
+    "maker_pn": "CAT93C86B"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The CAT93C86B is a 16 \u2212Kb Serial EEPROM memory device which is configured as either registers of 16 bits (ORG pin at VCC) or 8 bits (ORG pin at GND). Each register can be written (or read) serially by using the DI (or DO) pin. The CAT93C86B features a self \u2212timed internal write with auto \u2212clear. On \u2212chip Power \u2212On Reset circuit protects the internal logic against powering up in the wrong state.",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Table 2. RELIABILITY CHARACTERISTICS (Note 2)\nSymbol Parameter Min Units\nNEND (Note 3) Endurance 1,000,000 Program / Erase Cycles\nTDR Data Retention 100 Years\n\nTable 3. D.C. OPERATING CHARACTERISTICS\n(VCC = +1.8 V to +5.5 V, TA = \u221240C to +125C, VCC = +1.65 V to +5.5 V, TA = \u221220C to +85C unless otherwise specified.)",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 7. A.C. CHARACTERISTICS\n(VCC = +1.8 V to +5.5 V, TA = \u221240C to +125C, VCC = +1.65 V to +5.5 V, TA = \u221220C to +85C unless otherwise specified.)\n\nTable 8. INSTRUCTION SET\nInstruction\nStart\nBit Opcode\nAddress Data\nCommentsx8 x16 x8 x16\nREAD 1 10 A10\u2212A0 A9\u2212A0 Read Address AN\u2013 A0\nERASE 1 11 A10\u2212A0 A9\u2212A0 Clear Address AN\u2013 A0\nWRITE 1 01 A10\u2212A0 A9\u2212A0 D7\u2212D0 D15\u2212D0 Write Address AN\u2013 A0\nEWEN 1 00 11XXXXXXXXX 11XXXXXXXX Write Enable\nEWDS 1 00 00XXXXXXXXX 00XXXXXXXX Write Disable\nERAL* 1 00 10XXXXXXXXX 10XXXXXXXX Clear All Addresses\nWRAL* 1 00 01XXXXXXXXX 01XXXXXXXX D7\u2212D0 D15\u2212D0 Write All Addresses\n*Not available at VCC < 1.8 V",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "CAT93C86B\nwww.onsemi.com\n7\nORDERING INFORMATION\nOrder Number Specific Device Marking Package Type Temperature Range Shipping\nCAT93C86BVI\u2212GT3 93C86D SOIC\u22128, JEDEC I = Industrial\n(\u221240C to +85C) Tape & Reel,\n3,000 Units / Reel\nCAT93C86BVE\u2212GT3 93C86D SOIC\u22128, JEDEC E = Extended\n(\u221240C to +125C) Tape & Reel,\n3,000 Units / Reel\nCAT93C86BYI\u2212GT3 M86D TSSOP\u22128 I = Industrial\n(\u221240C to +85C) Tape & Reel,\n3,000 Units / Reel\nCAT93C86BYE\u2212GT3 M86D TSSOP\u22128 E = Extended\n(\u221240C to +125C) Tape & Reel,\n3,000 Units / Reel\nCAT93C86BHU4I\u2212GT3 M4U UDFN\u22128 I = Industrial\n(\u221240C to +85C) Tape & Reel,\n3,000 Units / Reel\nCAT93C86BXI\u2212T2 93C86D SOIC\u22128, EIAJ I = Industrial\n(\u221240C to +85C) Tape & Reel,\n2,000 Units / Reel\nCAT93C86BXE\u2212T2 93C86D SOIC\u22128, EIAJ E = Extended\n(\u221240C to +125C) Tape & Reel,\n2,000 Units / Reel",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information",
+        "Mechanical Characteristics"
+      ],
+      "content": "UDFN8, 2x3 EXTENDED PAD\nCASE 517AZ\nISSUE A\nDATE 23 MAR 2015SCALE 2:1\n\nNOTES:\n1. DIMENSIONING AND TOLERANCING PER\nASME Y14.5M, 1994.\n2. CONTROLLING DIMENSION: MILLIMETERS.\n3. DIMENSION b APPLIES TO PLATED\nTERMINAL AND IS MEASURED BETWEEN\n0.15 AND 0.25MM FROM THE TERMINAL TIP .\n4. COPLANARITY APPLIES TO THE EXPOSED\nPAD AS WELL AS THE TERMINALS.",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information",
+        "Mechanical Characteristics"
+      ],
+      "content": "SOIC\u22128, 150 mils\nCASE 751BD\nISSUE O\nDATE 19 DEC 2008\n\nNotes:\n(1) All dimensions are in millimeters. Angles in degrees.\n(2) Complies with JEDEC MS-012.\n\nSYMBOL MIN NOM MAX\n\u03b8 0\u00ba 8\u00ba\nA 0.10 0.25\nA1 0.33 0.51\nb 0.19 0.25 0.25\nc 0.25 0.50\nD 4.80 5.00 5.80\nE 5.80 6.20\nE1 3.80 4.00\ne 1.27 BSC\nh 1.75\nL 0.40 1.27 1.35",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TSSOP8, 4.4x3.0, 0.65P\nCASE 948AL\nISSUE A\nDATE 20 MAY 2022\n/C0113\n/C0113\nXXX = Specific Device Code\nY = Year\nWW = Work Week\nA = Assembly Location\n/C0071 = Pb\u2212Free Package",
+      "grade": "D",
+      "maker_pn": "CAT93C86B",
+      "part number": "1103-002429"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The CAT93C86B is a 16-Kb Serial EEPROM memory device which is configured as either registers of 16 bits (ORG pin at VCC) or 8 bits (ORG pin at GND).",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Each register can be written (or read) serially by using the DI (or DO) pin. The CAT93C86B features a self-timed internal write with auto-clear.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "The CAT93C86B is a 16-Kb Serial EEPROM memory device with on-chip Power-On Reset circuit to protect the internal logic against powering up in the wrong state.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "The CAT93C86B is a configurable 16-Kb Serial EEPROM memory device with serial read/write capabilities, self-timed internal write, and Power-On Reset protection.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 2 provides reliability characteristics such as endurance (minimum 1,000,000 program/erase cycles) and data retention (minimum 100 years). This information is crucial for understanding the longevity and durability of the electronic component.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Table 3 lists the D.C. operating characteristics, which include voltage and temperature ranges for operation. Specifically, it covers VCC ranges of +1.8 V to +5.5 V and temperature ranges of -40\u00b0C to +125\u00b0C, as well as a lower temperature range of -20\u00b0C to +85\u00b0C with a VCC range of +1.65 V to +5.5 V. These specifications are essential for ensuring proper operation within the specified electrical and environmental conditions.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Table 7 outlines the A.C. characteristics, which are likely related to timing specifications and other dynamic electrical parameters. Similar to Table 3, it covers the same voltage and temperature ranges, indicating that these specifications are applicable to both D.C. and A.C. operating conditions.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Table 8 provides the instruction set for the electronic component, which includes various commands such as READ, ERASE, WRITE, EWEN (Write Enable), EWDS (Write Disable), ERAL (Clear All Addresses), and WRAL (Write All Addresses). Each instruction is accompanied by its opcode, address format, and data format (where applicable). This information is crucial for understanding how to interact with and program the component.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      }
+    ],
+    "Mechanical Characteristics": [
+      {
+        "content": "UDFN8, 2x3 EXTENDED PAD CASE 517AZ ISSUE A DATE 23 MAR 2015SCALE 2:1 NOTES: 1. DIMENSIONING AND TOLERANCING PER ASME Y14.5M, 1994. 2. CONTROLLING DIMENSION: MILLIMETERS. 3. DIMENSION b APPLIES TO PLATED TERMINAL AND IS MEASURED BETWEEN 0.15 AND 0.25MM FROM THE TERMINAL TIP. 4. COPLANARITY APPLIES TO THE EXPOSED PAD AS WELL AS THE TERMINALS.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "SOIC-8, 150 mils CASE 751BD ISSUE O DATE 19 DEC 2008 Notes: (1) All dimensions are in millimeters. Angles in degrees. (2) Complies with JEDEC MS-012. SYMBOL MIN NOM MAX \u03b8 0\u00ba 8\u00ba A 0.10 0.25 A1 0.33 0.51 b 0.19 0.25 0.25 c 0.25 0.50 D 4.80 5.00 5.80 E 5.80 6.20 E1 3.80 4.00 e 1.27 BSC h 1.75 L 0.40 1.27 1.35",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "UDFN8, 2x3 EXTENDED PAD is a package with dimensions and tolerancing per ASME Y14.5M, 1994 standard. The controlling dimension is in millimeters. The dimension 'b' applies to the plated terminal and is measured between 0.15 and 0.25mm from the terminal tip. Coplanarity applies to the exposed pad as well as the terminals.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "SOIC-8, 150 mils package complies with JEDEC MS-012 standard. The dimensions are provided in millimeters and angles in degrees. The package has specific minimum, nominal, and maximum values for various symbols representing dimensions such as \u03b8 (angle), A, A1, b, c, D, E, E1, e, h, and L.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "Table 2 presents reliability characteristics for the electronic component, including endurance (NEND) of 1,000,000 program/erase cycles and data retention (TDR) of 100 years. These specifications indicate the component's durability and longevity under normal operating conditions.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Table 3 outlines the D.C. operating characteristics for the electronic component, covering a supply voltage range (VCC) of +1.8 V to +5.5 V and temperature ranges (TA) of -40\u00b0C to +125\u00b0C or -20\u00b0C to +85\u00b0C, depending on the specific voltage range. These operating conditions define the environmental and electrical parameters within which the component is designed to function reliably.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "The reliability characteristics, including endurance and data retention, along with the specified operating conditions for voltage and temperature ranges, provide crucial information about the electronic component's performance, durability, and environmental tolerances. These specifications are essential for ensuring proper operation and longevity in various applications and environments.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "Endurance and data retention specifications indicate the component's ability to withstand repeated programming and erasure cycles and retain data over an extended period, respectively. The operating voltage and temperature ranges define the environmental conditions under which the component can operate reliably, enabling system designers to ensure compatibility and proper functionality in their target applications.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "The text provides ordering information for the CAT93C86B electronic component, including specific device markings, package types (SOIC-8, TSSOP-8, UDFN-8), temperature ranges (industrial or extended), and shipping details (tape & reel with quantity per reel).",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "It includes detailed dimensional drawings and specifications for the UDFN-8 (Case 517AZ), SOIC-8 (Case 751BD), and TSSOP-8 (Case 948AL) package types used for this component. The drawings show dimensions, tolerances, and other package details.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      },
+      {
+        "content": "The text also mentions the marking convention used on the components, where XXX represents the specific device code, Y is the year, WW is the work week, A is the assembly location, and /C0071 indicates a Pb-free package.",
+        "part number": "1103-002429.pdf",
+        "grade": "D",
+        "maker_pn": "CAT93C86B"
+      }
+    ]
+  },
+  "part number": "1103-002429"
+}

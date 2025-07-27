@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "component_name": "JW1130H",
+    "manufacturer": "JW (Likely JoulWatt, but not explicitly stated)",
+    "key_specifications": "2A peak current, 44V multi-topology LED driver, 4.6V to 36V operating input range, analog and PWM dimming, constant off-time operation, overvoltage and thermal protection, available in SOT23-6 and ESOP8 packages",
+    "applications": "LED Drive",
+    "grade": "F",
+    "maker_pn": "JW1130H"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "JW1130H \n2A Peak, 44V \nMulti-Topology LED Driver \n\nDESCRIPTION\nThe JW\u00ae1130H is a current mode monolithic LED driver. The LED current can be controlled with an analog input voltage. \nWith high-side LED current sensing, the JW1130H can be configured as buck, boost or buck-boost topology to serve different LED driver need.\nThe integrated 44V/2A N-Channel MOSFET ensures high efficiency operation. \nAt light loads, JW1130H operates in low frequency to maintain high efficiency and low output ripple.\nThe overvoltage lockout protection on SW pin protects JW1130H from open LED fault. JW1130H also has thermal protection at 140 \u00baC. The JW1130H is available in a 6-pin SOT23-6and a 8-pin ESOP8 package, which provides a compact solution with minimal external components.\n\nFEATURES\n\n- 4.6V to 36V operating input range\n- 2A peak switch current\n- Analog dimming and PWM dimming\n- Constant off-time operation\n- SW over voltage lockout\n- Thermal protection\n- Available in SOT23-6 and ESOP8 packages\n\nAPPLICATIONS\n- LED Drive",
+      "grade": "F",
+      "maker_pn": "JW1130H",
+      "part number": "1003-007298"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "JW1130H is a 2A peak, 44V multi-topology LED driver that can be configured as buck, boost or buck-boost topology to serve different LED driver needs. It is a current mode monolithic LED driver with high-side LED current sensing, where the LED current can be controlled with an analog input voltage.",
+        "part number": "1003-007298.pdf",
+        "grade": "F",
+        "maker_pn": "JW1130H"
+      },
+      {
+        "content": "The JW1130H features an integrated 44V/2A N-Channel MOSFET for high efficiency operation, and operates in low frequency at light loads to maintain high efficiency and low output ripple. It has overvoltage lockout protection on the SW pin to protect against open LED faults, and thermal protection at 140\u00b0C.",
+        "part number": "1003-007298.pdf",
+        "grade": "F",
+        "maker_pn": "JW1130H"
+      },
+      {
+        "content": "Key features of the JW1130H include a 4.6V to 36V operating input range, 2A peak switch current, analog and PWM dimming capabilities, constant off-time operation, SW over voltage lockout, and thermal protection. It is available in compact SOT23-6 and ESOP8 packages, providing a solution with minimal external components.",
+        "part number": "1003-007298.pdf",
+        "grade": "F",
+        "maker_pn": "JW1130H"
+      },
+      {
+        "content": "The JW1130H is designed for LED drive applications, offering a multi-topology LED driver solution with high efficiency, protection features, and dimming capabilities in a compact package.",
+        "part number": "1003-007298.pdf",
+        "grade": "F",
+        "maker_pn": "JW1130H"
+      }
+    ]
+  },
+  "part number": "1003-007298"
+}

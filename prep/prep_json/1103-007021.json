@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "component_name": "DS2430A",
+    "manufacturer": "Maxim Integrated (now part of Analog Devices)",
+    "key_specifications": "256-bit EEPROM, 64-bit one-time programmable application register, unique 64-bit registration number, 1-Wire interface, 2.8V to 5.25V operation, -40\u00b0C to +85\u00b0C temperature range",
+    "applications": "Identifying and storing product-specific information with minimal interface requirements, such as a single microcontroller pin.",
+    "grade": "B",
+    "maker_pn": "DS2430A"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "FEATURES \n 256-bit Electrically Erasable Programmable Read Only Memory (EEPROM) plus 64-bit one-time programmable application register \n Unique, factory-lasered and tested 64-bit registration number (8-bit family code + 48-bit serial number + 8-bit CRC tester) assures absolute identity because no two parts are alike \n Built-in multidrop controller ensures compatibility with other MicroLAN products \n EEPROM organized as one page of 32 bytes for random access \n Reduces control, address, data, and power to a single data pin \n Directly connects to a single port pin of a microprocessor and communicates at up to 15.3kbits per second \n 8-bit family code specifies DS2430A communication requirements to reader \n Presence detector acknowledges when reader first applies voltage \n Low cost TO-92 or 6-pin TSOC and UCSP surface mount package \n Reads and writes over a wide voltage range of 2.8V to 5.25V from -40\u00b0C to +85\u00b0C",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "DESCRIPTION\nThe DS2430A 256-bit 1-Wire\u00ae EEPROM identifies and stores relevant information about the product to which it is associated. This lot or product specific information can be accessed with minimal interface, for example a single port pin of a microcontroller. The DS2430A consists of a factory -lasered registration number that includes a unique 48- bit serial number, an 8 -bit CRC, and an 8 -bit Family Code (14h) plus 256 bits of user -programmable EEPROM and a 64- bit one-time programmable application register. The power to read and write the DS2430A is derived ent irely from the 1 -Wire communication line. Data is transferred serially via the 1 -Wire protocol, which requires only a single data lead and a ground return.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The memory of the DS2430A consists of three separate sections, called data memory, application register, and status register (Figure 5). The data memory and the application register each have its own intermediate storage area called scratchpad that acts as a buffer when writing to the device. The data memory can be read and written as often as desired. The application register, however, is one-time programmable only. Once the application register is programmed, it is automatically write protected.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "WRITE SCRATCHPAD [0Fh]\nAfter issuing the Write Scratchpad command, the master must first provide a 1-byte address, followed by the data to be written to the scratchpad for the data memory. The DS2430A automatically increments the address after every byte it receives. After having received a data byte for address 1Fh, the address counter wraps around to 00h for the next byte and writing continues until the master sends a Reset Pulse.\n\nREAD SCRATCHPAD [AAh]\nThis command is used to verify data previously written to the scratchpad before it is copied into the final storage EEPROM memory. After issuing the Read Scratchpad command, the master must provide the 1-byte starting address from where data is to be read. The DS2430A automatically increments the address after every byte read by the master. After the data at address 1Fh has been read, the address counter wraps around to 00h for the next byte and reading continues until the master sends a Reset Pulse.\n\nCOPY SCRATCHPAD [55h]\nAfter the data stored in the scratchpad has been verified the master may send the Copy Scratchpad command followed by a validation key of A5h to transfer data from the scratchpad to the EEPROM memory. This command always copies the data of the entire scratchpad. Therefore, if one desires to change only a few bytes of the EEPROM data, the scratchpad should contain a copy of the latest EEPROM data before the Write Scratchpad and Copy Scratchpad commands are issued. After this command and the validation key are issued, the data line must be held above VPUPmin for at least tPROG.\n\nREAD MEMORY [F0h]\nThe Read Memory command is used to read a portion or all of the EEPROM data memory and to copy the entire data memory into the scratchpad to prepare for changing a few bytes. To copy data from the data memory to the scratchpad and to read it, the master must issue the read memory command followed by the 1-byte starting address of the data to be read from the scratchpad. The DS2430A automatically increments the address after every byte read by the master. After the data of address 1Fh has been read, the address counter wraps around to 00h for the next byte and reading continues until the master sends a Reset Pulse. If one intends to copy the entire data memory to the scratchpad without reading data, a starting address is not required; the master may send a Reset Pulse immediately following the command code.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Transaction Sequence\n\nInitialization\n\nROM Function Command\n\nMemory Function Command\n\nTransaction/Data\n\nINITIALIZATION\nAll transactions on the 1-Wire bus begin with an initialization sequence. The initialization sequence consists of a Reset Pulse transmitted by the bus master followed by a Presence Pulse(s) transmitted by the slave(s).\n\nThe Presence Pulse lets the bus master know that the DS2430A is on the bus and is ready to operate. For more details, see the 1-Wire Signaling section.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "1-Wire Signaling\nThe DS2430A requires strict protocols to insure data integrity. The protocol consists of four types of signaling on one line: Reset Sequence with Reset Pulse and Presence Pulse, Write-0, Write-1 and Read-Data. All these signals (except Presence Pulse) are initiated by the bus master.\n\nRead/Write Time Slots\nData communication with the DS2430A takes place in time slots, which carry a single bit each. Write time slots transport data from bus master to slave. Read time slots transfer data from slave to master.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "For a Write-1 time slot, the voltage on the data line must have crossed the VTH threshold before the Write-1 low time tW1LMAX is expired. For a Write-0 time slot, the voltage on the data line must stay below the VTH threshold until the Write-0 low time tW0LMIN is expired. For the most reliable communication, the voltage on the data line should not exceed VILMAX during the entire tW0L or tW1L window. After the VTH threshold has been crossed, the DS2430A needs a recovery time tREC before it is ready for the next time slot.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "A Read-data time slot begins like a Write-1 time slot. The voltage on the data line must remain below VTL until the read low time tRL is expired. During the tRL window, when responding with a 0, the DS2430A starts pulling the data line low; its internal timing generator determines when this pulldown ends and the voltage starts rising again. When responding with a 1, the DS2430A does not hold the data line low at all, and the voltage starts rising as soon as tRL is over. The sum of tRL + \u03b4 (rise time) on one side and the internal timing generator of the DS2430A on the other side define the master sampling window (tMSRMIN to tMSRMAX) in which the master must perform a read from the data line.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Example: Write 2 data bytes to data memory locations 0006h and 0007h. Read entire data memory.",
+      "grade": "B",
+      "maker_pn": "DS2430A",
+      "part number": "1103-007021"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The DS2430A is a 256-bit Electrically Erasable Programmable Read Only Memory (EEPROM) with a unique, factory-lasered 64-bit registration number (8-bit family code + 48-bit serial number + 8-bit CRC tester) that ensures absolute identity. It also has a 64-bit one-time programmable application register and is organized as one page of 32 bytes for random access.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "Key features of the DS2430A include a built-in multidrop controller for compatibility with other MicroLAN products, reduced control, address, data, and power to a single data pin, direct connection to a microprocessor port pin for communication up to 15.3kbits per second, and an 8-bit family code that specifies communication requirements to the reader.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "The DS2430A is designed to identify and store relevant information about the product it is associated with. It has a minimal interface, requiring only a single port pin of a microcontroller, and derives power entirely from the 1-Wire communication line. Data is transferred serially via the 1-Wire protocol, using a single data lead and a ground return.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "The DS2430A operates over a wide voltage range of 2.8V to 5.25V and a temperature range of -40\u00b0C to +85\u00b0C. It is available in low-cost TO-92 or 6-pin TSOC and UCSP surface mount packages.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The memory of the DS2430A consists of three separate sections: data memory, application register, and status register. The data memory can be read and written as often as desired, while the application register is one-time programmable only and automatically write-protected after programming. The memory has a scratchpad buffer for writing data before copying it to the final EEPROM memory.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "The WRITE SCRATCHPAD command allows writing data to the scratchpad buffer, with the device automatically incrementing the address after each byte. The READ SCRATCHPAD command is used to verify data in the scratchpad before copying it to EEPROM. The COPY SCRATCHPAD command copies the entire scratchpad data to EEPROM after providing a validation key.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "The READ MEMORY command is used to read a portion or all of the EEPROM data memory and to copy the entire data memory into the scratchpad to prepare for changing a few bytes. The device automatically increments the address after each byte read. To copy the entire data memory without reading, a Reset Pulse can be sent immediately after the command code.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "All transactions on the 1-Wire bus begin with an initialization sequence consisting of a Reset Pulse from the master followed by a Presence Pulse from the slave(s). The DS2430A uses strict protocols for data integrity, including Reset Sequence, Write-0, Write-1, and Read-Data signals initiated by the master. Data communication takes place in time slots carrying a single bit each, with specific timing requirements for Write-0, Write-1, and Read-Data time slots.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Example: Write 2 data bytes to data memory locations 0006h and 0007h. This involves an application circuit for writing data to specific memory addresses in a microcontroller or memory chip.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "Example: Write 2 data bytes to data memory locations 0006h and 0007h, demonstrating how to write data to specific memory locations in an embedded system or microcontroller application.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "Example: Read entire data memory after writing 2 data bytes to locations 0006h and 0007h. This shows how to read back data from memory in an application circuit involving memory read/write operations.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      },
+      {
+        "content": "Application circuit example demonstrating writing and reading data bytes to/from specific memory locations, which is a common operation in embedded systems and microcontroller applications.",
+        "part number": "1103-007021.pdf",
+        "grade": "B",
+        "maker_pn": "DS2430A"
+      }
+    ]
+  },
+  "part number": "1103-007021"
+}

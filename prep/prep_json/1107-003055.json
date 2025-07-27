@@ -1,0 +1,283 @@
+{
+  "metadata": {
+    "component_name": "SST25VF016B",
+    "manufacturer": "Silicon Storage Technology (SST)",
+    "key_specifications": "16 Mbit SPI Serial Flash, 2.7-3.6V single voltage, SPI modes 0 and 3, up to 80 MHz clock, 100k program/erase cycles, low power, flexible erase sectors/blocks, fast program/erase times, hardware/software write protection",
+    "applications": "The datasheet does not explicitly mention main applications, but based on the features, the SST25VF016B serial flash memory can be used in embedded systems, Internet of Things (IoT) devices, industrial control systems, and other applications requiring non-volatile memory storage with a serial interface.",
+    "grade": "F",
+    "maker_pn": "SST25VF016B"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Features:\n Single Voltage Read and Write Operations\n\u2013 2.7-3.6V\n Serial Interface Architecture\n\u2013 SPI Compatible: Mode 0 and Mode 3\n High Speed Clock Frequency\n\u2013U pt o8 0M H z\n Superior Reliability\n\u2013 Endurance: 100,000 Cycles (typical)\n\u2013 Greater than 100 years Data Retention\n Low Power Consumption:\n\u2013 Active Read Current: 10 mA (typical)\n\u2013 Standby Current: 5 \u00b5A (typical)\n Flexible Erase Capability\n\u2013 Uniform 4 KByte sectors\n\u2013 Uniform 32 KByte overlay blocks\n\u2013 Uniform 64 KByte overlay blocks\n Fast Erase and Byte-Program:\n\u2013 Chip-Erase Time: 35 ms (typical)\n\u2013 Sector-/Block-Erase Time: 18 ms (typical)\n\u2013 Byte-Program Time: 7 \u00b5s (typical)\n Auto Address Increment (AAI) Programming\n\u2013 Decrease total chip programming time over Byte-Pro-\ngram operations\n End-of-Write Detection\n\u2013 Software polling the BUSY bit in Status Register\n\u2013 Busy Status readout on SO pin in AAI Mode\n Hold Pin (HOLD#)\n\u2013 Suspends a serial sequence to the memory\nwithout deselecting the device\n Write Protection (WP#)\n\u2013 Enables/Disables the Lock-Down function of the status\nregister\n Software Write Protection\n\u2013 Write protection through Block-Protection bits in status\nregister\n Temperature Range\n\u2013 Commercial: 0\u00b0C to +70\u00b0C\n\u2013 Industrial: -40\u00b0C to +85\u00b0C\n Packages Available\n\u2013 8-lead SOIC (200 mils)\n\u2013 8-contact WSON (6mm x 5mm)\n All non-Pb (lead-free) devices are RoHS compliant",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Product Description\nSST's 25 series Serial Flash family features a four-wire, SPI-compatible interface that allows for a low\npin-count package which occupies less board space and ultimately lowers total system costs. The\nSST25VF016B devices are enhanced with improved operating frequency and even lower power con-\nsumption than the original SST25VFxxxA devices. SST25VF016B SPI serial flash memories are man-\nufactured with SST's proprietary, high-performance CMOS SuperFlash technology. The split-gate cell\ndesign and thick-oxide tunneling injector attain better reliability and manufacturability compared with\nalternate approaches.\nThe SST25VF016B devices significantly improve performance and reliability, while lowering power\nconsumption. The devices write (Program or Erase) with a single power supply of 2.7-3.6V for\nSST25VF016B. The total energy consumed is a function of the applied voltage, current, and time of\napplication. Since for any given voltage range, the SuperFlash technology uses less current to pro-\ngram and has a shorter erase time, the total energy consumed during any Erase or Program operation\nis less than alternative flash memory technologies.\nThe SST25VF016B device is offered in both 8-lead SOIC (200 mils) and 8-contact WSON (6mm x\n5mm) packages. See Figure 2 for pin assignments.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "16 Mbit SPI Serial Flash\nSST25VF016B\nData Sheet\n\nPin Description\n\nFigure 2: Pin Assignments\n\nTable 1: Pin Description\nSymbol Pin Name Functions\nSCK Serial Clock To provide the timing of the serial interface.\nCommands, addresses, or input data are latched on the rising edge of the clock\ninput, while output data is shifted out on the falling edge of the clock input.\nSI Serial Data Input To transfer commands, addresses, or data serially into the device.\nInputs are latched on the rising edge of the serial clock.\nSO Serial Data Output To transfer data serially out of the device.\nData is shifted out on the falling edge of the serial clock.\nOutputs Flash busy status during AAI Programming when reconfigured as RY/\nBY# pin. See \"Hardware End-of-Write Detection\" on page 12 for details.\nCE# Chip Enable The device is enabled by a high to low transition on CE#. CE# must remain low for\nthe duration of any command sequence.\nWP# Write Protect The Write Protect (WP#) pin is used to enable/disable BPL bit in the status register.\nHOLD# Hold To temporarily stop serial communication with SPI flash memory without resetting\nthe device.\nVDD Power Supply To provide power supply voltage: 2.7-3.6V for SST25VF016B\nVSS Ground",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Memory Organization\nThe SST25VF016B SuperFlash memory array is organized in uniform 4 KByte erasable sectors with\n32 KByte overlay blocks and 64 KByte overlay erasable blocks.\n\nDevice Operation\nThe SST25VF016B is accessed through the SPI (Serial Peripheral Interface) bus compatible protocol.\nThe SPI bus consist of four control lines; Chip Enable (CE#) is used to select the device, and data is\naccessed through the Serial Data Input (SI), Serial Data Output (SO), and Serial Clock (SCK).\nThe SST25VF016B supports both Mode 0 (0,0) and Mode 3 (1,1) of SPI bus operations.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Hold Operation\nThe HOLD# pin is used to pause a serial sequence underway with the SPI flash memory without resetting the clocking sequence. To activate the HOLD# mode, CE# must be in active low state. The HOLD#\nmode begins when the SCK active low state coincides with the falling edge of the HOLD# signal. The\nHOLD mode ends when the HOLD# signal's rising edge coincides with the SCK active low state.\n\nWrite Protection\nSST25VF016B provides software Write protection. The Write Protect pin (WP#) enables or disables\nthe lock-down function of the status register. The Block-Protection bits (BP3, BP2, BP1, BP0, and BPL)\nin the status register provide Write protection to the memory array and the status register.\n\nWrite Protect Pin (WP#)\nThe Write Protect (WP#) pin enables the lock-down function of the BPL bit (bit 7) in the status register.\nWhen WP# is driven low, the execution of the Write-Status-Register (WRSR) instruction is determined by\nthe value of the BPL bit (see Table 2). When WP# is high, the lock-down function of the BPL bit is disabled.\n\nTable 2: Conditions to Execute Write-Status-Register (WRSR) Instruction\nWP# BPL Execute WRSR Instruction\nL 1 Not Allowed\nL 0 Allowed\nH X Allowed",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 10: Auto Address Increment (AAI) Word-Program Sequence with Hardware End-of-Write Detection\n\nFigure 11: Auto Address Increment (AAI) Word-Program Sequence with Software End-of-Write Detection",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "4-KByte Sector-Erase\nThe Sector-Erase instruction clears all bits in the selected 4 KByte sector to FFH. A Sector-Erase instruction applied to a protected memory area will be ignored. Prior to any Write operation, the Write-Enable (WREN) instruction must be executed. CE# must remain active low for the duration of any command sequence. The Sector-Erase instruction is initiated by executing an 8-bit command, 20H, followed by address bits [A23-A0]. Address bits [AMS-A12]( AMS = Most Significant address) are used to determine the sector address (SAX), remaining address bits can be VIL or VIH. CE# must be driven high before the instruction is executed. The user may poll the Busy bit in the software status register or wait TSE for the completion of the internal self-timed Sector-Erase cycle.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The 32-KByte Block-Erase instruction clears all bits in the selected 32 KByte block to FFH. A Block-Erase instruction applied to a protected memory area will be ignored. The 64-KByte Block-Erase instruction clears all bits in the selected 64 KByte block to FFH. A Block-Erase instruction applied to a protected memory area will be ignored. Prior to any Write operation, the Write-Enable (WREN) instruction must be executed.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Chip-Erase instruction clears all bits in the device to FFH. A Chip-Erase instruction will be ignored if any of the memory area is protected. Prior to any Write operation, the Write-Enable (WREN) instruction must be executed.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Write-Enable (WREN) instruction sets the Write-Enable-Latch bit in the Status Register to 1 allowing Write operations to occur. The WREN instruction must be executed prior to any Write (Program/Erase) operation. The WREN instruction may also be used to allow execution of the Write-Status-Register (WRSR) instruction; however, the Write-Enable-Latch bit in the Status Register will be cleared upon the rising edge CE# of the WRSR instruction. The Write-Disable (WRDI) instruction resets the Write-Enable-Latch bit and AAI bit to 0 disabling any new Write operations from occurring. The WRDI instruction will not terminate any programming operation in progress.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Enable-Write-Status-Register (EWSR) instruction arms the Write-Status-Register (WRSR) instruction and opens the status register for alteration. The Write-Status-Register instruction writes new values to the BP3, BP2, BP1, BP0, and BPL bits of the status register. Executing the Write-Status-Register instruction will be ignored when WP# is low and BPL bit is set to \"1\". When the WP# is low, the BPL bit can only be set from \"0\" to \"1\" to lock-down the status register, but cannot be reset from \"1\" to \"0\". When WP# is high, the lock-down function of the BPL bit is disabled and the BPL, BP0, and BP1 and BP2 bits in the status register can all be changed.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The JEDEC Read-ID instruction identifies the device as SST25VF016B and the manufacturer as SST. The device information can be read from executing the 8-bit command, 9FH. Following the JEDEC Read-ID instruction, the 8-bit manufacturer's ID, BFH, is output from the device. After that, a 16-bit device ID is shifted out on the SO pin. Byte 1, BFH, identifies the manufacturer as SST. Byte 2, 25H, identifies the memory type as SPI Serial Flash. Byte 3, 41H, identifies the device as SST25VF016B.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Read-ID instruction (RDID) identifies the devices as SST25VF016B and manufacturer as SST. This command is backward compatible to all SST25xFxxxA devices and should be used as default device identification when multiple versions of SPI Serial Flash devices are used in a design. The device information can be read from executing an 8-bit command, 90H or ABH, followed by address bits [A23-A0]. Following the Read-ID instruction, the manufacturer's ID is located in address 00000H and the device ID is located in address 00001H. Once the device is in Read-ID mode, the manufacturer's and device ID output data toggles between address 00000H and 00001H until terminated by a low to high transition on CE#.",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Figure 26: AC Input/Output Reference Waveforms\n\nAC test inputs are driven at V IHT (0.9VDD) for a logic \"1\" and V ILT (0.1VDD) for a logic \"0\". Measurement reference points for inputs and outputs are V HT (0.6VDD) and V LT (0.4VDD). Input rise and fall times (10% \u2194 90%) are <5 ns.\n\nNote: VHT -V HIGH Test\nVLT -V LOW Test\nVIHT -V INPUT HIGH Test\nVILT -V INPUT LOW Test\n\nFigure 27: A Test Load Example",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 28,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Product Ordering Information\nValid combinations for SST25VF016B\nSST25VF016B-50-4C-S2AF SST25VF016B-50-4C-QAF\nSST25VF016B-50-4I-S2AF SST25VF016B-50-4I-QAF\nSST25VF016B-75-4I-S2AF SST25VF016B-75-4I-QAF",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 29,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Figure 28: 8-lead Small Outline Integrated Circuit (SOIC) 200 mil body width (5.2mm x 8mm)\nSST Package Code: S2A",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Figure 29: 8-contact Very-very-thin Small Outline No-lead (WSON)\nSST Package Code: QA",
+      "grade": "F",
+      "maker_pn": "SST25VF016B",
+      "part number": "1107-003055"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The SST25VF016B is a 16 Mbit SPI Serial Flash memory device with features such as single voltage read and write operations (2.7-3.6V), SPI compatible interface (Mode 0 and Mode 3), high speed clock frequency up to 80 MHz, superior reliability with 100,000 cycle endurance and greater than 100 years data retention, low power consumption with active read current of 10 mA and standby current of 5 \u00b5A, flexible erase capability with uniform 4 KByte sectors, 32 KByte and 64 KByte overlay blocks, fast erase and byte-program times, auto address increment programming, end-of-write detection, hold pin for suspending serial sequence, write protection through software and hardware, wide temperature range support, and available in 8-lead SOIC and 8-contact WSON packages.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "The SST25VF016B Serial Flash family features a four-wire, SPI-compatible interface that allows for a low pin-count package, occupying less board space and lowering total system costs. It is manufactured using SST's proprietary, high-performance CMOS SuperFlash technology with split-gate cell design and thick-oxide tunneling injector for better reliability and manufacturability. The device significantly improves performance and reliability while lowering power consumption, with a single power supply of 2.7-3.6V for write operations. The total energy consumed is less than alternative flash memory technologies due to lower current and shorter erase time.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "The SST25VF016B memory array is organized in uniform 4 KByte erasable sectors with 32 KByte and 64 KByte overlay erasable blocks. The device is accessed through the SPI (Serial Peripheral Interface) bus compatible protocol, with four control lines: Chip Enable (CE#) for device selection, Serial Data Input (SI), Serial Data Output (SO), and Serial Clock (SCK). It supports both Mode 0 (0,0) and Mode 3 (1,1) of SPI bus operations.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "The SST25VF016B is offered in both 8-lead SOIC (200 mils) and 8-contact WSON (6mm x 5mm) packages, with pin assignments including SCK (Serial Clock), SI (Serial Data Input), SO (Serial Data Output), CE# (Chip Enable), WP# (Write Protect), HOLD# (Hold), VDD (Power Supply), and VSS (Ground). Valid ordering combinations for the device are provided.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Hold Operation: The HOLD# pin is used to pause a serial sequence underway with the SPI flash memory without resetting the clocking sequence. The HOLD# mode begins when the SCK active low state coincides with the falling edge of the HOLD# signal and ends when the HOLD# signal's rising edge coincides with the SCK active low state.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Write Protection: SST25VF016B provides software Write protection. The Write Protect pin (WP#) enables or disables the lock-down function of the status register. The Block-Protection bits (BP3, BP2, BP1, BP0, and BPL) in the status register provide Write protection to the memory array and the status register. The Write-Protect (WP#) pin enables the lock-down function of the BPL bit in the status register, controlling the execution of the Write-Status-Register (WRSR) instruction based on the value of the BPL bit.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Erase Operations: The device supports 4-KByte Sector-Erase, 32-KByte Block-Erase, 64-KByte Block-Erase, and Chip-Erase instructions. These instructions clear the specified memory area to FFH. A Erase instruction applied to a protected memory area will be ignored. Prior to any Write operation, the Write-Enable (WREN) instruction must be executed.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Write Operations: The Write-Enable (WREN) instruction sets the Write-Enable-Latch bit in the Status Register to allow Write operations. The Write-Disable (WRDI) instruction resets the Write-Enable-Latch bit to disable new Write operations. The Enable-Write-Status-Register (EWSR) instruction arms the Write-Status-Register (WRSR) instruction to alter the status register bits, including the Block-Protection bits.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Device Identification: The JEDEC Read-ID and Read-ID instructions identify the device as SST25VF016B and the manufacturer as SST. The Read-ID instruction provides the manufacturer's ID and device ID at specific addresses, allowing for compatibility with multiple versions of SPI Serial Flash devices.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Figure 10: Auto Address Increment (AAI) Word-Program Sequence with Hardware End-of-Write Detection. This chunk describes an application circuit or implementation example related to an Auto Address Increment (AAI) Word-Program Sequence with Hardware End-of-Write Detection, likely involving a specific memory device or controller.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Figure 11: Auto Address Increment (AAI) Word-Program Sequence with Software End-of-Write Detection. This chunk describes an application circuit or implementation example related to an Auto Address Increment (AAI) Word-Program Sequence with Software End-of-Write Detection, likely involving a specific memory device or controller.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Auto Address Increment (AAI) Word-Program Sequence with Hardware and Software End-of-Write Detection. This chunk combines the two previous chunks, describing application circuits or implementation examples related to Auto Address Increment (AAI) Word-Program Sequences with both Hardware and Software End-of-Write Detection mechanisms for programming memory devices or controllers.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Figure 28: 8-lead Small Outline Integrated Circuit (SOIC) 200 mil body width (5.2mm x 8mm), SST Package Code: S2A. This chunk describes the SOIC package type, which is a surface-mount integrated circuit package with 8 leads, a body width of 200 mil (5.2mm), and a length of 8mm. The SST Package Code for this package is S2A.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Figure 29: 8-contact Very-very-thin Small Outline No-lead (WSON), SST Package Code: QA. This chunk describes the WSON package type, which is a surface-mount integrated circuit package with 8 contacts and a very thin profile. The SST Package Code for this package is QA.",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      },
+      {
+        "content": "Packaging Information for integrated circuits, including package types such as SOIC (Small Outline Integrated Circuit) and WSON (Very-very-thin Small Outline No-lead), package dimensions, lead/contact count, and SST Package Codes (S2A and QA).",
+        "part number": "1107-003055.pdf",
+        "grade": "F",
+        "maker_pn": "SST25VF016B"
+      }
+    ]
+  },
+  "part number": "1107-003055"
+}

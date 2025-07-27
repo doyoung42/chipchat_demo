@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "component_name": "JWH5123 Series",
+    "manufacturer": "JW",
+    "key_specifications": "65V/3.5A Asynchronous Step-Down Converter, 4.5V to 65V operating input range, 3.5A output current, adjustable switching frequency, Power Good Indicator, External Soft-start, adjustable UVLO and hysteresis, current run-away protection, short circuit protection, thermal protection, available in DFN4x4-10 and ESOP8 packages",
+    "applications": "Industrial Automation and Motor Control, Vehicle Accessories: GPS Entertainment, USB Dedicated Charging Ports and Battery Chargers, 12-V, 24-V and 48-V Industrial, Automotive and Communications Power Systems",
+    "grade": "B",
+    "maker_pn": "JWH5123S"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "JWH5123 Series\n65V/3.5A Asynchronous\n             Step-Down Converter\n\nDESCRIPTION\nThe JW\u00aeH5123 series are current mode monolithic buck switching regulators. Operating with an input range of 4.5V~65V, the JWH5123 series delivers 3.5A of continuous output current with an integrated high side N-Channel MOSFET. At light loads, the regulator operates in low frequency to maintain high efficiency. Current mode control provides tight load transient response and cycle-by-cycle current limit.\n\nThe JWH5123 series guarantees robustness with short-circuit protection, thermal protection, current run-away protection, and input under voltage lockout.\n\nThe JWH5123 series is available in DFN4x4-10 package, the JWH5123S and JWH5123P are available in ESOP8 package, which provides a compact solution with minimal external components.\n\nFEATURES\n- 4.5V to 65V operating input range\n- 3.5A output current\n- 0.8V \u00b1 1% internal voltage reference (JWH5123)\n- 0.75V \u00b1 1% internal voltage reference (JWH5123S/JWH5123P)\n- Adjustable switching frequency\n- Power Good Indicator (JWH5123/JWH5123P)\n- External Soft-start (JWH5123/JWH5123S)\n- Adjustable UVLO and hysteresis\n- Current run-away protection\n- Short circuit protection\n- Thermal protection\n- Available in DFN4x4-10 package (JWH5123)\n- Available in ESOP8 package (JWH5123S/JWH5123P)\n\nAPPLICATIONS\n- Industrial Automation and Motor Control\n- Vehicle Accessories: GPS Entertainment\n- USB Dedicated Charging Ports and Battery Chargers\n- 12-V, 24-V and 48-V Industrial, Automotive and Communications Power Systems",
+      "grade": "B",
+      "maker_pn": "JWH5123S",
+      "part number": "1203-002717"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The JWH5123 series are current mode monolithic buck switching regulators with an input range of 4.5V~65V, delivering 3.5A of continuous output current with an integrated high side N-Channel MOSFET. The regulators operate in low frequency at light loads to maintain high efficiency, and feature current mode control for tight load transient response and cycle-by-cycle current limit.",
+        "part number": "1203-002717.pdf",
+        "grade": "B",
+        "maker_pn": "JWH5123S"
+      },
+      {
+        "content": "The JWH5123 series guarantees robustness with various protection features such as short-circuit protection, thermal protection, current run-away protection, and input under voltage lockout. The series offers adjustable switching frequency, power good indicator, external soft-start, and adjustable UVLO and hysteresis.",
+        "part number": "1203-002717.pdf",
+        "grade": "B",
+        "maker_pn": "JWH5123S"
+      },
+      {
+        "content": "The JWH5123 series is available in compact DFN4x4-10 package (JWH5123), and ESOP8 package (JWH5123S and JWH5123P), providing a space-saving solution with minimal external components. Key features include 4.5V to 65V operating input range, 3.5A output current, 0.8V \u00b1 1% or 0.75V \u00b1 1% internal voltage reference.",
+        "part number": "1203-002717.pdf",
+        "grade": "B",
+        "maker_pn": "JWH5123S"
+      },
+      {
+        "content": "The JWH5123 series finds applications in industrial automation and motor control, vehicle accessories like GPS and entertainment systems, USB dedicated charging ports and battery chargers, as well as 12-V, 24-V and 48-V industrial, automotive, and communications power systems.",
+        "part number": "1203-002717.pdf",
+        "grade": "B",
+        "maker_pn": "JWH5123S"
+      }
+    ]
+  },
+  "part number": "1203-002717"
+}

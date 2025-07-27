@@ -1,0 +1,768 @@
+{
+  "metadata": {
+    "component_name": "W25Q32JV",
+    "manufacturer": "Winbond",
+    "key_specifications": "3V 32M-bit Serial Flash Memory with Dual/Quad SPI, Densities up to 32Mb, Operating Voltage 2.7V to 3.6V, Low Power Consumption (1uA in Power-down mode), Hardware/Software Write Protection, Individual Block/Sector Locks, 256-Byte Security Registers",
+    "applications": "Code shadowing to RAM, Executing code directly from SPI (XIP), Storing voice, text and data for industrial and industrial plus grade applications with limited space, pins and power requirements",
+    "grade": "F",
+    "maker_pn": "W25Q32JV"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "W25Q32JV \n\n3V 32M-BIT \nSERIAL FLASH MEMORY WITH \nDUAL, QUAD SPI \n\nFor Industrial & Industrial Plus Grade",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Status and Configuration Registers"
+      ],
+      "content": "7. STATUS AND CONFIGURATION REGISTERS\n7.1 Status Registers\n\nErase/Write In Progress (BUSY) \u2013 Status Only\nWrite Enable Latch (WEL) \u2013 Status Only \nBlock Protect Bits (BP2, BP1, BP0) \u2013 Volatile/Non-Volatile Writable\nTop/Bottom Block Protect (TB) \u2013 Volatile/Non-Volatile Writable\nSector/Block Protect Bit (SEC) \u2013 Volatile/Non-Volatile Writable\nComplement Protect (CMP) \u2013 Volatile/Non-Volatile Writable\nStatus Register Protect (SRP, SRL) \u2013 Volatile/Non-Volatile Writable\nErase/Program Suspend Status (SUS) \u2013 Status Only\nSecurity Register Lock Bits (LB3, LB2, LB1) \u2013 Volatile/Non-Volatile OTP Writable\nQuad Enable (QE) \u2013 Volatile/Non-Volatile Writable\nWrite Protect Selection (WPS) \u2013 Volatile/Non-Volatile Writable\nOutput Driver Strength (DRV1, DRV0) \u2013 Volatile/Non-Volatile Writable\nReserved Bits \u2013 Non Functional\nStatus Register Memory Protection (WPS = 0, CMP = 0)\nStatus Register Memory Protection (WPS = 0, CMP = 1)\nIndividual Block Memory Protection (WPS=1)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The W25Q32JV (32M-bit) Serial Flash memory provides a storage solution for systems with limited space, pins and power. The 25Q series offers flexibility and performance well beyond ordinary Serial Flash devices. They are ideal for code shadowing to RAM, executing code directly from Dual/Quad SPI (XIP) and storing voice, text and data. The device operates on 2.7V to 3.6V power supply with current consumption as low as 1\u00b5A for power-down.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "3.1 Pin Configuration SOIC 150/208-mil & VSOP 208-mil \n\nFigure 1a. W25Q32JV Pin Assignments, 8-pin SOIC 208-mil (Package Code SN/SS/ ST)\n\n3.2 Pad Configuration WSON 6x5-mm/ 8X6-mm, XSON 4x4-mm, USON 4x3-mm\n\nFigure 1b. W25Q32JV Pad Assignments, 8-pad WSON 6x5/8x6-mm, XSON 4X4-mm, USON 4x3-mm (Package Code ZP/ZE, XG,UU)\n\n3.3 Pin Description SOIC 150/208-mil, VSOP 208-mil, WSON 6x5-mm/8x6-mm, XSON4x4-mm, USON 4x3-mm",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Mechanical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "3.4 Pin Configuration SOIC 300-mil \n\nFigure 1c. W25Q32JV Pin Assignments, 16-pin SOIC 300-mil (Package Code SF) \n\n3.5 Pin Description SOIC 300-mil \nPIN NO. PIN NAME I/O FUNCTION \n1 /HOLD or \n/RESET (IO3) I/O Hold or Reset Input (Data Input Output 3)(2) \n2 VCC  Power Supply \n3 /RESET I Reset Input(3) \n... \n16 CLK I Serial Clock Input",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Mechanical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "3.6 Ball Configuration TFBGA 8x6-mm (5x5 or 6x4 Ball Array) \n\nFigure 1d. W25Q32JV Ball Assignments, 24-ball TFBGA 8x6-mm, 5X5 and 6x4 (Package Code TB, TC) \n\n3.7 Ball Description TFBGA 8x6-mm \nBALL NO. PIN NAME I/O FUNCTION \nA4 /RESET I Reset Input(3) \nB2 CLK I Serial Clock Input \n... \nD4 /HOLD (IO3) I/O Hold or Reset Input (Data Input Output 3)(2)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Mechanical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "3.8 Pin Configuration PDIP 300-mil \n\nFigure 1e. W25Q32JV Pin Assignments, 8-pin PDIP (Package Code DA) \n\n3.9 Pin Description PDIP 300-mil \nPAD NO. PAD NAME I/O FUNCTION \n1 /CS I Chip Select Input \n2 DO (IO1) I/O Data Output (Data Input Output 1)(1) \n... \n8 VCC  Power Supply",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Write Protect Features\n- Device resets when VCC is below threshold\n- Time delay write disable after Power-up\n- Write enable/disable instructions and automatic write disable after erase or program\n- Software and Hardware (/WP pin) write protection using Status Registers\n- Additional Individual Block/Sector Locks for array protection\n- Write Protection using Power-down instruction\n- Lock Down write protection for Status Register until the next power-up\n- One Time Program (OTP) write protection for array and Security Registers using Status Register *\n\n* Note: This feature is available upon special order. Please contact Winbond for details.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7. STATUS AND CONFIGURATION REGISTERS\n\nThree Status and Configuration Registers are provided for W25Q32JV. The Read Status Register-1/2/3 instructions can be used to provide status on the availability of the flash memory array, whether the device is write enabled or disabled, the state of write protection, Quad SPI setting, Security Register lock status, Erase/Program Suspend status, and output driver strength. The Write Status Register instruction can be used to configure the device write protection features, Quad SPI setting, Security Register OTP locks, and output driver strength.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "- Erase/Write In Progress (BUSY) \u2013 Status Only\nBUSY is a read only bit in the status register (S0) that is set to a 1 state when the device is executing a Page Program, Quad Page Program, Sector Erase, Block Erase, Chip Erase, Write Status Register or Erase/Program Security Register instruction.\n\n- Write Enable Latch (WEL) \u2013 Status Only\nWrite Enable Latch (WEL) is a read only bit in the status register (S1) that is set to 1 after executing a Write Enable Instruction.\n\n- Block Protect Bits (BP2, BP1, BP0) \u2013 Volatile/Non-Volatile Writable\nThe Block Protect Bits (BP2, BP1, BP0) are non-volatile read/write bits in the status register (S4, S3, and S2) that provide Write Protection control and status.\n\n- Top/Bottom Block Protect (TB) \u2013 Volatile/Non-Volatile Writable\nThe non-volatile Top/Bottom bit (TB) controls if the Block Protect Bits (BP2, BP1, BP0) protect from the Top (TB=0) or the Bottom (TB=1) of the array.\n\n- Sector/Block Protect Bit (SEC) \u2013 Volatile/Non-Volatile Writable\nThe non-volatile Sector/Block Protect bit (SEC) controls if the Block Protect Bits (BP2, BP1, BP0) protect either 4KB Sectors (SEC=1) or 64KB Blocks (SEC=0) in the Top (TB=0) or the Bottom (TB=1) of the array.\n\n- Complement Protect (CMP) \u2013 Volatile/Non-Volatile Writable\nThe Complement Protect bit (CMP) is a non-volatile read/write bit in the status register (S14). It is used in conjunction with SEC, TB, BP2, BP1 and BP0 bits to provide more flexibility for the array protection.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Status Register Memory Protection (WPS = 0, CMP = 0)\n\nSTATUS REGISTER(1) W25Q32JV (32M-BIT) MEMORY PROTECTION(3)\nSEC TB BP2 BP1 BP0 PROTECTED\nBLOCK(S) PROTECTED\nADDRESSES PROTECTED\nDENSITY PROTECTED\nPORTION(2)\n... (full table content)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Status Register Memory Protection (WPS = 0, CMP = 1)\n\nSTATUS REGISTER(1) W25Q32JV (32M-BIT) MEMORY PROTECTION(3)\nSEC TB BP2 BP1 BP0 PROTECTED\nBLOCK(S) PROTECTED\nADDRESSES PROTECTED\nDENSITY PROTECTED\nPORTION(2)\n... (full table content)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Individual Block Memory Protection (WPS=1)\n\nFigure 4d. Individual Block/Sector Locks\n\nNotes:\n1. Individual Block/Sector protection is only valid when WPS=1.\n2. All individual block/sector lock bits are set to 1 by default after power up, all memory array is protected.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 22,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The Standard/Dual/Quad SPI instruction set of the W25Q32JV consists of 48 basic instructions that are fully controlled through the SPI bus (see Instruction Set Table1 -2). Instructions are initiated with the falling edge of Chip Select (/CS). The first byte of data clocked into the DI input provides the instruction code. Data on the DI input is sampled on the rising edge of clock with most significant bit (MSB) first.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 23,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Instruction Set Table 1 (Standard SPI Instructions)(1)\nData Input Output Byte 1 Byte 2 Byte 3 Byte 4 Byte 5 Byte 6 Byte 7\nNumber of Clock(1-1-1) 8 8 8 8 8 8 8\n\n[Table contents with instruction opcodes and descriptions]",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Instruction Set Table 2 (Dual/Quad SPI Instructions)(1)\nData Input Output Byte 1 Byte 2 Byte 3 Byte 4 Byte 5 Byte 6 Byte 7 Byte 8 Byte 9\nNumber of Clock(1-1-2) 8 8 8 8 4 4 4 4 4\n\n[Table contents with instruction opcodes and descriptions]\n\nNotes:\n1. Data bytes are shifted with Most Significant Bit first. Byte fields with data in parenthesis \"( )\" indicate data output from the device on either 1, 2 or 4 IO pins.\n\n[Additional notes]",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Write Enable (06h)\nThe Write Enable instruction (Figure 5) sets the Write Enable Latch (WEL) bit in the Status Register to a 1. The WEL bit must be set prior to every Page Program, Qua d Page Program, Sector Erase, Block Erase, Chip Erase, Write Status Register and Erase/Program Security Registers instruction.\n\nWrite Enable for Volatile Status Register (50h)\nThe non-volatile Status Register bits described in section 7.1 can also be written to as volatile bits. This gives more flexibility to change the system configuration and memory protection schemes quickly without waiting for the typical non -volatile bit write cycles or affecting the endurance of the Status Register non -volatile bits. To write the volatile values into t he Status Register bits, the Write Enable for Volatile Status Register (50h) instruction must be issued prior to a Write Status Register (01h) instruction.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Write Disable (04h)\nThe Write Disable instruction (Figure 7) resets the Write Enable Latch (WEL) bit in the Status Register to a 0.\n\nRead Status Register-1 (05h), Status Register-2 (35h) & Status Register-3 (15h)\nThe Read Status Register instructions allow the 8-bit Status Registers to be read. The instruction is entered by driving /CS low and shifting the instruction code \"05h\" for Status Register-1, \"35h\" for Status Register-2 or \"15h\" for Status Register -3 into the DI pin on the rising edge of CLK.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Write Status Register-1 (01h), Status Register-2 (31h) & Status Register-3 (11h)\nThe Write Status Register instruction allows the Status Registers to be written. The writable Status Register bits include: SEC, TB, BP[2:0] in Status Register -1; CMP, LB[3:1], QE, SRL in Status Regi ster-2; DRV1, DRV0, WPS in Status Register -3. All other Status Register bit locations are read -only and will not be affected by the Write Status Register instruction. LB[3:1] are non -volatile OTP bits, once it is set to 1, it cannot be cleared to 0.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 28,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The W25Q32JV is also backward compatible to Winbond's previous generations of serial flash memories, in which the Status Register -1&2 can be written using a single \"Write Status Register-1 (01h)\" command. To complete the Write Status Register-1&2 instruction, the /CS pin must be driven high after the sixteenth bit of data that is clocked in as shown in Figure 9 b. If /CS is driven high after the eighth clock, the Writ e Status Register-1 (01h) instruction will only program the Status Register -1, the Status Register -2 will not be affected (Previous generations will clear CMP and QE bits).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 29,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Read Data instruction allows one or more data bytes to be sequentially read from the memory. The instruction is initiated by driving the /CS pin low and then shifting the instruction code \"03h\" followed by a 24-bit address (A23 -A0) into the DI pin. The  code and address bits are latched on the rising edge of the CLK pin. After the address is received, the data byte of the addressed memory location will be shifted out on the DO pin at the falling edge of CLK with most significant bit (MSB) first. The addr ess is automatically incremented to the next higher address after each byte of data is shifted out allowing for a continuous stream of data. This means that the entire memory can be accessed with a single instruction as long as the clock continues. The instruction is completed by driving /CS high.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Fast Read instruction is similar to  the Read Data instruction except that it can operate at the highest possible frequency of FR (see AC Electrical Characteristics). This is accomplished by adding eight \"dummy\" clocks after the 24-bit address as shown in Figure 16. The dummy clocks allow the devices internal circuits additional time for setting up the initial address. During the dummy clocks the data value on the DO pin is a \"don't care\".",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 31,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Fast Read Dual Output (3Bh) instruction is similar to the standard Fast Read (0Bh) instruction except that data is output on two pins; IO0 and IO1. This allows data to be transferred at twice the rate of standard SPI devices. The Fast Read Dual Output instruction is ideal for quickly downloading code from Flash to RAM upon power-up or for applications that cache code-segments to RAM for execution.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Fast Read Quad Output (6Bh) instruction is similar to the Fast Read Dual Output (3Bh) instruction except that data is output on four pins, IO0, IO1, IO2, and IO3. The Quad Enable (QE) bit in Status Register-2 must be set to 1 before the device will accept the Fast Read Quad Output Instruction. The Fast Read Quad Output Instruction allows data to be transferred at four times the rate of standard SPI devices.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Fast Read Dual I/O (BBh) instruction allows for improved random access while maintaining two IO pins, IO0 and IO1. It is similar to the Fast Read Dual Output (3Bh) instruction but with the capability to input the Address bits (A23-0) two bits per clock. This reduced instruction overhead may allow for code execution (XIP) directly from the Dual SPI in some applications.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 34,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "Fast Read Quad I/O (EBh) \nThe Fast Read Quad I/O (EBh) instruction is similar to the Fast Read Dual I/O (BBh) instruction except that address and data bits are input and output through four pins IO 0, IO1, IO2 and IO3 and four Dummy clocks are required in SPI mode prior to the data output. The Quad I/O dramatically reduces instruction overhead allowing faster random access for code execution (XIP) directly from the Quad SPI. The Quad Enable bit (QE) of Status Register-2 must be set to enable the Fast Read Quad I/O Instruction. \n\nFast Read Quad I/O with \"8/16/32/64-Byte Wrap Around\"\n\nThe Fast Read Quad I/O instruction can also be used to access a specific portion within a page by issuing a \"Set Burst with Wrap\" (77h) command prior to EBh. The \"Set Burst with Wrap\" (77h) command can either enable or disable the \"Wrap Around\" feature for the following EBh commands. When \"Wrap Around\" is enabled, the data being accessed can be limited to either an 8, 16, 32 or 64-byte section of a 256-byte page.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 35,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "Set Burst with Wrap (77h)\nThe Set Burst with Wrap (77h) instruction is used in conjunction with \"Fast Read Quad I/O\" instruction to access a fixed length of 8/16/32/64-byte section within a 256-byte page. Certain applications can benefit from this feature and improve the overall system code execution performance.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 36,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "Page Program (02h)\nThe Page Program instruction allows from one byte to 256 bytes (a page) of data to be programmed at previously erased (FFh) memory locations. A Write Enable instruction must be executed before the device will accept the Page Program Instruction (Status Register bit WEL= 1). The instruction is initiated by driving the /CS pin low then shifting the instruction code \"02h\" followed by a 24-bit address (A23-A0) and at least one data byte, into the DI pin. The /CS pin must be held low for the entire length of the instruction while data is being sent to the device.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 37,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Quad Page Program instruction allows up to 256 bytes of data to be programmed at previously erased (FFh) memory locations using four pins: IO 0, IO1, IO2, and IO 3. The Quad Page Program can improve performance for PROM Programmer and applications that have slow clock speeds <5MHz. Systems with faster clock speed will not realize much benefit for the Quad Page Program instruction since the inherent page program time is much greater than the time it take to clock-in the data.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 38,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Sector Erase instruction sets all memory within a specified sector (4K-bytes) to the erased state of all 1s (FFh). A Write Enable instruction must be executed before the device will accept the Sector Erase Instruction (Status Register bit WEL must equal 1). The instruction is initiated by driving the /CS pin low and shifting the instruction code \"20h\" followed a 24-bit sector address (A23-A0).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 39,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Block Erase instruction sets all memory within a specified block (32K-bytes) to the erased state of all 1s (FFh). A Write Enable instruction must be executed before the device will accept the Block Erase Instruction (Status Register bit WEL must equal 1). The instruction is initiated by driving the /CS pin low and shifting the instruction code \"52h\" followed a 24-bit block address (A23-A0).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 40,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "64KB Block Erase (D8h) \nThe Block Erase instruction sets all memory within a specified block (64K-bytes) to the erased state of all 1s (FFh). A Write Enable instruction must be executed before the device will accept the Block Erase Instruction (Status Register bit WEL must equal 1). The instruction is initiated by driving the /CS pin low and shifting the instruction code \"D8h\" followed a 24-bit block address (A23-A0).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 41,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Chip Erase (C7h / 60h) \nThe Chip Erase instruction sets all memory within the device to the erased state of all 1s (FFh). A Write Enable instruction must be executed before the device will accept the Chip Erase Instruction (Status Register bit WEL must equal 1). The instruction is initiated by driving the /CS pin low and shifting the instruction code \"C7h\" or \"60h\".",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 42,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Erase / Program Suspend (75h)\nThe Erase/Program Suspend instruction \"75h\", allows the system to interrupt a Sector or Block Erase operation or a Page Program operation and then read from or program/erase data to, any other sectors or blocks.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 43,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Erase/Program Resume instruction \"7Ah\" must be written to resume the Sector or Block Erase operation or the Page Program operation after an Erase/Program Suspend. The Resume instruction \"7Ah\" will be accepted by the device only if the SUS bit in the Status Register equals to 1 and the BUSY bit equals to 0. After issued the SUS bit will be cleared from 1 to 0 immediately, the BUSY bit will be set from 0 to 1 within 200ns and the Sector or Block will complete the erase operation or the page will complete the program operation.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 44,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Although the standby current during normal operation is relatively low, standby current can be further reduced with the Power-down instruction. The lower power consumption makes the Power-down instruction especially useful for battery powered applications (See ICC1 and ICC2 in AC Characteristics). The instruction is initiated by driving the /CS pin low and shifting the instruction code \"B9h\" as shown in Figure 37. The /CS pin must be driven high after the eighth bit has been latched. If this is not done the Power-down instruction will not be executed. After /CS is driven high, the power-down state will entered within the time duration of tDP (See AC Characteristics). While in the power-down state only the Release Power-down / Device ID (ABh) instruction, which restores the device to normal operation, will be recognized. All other instructions are ignored.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 45,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Release from Power-down / Device ID instruction is a multi-purpose instruction. It can be used to release the device from the power-down state, or obtain the devices electronic identification (ID) number. To release the device from the power-down state, the instruction is issued by driving the /CS pin low, shifting the instruction code \"ABh\" and driving /CS high as shown in Figure 38a. Release from power-down will take the time duration of tRES1 (See AC Characteristics) before the device will resume normal operation and other instructions are accepted. When used only to obtain the Device ID while not in the power-down state, the instruction is initiated by driving the /CS pin low and shifting the instruction code \"ABh\" followed by 3-dummy bytes. The Device ID bits are then shifted out on the falling edge of CLK with most significant bit (MSB) first. The Device ID value for the W25Q32JV is listed in Manufacturer and Device Identification table.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 46,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Read Manufacturer / Device ID (90h) \nThe Read Manufacturer/Device ID instruction is an alternative to the Release from Power-down / Device ID instruction that provides both the JEDEC assigned manufacturer ID and the specific device ID.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 47,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Read Manufacturer / Device ID Dual I/O (92h)\nThe Read Manufacturer / Device ID Dual I/O instruction is an alternative to the Read Manufacturer / Device ID instruction that provides both the JEDEC assigned manufacturer ID and the specific device ID at 2x speed.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 48,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Read Manufacturer / Device ID Quad I/O (94h)\nThe Read Manufacturer / Device ID Quad I/O instruction is an alternative to the Read Manufacturer / Device ID instruction that provides both the JEDEC assigned manufacturer ID and the specific device ID at 4x speed.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 49,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Read Unique ID Number instruction accesses a factory-set read-only 64-bit number that is unique to each W25Q32JV device. The ID number can be used in conjunction with user software methods to help prevent copying or cloning of a system.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 50,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "For compatibility reasons, the W25Q32JV provides several instructions to electronically determine the identity of the device. The Read JEDEC ID instruction is compatible with the JEDEC standard for SPI compatible serial memories that was adopted in 2003. The instruction is initiated by driving the /CS pin low and shifting the instruction code \"9Fh\". The JEDEC assigned Manufacturer ID byte for Winbond (EFh) and two Device ID bytes, Memory Type (ID15-ID8) and Capacity (ID7-ID0) are then shifted out on the falling edge of CLK with most significant bit (MSB) first as shown in Figure 43. For memory type and capacity values refer to Manufacturer and Device Identification table.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 51,
+      "categories": [
+        "Electrical Characteristics",
+        "Product Summary"
+      ],
+      "content": "The W25Q32JV features a 256-Byte Serial Flash Discoverable Parameter (SFDP) register that contains information about device configurations, available instructions and other features. The SFDP parameters are stored in one or more Parameter Identification (PID) tables. Currently only one PID table is specified, but more may be added in the future. The Read SFDP Register instruction is compatible with the SFDP standard initially established in 2010 for PC and other applications, as well as the JEDEC standard JESD216-serials that is published in 2011. Most Winbond SpiFlash Memories shipped after June 2011 (date code 1124 and beyond) support the SFDP feature as specified in the applicable datasheet.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 52,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The W25Q32JV offers three 256-byte Security Registers which can be erased and programmed individually. These registers may be used by the system manufacturers to store security and other important information separately from the main memory array.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 53,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Program Security Register instruction is similar to the Page Program instruction. It allows from one byte to 256 bytes of security register data to be programmed at previously erased (FFh) memory locations. A Write Enable instruction must be executed before the device will accept the Program Security Register Instruction (Status Register bit WEL= 1).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 54,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The Read Security Register instruction is similar to the Fast Read instruction and allows one or more data bytes to be sequentially read from one of the four security registers. The instruction is initiated by driving the /CS pin low and then shifting the instruction code \"48h\" followed by a 24-bit address (A23-A0) and eight \"dummy\" clocks into the DI pin.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 55,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Individual Block/Sector Lock (36h) \nThe Individual Block/Sector Lock provides an alternative way to protect the memory array from adverse Erase/Program. In order to use the Individual Block/Sector Locks, the WPS bit in Status Register -3 must be set to 1. If WPS=0, the write protection will be determined by the combination of CMP, SEC, TB, BP[2:0] bits in the Status Registers. The Individual Block/Sector Lock bits are volatile bits. The default values after device power up or after a Reset are 1, so the entire memory array is being protected.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 56,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Individual Block/Sector Unlock (39h)\nThe Individual Block/Sector Lock provides an alternative way to protect the memory array from adverse Erase/Program. In order to use the Individual Block/Sector Locks, the WPS bit in Status Register -3 must be set to 1. If WPS=0, the write protection will be determined by the combination of CMP, SEC, TB, BP[2:0] bits in the Status Registers. The Individual Block/Sector Lock bits are volatile bits. The default values after device power up or after a Reset are 1, so the entire memory array is being protected.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 57,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Read Block/Sector Lock (3Dh)\nThe Individual Block/Sector Lock provides an alternative way to protect the memory array from adverse Erase/Program. In order to use the Individual Block/Sector Locks, the WPS bit in Status Register -3 must be set to 1. If WPS=0, the write protection will be determined by the combination of CMP, SEC, TB, BP[2:0] bits in the Status Registers. The Individual Block/Sector Lock bits are volatile bits. The default values after device power up or after a Reset are 1, so the entire memory array is being protected.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 58,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Global Block/Sector Lock (7Eh) \nAll Block/Sector Lock bits can be set to 1 by the Global Block/Sector Lock instruction. The command must be issued by driving /CS low, shifting the instruction code \"7Eh\" into the Data Input (DI) pin on the rising edge of CLK, and then driving /CS high. A Write Enable instruction must be executed before the device will accept the Global Block/Sector Lock Instruction (Status Register bit WEL= 1).\n\nGlobal Block/Sector Unlock (98h)\nAll Block/Sector Lock bits can be set to 0 by the Global Block/Sector Unlock instruction. The command must be issued by driving /CS low, shifting the instruction code \"98h\" into the Data Input (DI) pin on the rising edge of CLK, and then driving /CS high. A Write Enable instruction must be executed before the device will accept the Global Block/Sector Unlock Instruction (Status Register bit WEL= 1).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 59,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Enable Reset (66h) and Reset Device (99h)\nBecause of the small package and the limitation on the number of pins, the W25Q32JV provide a software Reset instruction instead of a dedicated RESET pin. Once the Reset instruction is accepted, any on-going internal operations will be terminated and the device will return to its default power-on state and lose all the current volatile settings, such as Volatile Status Register bits, Write Enable Latch (WEL) status, Program/Erase Suspend status, Read parameter setting (P7-P0), Continuous Read Mode bit setting (M7-M0) and Wrap Bit setting (W6-W4).",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 60,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "9. ELECTRICAL CHARACTERISTICS\n\n9.1 Absolute Maximum Ratings (1)\n\nParameters and values listed\n\n9.2 Operating Ranges\n\nParameters and values listed",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 61,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "PARAMETER SYMBOL SPEC UNIT MIN MAX \nVCC (min) to /CS Low tVSL(1) 20 \u00b5s \nTime Delay Before Write Instruction tPUW(1) 5 ms \nWrite Inhibit Threshold Voltage VWI(1) 1.0 2.0 V \nThe minimum duration for ensuring initialization will occur tPWD(1) 100 \u00b5s \nVCC voltage needed to below V PWD for ensuring initialization will occur VPWD(1) 0.8 V",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 63,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "PARAMETER SYMBOL CONDITIONS SPEC UNIT MIN TYP MAX \nInput Capacitance CIN(1) VIN = 0V(1) 6 pF \nOutput Capacitance Cout(1) VOUT = 0V(1) 8 pF \nInput Leakage ILI \u00b12 \u00b5A \nI/O Leakage ILO \u00b12 \u00b5A \nStandby Current ICC1 /CS = VCC, VIN = GND or VCC 10 50 \u00b5A \nPower-down Current ICC2 /CS = VCC, VIN = GND or VCC 1 15 \u00b5A \nCurrent Read Data / Dual /Quad 50MHz(2) ICC3 C = 0.1 VCC / 0.9 VCC DO = Open 8 15 mA \nCurrent Read Data / Dual /Quad 80MHz(2) ICC3 C = 0.1 VCC / 0.9 VCC DO = Open 10 18 mA \nCurrent Read Data / Dual Output Read/Quad Output Read 104MHz(2) ICC3 C = 0.1 VCC / 0.9 VCC DO = Open 12 20 mA \nCurrent Write Status Register ICC4 /CS = VCC 20 25 mA \nCurrent Page Program ICC5 /CS = VCC 20 25 mA \nCurrent Sector/Block Erase ICC6 /CS = VCC 20 25 mA \nCurrent Chip Erase ICC7 /CS = VCC 20 25 mA \nInput Low Voltage VIL -0.5 VCC x 0.3 V \nInput High Voltage VIH VCC x 0.7 VCC + 0.4 V \nOutput Low Voltage VOL IOL = 100 \u00b5A 0.2 V \nOutput High Voltage VOH IOH = \u2013100 \u00b5A VCC - 0.2 V",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 65,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Clock frequency except for Read Data (03h) instructions (3.0V-3.6V) FR fC1 D.C.  133 MHz \nClock frequency except for Read Data (03h) instructions( 2.7V-3.0V) FR fC2 D.C.  104 MHz \nClock frequency for Read Data instruction (03h) fR  D.C.  50 MHz",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 66,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Write Protect Setup Time Before /CS Low tWHSL(3)  20   ns \nWrite Protect Hold Time After /CS High tSHWL(3)  100   ns \n/CS High to Power-down Mode  tDP(2)    3 \u00b5s \n/CS High to Standby Mode without ID Read tRES1(2)    3 \u00b5s \n/CS High to Standby Mode with ID Read tRES2(2)    1.8 \u00b5s \n/CS High to next Instruction after Suspend tSUS(2)    20 \u00b5s \n/CS High to next Instruction after Reset tRST(2)    30 \u00b5s \n/RESET pin Low period to reset the device tRESET(2)  1(3)   \u00b5s \nWrite Status Register Time  tW   10 15 ms \nPage Program Time  tPP   0.4 3 ms \nSector Erase Time (4KB) tSE   45 400 ms \nBlock Erase Time (32KB) tBE1   120 1,600 ms \nBlock Erase Time (64KB) tBE2   150 2,000 ms \nChip Erase Time tCE   10 50 s",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 67,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "9.7 Serial Output Timing \n\n9.8 Serial Input Timing \n\n9.9 /WP Timing",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 68,
+      "categories": [
+        "Packaging Information",
+        "Mechanical Characteristics"
+      ],
+      "content": "10.1 8-Pin SOIC 150-mil (Package Code SN) \n\nSYMBOL \nMILLIMETERS INCHES \nMin Nom Max Min Nom Max \nA 1.35 1.60 1.75 0.053 0.062 0.069 \nA1 0.10 0.15 0.25 0.004 0.006 0.010 \nb 0.33 0.41 0.51 0.013 0.016 0.020 \nC 0.19 0.20 0.25 0.0075 0.0078 0.0098 \nD 4.80 4.85 5.00 0.188 0.190 0.197 \nE 3.80 3.90 4.00 0.150 0.153 0.157 \nHE 5.80 6.00 6.20 0.288 0.236 0.244 \ne 1.27BSC 0.050BSC \nL 0.40 0.71 1.27 0.016 0.027 0.050 \ny --- --- 0.10 --- --- 0.004 \n\u2218 0\u00b0 --- 10\u00b0 0\u00b0 --- 10\u00b0",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 69,
+      "categories": [
+        "Packaging Information",
+        "Mechanical Characteristics"
+      ],
+      "content": "10.2 8-Pin SOIC 208-mil (Package Code SS) \n\nSymbol \nMillimeters Inches \nMin Nom Max Min Nom Max \nA 1.75 1.95 2.16 0.069 0.077 0.085 \nA1 0.05 0.15 0.25 0.002 0.006 0.010 \nA2 1.70 1.80 1.91 0.067 0.071 0.075 \nb 0.35 0.42 0.48 0.014 0.017 0.019 \nC 0.19 0.20 0.25 0.007 0.008 0.010 \nD 5.18 5.28 5.38 0.204 0.208 0.212 \nD1 5.13 5.23 5.33 0.202 0.206 0.210 \nE 5.18 5.28 5.38 0.204 0.208 0.212 \nE1 5.13 5.23 5.33 0.202 0.206 0.210 \ne 1.27 BSC 0.050 BSC \nH 7.70 7.90 8.10 0.303 0.311 0.319 \nL 0.50 0.65 0.80 0.020 0.026 0.031 \ny --- --- 0.10 --- --- 0.004 \n\u03b8 0\u00b0 --- 8\u00b0 0\u00b0 --- 8\u00b0",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 73,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "10.6 Pad XSON 4x4x0.45-mm (Package Code XG)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 74,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "10.7 8-Pad USON 4x3-mm (Package Code UU) \n\nSymbol Millimeters Inches \nMin Nom Max Min Nom Max \nA 0.50 0.55 0.60 0.020 0.022 0.024 \nA1 0.00 0.02 0.05 0.000 0.001 0.002 \nA3 --- 0.15 --- --- 0.006 --- \nb 0.25 0.30 0.35 0.010 0.012 0.014 \nD 3.90 4.00 4.10 0.153 0.157 0.161 \nD1 0.70 0.80 0.90 0.027 0.031 0.035 \nD2 0.70 0.80 0.90 0.027 0.031 0.035 \nE 2.90 3.00 3.10 0.114 0.118 0.122 \nE1 0.10 0.20 0.30 0.004 0.008 0.012 \ne 0.80 BSC 0.031 BSC \nL 0.55 0.60 0.65 0.022 0.024 0.026 \n\nNote: \nThe metal pad area on the bottom center of the package is not connected to any internal electrical signals. It can be left floating or connected to the device ground (GND pin). Avoid placement of exposed PCB vias under the pad.",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    },
+    {
+      "page_number": 75,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "10.8 16-Pin SOIC 300-mil (Package Code SF) \n\nSymbol Millimeters Inches \nMin Nom Max Min Nom Max \nA 2.36 2.49 2.64 0.093 0.098 0.104 \nA1 0.10 --- 0.30 0.004 --- 0.012 \nA2 --- 2.31 --- --- 0.091 --- \nb 0.33 0.41 0.51 0.013 0.016 0.020 \nC 0.18 0.23 0.28 0.007 0.009 0.011 \nD 10.08 10.31 10.49 0.397 0.406 0.413 \nE 10.01 10.31 10.64 0.394 0.406 0.419 \nE1 7.39 7.49 7.59 0.291 0.295 0.299 \ne 1.27 BSC 0.050 BSC \nL 0.38 0.81 1.27 0.015 0.032 0.050 \ny --- --- 0.076 --- --- 0.003 \n\u03b8 0\u00b0 --- 8\u00b0 0\u00b0 --- 8\u00b0 \n\nNote: Both the package length and width do not include the mold flash. (Refer JEDEC MS -012)",
+      "grade": "F",
+      "maker_pn": "W25Q32JV",
+      "part number": "1107-002418"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "W25Q32JV is a 3V 32M-bit Serial Flash memory with Dual and Quad SPI capabilities, designed for industrial and industrial plus grade applications. It provides a storage solution for systems with limited space, pins, and power.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "The W25Q32JV offers flexibility and performance beyond ordinary Serial Flash devices. It is ideal for code shadowing to RAM, executing code directly from Dual/Quad SPI (XIP), and storing voice, text, and data. The device operates on a 2.7V to 3.6V power supply with low power consumption of 1\u00b5A in power-down mode.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "The W25Q32JV has a 48-instruction Standard/Dual/Quad SPI instruction set, fully controlled through the SPI bus. Instructions are initiated with the falling edge of Chip Select (/CS), and data is sampled on the rising edge of the clock with MSB first.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "The W25Q32JV features a 256-Byte Serial Flash Discoverable Parameter (SFDP) register containing device configurations, available instructions, and other features. The SFDP parameters are stored in Parameter Identification (PID) tables, compatible with the SFDP standard and JEDEC JESD216-serial standard.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The W25Q32JV provides three 8-bit Status Registers that store information about the device's write protection, quad SPI settings, security register locks, erase/program suspend status, and output driver strength. The Write Enable Latch (WEL) bit must be set before executing certain instructions like Page Program, Sector/Block Erase, and Write Status Register. The device offers various memory protection schemes using the Block Protect bits (BP2, BP1, BP0), Top/Bottom bit (TB), Sector/Block Protect bit (SEC), and Complement Protect bit (CMP). It also supports Individual Block/Sector Locks as an alternative protection method.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "The W25Q32JV supports a range of instructions for reading data (Read Data, Fast Read, Fast Read Dual/Quad Output, Fast Read Dual/Quad I/O), programming data (Page Program, Quad Page Program), erasing memory (Sector Erase, Block Erase, Chip Erase), and managing power modes (Power-down, Release Power-down). It also provides instructions for reading device identification information (Read Manufacturer/Device ID, Read JEDEC ID, Read SFDP Register) and managing security registers (Program Security Register, Read Security Register).",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "The datasheet covers electrical characteristics such as absolute maximum ratings, operating ranges for supply voltage and clock frequency, current consumption in different modes (read, write, erase), input/output voltage levels, and timing specifications for various operations like write protect setup/hold times, page program time, erase times, and output/input timing diagrams.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Fast Read Quad I/O (EBh): The Fast Read Quad I/O (EBh) instruction is similar to the Fast Read Dual I/O (BBh) instruction except that address and data bits are input and output through four pins IO 0, IO1, IO2 and IO3 and four Dummy clocks are required in SPI mode prior to the data output. The Quad I/O dramatically reduces instruction overhead allowing faster random access for code execution (XIP) directly from the Quad SPI. The Quad Enable bit (QE) of Status Register-2 must be set to enable the Fast Read Quad I/O Instruction.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "Fast Read Quad I/O with '8/16/32/64-Byte Wrap Around': The Fast Read Quad I/O instruction can also be used to access a specific portion within a page by issuing a 'Set Burst with Wrap' (77h) command prior to EBh. The 'Set Burst with Wrap' (77h) command can either enable or disable the 'Wrap Around' feature for the following EBh commands. When 'Wrap Around' is enabled, the data being accessed can be limited to either an 8, 16, 32 or 64-byte section of a 256-byte page.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "Set Burst with Wrap (77h): The Set Burst with Wrap (77h) instruction is used in conjunction with 'Fast Read Quad I/O' instruction to access a fixed length of 8/16/32/64-byte section within a 256-byte page. Certain applications can benefit from this feature and improve the overall system code execution performance.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "Page Program (02h): The Page Program instruction allows from one byte to 256 bytes (a page) of data to be programmed at previously erased (FFh) memory locations. A Write Enable instruction must be executed before the device will accept the Page Program Instruction (Status Register bit WEL= 1). The instruction is initiated by driving the /CS pin low then shifting the instruction code '02h' followed by a 24-bit address (A23-A0) and at least one data byte, into the DI pin. The /CS pin must be held low for the entire length of the instruction while data is being sent to the device.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "Write Protect Features: Device resets when VCC is below threshold, Time delay write disable after Power-up, Write enable/disable instructions and automatic write disable after erase or program, Software and Hardware (/WP pin) write protection using Status Registers",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "Additional Individual Block/Sector Locks for array protection, Write Protection using Power-down instruction, Lock Down write protection for Status Register until the next power-up",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "One Time Program (OTP) write protection for array and Security Registers using Status Register * (* Note: This feature is available upon special order. Please contact Winbond for details.)",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "3.1 Pin Configuration SOIC 150/208-mil & VSOP 208-mil - Figure 1a shows the pin assignments for the 8-pin SOIC 208-mil package (Package Codes SN/SS/ST) of the W25Q32JV device. 3.2 Pad Configuration WSON 6x5-mm/8X6-mm, XSON 4x4-mm, USON 4x3-mm - Figure 1b illustrates the pad assignments for the 8-pad WSON 6x5/8x6-mm, XSON 4X4-mm, and USON 4x3-mm packages (Package Codes ZP/ZE, XG, UU) of the W25Q32JV.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "3.3 Pin Description SOIC 150/208-mil, VSOP 208-mil, WSON 6x5-mm/8x6-mm, XSON4x4-mm, USON 4x3-mm - This section provides a general pin description for the SOIC 150/208-mil, VSOP 208-mil, WSON 6x5-mm/8x6-mm, XSON 4x4-mm, and USON 4x3-mm packages. 3.4 Pin Configuration SOIC 300-mil - Figure 1c shows the pin assignments for the 16-pin SOIC 300-mil package (Package Code SF) of the W25Q32JV device.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "3.5 Pin Description SOIC 300-mil - This section provides a detailed pin description for the 16-pin SOIC 300-mil package, including pin numbers, names, I/O types, and functions. 3.6 Ball Configuration TFBGA 8x6-mm (5x5 or 6x4 Ball Array) - Figure 1d illustrates the ball assignments for the 24-ball TFBGA 8x6-mm package with 5X5 and 6x4 ball arrays (Package Codes TB, TC) of the W25Q32JV device.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "3.7 Ball Description TFBGA 8x6-mm - This section provides a detailed ball description for the TFBGA 8x6-mm package, including ball numbers, names, I/O types, and functions. 3.8 Pin Configuration PDIP 300-mil - Figure 1e shows the pin assignments for the 8-pin PDIP 300-mil package (Package Code DA) of the W25Q32JV device.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      },
+      {
+        "content": "3.9 Pin Description PDIP 300-mil - This section provides a detailed pin description for the 8-pin PDIP 300-mil package, including pad numbers, names, I/O types, and functions. 10.1 8-Pin SOIC 150-mil (Package Code SN) - This section provides the package dimensions and specifications for the 8-pin SOIC 150-mil package (Package Code SN) of the W25Q32JV device. 10.2 8-Pin SOIC 208-mil (Package Code SS) - This section provides the package dimensions and specifications for the 8-pin SOIC 208-mil package (Package Code SS) of the W25Q32JV device.",
+        "part number": "1107-002418.pdf",
+        "grade": "F",
+        "maker_pn": "W25Q32JV"
+      }
+    ]
+  },
+  "part number": "1107-002418"
+}

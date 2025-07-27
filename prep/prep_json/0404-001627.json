@@ -1,0 +1,143 @@
+{
+  "metadata": {
+    "component_name": "1PS66SB82; 1PS88SB82",
+    "manufacturer": "Nexperia",
+    "key_specifications": "15 V, 30 mA low Cd Schottky barrier diodes",
+    "applications": "",
+    "grade": "F",
+    "maker_pn": "1PS66SB82"
+  },
+  "page_summaries": [
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig 1. Forward current as a function of forward voltage; typical values\n\nFig 2. Reverse current as a function of reverse voltage; typical values\n\nFig 3. Differential diode forward resistance as a function of forward current; typical values\n\nFig 4. Diode capacitance as a function of reverse voltage; typical values",
+      "grade": "F",
+      "maker_pn": "1PS66SB82",
+      "part number": "0404-001627"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig 5. Package outline SOT666",
+      "grade": "F",
+      "maker_pn": "1PS66SB82",
+      "part number": "0404-001627"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig 6. Package outline SOT363 (SC-88)",
+      "grade": "F",
+      "maker_pn": "1PS66SB82",
+      "part number": "0404-001627"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Table 9. Packing methods\nThe -xxx numbers are the last three digits of the 12NC ordering code.[1]\nType number\tPackage\tDescription\tPacking quantity\n\t\t\t3 000\t4000\t10 000\n1PS66SB82\tSOT666\t4 mm pitch, 8 mm tape and reel\t-\t-115\t-\n1PS88SB82\tSOT363\t4 mm pitch, 8 mm tape and reel\t-115\t-\t-135",
+      "grade": "F",
+      "maker_pn": "1PS66SB82",
+      "part number": "0404-001627"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Nexperia 1PS66SB82; 1PS88SB82\n15 V, 30 mA low Cd Schottky barrier diodes",
+      "grade": "F",
+      "maker_pn": "1PS66SB82",
+      "part number": "0404-001627"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Nexperia 1PS66SB82; 1PS88SB82 are 15 V, 30 mA low Cd Schottky barrier diodes.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "The Nexperia 1PS66SB82 and 1PS88SB82 are low capacitance Schottky barrier diodes designed for low forward voltage drop and fast switching applications.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "These Schottky diodes from Nexperia have a reverse voltage rating of 15 V and a forward current rating of 30 mA, making them suitable for low power applications.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "Key features of the Nexperia 1PS66SB82 and 1PS88SB82 include low forward voltage drop, low capacitance, and fast switching performance.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "The Nexperia 1PS66SB82 and 1PS88SB82 are Schottky barrier diodes with a maximum reverse voltage of 15 V and a forward current rating of 30 mA, offering low capacitance and fast switching capabilities for various electronic applications.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Fig 1. Forward current as a function of forward voltage; typical values. Fig 2. Reverse current as a function of reverse voltage; typical values. Fig 3. Differential diode forward resistance as a function of forward current; typical values.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "Fig 1. Forward current as a function of forward voltage; typical values. Fig 3. Differential diode forward resistance as a function of forward current; typical values. Fig 4. Diode capacitance as a function of reverse voltage; typical values.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "Fig 2. Reverse current as a function of reverse voltage; typical values. Fig 4. Diode capacitance as a function of reverse voltage; typical values.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "Forward current, reverse current, forward resistance, and diode capacitance as functions of voltage and current; typical values.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig 5. Package outline SOT666. Fig 6. Package outline SOT363 (SC-88). This chunk provides information about the package outlines and types.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "Table 9. Packing methods. The -xxx numbers are the last three digits of the 12NC ordering code. Type number, Package, Description, Packing quantity columns with values for 3000, 4000, and 10000 quantities. This chunk gives details about the packing methods, ordering codes, and package quantities.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      },
+      {
+        "content": "1PS66SB82 SOT666 4 mm pitch, 8 mm tape and reel - -115 -. 1PS88SB82 SOT363 4 mm pitch, 8 mm tape and reel -115 - -135. This chunk provides specific information about the package types, ordering codes, and packing details for the SOT666 and SOT363 packages.",
+        "part number": "0404-001627.pdf",
+        "grade": "F",
+        "maker_pn": "1PS66SB82"
+      }
+    ]
+  },
+  "part number": "0404-001627"
+}

@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "component_name": "JW5188DH",
+    "manufacturer": "N/A (not explicitly stated in the given text)",
+    "key_specifications": "4V to 23V Operating Input Range, 8A Continuous Output Current, Up to 95% Efficiency, PFM/FCCM Selectable at Light Load, 600kHz Switching Frequency, External Bypass Input, Programmable Valley Current Limit, Power Good Indicator, Input Under Voltage Lockout, Output Discharge Function, Current Run-away Protection, Output Short Hiccup Protection, Thermal Protection, RoHS Compliant and Halogen Free, Available in QFN2.5X2.5-16 Package",
+    "applications": "Industrial and Commercial Low Power System, Notebook, LCD Monitors and TVs, Green Electronics/ Appliances",
+    "grade": "F",
+    "maker_pn": "JW5188DH"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "DESCRIPTION \nThe JW5188DH is a monolithic buck switching regulator based on I2 architecture for fast transient response. Operating with an input range of 4V~23V, JW5188DH delivers 8A of continuous output current with two integrated N-Channel MOSFETs. The internal synchronous power switches provide high efficiency without the use of an external Schottky diode. At light loads, the regulator operates in selectable PFM/FCCM mode. \nJW5188DH guarantees robustness with output short protection, thermal protection, current run-away protection, and input under voltage lockout. JW5188DH is available in QFN2.5X2.5-16 package, which provides a compact solution with minimal external components. \n\nFEATURES \n- 4V to 23V Operating Input Range\n- 8A Continuous Output Current \n- Up to 95% Efficiency\n- PFM/FCCM Selectable at Light Load\n- 600kHz Switching Frequency\n- External Bypass Input\n- Programmable Valley Current Limit\n- Power Good Indicator\n- Input Under Voltage Lockout\n- Output Discharge Function\n- Current Run-away Protection\n- Output Short Hiccup Protection\n- Thermal Protection\n- RoHS Compliant and Halogen Free\n- Available in QFN2.5X2.5-16 Package\n\nAPPLICATIONS\n- Industrial and Commercial Low Power System\n- Notebook\n- LCD Monitors and TVs\n- Green Electronics/ Appliances",
+      "grade": "F",
+      "maker_pn": "JW5188DH",
+      "part number": "1203-009568"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The JW5188DH is a monolithic buck switching regulator with an input range of 4V~23V, delivering 8A of continuous output current with integrated N-Channel MOSFETs and synchronous power switches for high efficiency without external Schottky diode. It operates in selectable PFM/FCCM mode at light loads and features output short protection, thermal protection, current run-away protection, and input under voltage lockout.",
+        "part number": "1203-009568.pdf",
+        "grade": "F",
+        "maker_pn": "JW5188DH"
+      },
+      {
+        "content": "Key features of the JW5188DH include 4V to 23V operating input range, 8A continuous output current, up to 95% efficiency, PFM/FCCM selectable at light load, 600kHz switching frequency, external bypass input, programmable valley current limit, power good indicator, input under voltage lockout, output discharge function, current run-away protection, output short hiccup protection, thermal protection, and RoHS compliance in a compact QFN2.5X2.5-16 package.",
+        "part number": "1203-009568.pdf",
+        "grade": "F",
+        "maker_pn": "JW5188DH"
+      },
+      {
+        "content": "The JW5188DH is suitable for industrial and commercial low power systems, notebooks, LCD monitors and TVs, and green electronics/appliances, providing a compact and efficient buck switching regulator solution with robust protection features.",
+        "part number": "1203-009568.pdf",
+        "grade": "F",
+        "maker_pn": "JW5188DH"
+      }
+    ]
+  },
+  "part number": "1203-009568"
+}

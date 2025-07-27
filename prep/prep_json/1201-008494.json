@@ -1,0 +1,571 @@
+{
+  "metadata": {
+    "component_name": "RT9120M",
+    "manufacturer": "Richtek",
+    "key_specifications": "Class-D audio amplifier with I2C control, supports I2S/TDM input, PBTL/BTL output modes, DRC, mixer, filters, protections",
+    "applications": "Portable speakers, soundbars, TVs, multimedia systems requiring high-performance audio amplification",
+    "grade": "E",
+    "maker_pn": "DS9120M"
+  },
+  "page_summaries": [
+    {
+      "page_number": 10,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Typical Application Circuit\n\n3.3V I/O Application",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "1.8V I/O Application\n\nNoted : When I/O is 1.8V, please connect 1.8V to VR_DIG.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Power-On Sequence\n\nNoted 1 : Before bring up power supply, make sure A_SEL pin has been configured well.\nNoted 2 : There is no restriction between DVDD rising before PVDD, or PVDD rising before DVDD.\n\nNoted : I2C can't access when PWDNN is low.\nNoted : If need to change the I2S format when AMP is operating, please turn off the AMP first. Set 0x05 Bit[6] to 1.\nNoted : I2S should ready before I2C start.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "THD+N vs. Output Power (PBTL)\nPVDD = 12V, Gain = 6.3x, R = 4, A-weighting\n1kHz\n\nTHD+N vs. Output Power (BTL)\nPVDD = 24V, Gain = 6.3x, R = 8, A-weighting\n1kHz\n\nTHD+N vs. Output Power (BTL)\nPVDD = 24V, Gain = 6.3x, R = 4, A-weighting\n1kHz\n\nTHD+N vs. Output Power (PBTL)\nPVDD = 24V,Gain = 6.3x, R = 4, A-weighting\n1kHz\n\nTHD+N vs. Frequency (BTL)\nPVDD = 24V, Gain = 6.3x, R = 8,  A-weighting\nPO = 1W\nPO = 2.5W\nPO = 5W\n\nTHD+N vs. Frequency (BTL)\nPVDD = 12V, Gain = 6.3x, R = 4,  A-weighting\nPO = 1W\nPO = 2.5W\nPO = 5W",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "THD+N vs. Frequency (BTL)\nPVDD = 24V, Gain = 6.3x, R = 8, A-weighting\nPO = 1W\nPO = 2.5W\nPO = 5W\n\nTHD+N vs. Frequency (BTL)\nPVDD = 12V, Gain = 6.3x, R = 4, A-weighting\nPO = 1W\nPO = 2.5W\nPO = 5W\n\nTHD+N vs. Frequency (PBTL)\nPVDD = 24V, Gain = 6.3x, R = 4,  A-weighting\nPO = 1W\nPO = 2.5W\nPO = 5W\n\nCrosstalk vs. Frequency\nPVDD = 12V, PO = 1W, Gain = 6.3x, R = 8\nL to R\nR to L\n\nCrosstalk vs. Frequency\nPVDD = 12V, PO = 1W, Gain = 6.3x, R = 4\nL to R\nR to L\n\nPower Supply Voltage vs. Output Power\nR = 8, Gain = 6.3x\n10% THD+N\n1% THD+N",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Power Supply Voltage vs. Output Power\nR = 4, Gain = 6.3x\n10% THD+N\n1% THD+N\n\nNoted: Measurements were made using the RT9120M_EVM board and Audio Precision System 2722 with AUX0025 low-pass filter. All measurements taken with 1kHz.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Block Diagram & Description\n\nInput High Pass Filter\n\u2192There are DC-Cut filter for each output filter. The cut off frequency is 1.5Hz.\n\nAddress BITS Name Description\n0x06 5 HPF_EN 0: Input high pass filter disable\n1: Input high pass filter enable",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "DRC Description Address Description\nDRC_T: Threshold 0x23\nDRC_RATIO: Compress ratio 0x24\nDRC_O: Make up gain 0x25\nDRC_N_T: Noise gate threshold 0x26\n\nDRC Enable\nAddress BITS Name Description\n0x06 2 DRC_EN 0: DRC disable\n1: DRC enable\n\nDRC Noise Gate Enable\nAddress BITS Name Description\n0x06 1 DRC_N_EN 0: DRC Noise gate disable\n1: DRC Noise gate enable\n\nDRC Control\nAddress BITS Name Description\n0x23 10:0 DRC_TH[10:0] TH[10:0], DRC Threshold\n0x24 7:0 DRC_RATIO[7:0] RATIO[7:0] DRC compression ratio\n0x25 10:0 DRC_O[10:0] O[10:0] DRC make up gain\n0x26 10:0 DRC_N_T[10:0] N_T[10:0] DRC Noise gate of the DRC",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "DRC Timing\nAddress BITS Name Description\n0x34 16:0 DRC_AE[16:0] DRC_AE[16:0], DRC Energy estimator\n0x35 16:0 DRC_1_AE[16:0] DRC_1_AE[16:0], DRC Energy estimator (release)\n0x36 16:0 DRC_AD[16:0] DRC_AD[16:0] DRC release time\n0x37 16:0 DRC_AA[16:0] DRC_AA[16:0] DRC attack time\n\nDRC Timing Equation\nDRC Description Equation\nAA/AE/AD/1-AE Timing Equation\nEquation: AA = (1-e-2.2/(ta*fs)) x 215\nta = AA/AD/AE timing,\nfS = sampling rate\nEx: ta = 0.15ms, fS = 48k\n    AA = (1-e-2.2/(0.00015*48000)) x 215 = 8627.352\nDEC = 8627\nHEX = 0x21B3",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 22,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "DRC Description Equation \nDRC_T: Threshold \nT is the threshold of the DRC \nEquation: T = -(Threshold)/0.0625 (dB) \nEx: T = \u221210dB,  \n-(\u221210)/0.0625 = 160 \nT_Dec = 160 \nT_Hex = DEC2HEX (160) = 0xA0 \n\nDRC_Ratio: Compression \nRatio \nK is the compression ratio of the DRC \nEquation: K_Hex = DEC2HEX (Ratio_Value) \nEX: If compression Ratio is 50% \n\u26ab The Ratio_Value is 128^0.5 = 64 \n\u26ab K_Dec = 64 \n\u26ab K_Hex = DEC2HEX (64) = 0x0040 \n\u26ab Noted: the maximum value for the full compression is 128 \n\nDRC_O: Make Up Gain \nO is the offset of the DRC \nEquation: DRC_O = (Offset-24)/0.0625 \nEX: Offset = 0dB  \n\u26ab Abs[(0-24/0.0625)] = 384 \n\u26ab O_Dec = 384 \n\u26ab O_Hex = DEC2HEX (384) = 0x0180",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 23,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Peak Mode and RMS Mode \nBlock Diagram & Description \n\u2192The detecting threshold using different calculated methods. \nPeak mode: AE and 1-AE is independent \nRMS mode: AE + (1-AE) = 1 \n\nAddress BITS Name Description \n0x06 3 DRC_PEAK \n0: RMS mode \n1: Peak mode  \nNoted: The peak mode is recommended to use.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Input Mixer \nBlock Diagram & Description \n\u2192 Input mixer range is from mute to 6dB. \n\n\u2192Default setting is CH1_IN_MIX_1 is from HPF_L \n\u2192Default setting is CH2_IN_MIX_0 is from HPF_R \n\nAddress BITS Name Description \n0x30 23:0 CH1_IN_MIX_0 u[23:17], mix_0[16:0] \nu: Unused \n0x31 23:0 CH1_IN_MIX_1 u[23:17], mix_1[16:0] \nu: Unused \n0x32 23:0 CH2_IN_MIX_0 u[23:17], mix_0[16:0] \nu: Unused \n0x33 23:0 CH2_IN_MIX_1 u[23:17], mix_1[16:0] \nu: Unused",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Input Mixer Gain Setting \nAddress BITS Name Equation \n0x30, 0x31, \n0x32, 0x33,  16:0 mix_1[16:0], mix_0[16:0] \nEquation: 20Log (Dec/32768) \nRange: 6dB (0XFFFF) to Mute (0x00000000) \nEx: 6dB, Gain = 20Log (65535/32768) = 6dB \nHex = 0xFFFF \nDec = 65535 \n\nMixer Inverse Phase Setting\nAddress BITS Name Equation\n0x30, 0x31, \n0x32, 0x33,  16:0 mix_1[16:0], mix_0[16:0] \nEquation: Hex = DEC2HEX \nEx: Gain = 6dB,  \nHex = 0x010000 \nPhase Inverse: Hex = DEC2HEX (\u221265535) = 0x010000",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "SDO Output Configure\n\nBlock Diagram & Description\n\u2192 The final stage of whole signal path is SDO output configure. It output the final level of each channel before digital \nfilter. And output the I2S data before the HPF.\n\nAddress BITS Name Description\n0x04 5:4 SDO_SEL[1:0] \n00: Reserved\n01: Interface output\n10: Final output\n11: Peak level detect result",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Application Information",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Application Information\n\nRichtek's component specification does not include the following information in the Application Information section.\nThereby no warranty is given regarding its validity and accuracy. Customers should take responsibility to verify their\nown designs and to ensure the functional suitability of their components and systems.\n\nI2C Bus Specification\nThe RT9120M supports the I2C protocol via the input\nports SCL and SDA. This protocol defines any device\nthat sends data on to the bus as a transmitter and any\ndevice that reads the data as a receiver...\n\nBoost Capacitor Selection\nFor the large power output, and low frequency, the\nboost capacitor can be choose from 0.47\u03bcF to 1\u03bcF.\nReference value can referred the below table:\n\nTest Condition Capacitor\nValue\nPVDD = 24V, R = 8\u03a9, Output Power\n> 2x25W, 20Hz, BTL Mode. 1\u03bcF\n\nDevice Addressing\nThe RT9120M supports I2C Control interface. The\ndefault device address is 0011011 when A_SEL = High\nor 0011010 when A_SEL = Low...\n\nI2C Write Control\nFollowing the START condition, the master sends a\ndevice select code with the RW bit set to 0. The\nRT9120M acknowledges this and the writes for the byte\nof internal address...\n\nI2C Read Control\nFollowing the START condition the master sends a\ndevice select code with the RW bit set to 1. The\nRT9120M acknowledges this and then responds by\nsending one byte of data...",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 29,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The RT9120M supports three kinds of audio interface, I2S, Left justify and Right justify. Each kind of interface support 24bits, 20bits, and 16bits format.\n\nAddress BITS Name Description\n0x02 3:2 AUD_FMT 00: I2S (default)\n01: Left Justify\n10: Right Justify\n11: DSP\n1:0 AUD_BITS 00: 16bits I2S\n01: 20bits I2S\n10: 24bits I2S (default)\n11: Others: Reserved",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Speaker\nDSP DAC\nDigital Analog\nSPK\nD (dBFS)\nMS_Vol \u2192 Master Volume Gain\n Reg [0x20h]\u2192 B[10:0]\nVolume Gain = Mute ~ +24dB\n3.5x = 10.9dB\nD_SPK_Gain \u2192  Class-D Output Gain\n Reg [0x07h]\u2192B[2:0] =b'000\u21922.000x (6dB)\n                                  =b'001\u21922.500x (8dB)\n                                  =b'010\u21923.168x (10dB)\n                                  =b'011\u21924.000x (12dB)\n                                  =b'100\u21924.444x (13dB)\n                                  =b'101\u21925.000x (14dB)\n                                  =b'110\u21925.614x (15dB)\n                                  =b'111\u21926.316x (16dB)\nOutput voltage calculation formula = 10(D+Vol_Gain)/20 x 3.5 x Hard clipping threshold x Output_Gain (Vp)\n\nAddress BITS Name Description\n0x07 2:0 D_SPK_GAIN[2:0] Class-D output gain\n000: 2.0x\n001: 2.5x\n010: 3.618x\n011: 4.000x\n100: 4.444x\n101: 5.00x\n110: 5.614x\n111: 6.316x",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 31,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Master Volume Gain \nAddress BITS Name Equation \n0x20 10:0 MS_VOL[10:0] \nEquation: 24dB - (Dec x 0.0625) \nRange: 24dB (0X000) to mute (0x7ff)  \nEx: 10dB, Hex = 0xE0 \nDec = 224 \nGain = 24dB - (224 x 0.0625) = 10dB \nGain Dec Hex \n24dB 0 0x00 \n10dB 224 0XE0",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "Volume Ramp Up/Down Time\n00: 1 step in every sample. \n01: mute \u2192 \u221240dB, every sample with 1 step. \u221240dB \u2192 24dB, 2 sample with 1 step. \n10: mute \u2192 \u221240dB, 2 sample with 1 step. \u221240dB \u2192 24dB, 4 sample with 1 step. \nOthers: mute \u2192 \u221240dB, 4 sample with 1 step. \u221240dB \u2192 24dB, 8 sample with 1 step.\n\nHard Clip Function\nTo clip the signal with different threshold, operate in time domain.\n\n\u22123dB\n0dB\n\u22124dB\nClip level = 3dB Clip level = \u22123dB Clip level = \u22124dB",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "DC Protection Function\nIt is to use to protect the loudspeaker, when there are some DC exists at the output. The method is to detect DC at final stage (PWM), calculate the difference of the PWM and a sinc filter to decide the DC level. The IC will shut down when detect the DC.\n\nPWM difference \ndetection Sinc fliter\nPWM_P\nPWM_N\nDC_Flag",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 34,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Compensate Filter \nCompensation filter is purpose to compensate internal gain from DAC, this filter can also compensate the frequency \nresponse affected by LC filter, the recommended setting will base on different application circuit to fit the curve. \n\nCompensate Description \nCompensate B0, B1, B2, B3: Compensate coefficient",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 35,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "TDM \nThe RT9120M supports TDM format, which maximum output can reach 16Ch.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 36,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Address BITS Name Description \n0xA0 \n7:3 Reserved  \n2 DATAO_PD Prohibited \n1 TDM_OFFSET \nTDM offset selection \n0: Without offset \n1: 1 bit clock offset (default) \n0 TDM_EN 0: TDM disable TDM application (default) \n1: TDM enable",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 37,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Example \n1. Set the 0xA0, Bit[0] to 1 \n2. Set the 0x03, Bit[7:6] to 00 \n3. Use the below setting \nNoted: The RT9120M has SDO output, which can output the I2S data and TDM data to SOC side for receiving \nuse, so if the receiving not use, the 0xA3, and 0xA4 can keep the default setting. \n\nIf output is 16Ch, Sampling Rate is 48kHz...",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 38,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "PBTL Function \nIt can be configured by the hardware, also need to change the software setting. \nThe Input signal, can be configured by the input mixer, from register 0x30 to configure the input signal. The default \nsignal for the PBTL is from 0x30 L channel signal...",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 39,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Mono Configuration \nTo use the mono configuration, It can be configured by register setting. \nAddress BITS Name Description \n0x08 \n7 D_LPFR_EN \nEnable DAC RCH LPF  \n0: Disable  \n1: Enable (default)...",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 40,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Mono Configuration Example \nUse Left Channel \nSet the Bit[7], Bit[5], Bit[3], Bit[1] to Zero, others keep 1.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 41,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Mono Configuration Example \nUse Right Channel \nSet the Bit[6], Bit[4], Bit[2], Bit[0] to Zero, others keep 1.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 42,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Protection Behavior \nIf the protection behavior happened, the IC will automated detect, the error condition can be checked by the register or FAULTB pin. \n\nProtection Flag \n[Table showing protection flags and descriptions] \n\nProtection Type \n[Table showing protection types, auto recovery behavior, shutdown amp behavior, and fault pin behavior]",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 55,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "0x26 2 DRC_NG_TH \n10:0 R/W DRC_NG_TH \nNoise gate threshold \n11'h000: 0dB \n11'h180: \u221224dB \n11'h640: \u2212100dB \n(default) \n11'h67E: \u2212103.875dB \n11'h67F~11'h7FF: Not \navailable \n0.0625dB per step \n\n0x27 2 HARD_CLIP_ \nTH \n10:0 R/W HARD_CLIP_TH \n[10:0] \nHard Clip Threshold \nwhen HARD_CLIP_EN \n= 1 \n> 0dB is not allowable \nfor hard clip threshold \nsetting \n11'h180: 0dB (default) \n0.0625db per step",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 56,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "0x3E 4 CH1_RMS_RPT 31:0 R CH1_RMS_RPT[31:0] \nChannel 1 final RMS \noutput (Not available in \n96k & 192kHz Sampling \nRate) \n\n0x3F 4 CH2_RMS_RPT 31:0 R CH2_RMS_RPT[31:0] \nChannel 2 final RMS \noutput (not available in \n96k & 192kHz Sampling \nRate) \n\n0x40 1 SW_RESET \n7 W SF_RESET \nWrite 1 to trigger \nsoftware reset \nNeed to wait 10ms for \nreset completion",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 57,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "0x6C 1 UVP_OPT \n6 R/W D_EN_DVDD_UV 0: Disable (default) \n1: Enable \n\n3 R/W D_UV_RAMP_DOWN \nSPK UV protection \nbehavior \n0: HZ_PROT directly \n(default) \n1: Power-off sequence \n\n2:0 R/W D_UVP_PVDD_SEL \n[2:0] \nSelect UVP level for \nPVDD power domain \n3'b000: 6.15V (default) \n3'b001: 7.7V  \n3'b010: 8.5V  \n3'b011: 9.5V \n3'b100: 10.9V \n3'b101: 12.7V  \n3'b110: 15.4V  \n3'b111: 19.8V \n\n0xA0 1 AUD_TDM \n3 R/W SCLK_EDGE_SEL \n0: RX @BCK rising edge \n& TX @BCK falling edge \n(default) \n1: RX @BCK falling \nedge & TX @BCK rising \nedge",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 58,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "ADDR Byte RegName BITS R/W Name Description Default \n0xA3 1 TDM_TX_L \n7:6 R Reserved  2'b00 \n5:0 R/W TDM_TX_LOC_L \nTDM start transmitting \nlocation select for left \nchannel (reg*8 + offset) \n000000: Start from \n0 + offset (default) \n000001: Start from  \n8 + offset \n\u2026 \n111100: Start from  \n480 + offest \n111101: Start from  \n488 + offset \n111110: Not available \n111111: Not available \n6'b000000 \n0xA4 1 TDM_TX_R \n7:6 R Reserved  2'b00 \n5:0 R/W TDM_TX_LOC_R \nTDM start transmitting \nlocation select for right \nchannel (reg*8 + offset) \n000000: Start from  \n0 + offset \n000001: Start from  \n8 + offset \n000011: Start from 24 + \noffset (default) \n\u2026 \n111100: Start from  \n480 + offest \n111101: Start from  \n488 + offset \n111110: Not available \n111111: Not available \n6'b000011",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 59,
+      "categories": [
+        "Mechanical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "Outline Dimension \n\nSymbol \nDimensions In Millimeters Dimensions In Inches \nMin Max Min Max \nA 0.800 1.000 0.031 0.039 \nA1 0.000 0.050 0.000 0.002 \nA3 0.175 0.250 0.007 0.010 \nb 0.180 0.300 0.007 0.012 \nD 4.950 5.050 0.195 0.199 \nD2 3.400 3.750 0.134 0.148 \nE 4.950 5.050 0.195 0.199 \nE2 3.400 3.750 0.134 0.148 \ne 0.500 0.020 \nL 0.350 0.450 0.014 0.018 \n\nV-Type 32L QFN 5x5 Package \n\nFootprint Information",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 60,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Package \nNumber of \nPin \nFootprint Dimension (mm) \nTolerance \nP Ax Ay Bx By C D Sx Sy \nV/W/U/XQFN5*5-32 32 0.50  5.80  5.80  4.10  4.10  0.85  0.30  3.55  3.55  \u00b10.05",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 61,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Tape and Reel Data\n\nPackage Type\tTape Size (W1) (mm)\tPocket Pitch (P) (mm)\tReel Size (A)\tUnits per Reel\tTrailer (mm)\tLeader (mm)\tReel Width (W2) Min./Max. (mm)\nQFN/DFN 5x5\t12\t8\t180 7\t1,500\t160\t600\t12.4/14.4\n\nTape Size\nW1\tP\tB\tF\t\u00d8J\tH\nMax.\tMin.\tMax.\tMin.\tMax.\tMin.\tMax.\tMin.\tMax.\tMax.\n12mm\t12.3mm\t7.9mm\t8.1mm\t1.65mm\t1.85mm\t3.9mm\t4.1mm\t1.5mm\t1.6mm\t0.6mm",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    },
+    {
+      "page_number": 62,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Tape and Reel Packing\n\nStep\tPhoto/Description\n1\t[Photo of reel]\n2\t[Photo of HIC & Desiccant inside Al bag]\n3\t[Photo of caution label on backside of Al bag]\n4\tReel 7\" 3 reels per inner box Box A\n5\tHIC & Desiccant (1 Unit) inside 12 inner boxes per outer box\n6\tCaution label is on backside of Al bag Outer box Carton A\n\nContainer\tPackage\tReel\tBox\tCarton\nSize\tUnits\tItem\tSize(cm)\tReels\tUnits\tItem\tSize(cm)\tBoxes\tUnit\nQFN/DFN 5x5\t7\"\t1,500\tBox A\t18.3*18.3*8.0\t3\t4,500\tCarton A\t38.3*27.2*38.3\t12\t54,000\nBox E\t18.6*18.6*3.5\t1\t1,500\tFor Combined or Un-full Reel.",
+      "grade": "E",
+      "maker_pn": "DS9120M",
+      "part number": "1201-008494"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Power-On Sequence: Noted 1 - Before bringing up the power supply, make sure the A_SEL pin has been configured correctly. Noted 2 - There is no restriction on whether DVDD rises before PVDD or PVDD rises before DVDD.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "I2C and I2S Considerations: I2C cannot access when PWDNN is low. If you need to change the I2S format when the AMP is operating, turn off the AMP first by setting 0x05 Bit[6] to 1. I2S should be ready before I2C starts.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Block Diagram & Description: Input High Pass Filter - There are DC-Cut filters for each output filter with a cut-off frequency of 1.5Hz. The Input High Pass Filter can be enabled (HPF_EN = 1) or disabled (HPF_EN = 0) at address 0x06 bit 5.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Power-On Sequence and I2C/I2S Considerations: Ensure proper configuration of the A_SEL pin before powering on. There are no restrictions on the order of DVDD and PVDD rising. I2C cannot access when PWDNN is low, and I2S should be ready before I2C starts. To change the I2S format during AMP operation, turn off the AMP first.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "THD+N vs. Output Power and Frequency: Measurements of Total Harmonic Distortion + Noise (THD+N) under various conditions such as different power supply voltages (PVDD), gain settings, load resistances (R), output power levels (PO), and frequencies for both BTL (Bridge-Tied Load) and PBTL (Parallel Bridge-Tied Load) configurations.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Crosstalk vs. Frequency: Measurements of crosstalk between the left and right channels at different frequencies, power supply voltages, output power levels, gain settings, and load resistances.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Power Supply Voltage vs. Output Power: Measurements of the maximum output power achievable at different power supply voltages and THD+N levels (1% and 10%), for different load resistances and gain settings.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "DRC (Dynamic Range Control) Configuration: Descriptions of registers and settings related to configuring the DRC, including threshold, compression ratio, makeup gain, noise gate threshold, timing parameters (attack, release, energy estimation), and operating modes (peak or RMS).",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Input Mixer Configuration: Descriptions of registers and settings related to configuring the input mixer, including channel mixing, gain settings, and phase inversion. The input mixer allows combining and adjusting the levels of different input signals before further processing.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Typical Application Circuit: 3.3V I/O Application, 1.8V I/O Application. Note: When I/O is 1.8V, please connect 1.8V to VR_DIG.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "SDO Output Configure: The final stage of the whole signal path is SDO output configure. It outputs the final level of each channel before the digital filter and the I2S data before the HPF. The SDO_SEL register controls the output mode (interface output, final output, or peak level detect result). The Volume Ramp Up/Down Time register controls the ramp up/down time for volume changes.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Hard Clip Function: This function clips the signal with different threshold levels (-3dB, 0dB, -4dB) in the time domain to prevent clipping distortion.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "DC Protection Function: This function protects the loudspeaker when there is DC present at the output. It detects DC at the final stage (PWM), calculates the difference between the PWM and a sinc filter to decide the DC level, and shuts down the IC when DC is detected.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Mono Configuration: To use mono configuration, it can be configured by register settings. The D_LPFR_EN register enables/disables the DAC RCH LPF. For mono configuration, either the left or right channel can be used by setting the appropriate register bits to zero.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ],
+    "Mechanical Characteristics": [
+      {
+        "content": "Outline Dimension: This section provides the detailed physical dimensions of the electronic component package, including minimum and maximum values in both millimeters and inches for various parameters such as A (body height), A1 (standoff height), A3 (bottom termination to seating plane), b (termination span), D and E (body length and width), D2 and E2 (overall package length and width including terminals), e (lead pitch), and L (lead length).",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "V-Type 32L QFN 5x5 Package: This chunk indicates that the component is a 32-lead Quad Flat No-lead (QFN) package with a 5x5 mm body size, which is a common surface-mount package type for integrated circuits. The 'V-Type' likely refers to the package variant or product family.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Footprint Information: This chunk suggests that additional details related to the package footprint or land pattern for mounting the component on a printed circuit board (PCB) may be provided in the datasheet. The footprint information is crucial for ensuring proper mechanical and electrical connectivity when assembling the component onto a PCB.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Physical dimensions and mechanical specifications are provided for a V-Type 32L QFN 5x5 package, including outline dimensions in millimeters and inches, body size, lead pitch, and lead length. This information is essential for ensuring proper mechanical fit and assembly onto a printed circuit board.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "Application Information: Richtek's component specification does not include the following information in the Application Information section. Thereby no warranty is given regarding its validity and accuracy. Customers should take responsibility to verify their own designs and to ensure the functional suitability of their components and systems.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "I2C Bus Specification and Device Addressing: The RT9120M supports the I2C protocol via the input ports SCL and SDA. This protocol defines any device that sends data on to the bus as a transmitter and any device that reads the data as a receiver. The RT9120M supports I2C Control interface. The default device address is 0011011 when A_SEL = High or 0011010 when A_SEL = Low.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "I2C Write and Read Control: Following the START condition, the master sends a device select code with the RW bit set to 0. The RT9120M acknowledges this and the writes for the byte of internal address. Following the START condition the master sends a device select code with the RW bit set to 1. The RT9120M acknowledges this and then responds by sending one byte of data.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Boost Capacitor Selection and Environmental Conditions: For the large power output, and low frequency, the boost capacitor can be choose from 0.47\u03bcF to 1\u03bcF. Reference value can referred the below table: Test Condition Capacitor Value PVDD = 24V, R = 8\u03a9, Output Power > 2x25W, 20Hz, BTL Mode. 1\u03bcF",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Protection Behavior, Flags, and Types: If the protection behavior happened, the IC will automated detect, the error condition can be checked by the register or FAULTB pin. [Table showing protection flags and descriptions] [Table showing protection types, auto recovery behavior, shutdown amp behavior, and fault pin behavior]",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Outline Dimension: This section provides the detailed dimensions of the package, including the minimum and maximum values for various symbols like A (overall height), A1 (standoff height), A3 (terminal thickness), b (lead width), D and E (overall package dimensions), D2 and E2 (overall die dimensions), e (lead pitch), and L (lead length). These dimensions are given in both millimeters and inches for the V-Type 32L QFN 5x5 package.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Footprint Information: This table specifies the footprint dimensions for the V/W/U/XQFN5*5-32 package with 32 pins. It includes the pin pitch (P), package dimensions (Ax, Ay, Bx, By), exposed pad dimensions (C, D), and solder mask dimensions (Sx, Sy), along with a tolerance of \u00b10.05 mm.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Tape and Reel Data: This section provides information about the tape and reel packaging for the QFN/DFN 5x5 package. It includes details like tape size (W1), pocket pitch (P), reel size (A), units per reel, trailer and leader lengths, and reel width range (W2 Min./Max.).",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Tape Size: This table specifies the maximum and minimum dimensions for various tape parameters like W1 (tape width), P (pocket pitch), B (pocket depth), F (pocket width), \u00d8J (pocket diameter), and H (pocket height) for the 12mm tape size used for QFN/DFN 5x5 packages.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      },
+      {
+        "content": "Tape and Reel Packing: This section includes photos and descriptions of the various steps involved in the tape and reel packing process, such as reel, HIC & Desiccant inside Al bag, caution label on backside of Al bag, inner box with reels, outer box with inner boxes, and carton details. It also provides information about the container sizes, units per container, and packaging hierarchy (reel, box, carton) for the QFN/DFN 5x5 package.",
+        "part number": "1201-008494.pdf",
+        "grade": "E",
+        "maker_pn": "DS9120M"
+      }
+    ]
+  },
+  "part number": "1201-008494"
+}

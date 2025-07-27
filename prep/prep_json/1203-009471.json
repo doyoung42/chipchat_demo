@@ -1,0 +1,317 @@
+{
+  "metadata": {
+    "component_name": "NEX30606",
+    "manufacturer": "Nexperia",
+    "key_specifications": "High-efficiency step-down converter, ultra-low quiescent current (220 nA typical), 1.5 MHz switching frequency, 1.8 V to 5.0 V input voltage range, up to 600 mA output current, integrated overcurrent and thermal protection, soft-start, Power Save Mode for high efficiency at light loads",
+    "applications": "Low power battery-powered applications, portable devices, Internet of Things (IoT) devices, wearables",
+    "grade": "D",
+    "maker_pn": "NEX30606"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The NEX30606 is a high-efficiency step-down converter with ultra-low operating quiescent current of typically 220 nA. The device uses COT control (Constant On Time) to achieve low power consumption mode and fast transient, operates with a switching frequency of 1.5 MHz. At light load conditions, it seamlessly enters Power Save Mode to reduce switching cycles and maintain high efficiency. Output voltage can be configured by VSET pin. For 1.8 V output, connects the VSET pin to GND. For other output voltages, connects resistor to VSET pin following values in Table 5. Sixteen internally set voltages can be selected. The NEX30606 provides an output current up to 600 mA. With input voltage up to 5.0 V, the devices supports multiple sources such as 2S to 3S Alkaline, 1S Li-MnO2, 1S Li-ion/Li-SOCL2.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Ordering Information",
+        "Marking"
+      ],
+      "content": "Table 1. Ordering information \nPackageType number \nTemperature range Name Description Version \nNEX30606UA -40 \u00b0C to +125 \u00b0C WLCSP6 Wafer level chip-size package; 6 bumps (3 x 2) SOT8055-1\n\nTable 2. Marking codes\nType number Marking code[1]\nNEX30606UA A\n[1] The pin 1 indicator is located on the lower left corner of the device, below the marking code.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Pinning Information"
+      ],
+      "content": "Table 3. Pin description\nBallSymbol \nWLCSP6 I/O Description\nGND A1 PWR GND supply pin. Connect this pin close to the GND terminal of the input and output capacitors.\nVIN B1 PWR VIN power supply pin. Connect the input capacitor close to this pin for best noise and voltage spike suppression. A 4.7 \u00b5F ceramic capacitor is required.\nVSET C1 IN Connecting a resistor to GND sets the output voltage when the converter is enabled before soft-start; When this pin is connected to GND, set default to1.8 V. Once the device has started up, the VSET function is disabled.\nEN C2 IN Enable pin. A high level enables the device and a low level turns the device off. The pin features an internal pull-down resistor, which is disabled once the device has started up and the output voltage is regulated. The pull-down resistor is activated again, once a low level has been detected.\nSW B2 PWR The switch pin is connected to the internal MOSFET switches. Connect the inductor to this terminal.\nVOS A2 IN Output voltage sense pin for the internal feedback divider network and regulation loop. When the converter is disabled, this pin discharges VOUT by an internal MOSFET. Connect this pin directly to the output capacitor with a short trace.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Nexperia NEX30606\n1.8 V to 5.0 V, 600 mA, 220 nA ultra-low quiescent current, step-down converter",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "11.  Recommended operating conditions\nTable 7. Recommended operating conditions\nSymbol Parameter Conditions Min Typ Max Unit\nVVIN supply voltage on pin VIN startup voltage\nVVIN = 2.0 V - 5.0 V\n1.8 - 5.0 V\nIOUT output current - - 0.6 A\nL effective Inductance - 2.2 \u00b5H\nCOUT effective output capacitance - 20 40 \u00b5F\nCIN effective input capacitance - 4.7 - \u00b5F\nCVSET external parasitic capacitance at VSET\npin\n- - 30 pF\nRSET external resistance range 3.32 21.5 340 k\u03a9\nTj junction temperature -40 - 125 \u00b0C",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "13.  Electrical characteristics\nTable 9. Electrical characteristics\nAt recommended operating conditions; VVIN = 3.6 V, Tj = -40 \u00b0C to 125 \u00b0C. Typical values measured at Tj = 25 \u00b0C (unless\notherwise noted), voltages are referenced to GND (ground = 0 V).\n\nTj = -40 \u00b0C to +125 \u00b0CSymbol Parameter Conditions\nMin Typ[1] Max\nUnit\nSupply\nIq(nl) no load operating input\ncurrent\nEN = VIN, IOUT = 0 \u00b5A, VOUT = 1.8 V,\ndevice switching, Tj = -40 \u00b0C to +85 \u00b0C\n- 220 - nA\nIq(VIN) operating quiescent current\ninto pin VIN\nEN = VIN, IOUT = 0 \u00b5A, VOUT = 1.8 V,\ndevice non-switching, Tj = -40 \u00b0C to +85 \u00b0C\n- 220 450 nA\nIq(VOS) operating quiescent current\ninto pin VOS\nEN = VIN, IOUT = 0 \u00b5A, VOUT = 1.8 V,\ndevice non-switching\n- 12 24 nA\n...",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The NEX30606 is a synchronous step-down converter with ultra-low quiescent current consumption. Using COT (Constant On Time) topology, the device extends the high efficiency operation area down to micro amperes of load current during Power-SaveMode Operation. Depending on the output voltage, the device consumes quiescent current from both the input and output to reduce the overall input current consumption to 220 nA typical.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "14.3.1. COT control and PWM operation\nThe main control loop of NEX30606 is adaptive on time Pulse Width Modulation (PWM) controller that supports Constant On Time mode control (COT). This unique COT mode control combines adaptive on-time control with an internal compensation circuit for pseudo- fixed frequency and low external component count configuration with both low ESR and ceramic output capacitor. It's stable even with virtually no ripple at the output.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "14.3.4. Soft start\nThe NEX30606 device has an internal soft-start to minimize input voltage drop during start-up. This allows the operation from high impedance battery cells.\n\n14.3.6. Overcurrent protection function\nThe NEX30606 device integrates a current limit on the high-side as well as on the low-side MOSFETs to protect the device against overload or short circuit conditions. The current in the switches is monitored cycle-by-cycle. If the high-side MOSFET current limit (ILIMH) trips, the high-side MOSFET is turned off and the low-side MOSFET is turned on to ramp the inductor current down. Once the inductor current decreases below the low-side current limit (ILIML), the low-side MOSFET turns off and the high-side MOSFET turns on again.",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 11. Efficiency versus load current\nFig. 12. Efficiency versus load current\nFig. 13. Efficiency versus load current\nFig. 14. Efficiency versus load current",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 15. Efficiency versus load current\nFig. 16. Efficiency versus load current\nFig. 17. Efficiency versus load current\nFig. 18. Efficiency versus load current",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 19. Efficiency versus load current\nFig. 20. Efficiency versus load current\nFig. 21. Efficiency versus load current\nFig. 22. Efficiency versus load current",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 23. Efficiency versus load current\nFig. 24. Efficiency versus load current\nFig. 25. Frequency versus load current\nFig. 26. Frequency versus load current",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 27. Frequency versus load current\nFig. 28. Frequency versus load current\nFig. 29. Output ripple\nFig. 30. Output ripple\nFig. 31. Output ripple\nFig. 32. Output ripple",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 33. Output ripple\nFig. 34. Output ripple\nFig. 35. Load transient\nFig. 36. Load transient\nFig. 37. Load transient\nFig. 38. Load transient",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Fig. 39. Load transient\nVOUT: 20 mV/div; SW: 2 V/div; IOUT: 200 mA/div;\n\nFig. 40. Load transient\nVOUT: 20 mV/div; SW: 2 V/div; IOUT: 150 mA/div;\n\nFig. 41. EN startup\nEN: 1 V/div; VOUT: 200 mV/div; VSW: 2 V/div;\n\nFig. 42. EN OFF\nEN: 1 V/div; VOUT: 200 mV/div; VSW: 2 V/div;\n\nFig. 43. EN startup\nEN: 1 V/div; VOUT: 500 mV/div; VSW: 2 V/div;\n\nFig. 44. EN OFF\nEN: 1 V/div; VOUT: 500 mV/div; VSW: 2 V/div;",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Fig. 45. Line transient\nVIN: 1 V/div; VOUT: 500 mV/div; IOUT: 50 mA/div: VSW: 2 V/div;\n\nFig. 46. Line transient\nVIN: 2 V/div; VOUT: 50 mV/div; IOUT: 200 mA/div: VSW: 2 V/div;",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 47. Package outline SOT8055-1 (WLCSP6)",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Applications.................................................................. 1\n4. Ordering information....................................................2\n5. Marking.......................................................................... 2\n6. Functional diagram.......................................................2\n7. Pinning information......................................................3\n8. Device comparison.......................................................4\n9. NEX30606 output voltage setting................................4",
+      "grade": "D",
+      "maker_pn": "NEX30606",
+      "part number": "1203-009471"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The NEX30606 is a high-efficiency step-down converter with ultra-low operating quiescent current of typically 220 nA. It uses COT control (Constant On Time) to achieve low power consumption mode and fast transient, operating with a switching frequency of 1.5 MHz. At light load conditions, it seamlessly enters Power Save Mode to reduce switching cycles and maintain high efficiency.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "The output voltage can be configured by the VSET pin. For a 1.8 V output, the VSET pin is connected to GND. For other output voltages, a resistor is connected to the VSET pin following the values in Table 5. Sixteen internally set voltages can be selected. The NEX30606 provides an output current up to 600 mA.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "With an input voltage range of 1.8 V to 5.0 V, the NEX30606 supports multiple sources such as 2S to 3S Alkaline, 1S Li-MnO2, and 1S Li-ion/Li-SOCL2 batteries. It is a synchronous step-down converter with ultra-low quiescent current consumption, using COT (Constant On Time) topology to extend the high efficiency operation area down to micro amperes of load current during Power-Save Mode Operation.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "11. Recommended operating conditions: This section provides the recommended operating conditions for the component, including supply voltage range, output current limit, inductor and capacitor values, and temperature range. Key parameters include VVIN (supply voltage), IOUT (output current), L (inductance), COUT (output capacitance), CIN (input capacitance), CVSET (external parasitic capacitance), RSET (external resistance range), and Tj (junction temperature).",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "13. Electrical characteristics: This section details the electrical characteristics of the component under recommended operating conditions. It covers supply current parameters like Iq(nl) (no load operating current), Iq(VIN) (quiescent current into VIN pin), and Iq(VOS) (quiescent current into VOS pin). The conditions and value ranges for different junction temperatures are provided.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "14.3.1. COT control and PWM operation: This subsection explains the Constant On Time (COT) mode control and Pulse Width Modulation (PWM) operation of the component. It highlights the adaptive on-time control, internal compensation circuit, and stability with low ESR and ceramic output capacitors.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "14.3.4. Soft start and 14.3.6. Overcurrent protection function: These subsections cover the soft start feature to minimize input voltage drop during startup, and the overcurrent protection function that monitors and limits the current in the high-side and low-side MOSFETs to protect against overload or short circuit conditions.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "Efficiency and frequency plots: The text mentions multiple figures (Fig. 11 to Fig. 38) showing efficiency versus load current, frequency versus load current, output ripple, and load transient characteristics for different operating conditions and configurations.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "14.3.4. Soft start: The NEX30606 device has an internal soft-start to minimize input voltage drop during start-up. This allows the operation from high impedance battery cells.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "14.3.6. Overcurrent protection function: The NEX30606 device integrates a current limit on the high-side as well as on the low-side MOSFETs to protect the device against overload or short circuit conditions. The current in the switches is monitored cycle-by-cycle. If the high-side MOSFET current limit (ILIMH) trips, the high-side MOSFET is turned off and the low-side MOSFET is turned on to ramp the inductor current down. Once the inductor current decreases below the low-side current limit (ILIML), the low-side MOSFET turns off and the high-side MOSFET turns on again.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "Fig. 39. Load transient: VOUT: 20 mV/div; SW: 2 V/div; IOUT: 200 mA/div; Fig. 40. Load transient: VOUT: 20 mV/div; SW: 2 V/div; IOUT: 150 mA/div;",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "Fig. 41. EN startup: EN: 1 V/div; VOUT: 200 mV/div; VSW: 2 V/div; Fig. 42. EN OFF: EN: 1 V/div; VOUT: 200 mV/div; VSW: 2 V/div; Fig. 43. EN startup: EN: 1 V/div; VOUT: 500 mV/div; VSW: 2 V/div; Fig. 44. EN OFF: EN: 1 V/div; VOUT: 500 mV/div; VSW: 2 V/div;",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "Fig. 45. Line transient: VIN: 1 V/div; VOUT: 500 mV/div; IOUT: 50 mA/div: VSW: 2 V/div; Fig. 46. Line transient: VIN: 2 V/div; VOUT: 50 mV/div; IOUT: 200 mA/div: VSW: 2 V/div;",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 47. Package outline SOT8055-1 (WLCSP6). This image shows the package outline and dimensions for the WLCSP6 (Wafer Level Chip Scale Package) package type, which is a type of ultra-small and thin package used for integrated circuits.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "SOT8055-1 (WLCSP6) package type. Ordering information and specifications for this package, including dimensions, marking details, and shipment specifications.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "Packaging information for integrated circuits, including package types like WLCSP6 (SOT8055-1), ordering details, marking conventions, and shipment specifications related to these packages.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      },
+      {
+        "content": "WLCSP6 (SOT8055-1) package outline and dimensions. Markings and identification details for this ultra-small and thin integrated circuit package type used for high-density applications.",
+        "part number": "1203-009471.pdf",
+        "grade": "D",
+        "maker_pn": "NEX30606"
+      }
+    ]
+  },
+  "part number": "1203-009471"
+}

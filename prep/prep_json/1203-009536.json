@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "component_name": "JW5126",
+    "manufacturer": "JW",
+    "key_specifications": "65V/200mA Sync. Step-Down Converter, 4.5V to 65V operating input range, 200mA output current, ultra high efficiency at light load, adjustable peak current limit, internal/external soft-start, power good indicator, adjustable UVLO and hysteresis, current run-away protection, output short protection, thermal protection, available in SOT23-6 and DFN2X3-8 packages",
+    "applications": "MCU supply in wireless LED lighting, wireless charger, green electronics/appliances, point of load regulation for high-performance DSPs, industrial and commercial low power systems",
+    "grade": "F",
+    "maker_pn": "JW5126"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "JW5126 \n65V/200mA \n             Sync. Step-Down Converter \n\nDESCRIPTION \nThe JW\u00ae5126 is a  monolithic buck switching regulators based on scheme of hysteresis mode. Operating with an input range of 4.5V~65V, JW5126 delivers 200mA of continuous output current with one integrated N-Channel MOSFET and one  integrated P-Channel MOSFET. The internal synchronous power switches provide high efficiency without the use of an external Schottky diode. In order to achieve high efficiency  at no load while maintaining output voltage regulation, JW5126 operates in low quiescent current and low frequency to maintain high efficiency.\n\nFEATURES\n- 4.5V to 65V Operating input Range\n- 200mA Output Current\n- Ultra High Efficiency at Light Load\n- Adjustable Peak Current Limit\n- Internal Soft-Start (SOT23-6)\n- External Soft-Start (DFN2X3-8)\n- Power Good Indicator (DFN2X3-8)\n- Adjustable UVLO and Hysteresis\n- Current Run-away Protection\n- Output Short Protection\n- Thermal Protection\n- Available in SOT23-6 and DFN2X3-8 Packages\n\nAPPLICATIONS\n- MCU Supply in Wireless LED Lighting\n- Wireless Charger\n- Green Electronics/ Appliances\n- Point of Load Regulation for High-Performance DSPs\n- Industrial and Commercial Low Power Systems",
+      "grade": "F",
+      "maker_pn": "JW5126",
+      "part number": "1203-009536"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "JW5126 is a 65V/200mA synchronous step-down converter. It is a monolithic buck switching regulator based on a hysteresis mode scheme. It operates with an input voltage range of 4.5V to 65V and delivers 200mA of continuous output current with integrated N-Channel and P-Channel MOSFETs.",
+        "part number": "1203-009536.pdf",
+        "grade": "F",
+        "maker_pn": "JW5126"
+      },
+      {
+        "content": "The JW5126 features ultra-high efficiency at light load, adjustable peak current limit, internal or external soft-start, power good indicator (DFN2X3-8 package), adjustable UVLO and hysteresis, current run-away protection, output short protection, and thermal protection. It is available in SOT23-6 and DFN2X3-8 packages.",
+        "part number": "1203-009536.pdf",
+        "grade": "F",
+        "maker_pn": "JW5126"
+      },
+      {
+        "content": "Key applications of the JW5126 include MCU supply in wireless LED lighting, wireless chargers, green electronics/appliances, point of load regulation for high-performance DSPs, and industrial and commercial low power systems.",
+        "part number": "1203-009536.pdf",
+        "grade": "F",
+        "maker_pn": "JW5126"
+      },
+      {
+        "content": "The JW5126 operates in low quiescent current and low frequency to maintain high efficiency at no load while maintaining output voltage regulation. It achieves high efficiency without the use of an external Schottky diode due to its integrated synchronous power switches.",
+        "part number": "1203-009536.pdf",
+        "grade": "F",
+        "maker_pn": "JW5126"
+      }
+    ]
+  },
+  "part number": "1203-009536"
+}

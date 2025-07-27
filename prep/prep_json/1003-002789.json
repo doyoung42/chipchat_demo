@@ -1,0 +1,491 @@
+{
+  "metadata": {
+    "component_name": "M24256E-F",
+    "manufacturer": "STMicroelectronics",
+    "key_specifications": "256 Kbit (32 Kbytes) EEPROM, I2C interface up to 1 MHz, 1.6 V to 5.5 V supply, -40\u00b0C to 85\u00b0C temperature range, 4 million write cycles, 200-year data retention, configurable device address, identification page",
+    "applications": "The datasheet does not explicitly mention main applications, but based on the features, it can be used in embedded systems, industrial control, automotive electronics, and other applications requiring non-volatile memory with I2C interface.",
+    "grade": "B",
+    "maker_pn": "M24256E"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Features\n\u2022 Compatible with following I 2C bus modes:\n\u2013 1 MHz (Fast-mode Plus)\n\u2013 400 kHz (Fast-mode)\n\u2013 100 kHz (Standard-mode)\n\u2022 Memory array:\n\u2013 256 Kbit (32 Kbytes) of EEPROM\n\u2013 Page size: 64 bytes\n\u2013 Additional identification page\n\u2022 Single supply voltage:\n\u2013 1.6  to 5.5 V\n\u2022 Operating temperature range\n\u2013 From -40\u00b0C up to +85\u00b0C\n\u2022 Write cycle time:\n\u2013 Byte write within 5 ms\n\u2013 Page write within 5 ms\n\u2022 Random and sequential read modes\n\u2022 Write protection of the whole memory array\n\u2022 Configurable device address\n\u2022 Enhanced ESD / latch-up protection\n\u2022 More than 4 million write cycles\n\u2022 More than 200-year data retention",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1 Description\nThe M24256E-F is a 256-Kbit I2C-compatible EEPROM (electrically erasable programmable read only memory)\norganized as 32 K \u00d7 8 bits.\nThe M24256E-F can operate with a supply voltage from 1.65 V to 5.5 V, with a clock frequency of 1 MHz (or less),\nover an ambient temperature range of -40 \u00b0C/+85 \u00b0C. It can also operate down to 1.6 V, under some restricting\nconditions.\nThe M24256E-F offers an additional page of 64 bytes, named identification page, which can be used to store\nsensitive application parameters which can be (later) permanently locked in read-only mode.\nThe M24256E-F offers also an additional 8-bit register, named the configurable device address (CDA) register\nauthorizing the user, through software, to configure up to eight possibilities of chip enable address.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Figure 2. 5-pin package connection\nSDA SCL\nWC1\n2\n3 4\nV CC\nV SS\n5\n2\n1\n2\n34\n5\n2\nTop view\n(marking side)\nBottom view\n(pads side)\nABCD\nXYZW\nV SS\n\nFigure 3. 8-pin package connections, top view\nSDAVSS\nSCL\nWCNC\nNC VCC\nNC\n1\n2\n3\n4\n8\n7\n6\n5\n\n1. NC = Not connected",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "2.1 Serial clock (SCL)\nSCL is an input. The signal applied on the SCL input is used to strobe the data available on SDA(in) and to output the data on SDA(out).\n\n2.2 Serial data (SDA)\nSDA is an input/output used to transfer data in or data out of the device. SDA(out) is an open drain output that may be wire-AND with other open drain or open collector signals on the bus. A pull-up resistor must be connected from serial data (SDA) to VCC (Figure 17 and Figure 18 indicate how to calculate the value of the pull-up resistor).\n\n2.3 Write control (WC)\nThis input signal is useful for protecting the entire contents of the memory and the configurable device address register from inadvertent write operations. Write operations are disabled when write control (WC) is driven high. Write operations are enabled when write control (WC) is either driven low or left floating.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "2.5.4 Power-down conditions\nDuring power-down (continuous decrease in VCC), the device must be in the Standby Power mode (mode reached after decoding a Stop condition, assuming that there is no internal write cycle in progress).",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The block diagram of the device is described below\n\nFigure 4. Block diagram\n\nHV GENERATOR \n+\nSEQUENCER\nI/O\nARRAY\nSENSE AMPLIFIERS\nY DECODER\nDATA REGISTER\n+\nECC\nCONTROL\nLOGIC\nSCL\nSDA\nCUSTOM AREA\n(1)\nPAGE LATCHES X DECODER\nSTART & STOP \nDETECT\nADDRESS \nREGISTER\nWC\n\n1. ID page and CDA register area",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "4 Features\n4.1 Identification page\nThe identification page (64 bytes) is an additional page which can be read or written and (later) permanently locked in read-only mode. It is read or written by issuing the read or write identification page instruction. These instruction uses the same protocol and format as the random address read or page write (from/into memory array) except for the following differences (refer to Table 3, Table 4 and Table 5):\n\u2022 Device type identifier = 1011b\n\u2022 MSB address bits A15/A6 are don't care except for address bit A10 which must be '0'\n\u2022 LSB address bits A5/A0 define the byte address inside the Identification page",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary",
+        "Electrical Characteristics"
+      ],
+      "content": "4.2 Configurable device address register (CDA)\nAs the M24256E-F is delivered without chip enable inputs, the device provides a non-volatile 8-bit register allowing the user to define a configurable device address (CDA) and a specific bit, named device address lock (DAL), to freeze the configurable device address register. This register can be read and written by issuing the read or write configurable device address instructions. These instructions use the same protocol and format as the random address read or page write (from/into memory array) except for the following differences (refer to Table 3, Table 4 and Table 5):\n\u2022 Device type identifier = 1011b\n\u2022 MSB address bits A15/A14/A13 must be equal to '110' (A15=1, A14=1 and A13=0)\n\u2022 MSB address bits A12/A8 are don't care\n\u2022 LSB address bits A7/A0 are don't care\n\nTable 2. configurable device address register format\nbit 7 bit 6 bit 5 bit 4 bit 3 bit 2 bit 1 bit 0\nX (1) X(1) X(1) X(1) C2 C1 C0 DAL",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Device Operation"
+      ],
+      "content": "5 Device operation\nThe device supports the I2C protocol. This is summarized in Figure 5. Any device that sends data on to the bus is defined to be a transmitter, and any device that reads the data is defined to be a receiver. The device that controls the data transfer is known as the bus master, and the other as the slave device. A data transfer can only be initiated by the bus master, which will also provide the serial clock for synchronization. The device is always a slave in all communications.\n\n5.1 Start condition\nStart is identified by a falling edge of serial data (SDA) while serial clock (SCL) is stable in the high state. A start condition must precede any data transfer instruction. The device continuously monitors (except during a Write cycle) serial data (SDA) and serial clock (SCL) for a start condition.\n\n5.2 Stop condition\nStop is identified by a rising edge of serial data (SDA) while serial clock (SCL) is stable in the high state. A Stop condition terminates communication between the device and the bus master. A Read instruction is terminated by no ACK followed by a stop condition to force the device into the standby mode.\nA stop condition at the end of a write instruction triggers the internal write cycle.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "5.3 Data input\nDuring data input, the device samples serial data (SDA) on the rising edge of serial clock (SCL). For correct device operation,serial data (SDA) must be stable during the rising edge of serial clock (SCL), and the serial data (SDA) signal must change only when serial clock (SCL) is driven low.\n\n5.4 Acknowledge bit (ACK)\nThe acknowledge bit is used to indicate a successful byte transfer. The bus transmitter, whether it be bus master or slave device, releases serial data (SDA) after sending eight bits of data. During the 9th clock pulse period, the receiver pulls serial data (SDA) low to acknowledge the receipt of the eight data bits.\n\n5.5 Device addressing\nTo start communication between the bus master and the slave device, the bus master must initiate a start condition. Following this, the bus master sends the device select code and byte address as specified in Table 3, Table 4 and Table 5.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "If a match occurs, the corresponding device gives an acknowledgement on serial data (SDA) during the 9th bit time.\nIf the device does not acknowledge the device select code, the device de-selects itself from the bus, and goes into standby mode (therefore it does not acknowledge the device select code).\nThe 8th bit is the Read/Write bit (RW). This bit is set to 1 for read and 0 for write operations.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.1 Write operations on memory array\nFollowing a start condition the bus master sends a device select code with the RW bit (RW) set to 0. The device acknowledges this, as shown in Figure 6, and waits for two address bytes. The device responds to each address byte with an acknowledge bit, and then waits for the data byte. See in Section 5.5  Device addressing (Table 3, Table 4 and Table 5) how to address the memory array.\nWhen the bus master generates a stop condition immediately after a data byte ACK bit (in the \"10th bit\" time slot), either at the end of a byte write or a page write, the internal write cycle tW is triggered. A stop condition at any other time slot does not trigger the internal write cycle.\nAfter the stop condition and the successful completion of an internal write cycle (tW), the device internal address counter is automatically incremented to point to the next byte after the last modified byte.\nDuring the internal write cycle, serial data (SDA) is disabled internally, and the device does not respond to any requests.\nIf the write control input (WC) is driven high, the write instruction is not executed and the accompanying data bytes are not acknowledged, as shown in Figure 7.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "After the device select code and the address bytes, the bus master sends one data byte. If the addressed location is write-protected, by write control WC being driven high, the device replies with noACK, and the location is not modified, as shown in Figure 7. If, instead, the addressed location is not write-protected, the device replies with ACK. The bus master terminates the transfer by generating a stop condition, as shown in Figure 6.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The page write mode allows up to 64 bytes to be written in a single write cycle, provided they are all located in the same page in the memory: that is, the most significant memory address bits, A14/A6 are the same. If more bytes than those that will fit up to the end of the page are sent, a \"roll-over\" occurs, i.e. the bytes exceeding the page end are written on the same page, from location 0. The bus master sends from 1 to 64 bytes of data, each one is acknowledged by the device if write control (WC) is low. If write control (WC) is high, the contents of the addressed memory location are not modified, and each data byte is followed by a no ACK, as shown in Figure 7. After each transferred byte, the internal page address counter is incremented.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "The error correction code (ECC) is an internal logic function which is transparent for the I2C communication protocol. The ECC logic is implemented on each group of four EEPROM bytes. Inside a group, if a single bit out of the four bytes happens to be erroneous during a read operation, the ECC detects this bit and replaces it with the correct value. The read reliability is therefore much improved. Even if the ECC function is performed on groups of four bytes, a single byte can be written/cycled independently. In this case, the ECC function also writes/cycles the three other bytes located in the same group (a group of four bytes is located at addresses [4*N, 4*N+1, 4*N+2, 4*N+3], where N is an integer.) As a consequence, the maximum cycling budget is defined at group level and the cycling can be distributed over the 4 bytes of the group: the sum of the cycles seen by byte 0, byte 1, byte 2 and byte 3 of the same group must remain below the maximum value defined in Table 10.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.1.4 Minimizing write delays by polling on ACK\nDuring the internal write cycle, the device disconnects itself from the bus, and writes a copy of the data from its internal latches to the memory cells. The maximum write time (tw) is shown in AC characteristics tables in Section 9  DC and AC parameters, but the typical time is shorter. To make use of this, a polling sequence can be used by the bus master.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.2 Write identification page\nThe identification page (64 bytes) is an additional page which can be written and (later) permanently locked in read-only mode. It is written by issuing the write identification page instruction. This instruction uses the same protocol and format as page write (into memory array), except for the device select code and the address. See in Section 5.5  Device addressing (Table 3, Table 4 and Table 5) how to address the identification page.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.3 Write operations on configurable device address register\nWrite operations on configurable device address register are performed according to the state of the device address lock bit (DAL) or the status of WC line. If the configurable device address register is write protected with DAL=1 or hard protected with WC line driven high, the write operation on this register is not executed and the accompanying data byte is not acknowledged as shown in Figure 10.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 22,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.6 Read the lock status\nThe locked/unlocked status of the identification page can be checked by transmitting a specific truncated command.\nFollowing a start condition the bus master sends a device select code with the R/W bit (RW) set to 0. The device acknowledges this and waits for the address bytes where the identification page is located. The device responds to each address byte with an acknowledge bit, and then waits for the data byte. See in Section 5.5  Device addressing (Table 3, Table 4 and Table 5) how to address the identification page.\nThe device returns an acknowledge bit after the data byte if the identification page is unlocked as shown in Figure 13, otherwise a NoAck bit as shown in Figure 14, if the identification page is locked.\nRight after this, it is recommended to transmit to the device a start condition followed by a stop condition, so that:\n\u2022 Start: the truncated command is not executed because the start condition resets the device internal logic\n\u2022 Stop: the device is then set back into standby mode by the stop condition.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 23,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.7 Read operations on configurable device address register\nFollowing a start condition the bus master sends a device select code with the RW bit (RW) set to 0. The device acknowledges this and waits for the address bytes where the CDA register is located. The device responds to each address byte with an acknowledge bit. Then, the bus master sends another start condition, and repeats the device select code,with the RW bit set to 1. The device acknowledges this, and outputs the contents of the CDA register. See in Section 5.5  Device addressing (Table 3, Table 4 and Table 5) how to address the configurable device address register.\nTo terminate the stream of data byte, the bus master must not acknowledge the byte, and must generate a stop condition, as shown in Figure 15.\nAfter the successful completion of a read configurable device address, the device internal address counter is not incremented by one, to point to the next byte address. Reading more than one byte loops on reading the configurable device address register value.\nThe configurable device address register cannot be read while a write cycle (tW) is ongoing.\nThe configurable device address bits (C2, C1, C0) values can be checked by sending the device select code.\n\u2022 If the chip enable address bit 3, bit 2, bit 1 sent in the device select code is matching with the C2, C1 and C0 values, the device sends an ACK\n\u2022 Otherwise, device will answer no ACK",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "7 Initial delivery state\nAt factory delivery, the device is delivered with:\n\u2022 All the memory array and identification page bits set to 1 (each byte contains FFh)\n\u2022 The CDA register sets to 00000000b (00h)",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Table 6. Absolute maximum ratings\nSymbol Parameter Min. Max. Unit\n- Ambient operating temperature \u201340 130 \u00b0C\nTSTG Storage temperature \u201365 150 \u00b0C\nTLEAD Lead temperature during soldering see note (1) \u00b0C\nIOL DC output current (SDA = 0) - 5 mA\nVIO Input or output range \u20130.50 6.5 V\nVCC Supply voltage \u20130.50 6.5 V\nVESD Electrostatic pulse (Human Body model) (2) - 4000 V",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 7. Operating conditions\nSymbol Parameter Min. Max. Unit\nVCC Supply voltage 1.6 1.65 5.5 V\nTA Ambient operating temperature: READ -40 -40 85 \u00b0C\nAmbient operating temperature: WRITE 0 -40 85\nfC Operating clock frequency - 1 MHz\n\nTable 8. AC measurement conditions\nSymbol Parameter Min. Max. Unit\nCbus Load capacitance - 100 pF\n- SCL input rise/fall time, SDA input fall time - 50 ns\n- Input levels 0.2 VCC to 0.8 VCC V\n- Input and output timing reference levels 0.3 VCC to 0.7 VCC V\n\nTable 9. Input parameters\nSymbol Parameter (1) Test condition Min. Max. Unit\nCIN Input capacitance (SDA) - - 8 pF\nCIN Input capacitance (other pins) - - 6 pF\nZL Input impedance (WC) VIN < 0.3 VCC 30 - k\u03a9\nZH VIN > 0.7 VCC 500 - k\u03a9",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Table 10. Cycling performance by groups of four bytes\nSymbol Parameter Test condition Max. Unit\nNcycle Write cycle endurance(1) TA \u2264 25 \u00b0C, VCC(min) < VCC < VCC(max) 4 000 000 Write cycles(2)\nTA = 85\u00b0C, VCC(min) < VCC < VCC(max) 1 200 000\n\nTable 11. Memory cell data retention\nParameter Test condition Min. Unit\nData retention (1) TA = 55 \u00b0C 200 Year",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "In order to meet environmental requirements, ST offers these devices in different grades of ECOPACK packages, depending on their level of environmental compliance. ECOPACK specifications, grade definitions and product status are available at: www.st.com. ECOPACK is an ST trademark.\n\n10.1 SO8N package information\nThis SO8N is an 8-lead, 4.9 x 6 mm, plastic small outline, 150 mils body width, package.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Figure 21. SO8N - Recommended footprint",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 34,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "This TSSOP is an 8-lead, 3 x 6.4 mm, 0.65 mm pitch, thin shrink small outline package.\n\nTable 15. TSSOP8 \u2013 Mechanical data\n\nSymbol\nmillimeters inches (1)\nMin. Typ. Max. Min. Typ. Max.\nA - - 1.200 - - 0.0472\nA1 0.050 - 0.150 0.0020 - 0.0059\nA2 0.800 1.000 1.050 0.0315 0.0394 0.0413\nb 0.190 - 0.300 0.0075 - 0.0118\nc 0.090 - 0.200 0.0035 - 0.0079\nD(2) 2.900 3.000 3.100 0.1142 0.1181 0.1220\ne - 0.650 - - 0.0256 -\nE 6.200 6.400 6.600 0.2441 0.2520 0.2598\nE1(3) 4.300 4.400 4.500 0.1693 0.1732 0.1772\nL 0.450 0.600 0.750 0.0177 0.0236 0.0295\nL1 - 1.000 - - 0.0394 -\nk 0\u00b0 - 8\u00b0 0\u00b0 - 8\u00b0\naaa - - 0.100 - - 0.0039",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 35,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Figure 23. TSSOP8 \u2013 Recommended footprint\n\n2.35\n1.55\n0.65\n0.40\n7.35\n5.80\n\n1. Dimensions are expressed in millimeters.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 36,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "This UFDFPN is a 8-lead, 2 x 3 mm, 0.5 mm pitch ultra thin profile fine pitch dual flat package.\n\nFigure 24. UFDFPN8 - Outline\n\n1. Maximum package warpage is 0.05 mm.\n2. Exposed copper is not systematic and can appear partially or totally according to the cross section. \n3. Drawing is not to scale.\n4. The central pad (the area E2 by D2 in the above illustration) must be either connected to V SS or left floating (not connected) in the end application.",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 40,
+      "categories": [
+        "Ordering Information"
+      ],
+      "content": "Table 18. Ordering information scheme\nExample: M24 256E - F MH 6 T P\nDevice type\nM24 = I2C serial access EEPROM\nDevice function\n256E = 256 Kbit (32 K x 8 bit)\nOperating voltage\nF = VCC = 1.6 V to 5.5 V\nPackage (1)\nMN = SO8 (150 mil width)\nDW = TSSOP8 (169 mil width)\nMC = UFDFPN8 (DFN8)\nMH = UFDFPN5 (DFN5)\nDevice grade\n6 = Industrial device tested with standard test flow over -40 to 85 \u00b0C\nOption\nT = Tape and reel packing\nblank = tube packing\nPlating technology\nP or G = ECOPACK2",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 42,
+      "categories": [
+        "Table of Contents"
+      ],
+      "content": "Contents\n1 Description ......................................................................2\n1.1 Device block diagram ........................................................... 2\n1.2 Device packaging .............................................................. 3\n2 Signal description ................................................................. 4\n2.1 Serial clock (SCL) .............................................................. 4\n2.2 Serial data (SDA) .............................................................. 4\n2.3 Write control (WC).............................................................. 4\n2.4 VSS (ground) .................................................................. 4\n2.5 Supply voltage (VCC) ........................................................... 4\n2.5.1 Operating supply voltage (VCC).............................................. 4\n2.5.2 Power-up conditions ...................................................... 4\n2.5.3 Device reset ............................................................ 4\n2.5.4 Power-down conditions .................................................... 5\n3 Block diagram ..................................................................... 6\n4 Features........................................................................... 7\n4.1 Identification page.............................................................. 7\n4.2 Configurable device address register (CDA) ........................................ 7\n5 Device operation .................................................................. 9\n5.1 Start condition ................................................................. 9\n5.2 Stop condition ................................................................. 9\n5.3 Data input.................................................................... 10\n5.4 Acknowledge bit (ACK)......................................................... 10\n5.5 Device addressing............................................................. 10\n6 Instructions ...................................................................... 12\n6.1 Write operations on memory array ............................................... 12\n6.1.1 Byte write ............................................................. 13\n6.1.2 Page write............................................................. 14\n6.1.3 ECC (error correction code) and write cycling .................................. 15\n6.1.4 Minimizing write delays by polling on ACK .................................... 16\n6.2 Write identification page ........................................................ 17\n6.2.1 Lock identification page................................................... 17\n6.3 Write operations on configurable device address register ............................ 18\n6.4 Read operations on memory array ............................................... 19\n6.4.1 Random address read.................................................... 20",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 44,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Table 14.  SO8N \u2013 Mechanical data\nTable 15.  TSSOP8 \u2013 Mechanical data\nTable 16.  UFDFPN8 - Mechanical data\nTable 17.  UFDFPN5 - Mechanical data",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    },
+    {
+      "page_number": 45,
+      "categories": [
+        "Application Circuits",
+        "Packaging Information"
+      ],
+      "content": "Figure 20.  SO8N \u2013 Outline\nFigure 21.  SO8N - Recommended footprint\nFigure 22.  TSSOP8 \u2013 Outline\nFigure 23.  TSSOP8 \u2013 Recommended footprint\nFigure 24.  UFDFPN8 - Outline\nFigure 25.  UFDFPN8 - Recommended footprint\nFigure 26.  UFDFPN5 - Outline\nFigure 27.  UFDFPN5 - Recommended footprint",
+      "grade": "B",
+      "maker_pn": "M24256E",
+      "part number": "1003-002789"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The M24256E-F is a 256-Kbit I2C-compatible EEPROM organized as 32K x 8 bits. It operates with a supply voltage from 1.65V to 5.5V, clock frequency of 1MHz, and temperature range of -40\u00b0C to +85\u00b0C. It offers an additional 64-byte identification page for storing sensitive parameters that can be locked in read-only mode, and a configurable device address (CDA) register for setting up to 8 chip enable addresses.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The M24256E-F is compatible with I2C bus modes: 1MHz (Fast-mode Plus), 400kHz (Fast-mode), and 100kHz (Standard-mode). Its memory array features 256Kbit (32Kbytes) of EEPROM with a page size of 64 bytes. It supports byte and page write operations within 5ms, random and sequential read modes, write protection of the entire memory array, and configurable device address.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Key features include enhanced ESD/latch-up protection, more than 4 million write cycles, and more than 200-year data retention. The identification page allows reading, writing, and permanently locking in read-only mode by issuing specific instructions with device type identifier 1011b and addressing the page. The CDA register allows configuring and locking the device address by issuing instructions with device type identifier 1011b and specific address bits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "2.1 Serial clock (SCL), 2.2 Serial data (SDA), 2.3 Write control (WC), 2.5.4 Power-down conditions: These sections describe the electrical characteristics of the serial clock (SCL), serial data (SDA), write control (WC) inputs, and power-down conditions. They cover the input/output behavior, timing requirements, and power management aspects.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "4.2 Configurable device address register (CDA), Table 2. configurable device address register format: This section explains the configurable device address register, which allows the user to define a custom device address and lock it. It provides details on the register format and how to access and modify it.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "5.3 Data input, 5.4 Acknowledge bit (ACK), 5.5 Device addressing: These sections describe the I2C communication protocol details, including data input timing, acknowledge bit handling, and device addressing schemes for read/write operations on the memory array and configurable device address register.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "6.1 Write operations on memory array, 6.1.4 Minimizing write delays by polling on ACK, 6.2 Write identification page, 6.3 Write operations on configurable device address register: These sections cover various write operations, such as writing to the memory array, writing to the identification page, and writing to the configurable device address register. They also explain techniques like polling for acknowledgments to minimize write delays.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "6.6 Read the lock status, 6.7 Read operations on configurable device address register, Table 6. Absolute maximum ratings, Table 7. Operating conditions, Table 8. AC measurement conditions, Table 9. Input parameters: These sections describe how to read the lock status of the identification page, read the configurable device address register, and provide electrical specifications like absolute maximum ratings, operating conditions, AC measurement conditions, and input parameters.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Figure 20. SO8N \u2013 Outline, Figure 21. SO8N - Recommended footprint. These figures provide information about the outline and recommended footprint for the SO8N package, which is a common surface-mount package used for integrated circuits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Figure 22. TSSOP8 \u2013 Outline, Figure 23. TSSOP8 \u2013 Recommended footprint. These figures illustrate the outline and recommended footprint for the TSSOP8 package, which is a thin, small-outline package used for integrated circuits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Figure 24. UFDFPN8 - Outline, Figure 25. UFDFPN8 - Recommended footprint. These figures show the outline and recommended footprint for the UFDFPN8 package, which is an ultra-thin dual flat no-lead package used for integrated circuits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Figure 26. UFDFPN5 - Outline, Figure 27. UFDFPN5 - Recommended footprint. These figures provide information about the outline and recommended footprint for the UFDFPN5 package, which is another variation of the ultra-thin dual flat no-lead package used for integrated circuits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "The error correction code (ECC) is an internal logic function which is transparent for the I2C communication protocol. The ECC logic is implemented on each group of four EEPROM bytes. Inside a group, if a single bit out of the four bytes happens to be erroneous during a read operation, the ECC detects this bit and replaces it with the correct value. The read reliability is therefore much improved. Even if the ECC function is performed on groups of four bytes, a single byte can be written/cycled independently.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Table 6 lists the absolute maximum ratings for ambient operating temperature, storage temperature, lead temperature during soldering, DC output current, input/output voltage range, supply voltage, and electrostatic pulse (Human Body model). These ratings define the safe operating limits for the device.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Table 10 specifies the cycling performance by groups of four bytes, including the maximum write cycle endurance under different temperature and supply voltage conditions. This table provides information on the device's write endurance and cycling limits.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "Table 11 outlines the memory cell data retention, indicating the minimum data retention period under a specific temperature condition of 55\u00b0C. This table is relevant for understanding the device's data retention capabilities and reliability over time.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The text also mentions that although the ECC function operates on groups of four bytes, a single byte can be written/cycled independently. However, in this case, the ECC function also writes/cycles the three other bytes located in the same group, and the maximum cycling budget is defined at the group level. This information is important for understanding the device's write/cycling behavior and managing the cycling budget effectively.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Figure 2 shows the 5-pin package connection with pin descriptions and top/bottom view. Figure 3 shows the 8-pin package connections with pin descriptions from the top view. ST offers these devices in different grades of ECOPACK packages to meet environmental requirements. ECOPACK specifications, grade definitions, and product status are available at www.st.com.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The SO8N is an 8-lead, 4.9 x 6 mm, plastic small outline package with a 150 mils body width. Figure 20 shows the outline and Figure 21 shows the recommended footprint for the SO8N package. Table 14 provides the mechanical data for the SO8N package.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The TSSOP8 is an 8-lead, 3 x 6.4 mm, 0.65 mm pitch, thin shrink small outline package. Figure 22 shows the outline, Table 15 provides the mechanical data, and Figure 23 shows the recommended footprint for the TSSOP8 package.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The UFDFPN8 is an 8-lead, 2 x 3 mm, 0.5 mm pitch ultra thin profile fine pitch dual flat package. Figure 24 shows the outline, Table 16 provides the mechanical data, and Figure 25 shows the recommended footprint for the UFDFPN8 package. The central pad must be connected to VSS or left floating in the end application.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      },
+      {
+        "content": "The UFDFPN5 is a 5-lead ultra thin profile fine pitch dual flat package. Figure 26 shows the outline and Figure 27 shows the recommended footprint for the UFDFPN5 package. Table 17 provides the mechanical data for the UFDFPN5 package.",
+        "part number": "1003-002789.pdf",
+        "grade": "B",
+        "maker_pn": "M24256E"
+      }
+    ]
+  },
+  "part number": "1003-002789"
+}

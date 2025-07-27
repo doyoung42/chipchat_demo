@@ -1,0 +1,220 @@
+{
+  "metadata": {
+    "component_name": "74LVC1G08",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Single 2-input AND gate, 1.65 V to 5.5 V supply voltage range, high noise immunity, \u00b124 mA output drive at 3.0 V, low power CMOS, TTL compatible, overvoltage tolerant inputs up to 5.5 V, partial power-down mode, latch-up performance \u2264 250 mA",
+    "applications": "Translator in mixed 3.3 V and 5 V applications",
+    "grade": "C",
+    "maker_pn": "74LVC1G08GW"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The 74LVC1G08 is a single 2-input AND gate. Inputs can be driven from either 3.3 V or 5 V devices. This feature allows the use of these devices as translators in mixed 3.3 V and 5 V applications.\n\nSchmitt trigger action at all inputs makes the circuit tolerant of slower input rise and fall time. This device is fully specified for partial power-down applications using IOFF. The IOFF circuitry disables the output, preventing the damaging backflow current through the device when it is powered down.\n\n\u2022 Wide supply voltage range from 1.65 V to 5.5 V\n\u2022 High noise immunity\n\u2022 \u00b124 mA output drive (VCC = 3.0 V)\n\u2022 CMOS low power dissipation\n\u2022 Direct interface with TTL levels\n\u2022 Overvoltage tolerant inputs to 5.5 V\n\u2022 IOFF circuitry provides partial Power-down mode operation\n\u2022 Latch-up performance \u2264 250 mA",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Ordering Information",
+        "Marking"
+      ],
+      "content": "Table 1. Ordering information\n\nTable 2. Marking\n\n[1] The pin 1 indicator is located on the lower left corner of the device, below the marking code.",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Pinning Information"
+      ],
+      "content": "6.1.  Pinning\n\n6.2.  Pin description\nTable 3. Pin description",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Test data is given in Table 10.\n\nDefinitions for test circuit:\nRL = Load resistance;\nCL = Load capacitance including jig and probe capacitance;\nRT = Termination resistance should be equal to the output impedance Zo of the pulse generator;\nVEXT = External voltage for measuring switching times.\n\nTable 10. Test data\nSupply voltage Input Load VEXT\nVCC VI tr = tf CL RL tPLH, tPHL\n1.65 V to 1.95 V VCC \u2264 2.0 ns 30 pF 1 k\u03a9 open\n2.3 V to 2.7 V VCC \u2264 2.0 ns 30 pF 500 \u03a9 open\n2.7 V 2.7 V \u2264 2.5 ns 50 pF 500 \u03a9 open\n3.0 V to 3.6 V 2.7 V \u2264 2.5 ns 50 pF 500 \u03a9 open\n4.5 V to 5.5 V VCC \u2264 2.5 ns 50 pF 500 \u03a9 open",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 6. Package outline SOT353-1 (TSSOP5)",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Package outline SOT753 (SC-74A)",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "XSON6: plastic extremely thin small outline package; no leads; 6 terminals; body 1 x 1.45 x 0.5 mm SOT886",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "XSON6: extremely thin small outline package; no leads; 6 terminals; body 0.9 x 1.0 x 0.35 mm SOT1115",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "XSON6: extremely thin small outline package; no leads; 6 terminals; body 1.0 x 1.0 x 0.35 mm SOT1202",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 11. Package outline SOT1226-3 (X2SON5)",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 12. Package outline SOT8065-1 (XSON5)",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Legal Information"
+      ],
+      "content": "Nexperia does not give any representations or warranties as to the accuracy or completeness of information included herein and shall have no liability for the consequences of use of such information.",
+      "grade": "C",
+      "maker_pn": "74LVC1G08GW",
+      "part number": "0801-006035"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The 74LVC1G08 is a single 2-input AND gate with inputs that can be driven from either 3.3 V or 5 V devices, allowing its use as a translator in mixed 3.3 V and 5 V applications.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "The device features Schmitt trigger action at all inputs for tolerance to slower input rise and fall times, and has IOFF circuitry that disables the output during power-down to prevent backflow current.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "Key features include a wide supply voltage range from 1.65 V to 5.5 V, high noise immunity, \u00b124 mA output drive at 3.0 V, low power CMOS dissipation, direct TTL level interface, overvoltage tolerant inputs up to 5.5 V, partial Power-down mode operation with IOFF circuitry, and latch-up performance up to 250 mA.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "The 74LVC1G08 is a single 2-input AND gate with Schmitt trigger inputs, IOFF power-down circuitry, wide supply range from 1.65 V to 5.5 V, high noise immunity, TTL compatibility, and low power CMOS operation.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Test data is given in Table 10. Definitions for test circuit: RL = Load resistance; CL = Load capacitance including jig and probe capacitance; RT = Termination resistance should be equal to the output impedance Zo of the pulse generator; VEXT = External voltage for measuring switching times.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "Table 10 provides test data for different supply voltages (VCC), input voltages (VI), rise and fall times (tr, tf), load capacitances (CL), load resistances (RL), and external voltages (VEXT) for measuring propagation delays (tPLH, tPHL).",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "For supply voltages from 1.65 V to 1.95 V, the input voltage is VCC, rise and fall times are \u2264 2.0 ns, CL = 30 pF, RL = 1 k\u03a9, and VEXT is open.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "For supply voltages from 2.3 V to 2.7 V, the input voltage is VCC, rise and fall times are \u2264 2.0 ns, CL = 30 pF, RL = 500 \u03a9, and VEXT is open.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "For supply voltages from 2.7 V to 5.5 V, the input voltage is 2.7 V, rise and fall times are \u2264 2.5 ns, CL = 50 pF, RL = 500 \u03a9, and VEXT is open.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 6. Package outline SOT353-1 (TSSOP5). Fig. 7. Package outline SOT753 (SC-74A). These figures illustrate the package outlines for TSSOP5 and SC-74A package types, providing visual representations of the package dimensions and pin configurations.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "XSON6: plastic extremely thin small outline package; no leads; 6 terminals; body 1 x 1.45 x 0.5 mm SOT886. XSON6: extremely thin small outline package; no leads; 6 terminals; body 0.9 x 1.0 x 0.35 mm SOT1115. XSON6: extremely thin small outline package; no leads; 6 terminals; body 1.0 x 1.0 x 0.35 mm SOT1202. These lines describe the XSON6 package type, which is an extremely thin small outline package with no leads and 6 terminals. The body dimensions for different XSON6 variants (SOT886, SOT1115, and SOT1202) are provided.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "Fig. 11. Package outline SOT1226-3 (X2SON5). Fig. 12. Package outline SOT8065-1 (XSON5). These figures illustrate the package outlines for X2SON5 and XSON5 package types, providing visual representations of the package dimensions and pin configurations.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      },
+      {
+        "content": "The text covers various package types, including TSSOP5, SC-74A, XSON6 (with different body dimensions), X2SON5, and XSON5. It provides package outline figures, package descriptions, terminal counts, and body dimensions for these package types, which are essential information for understanding the packaging and physical characteristics of electronic components.",
+        "part number": "0801-006035.pdf",
+        "grade": "C",
+        "maker_pn": "74LVC1G08GW"
+      }
+    ]
+  },
+  "part number": "0801-006035"
+}

@@ -1,0 +1,263 @@
+{
+  "metadata": {
+    "component_name": "SY22121",
+    "manufacturer": "Silergy",
+    "key_specifications": "High efficiency boost regulator with two matching current sinks, fixed switching frequency, peak current mode control, input voltage range 2.7V to 28V, resistor programmable LED current up to 30mA, integrated 40V power MOSFETs, dual current sinks, compensation and soft-start, analog PWM dimming, 1-wire digital dimming with 511 steps, open/short LED protection, output overvoltage protection, overtemperature protection",
+    "applications": "LCD panel backlight applications driving up to two strings of white LEDs",
+    "grade": "A",
+    "maker_pn": "SY22121"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "SY22121, high efficiency Boost regulator with two matching current sinks operates with fixed switching frequency and peak current mode control, and can drive up to two strings of white LEDs in LCD panel backlight applications. It operates over a wide input voltage range from 2.7V to 28V with a resistor programmable LED current up to 30mA.\n\nThe integrated 40V power MOSFETs and dual current sinks, compensation, and soft-start reduce the number of external components required. The integrated analog PWM dimming and 1-wire digital dimming provide accurate LED current control.\n\nThe SY22121 also provides open/short LED, Boost output overvoltage, and overtemperature protection.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Ordering\n Part Number Package Type Top Mark\nSY22121POC\nWLCSP\n1.31mm\u00d7 1.31mm-9\nRoHS-Compliant and\nHalogen-Free\nByxyz\nx = year code, y = week code, z = lot number code",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Absolute Maximum Ratings\nParameter (Note 1) Min Max Unit\nIN, EN, PWM -0.3 30\nV LX,LED1,LED2 -0.3 40\nISET -0.3 3.6\nJunction Temperature, Operating  150\n\u00b0C Lead Temperature (Soldering,10s)  260\nStorage Temperature -65 150\n\nRecommended Operating Conditions\nParameter (Note 3) Min Max Unit\nIN 2.7 28 V\nLX IN 38\nInductor L 4.7 10 \u03bcH\nInput Capacitor 1.0  \u03bcF\nOutput Capacitor 1.0 2.2\nJunction Temperature -40 125 \u00b0C\nAmbient Temperature -40 85",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The SY22121 high efficiency Boost regulator with two matching current sinks operates using fixed frequency and peak current mode control with slope compensation. The device can drive up to two strings of white LEDs in LCD panel backlight applications. It operates over a wide input voltage range from 2.7V to 28V with a resistor programmable LED current up to 30mA.\n\nThe integrated 40V Boost power MOSFET and dual channel current sink, compensation, and soft-start reduce the number of external components required. The integrated analog PWM dimming and 1-wire digital dimming provide accurate LED current control.\n\nThe SY22121 also provides open/short LED,overvoltage, and overtemperature protections.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The SY22121 supports 9-bit brightness code to achieve 511 steps dimming. Using the 1-wire digital interface, a master can program the 9-bit code BRT_CODE[8:0]D8 (MSB) to D0 (LSB) to any of the 511 current steps with a single command. The default code for BRT_CODE[8:0] is 0b000000000 when the device is enabled the first time. The programmed value will be stored in an internal register and used to set the dual-channel current according to the following equation:\n\nILEDX = ILEDMAX \u00d7 BRT_CODE[8:0]/511\n\nwhere ILEDMAX is the maximum LED current set by RISET at the ISET pin, and BRT_CODE[8:0] is the 9-bit brightness code D8\u2013D0 programmed using the 1-wire digital interface.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 1. 1-Wire Digital Interface Bit...\n\n1-Wire Data Recognition\nBit detection is based on a logic detection scheme, where the criteria is the relationship between tLOW and tHIGH, as shown in Figure 6. This can be simplified to:\n\nLow Bit (Logic 0): tLOW \u2265 2 \u00d7 tHIGH\nHigh Bit (Logic 1): tHIGH \u2265 2 \u00d7 tLOW",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "Figure6. EN Action When ACK_EN=1 And ACK Activated\n\nFigure 7 shows the 1-wire interface bit detection timing...\n\nPWM Dimming\nIf the 1-wire digital interface is not enabled during start up, the PWM control interface is automatically enabled, and the SY22121 receives PWM dimming signals on the PWM pin to control LED brightness.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "Figure 8. PWM Dimming Interface\n\nFigure 9. PWM Duty Cycle RC Filtering\n\nApplication Information\nThe following paragraphs describe the selection process for the LED current setting resistor RISET, input capacitor CIN, output capacitor COUT, inductor L, and rectifier diode D.\n\nLED Current Setting Resistor RISET\n...\n\nInput Capacitor CIN\n...\n\nOutput Capacitor COUT\n...\n\nBoost Inductor L\n...",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Rectifier Diode D: \nTo accommodate the SY22121's high switching speed, choose a Schottky diode with low forward voltage and fast switching speed. The diode's voltage rating must be higher than the SY22121's maximum output voltage, and the diode's average and peak current rating should exceed the SY22121's average output current and peak inductor current.\n\nFault Protection\nOpen LED Protection\nShort LED Protection\nOvercurrent Protection\nDiode and Inductor Short\nOvertemperature Protection\n\nLayout Design\nTo achieve optimal design, follow these PCB layout considerations:\n- Minimize the loop formed by CIN1, Boost inductor L1, Boost diode D1, and COUT.\n- To achieve the best thermal and noise performance, maximize the PCB copper area connecting to the GND pin. A ground plane is highly recommended if board space allows.\n- Place CIN2 close to the IN and GND pins, and minimize the loop area formed by CIN2 and GND.\n- Minimize the PCB copper area associated with the LX output to reduce the switching noise.\n- In order to reduce crosstalk, small signal components must be placed close to the IC and must not be adjacent to the LX net on the PCB layout.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Typical Application Schematic\n\nInput Voltage (V) LED Configuration\n2.7-28 2 strings, 20mA per string\n\nBOM List\nReference Designator Description Part Number Manufacturer\nU1 2-String LED driver SY22121POC Silergy\nC1,C2,C4 1\u03bcF/50V/X5R,0603 C1608X5R1H105K TDK\nL1 4.7\u03bcH/4.1A CLF7045T-4R7N TDK\nD1 Schottky Diode 40V/0.5A PMEG4005 NXP\nR1,R2 1M\u03a9, 0603,5% RC0603JR-071ML Yageo\nR3 63.4k\u03a9, 0603,1% RC0603FR-0763K4L Yageo\nR4 10\u03a9, 0603,5% RC0603JR-0710RL Yageo",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "CSP1.31\u00d7 1.31-9 Package Outline and PCB Layout\n\nSide View Top view\n\nBottom view\n\nNote: All dimensions are in millimeters and exclude mold flash and metal burr.",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Taping and Reel Specification\nCSP1.31\u00d7 1.31 taping orientation\n\nFeeding direction\n\nCarrier tape and reel specification for packages\n\nPackage type Tape width (mm) Pocket pitch(mm) Reel size (Inch) Trailer length(mm) Leader length (mm) Qty per reel\nCSP1.31\u00d7 1.31 8 4 7\" 280 160 3000",
+      "grade": "A",
+      "maker_pn": "SY22121",
+      "part number": "1203-003186"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "SY22121 is a high efficiency Boost regulator with two matching current sinks that operates with fixed switching frequency and peak current mode control. It can drive up to two strings of white LEDs in LCD panel backlight applications and operates over a wide input voltage range from 2.7V to 28V with a resistor programmable LED current up to 30mA.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "The integrated 40V power MOSFETs, dual current sinks, compensation, and soft-start reduce the number of external components required. It provides integrated analog PWM dimming and 1-wire digital dimming for accurate LED current control.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "The SY22121 offers protection features such as open/short LED, Boost output overvoltage, and overtemperature protection.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "The SY22121 high efficiency Boost regulator with two matching current sinks operates using fixed frequency and peak current mode control with slope compensation. It can drive up to two strings of white LEDs in LCD panel backlight applications and operates over a wide input voltage range from 2.7V to 28V with a resistor programmable LED current up to 30mA.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "The integrated 40V Boost power MOSFET, dual channel current sink, compensation, and soft-start reduce the number of external components required. It provides integrated analog PWM dimming and 1-wire digital dimming for accurate LED current control, as well as open/short LED, overvoltage, and overtemperature protections.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Absolute Maximum Ratings and Recommended Operating Conditions: This chunk covers the absolute maximum ratings for voltage, current, temperature, and other parameters that the device can withstand without damage. It also provides the recommended operating conditions for input voltage, inductor value, input/output capacitor values, and temperature ranges for normal operation.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Dimming Control and 1-Wire Interface: This chunk explains the 9-bit brightness code used for dimming control through the 1-wire digital interface. It describes how the brightness code is used to set the LED current based on the maximum current set by the ISET resistor. It also covers the timing and bit detection mechanism for the 1-wire interface.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "PWM Dimming and Application Information: This chunk covers the PWM dimming interface and how to use it for brightness control when the 1-wire interface is not enabled. It also provides guidance on selecting the LED current setting resistor, input/output capacitors, inductor, and rectifier diode for the application.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Fault Protection and Layout Design: This chunk discusses the various fault protection features of the device, such as open LED protection, short LED protection, overcurrent protection, diode and inductor short protection, and overtemperature protection. It also provides PCB layout design considerations for optimal performance and noise reduction.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Figure 6 shows the EN action when ACK_EN=1 and ACK is activated. Figure 7 shows the 1-wire interface bit detection timing. If the 1-wire digital interface is not enabled during start up, the PWM control interface is automatically enabled, and the SY22121 receives PWM dimming signals on the PWM pin to control LED brightness (Figure 8). Figure 9 illustrates PWM duty cycle RC filtering.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "The text provides information on selecting the LED current setting resistor RISET, input capacitor CIN, output capacitor COUT, inductor L, and rectifier diode D for application circuits.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "A typical application schematic is shown, along with an example configuration of input voltage and LED strings. A bill of materials (BOM) list is provided with part numbers and manufacturers for components like the LED driver IC, capacitors, inductor, and diode.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "Absolute Maximum Ratings: Parameter (Note 1) Min Max Unit, IN, EN, PWM -0.3 30 V, LX,LED1,LED2 -0.3 40, ISET -0.3 3.6, Junction Temperature, Operating 150 \u00b0C, Lead Temperature (Soldering,10s) 260, Storage Temperature -65 150. Recommended Operating Conditions: Parameter (Note 3) Min Max Unit, IN 2.7 28 V, LX IN 38, Inductor L 4.7 10 \u03bcH, Input Capacitor 1.0 \u03bcF, Output Capacitor 1.0 2.2, Junction Temperature -40 125 \u00b0C, Ambient Temperature -40 85.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Rectifier Diode D: To accommodate the SY22121's high switching speed, choose a Schottky diode with low forward voltage and fast switching speed. The diode's voltage rating must be higher than the SY22121's maximum output voltage, and the diode's average and peak current rating should exceed the SY22121's average output current and peak inductor current.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Fault Protection: Open LED Protection, Short LED Protection, Overcurrent Protection, Diode and Inductor Short, Overtemperature Protection.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Layout Design: To achieve optimal design, follow these PCB layout considerations: - Minimize the loop formed by CIN1, Boost inductor L1, Boost diode D1, and COUT. - To achieve the best thermal and noise performance, maximize the PCB copper area connecting to the GND pin. A ground plane is highly recommended if board space allows. - Place CIN2 close to the IN and GND pins, and minimize the loop area formed by CIN2 and GND. - Minimize the PCB copper area associated with the LX output to reduce the switching noise. - In order to reduce crosstalk, small signal components must be placed close to the IC and must not be adjacent to the LX net on the PCB layout.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Ordering Part Number Package Type Top Mark SY22121POC WLCSP 1.31mm\u00d7 1.31mm-9 RoHS-Compliant and Halogen-Free Byxyz x = year code, y = week code, z = lot number code",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "CSP1.31\u00d7 1.31-9 Package Outline and PCB Layout Side View Top view Bottom view Note: All dimensions are in millimeters and exclude mold flash and metal burr.",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      },
+      {
+        "content": "Taping and Reel Specification CSP1.31\u00d7 1.31 taping orientation Feeding direction Carrier tape and reel specification for packages Package type Tape width (mm) Pocket pitch(mm) Reel size (Inch) Trailer length(mm) Leader length (mm) Qty per reel CSP1.31\u00d7 1.31 8 4 7\" 280 160 3000",
+        "part number": "1203-003186.pdf",
+        "grade": "A",
+        "maker_pn": "SY22121"
+      }
+    ]
+  },
+  "part number": "1203-003186"
+}

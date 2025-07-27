@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "component_name": "PMBT3904Y",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Stabilized output current of 10 mA, high current accuracy at supply voltage variation, small SOT23 package, qualified for automotive applications (AEC-Q101)",
+    "applications": "Constant current LED driver, generic constant current source, automotive applications",
+    "grade": "D",
+    "maker_pn": "NCR401T-F"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description\nLED driver consisting of a resistor-equipped PNP transistor with two diodes on one chip in a small SOT23 plastic package.\n\n2. Features and benefits\n\u2022 Stabilized output current of 10 mA\n\u2022 High currrent accuracy at supply voltage variation\n\u2022 Reduces component count and board space\n\u2022 Qualified according to AEC-Q101\n\n3. Applications\n\u2022 Constant current LED driver\n\u2022 Generic constant current source\n\u2022 Automotive applications\n\n4. Quick reference data\nTable 1. Quick reference data\nSymbol Parameter Conditions Min Typ Max Unit\nIO output current VSUP = 10 V; VO = 8.6 V; Tamb = 25 \u00b0C; pulsed; tp \u2264 300 \u00b5s; \u03b4 \u2264 0.02 8.5 10 11.5 mA\nVSUP supply voltage - - 18 V",
+      "grade": "D",
+      "maker_pn": "NCR401T-F",
+      "part number": "1003-003540"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "8. Limiting values\nTable 5. Limiting values\nIn accordance with the Absolute Maximum Rating System (IEC 60134).\nSymbol Parameter Conditions Min Max Unit\nVSUP supply voltage - 18 V\nVO output voltage VSUP = 18 V - 16 V\nVR reverse voltage [1] - 0.5 V\n[2] - 270 mW\nPtot total power dissipation Tamb \u2264 25 \u00b0C [3] - 400 mW\nTj junction temperature - 150 \u00b0C\nTamb ambient temperature -55 150 \u00b0C\nTstg storage temperature -65 150 \u00b0C\n\n[1] Between all terminals.\n[2] Device mounted on an FR4 Printed-Circuit Board (PCB); single-sided copper; tin-plated and standard footprint.\n[3] Device mounted on an FR4 PCB; single-sided copper; tin-plated and mounting pad for output 1 cm2.",
+      "grade": "D",
+      "maker_pn": "NCR401T-F",
+      "part number": "1003-003540"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Application Circuits",
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Switching current ON/OFF; application diagram\n\n13. Package outline\n04-11-04Dimensions in mm\n0.45\n0.15\n1.9\n1.1\n0.9\n3.0\n2.8\n2.5\n2.1\n1.4\n1.2\n0.48\n0.38\n0.15\n0.09\n1 2\n3\nFig. 8. Package outline TO-236AB (SOT23)",
+      "grade": "D",
+      "maker_pn": "NCR401T-F",
+      "part number": "1003-003540"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "sold erlan d s\nsold erresist\noccupied area\nsold erpaste\nsot023_fr\n0.5\n(3 \u00d7 )\n0.6\n(3 \u00d7 )\n0.6\n(3 \u00d7 )\n0.7\n(3 \u00d7 )\n3\n1\n3 .3\n2.9\n1.7\n1.9\n2\nD im en sion s in m m\nFig. 9. Reflow soldering footprint for TO-236AB (SOT23)\n\nsold erlan d s\nsold erresist\noccupied area\npreferred tran sportd irection d urin gsold erin g\nsot023_fw\n2.8\n4 .5\n1.4\n4 .6\n1.4\n(2\u00d7 )\n1.2\n(2\u00d7 )\n2.2\n2.6\nD im en sion s in m m\nFig. 10. Wave soldering footprint for TO-236AB (SOT23)",
+      "grade": "D",
+      "maker_pn": "NCR401T-F",
+      "part number": "1003-003540"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1 General description . . . . . . . . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... 1\n2 Features and benefits . . . . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... .1\n3 Applications . . . . . . . . . . . . . . . . . . . ... . ... . ... . ... . ... . . ... . ... . ... . ... . ... 1\n4 Quick reference data . . . ... . ... . ... . ... . ... . ... . ... . ... . ... . ... . .. 1",
+      "grade": "D",
+      "maker_pn": "NCR401T-F",
+      "part number": "1003-003540"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "LED driver consisting of a resistor-equipped PNP transistor with two diodes on one chip in a small SOT23 plastic package. It provides a stabilized output current of 10 mA with high current accuracy at supply voltage variation. The device reduces component count and board space, and is qualified according to AEC-Q101 for automotive applications.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "The LED driver is suitable for constant current LED driving, generic constant current source applications, and automotive applications. It features a typical output current of 10 mA with a minimum of 8.5 mA and a maximum of 11.5 mA under specific conditions (VSUP = 10 V, VO = 8.6 V, Tamb = 25 \u00b0C, pulsed operation with tp \u2264 300 \u00b5s and \u03b4 \u2264 0.02).",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "The LED driver operates with a supply voltage (VSUP) of up to 18 V. It is designed to provide a constant current source with high accuracy and stability, while reducing component count and board space requirements in automotive and other applications.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Fig. 7. Switching current ON/OFF; application diagram. This chunk describes an application circuit diagram for switching current on and off, potentially relevant for power management or load control applications.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Fig. 8. Package outline TO-236AB (SOT23). Dimensions in mm: 0.45, 0.15, 1.9, 1.1, 0.9, 3.0, 2.8, 2.5, 2.1, 1.4, 1.2, 0.48, 0.38, 0.15, 0.09. This chunk provides detailed package outline dimensions for the TO-236AB (SOT23) package, which is a common surface-mount package used for various electronic components.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Package outline dimensions and application circuit diagrams are crucial information found in datasheets for electronic components. The application circuit diagram illustrates how the component can be used in a practical circuit, while the package outline dimensions are necessary for PCB layout and mechanical integration.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "8. Limiting values: This section provides information about the absolute maximum ratings and limiting conditions for the device, such as supply voltage, output voltage, reverse voltage, power dissipation, junction temperature, ambient temperature, and storage temperature. These limits must not be exceeded to ensure reliable operation and prevent permanent damage to the device.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Table 5. Limiting values: This table lists the specific limiting values for various parameters under certain conditions. It includes the minimum and maximum values for supply voltage, output voltage, reverse voltage, total power dissipation (with different conditions), junction temperature, ambient temperature, and storage temperature.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Footnotes: The footnotes provide additional details and clarifications related to the limiting values. [1] specifies that the reverse voltage limit applies between all terminals. [2] and [3] provide the conditions for the total power dissipation limits, such as the PCB material, copper layer, and mounting pad size.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "This section is crucial for understanding the safe operating conditions and environmental specifications of the device. It helps ensure reliable operation by adhering to the specified limits and avoiding potential damage or degradation caused by exceeding these limits.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 7. Switching current ON/OFF; application diagram. Fig. 8. Package outline TO-236AB (SOT23) with dimensions in mm: 0.45, 0.15, 1.9, 1.1, 0.9, 3.0, 2.8, 2.5, 2.1, 1.4, 1.2, 0.48, 0.38, 0.15, 0.09.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Fig. 9. Reflow soldering footprint for TO-236AB (SOT23) with solderlandsolderpaste, occupied area, and dimensions in mm: 0.5 (3x), 0.6 (3x), 0.6 (3x), 0.7 (3x), 3, 1, 3.3, 2.9, 1.7, 1.9, 2.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      },
+      {
+        "content": "Fig. 10. Wave soldering footprint for TO-236AB (SOT23) with solderlandssolderresist, occupied area, preferred transport direction during soldering, and dimensions in mm: 2.8, 4.5, 1.4, 4.6, 1.4 (2x), 1.2 (2x), 2.2, 2.6.",
+        "part number": "1003-003540.pdf",
+        "grade": "D",
+        "maker_pn": "NCR401T-F"
+      }
+    ]
+  },
+  "part number": "1003-003540"
+}

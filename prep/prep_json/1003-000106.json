@@ -1,0 +1,587 @@
+{
+  "metadata": {
+    "component_name": "LP5867",
+    "manufacturer": "Texas Instruments",
+    "key_specifications": "7x6 LED matrix driver, supports up to 42 LED dots or 14 RGB pixels, analog and PWM dimming, I2C and SPI interfaces, thermal shutdown, LED open/short detection, 2.7V to 5.5V supply range",
+    "applications": "LED matrix displays, RGB LED lighting, indication and animation applications",
+    "grade": "A",
+    "maker_pn": "LP5867"
+  },
+  "page_summaries": [
+    {
+      "page_number": 10,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Unless specified otherwise, typical characteristics apply over the full ambient temperature range (\u201355\u00b0C < TA < +125\u00b0C for LP5867MRKPR, LP5864MRSMR, and LP5866MDBTR while \u201340\u00b0C < TA < +85\u00b0C for the other devices), VCC = 3.3V, VIO = 3.3V, VLED = 5V, ILED_Peak = 50mA, CVLED = 1\u03bcF, CVCC = 1\u03bcF.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Unless specified otherwise, typical characteristics apply over the full ambient temperature range (\u201355\u00b0C < TA < +125\u00b0C for LP5867MRKPR, LP5864MRSMR, and LP5866MDBTR while \u201340\u00b0C < TA < +85\u00b0C for the other devices), VCC = 3.3V, VIO = 3.3V, VLED = 5V, ILED_Peak = 50mA, CVLED = 1\u03bcF, CVCC = 1\u03bcF.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The LP5867 is an 7 \u00d7 6 LED matrix driver. The device integrates 7 switching FETs with 6 constant current sinks. One LP5867 device can drive up to 42 LED dots or 14 RGB pixels by using time-multiplexing matrix scheme. The LP5867 supports both analog dimming and PWM dimming methods.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The LP5867 device uses a time-multiplexing matrix scheme to support up to 42 LED dots with one chip. The device integrates 6 current sinks with 7 scan lines to drive 6 \u00d7 7 = 42 LED dots or 2 \u00d7 7 = 14 RGB pixels. In matrix control scheme, the device scans from Line 0 to Line 6 sequentially as shown in Figure 7-1. Current gain and PWM duty registers are programmable for each LED dot to support individual analog and PWM dimming.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "One cycle time of the line switching can be calculated as below:\ntline_switch = tPWM + tSW_BLK + 2 \u00d7 tphase_shift\n\nTotal display time for one complete sub-period is tsub_period and can be calculated by the following equation:\ntsub_period = tline_switch \u00d7 Scan_line#",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Analog dimming of LP5867 is achieved by configuring the current gain control. There are several methods to control the current gain of each LED.\n\u2022 Global 3-bits Maximum Current (MC) setting without external resistor\n\u2022 3 Groups of 7-bits Color Current (CC) setting\n\u2022 Individual 8-bit Dot Current (DC) setting\n\nThe MC is used to set the maximum current I OUT_MAX for each current sink, and this current is the maximum peak current for each LED dot. The MC can be set with 7 steps from 3 mA to 50 mA.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The LP5867 device is able to adjust the output current of three color groups separately. For each color, the device has 7-bits data in 'CC_Group1', 'CC_Group2', and 'CC_Group3'. Thus, all color group currents can be adjusted in 128 steps from 0% to 100% of the maximum output current, IOUT_MAX.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The LP5867 can individually adjust the output current of each LED by using dot current function through DC setting. The device allows the brightness deviations of the LEDs to adjusted be individually. Each output DC is programmed with an 8-bit depth, so the value can be adjusted with 256 steps within the range from 0% to 100% of (IOUT_MAX \u00d7 CC/127).",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "There are several methods to control the PWM duty cycle of each LED dot.\n\n7.3.3.1 Individual 8-Bit / 16-Bit PWM for Each LED Dot\nEvery LED has an individual 8-bit or 16-bit PWM register that is used to change the LED brightness by PWM duty. The LP5867 uses an enhanced spectrum PWM (ES-PWM) algoithm to achieve 16-bit depth with high refresh rate and this can avoid flicker under high speed camera. Comparing with conventional 8-bit PWM, 16-bit PWM can help to achieve ultimate high dimming resolution in LED animation applications.\n\n7.3.3.2 Programmable Groups of 8-Bit PWM Dimming\nThe group PWM Control is used to select LEDs into 1 to 3 groups while each group has a separate register for PWM control. Every LED has 2-bit selection in LED_DOT_GROUP Registers (x = 0, 1, \u2026 , 34) to select whether the LED dot belongs to one of the three groups or not:\n\u2022 00: not a member of any group\n\u2022 01: member of group 1\n\u2022 10: member of group 2\n\u2022 11: member of group 3\n\n7.3.3.3 8-Bit PWM for Global Dimming\nThe Global PWM Control function affects all LEDs simultaneously.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "To avoid high current sinks output ripple during line switching, current sinks can be configured to turn on with 1 clock delay (62.5ns or 31.25ns according to the PWM frequency) after lines turn on, as shown in Figure 7-3. This function can be configured by 'CS_ON_Shift' in Dev_config1 register. The LP5867 allows users to configure the dimming scale either exponentially (Gamma Correction) or linearly through the 'PWM_Scale_Mode' in Dev_config1 register.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The LP5867 device supports the individual ON and OFF control of each LED. For indication purpose, users can turn on and off the LED directly by writing 1-bit ON and OFF data to the corresponding Dot_onoffx (x = 0, 1, \u2026 , ) register. The LP5867 supports three data refresh modes: Mode 1, Mode 2, and Mode 3, by configuring 'Data_Ref_Mode' in Dev_initial register.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "SRAM is implemented inside the LP5867 device to support data writing and reading at the same time. Although data refresh mechanisms are not the same for Mode 1 and Mode 2/3, the data writing and reading follow the same method. Uses can update partial of the SRAM data only or the whole SRAM page simultaneously. The LP5867 supports auto-increment function to minimize data traffic and increase data transfer efficiency. Please be noted that 16-bit PWM (Mode 3) and 8-bit PWM (Mode 1 and Mode 2) are assigned with different SRAM addresses.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 22,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.3.7.1 LED Open Detection\nThe LP5867 includes LED open detection (LOD) for the fault caused by any opened LED dot. The threshold for LED open is 0.25V typical. LED open detection is only performed when PWM \u2265 25 (Mode 1 and Mode 2) or PWM \u2265 6400 (Mode 3) and voltage on CSn is detected lower than open threshold for continuously 4 sub-periods.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 23,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.3.7.2 LED Short Detection\nThe LP5867 includes LED short detection (LSD) for the fault caused by any shorted LED. Threshold for channel short is (VLED \u2013 1) V typical. LED short detection only performed when PWM \u2265 25 (Mode 1 and Mode 2) or PWM \u2265 6400 (Mode 3) and voltage on CSn is detected higher than short threshold for continuously 4 sub-periods. As there is parasitic capacitance for the current sink, to make sure the LSD result is correct, setting the LED current higher than 0.5mA is recommended.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "7.3.7.3 Thermal Shutdown\nThe LP5867 device implements thermal shutdown mechanism to protect the device from damage due to overheating. When the junction temperature rises to 160\u00b0C (typical) and above, the device switches into shutdown mode. The LP5867 exits thermal shutdown when the junction temperature of the device drops to 145\u00b0C (typical) and below.\n\n7.3.7.4 UVLO (Under Voltage Lock Out)\nThe LP5867 has an internal comparator that monitors the voltage at VCC. When VCC is below V UVF, reset is active and the LP5867 enters INITIALIZATION state.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.5.1 Interface Selection\nThe LP5867 supports two communication interfaces: I 2C and SPI. If IFS is high, ithe device enters into SPI mode. If IFS is low, the device enters into I2C mode.\n\n7.5.2 I2C Interface\nThe LP5867 is compatible with I 2C standard specification. The device supports both fast mode (400KHz maximum) and fast plus mode (1MHz maximum).\n\n7.5.2.1 I2C Data Transactions\nThe data on SDA line must be stable during the HIGH period of the clock signal (SCL). In other words, state of the data line can only be changed when clock signal is LOW. START and STOP conditions classify the beginning and the end of the data transfer session. A START condition is defined as the SDA signal transitioning from HIGH to LOW while SCL line is HIGH. A STOP condition is defined as the SDA transitioning from LOW to HIGH while SCL is HIGH.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.5.2.2 I2C Data Format\nThe address and data bits are transmitted MSB first with 8-bits length format in each cycle. Each transmission is started with Address Byte 1, which are divided into 5-bits of the chip address, 2 higher bits of the register address, and 1 read/write bit. The other 8 lower bits of register address are put in Address Byte 2.The device supports both independent mode and broadcast mode. The auto-increment feature allows writing / reading several consecutive registers within one transmission. If not consecutive, a new transmission must be started.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "7.5.2.3 Multiple Devices Connection\nThe LP5867 enters into I2C mode if IFS is connected to GND. The ADDR0/1 pin is used to select the unique I 2C follower address for each device. The SCL and SDA lines must each have a pullup resistor (4.7K \u03a9 for 400KHz, 2K\u03a9 for 1MHz) placed somewhere on the line and remain HIGH even when the bus is idle. VIO_EN can either be connected with VIO power supply or GPIO. It's suggested to put one 1nF cap as closer to VIO_EN pin as possible. Up to four LP5867 follower devices can share the same I2C bus by the different ADDR configurations.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 28,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.5.3.1 SPI Data Transactions\nMISO output is normally in a high impedance state. When the follower-select pin SS for the device is active (low) the MISO output is pulled low for read only. During write cycle MISO stays in high-impedance state. The follower-select signal SS must be low during the cycle transmission. SS resets the interface when high. Data is clocked in on the rising edge of the SCLK clock signal, while data is clocked out on the falling edge of SCLK.\n\n7.5.3.2 SPI Data Format\nThe address and data bits are transmitted MSB first with 8-bits length format in each cycle. Each transmission is started with Address Byte 1, which contains 8 higher bits of the register address. The Address Byte 2 is started with 2 lower bits of the register address and 1 read/write bit. The auto-increment feature allows writing / reading several consecutive registers within one transmission. If not consecutive, a new transmission must be started.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 29,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "7.5.3.3 Multiple Devices Connection\nThe device enters into SPI mode if IFS is pulled high to VIO through a pullup resistor(4.7K \u03a9 recommended). VIO_EN can either be connected with VIO power supply or GPIO. It's suggested to put one 1nF cap as closer to VIO_EN pin as possible. In SPI mode host can address as many devices as there are follower select pins on host.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.6 Register Maps\nThis section provides a summary of the register maps. For detailed register functions and descriptions, please refer to LP5867 7x6 LED Matrix Driver Register Maps .",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 31,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nDot_grp_sel11 017h R/W Reserved 00h\nDot_grp_sel12 018h R/W Reserved Dot L2-CSR1 group Dot L2-CSB0 group 00h\n...\nDot_onoff20 057h R/W Reserved Dot L6-CSB1 onoff Dot L6-CSG1 onoff 03h",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nFault_state 064h R Reserved Global_LOD Global_LSD 00h\nDot_lod0 065h R Reserved Dot L0-CSG0 LOD Dot L0-CSR0 LOD 00h\n...\nDot_lod19 078h R Reserved Dot L6-CSR1 LOD Dot L6-CSB0 LOD 00h\nDot_lod20 079h R Reserved Dot L6-CSB1 LOD Dot L6-CSG1 LOD 00h",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nDot_lsd0 086h R Reserved Dot L0-CSG0 LSD Dot L0-CSR0 LSD 00h\nDot_lsd1 087h R Reserved Dot L0-CSR1 LSD Dot L0-CSB0 LSD 00h\n...\nDot_lsd3 089h R Reserved Dot L1-CSG0 LSD Dot L1-CSR0 LSD 00h",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 37,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nDC92 15Ch R/W Reserved 80h\n...\nDC125 17Dh R/W LED dot current setting for Dot L6-CSB1 80h\npwm_bri0 200h R/W 8-bits PWM for Dot L0-CSR0 OR 16-bits PWM lower 8 bits [7:0] for Dot L0-CSR0 00h\npwm_bri1 201h R/W 8-bits PWM for Dot L0-CSG0 OR 16-bits PWM higher 8 bits [15:8] for Dot L0-CSR0 00h\n...",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 38,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\n...\npwm_bri35 223h R/W 8-bits PWM for Dot L1-CSB1 OR 16-bits PWM higher 8 bits [15:8] for Dot L0-CSB1 00h\npwm_bri36 224h R/W 8-bits PWM for Dot L2-CSR0 OR 16-bits PWM lower 8 bits [7:0] for Dot L1-CSR0 00h\npwm_bri37 225h R/W 8-bits PWM for Dot L2-CSG0 OR 16-bits PWM higher 8 bits [15:8] for Dot L1-CSR0 00h\n...",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 39,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\n...\npwm_bri89 259h R/W 8-bits PWM for Dot L4-CSB1 OR 16-bits PWM higher 8 bits [15:8] for Dot L2-CSB0 00h\npwm_bri90 25Ah R/W 8-bits PWM for Dot L5-CSR0 OR 16-bits PWM lower 8 bits [7:0] for Dot L2-CSR1 00h\npwm_bri91 25Bh R/W 8-bits PWM for Dot L5-CSG0 OR 16-bits PWM higher 8 bits [15:8] for Dot L2-CSR1 00h\n...",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 40,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri101 265h R/W Reserved 00h\npwm_bri102 266h R/W Reserved 00h\n... (listing of registers and their properties)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 41,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri146 292h R/W 16-bits PWM lower 8 bits [7:0] for Dot L4-CSG0 00h\npwm_bri147 293h R/W 16-bits PWM higher 8 bits [15:8] for Dot L4-CSG0 00h\n... (listing of registers and their properties)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 42,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri196 2C4h R/W 16-bits PWM lower 8 bits [7:0] for Dot L5-CSB0 00h\npwm_bri197 2C5h R/W 16-bits PWM higher 8 bits [15:8] for Dot L5-CSB0 00h\n... (listing of registers and their properties)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 49,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nDC2 102h R/W Reserved 80h\nDC3 103h R/W Reserved 80h\n... \nDC125 17Dh R/W LED dot current setting for Dot L6-CSB1 80h",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 50,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri0 200h R/W 8-bits PWM for Dot L0-CSR0 OR 16-bits PWM lower 8 bits [7:0] for Dot L0-CSR0 00h\npwm_bri1 201h R/W 8-bits PWM for Dot L0-CSG0 OR 16-bits PWM higher 8 bits [15:8] for Dot L0-CSR0 00h\n...",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 51,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\nDC92 15Ch R/W Reserved 80h\nDC93 15Dh R/W Reserved 80h\n...\nDC117 175h R/W LED dot current setting for Dot L6-CSR1 80h",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 52,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri11 20Bh R/W Reserved 00h\npwm_bri12 20Ch R/W Reserved 00h\n... (listing of registers and their descriptions)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 53,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri56 238h R/W Reserved 00h\npwm_bri57 239h R/W Reserved 00h\n... (listing of registers and their descriptions)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 54,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Register Acronym Address Type D7 D6 D5 D4 D3 D2 D1 D0 Default\npwm_bri101 265h R/W Reserved 00h\npwm_bri102 266h R/W Reserved 00h\n... (listing of registers and their descriptions)",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 58,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 9-1 shows an example of typical application, which uses one LP5867 to drive 14 common-anode RGB LEDs through I2C communication.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 59,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "Table 9-1. Design Parameters\nPARAMETER VALUE\nVCC / VIO 3.3V\nVLED 5V\nRGB LED count 14\nScan number 7\nInterface I2C\nLED maximum average current (red, green, blue) 4mA, 3mA, 2mA\nLED maximum peak current (red, green, blue) 44mA, 33mA, 22mA",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 60,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 9-3. Scan Lines and Current Sinks Waveforms of SW0, SW1, CSR0(CS0), CSG0(CS1) PWM frequency = 62.5kHz\n\nFigure 9-4. Scan Lines and Current Sinks Waveforms of SW0, SW1, CSR0(CS0), CSG0(CS1) PWM frequency = 125kHz\n\nFigure 9-5. Scan Lines and Current Sinks Waveforms of SW0, SW1, CSR0(CS0), CSG0(CS1) Switch blank time tSW_BLK = 0.5\u03bcs\n\nFigure 9-6. Scan Lines Switching Waveforms of SW0, SW1, SW2 Switch blank time tSW_BLK = 1\u03bcs\n\nFigure 9-7. Scan Lines Switching Waveforms of SW0, SW1, SW2 PWM_Phase_Shift = 0h\n\nFigure 9-8. PWM Phase Shift Disabled",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 61,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "9.3 Power Supply Recommendations\n9.3.1 VDD Input Supply Recommendations\nLP5867 is designed to operate from a 2.7V to 5.5V VDD voltage supply. This input supply must be well regulated and be able to provide the peak current required by the LED matrix. The resistance of the VDD supply rail must be low enough such that the input current transient does not cause the LP5867 VDD supply voltage to drop below the maximum POR voltage.\n\n9.3.2 VLED Input Supply Recommendations\nLP5867 is designed to operate with a 2.7V to 5.5V VLED voltage supply. The VLED supply must be well regulated and able to provide the peak current required by the LED configuration without voltage drop, under load transients like start-up or rapid brightness change. The resistance of the input supply rail must be low enough so that the input current transient does not cause the VLED supply voltage to drop below LED Vf + VSAT voltage.\n\n9.3.3 VIO Input Supply Recommendations\nLP5867 is designed to operate with a 1.65V to 5.5V VIO_EN voltage supply. The VIO_EN supply must be well regulated and able to provide the peak current required by the LED configuration without voltage drop under load transients like startup or rapid brightness change.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 64,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "The following pages include mechanical, packaging, and orderable information. This information is the most current data available for the designated devices. This data is subject to change without notice and revision of this document.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 65,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\nC0.4 MAX0.160.10\n1.2TYP\n2  TYP\n0.4TYP0.4  TYP24X 0.2250.185\nB E AD\n4229900/A   08/2023\nD: Max = 1.822 mm, Min = 1.782 mm\nDSBGA - 0.4 mm max heightYBH0024-C02DIE SIZE BALL GRID ARRAY\n E: Max = 2.572 mm, Min = 2.532 mm\nNOTES:  1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing     per ASME Y14.5M.2. This drawing is subject to change without notice.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 66,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n0.05 MIN0.05 MAX\n24X (0.2)(0.4) TYP(0.4) TYP\n(0.2)SOLDER MASKOPENING(0.2)METAL\n4229900/A   08/2023\nDSBGA - 0.4 mm max heightYBH0024-C02DIE SIZE BALL GRID ARRAY\nNOTES: (continued) 3. Final dimensions may vary due to manufacturing tolerance considerations and also routing constraints.    See Texas Instruments Literature No. SNVA009 (www.ti.com/lit/snva009).",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 67,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(0.4) TYP(0.4) TYP24X (0.21)(R0.05) TYP\n4229900/A   08/2023\nDSBGA - 0.4 mm max heightYBH0024-C02DIE SIZE BALL GRID ARRAY\nNOTES: (continued) 4. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release.",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    },
+    {
+      "page_number": 68,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OPTION ADDENDUM\nwww.ti.com 2-May-2025\nPACKAGING INFORMATION\n\nOrderable\npart number\nStatus\n(1)\nMaterial type\n(2)\nPackage | Pins Package qty | Carrier RoHS\n(3)\nLead finish/\nBall material\n(4)\nMSL rating/\nPeak reflow\n(5)\nOp temp (\u00b0C) Part marking\n(6)\nLP5867YBHR Active Production DSBGA (YBH) | 24 3000 | LARGE T&R Yes SNAGCU Level-1-260C-UNLIM -40 to 85 LP5867",
+      "grade": "A",
+      "maker_pn": "LP5867",
+      "part number": "1003-000106"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The LP5867 is an LED matrix driver that integrates 7 switching FETs and 6 constant current sinks, capable of driving up to 42 LED dots or 14 RGB pixels using a time-multiplexing matrix scheme.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 is a 7 x 6 LED matrix driver device that can drive up to 42 LED dots or 14 RGB pixels by utilizing a time-multiplexing matrix scheme.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 LED matrix driver supports both analog dimming and PWM dimming methods for controlling the brightness of the LED display.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 integrates 7 switching FETs with 6 constant current sinks, allowing it to drive a 7 x 6 LED matrix display using a time-multiplexing scheme, supporting up to 42 LED dots or 14 RGB pixels.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The LP5867 device supports various electrical characteristics and configurations related to voltage, current, power, and timing parameters. It operates over specified ambient temperature ranges with typical values for VCC, VIO, VLED, LED peak current, and capacitor values. The device uses a time-multiplexing matrix scheme to drive up to 42 LED dots or 14 RGB pixels with 6 current sinks and 7 scan lines. It calculates the line switching cycle time and total display time for one sub-period based on specific timing parameters.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 achieves analog dimming through configurable current gain control methods like global maximum current setting, color current groups, and individual dot current setting. It allows adjusting the output current from 0% to 100% of the maximum current for each LED dot. The device also supports multiple PWM dimming techniques, including individual 8-bit/16-bit PWM for each LED dot, programmable groups of 8-bit PWM dimming, and 8-bit PWM for global dimming. It uses an enhanced spectrum PWM algorithm for 16-bit depth with high refresh rate to avoid flicker.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 includes protection features like LED open detection, LED short detection, thermal shutdown, and under-voltage lockout (UVLO). It supports both I2C and SPI communication interfaces with specific data transaction formats, multiple device connections, and auto-increment functionality for efficient data transfer. The register maps provide detailed information on various settings, such as LED group selection, dot on/off control, fault state, LED open/short detection, dot current, and PWM brightness values.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The device provides design recommendations for power supply configurations, including VDD, VLED, and VIO input supply recommendations. These ensure proper operation, handling of peak currents, and voltage regulation under load transients. Example design parameters are provided, specifying values for VCC/VIO, VLED, RGB LED count, scan number, interface, and maximum average/peak currents for different LED colors.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "There are several methods to control the PWM duty cycle of each LED dot. Individual 8-Bit / 16-Bit PWM for Each LED Dot: Every LED has an individual 8-bit or 16-bit PWM register that is used to change the LED brightness by PWM duty. The LP5867 uses an enhanced spectrum PWM (ES-PWM) algorithm to achieve 16-bit depth with high refresh rate and this can avoid flicker under high speed camera. Programmable Groups of 8-Bit PWM Dimming: The group PWM Control is used to select LEDs into 1 to 3 groups while each group has a separate register for PWM control. 8-Bit PWM for Global Dimming: The Global PWM Control function affects all LEDs simultaneously.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "Multiple Devices Connection for I2C: The LP5867 enters into I2C mode if IFS is connected to GND. The ADDR0/1 pin is used to select the unique I2C follower address for each device. The SCL and SDA lines must each have a pullup resistor. Up to four LP5867 follower devices can share the same I2C bus by the different ADDR configurations. Multiple Devices Connection for SPI: The device enters into SPI mode if IFS is pulled high to VIO through a pullup resistor. In SPI mode host can address as many devices as there are follower select pins on host.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "Example application circuit with design parameters: Figure 9-1 shows an example of typical application, which uses one LP5867 to drive 14 common-anode RGB LEDs through I2C communication. The design parameters include VCC/VIO of 3.3V, VLED of 5V, 14 RGB LED count, 7 scan number, I2C interface, and maximum average/peak currents for red, green, and blue LEDs. Figures 9-3 to 9-8 illustrate various waveforms and timing diagrams for scan lines, current sinks, PWM frequency, switch blank time, and PWM phase shift in the application circuit.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "The LP5867 device implements thermal shutdown mechanism to protect the device from damage due to overheating. When the junction temperature rises to 160\u00b0C (typical) and above, the device switches into shutdown mode. The LP5867 exits thermal shutdown when the junction temperature of the device drops to 145\u00b0C (typical) and below.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 has an internal comparator that monitors the voltage at VCC. When VCC is below V UVF, reset is active and the LP5867 enters INITIALIZATION state.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The LP5867 device has thermal shutdown and under-voltage lockout mechanisms to protect against overheating and low voltage conditions. The thermal shutdown activates when the junction temperature exceeds 160\u00b0C and deactivates below 145\u00b0C. The under-voltage lockout resets the device and enters initialization state when the supply voltage VCC falls below a specified threshold.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "The text provides package outline information, including dimensions and specifications for a DSBGA (Die Size Ball Grid Array) package with a maximum height of 0.4 mm and 24 balls. It includes details such as the die size, ball grid array dimensions, and notes on dimensioning and tolerancing standards.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The text includes an example board layout diagram for the DSBGA package, showing the solder mask opening, metal dimensions, and notes on manufacturing tolerance considerations and routing constraints based on Texas Instruments literature.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "An example stencil design for the DSBGA package is provided, with dimensions for the laser cutting apertures and notes on trapezoidal walls and rounded corners for better paste release.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      },
+      {
+        "content": "The text also includes packaging information in a tabular format, listing the orderable part number, status, material type, package details, package quantity and carrier, RoHS compliance, lead finish/ball material, MSL rating and peak reflow temperature, operating temperature range, and part marking for the LP5867YBHR active production DSBGA package.",
+        "part number": "1003-000106.pdf",
+        "grade": "A",
+        "maker_pn": "LP5867"
+      }
+    ]
+  },
+  "part number": "1003-000106"
+}

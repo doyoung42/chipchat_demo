@@ -1,0 +1,24 @@
+{
+    "pdf_processing": {
+        "pages_per_chunk": 3,
+        "chunk_overlap": 1,
+        "output_formats": {
+            "save_filtered_pdf": true,
+            "save_summary_only": true,
+            "save_combined": true
+        },
+        "folders": {
+            "pdf_folder": "./datasheets",
+            "pre_json_folder": "./prep_json/pre_json",
+            "result_json_folder": "./prep_json"
+        }
+    },
+    "vectorstore": {
+        "chunk_size": 1000,
+        "chunk_overlap": 200,
+        "model_name": "sentence-transformers/all-MiniLM-L6-v2",
+        "folders": {
+            "vectorstore_folder": "./vectorstore"
+        }
+    }
+} 

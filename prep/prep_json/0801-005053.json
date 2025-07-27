@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "component_name": "74AHC1G32; 74AHCT1G32",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Single 2-input OR gate, wide supply voltage range 2.0 V to 5.5 V, overvoltage tolerant inputs up to 5.5 V, high noise immunity, low power CMOS, ESD protection up to 2000 V HBM and 1000 V CDM, temperature range -40\u00b0C to +125\u00b0C",
+    "applications": "Translator in mixed voltage environments",
+    "grade": "F",
+    "maker_pn": "74AHC1G32"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The 74AHC1G32; 74AHCT1G32 is a single 2-input OR gate. Inputs are overvoltage tolerant. This feature allows the use of these devices as translators in mixed voltage environments.\n\n\u2022 Wide supply voltage range from 2.0 V to 5.5 V\n\u2022 Overvoltage tolerant inputs to 5.5 V\n\u2022 High noise immunity\n\u2022 CMOS low power dissipation\n\u2022 Latch-up performance exceeds 100 mA per JESD 78 Class II Level A\n\u2022 Symmetrical output impedance\n\u2022 Balanced propagation delays\n\u2022 Input levels:\n    \u2022 For 74AHC1G32: CMOS level\n    \u2022 For 74AHCT1G32: TTL level\n\u2022 ESD protection:\n    \u2022 HBM: ANSI/ESDA/JEDEC JS-001 class 2 exceeds 2000 V\n    \u2022 CDM: ANSI/ESDA/JEDEC JS-002 class C3 exceeds 1000 V\n\u2022 Specified from -40 \u00b0C to +125 \u00b0C",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 5. Limiting values\nIn accordance with the Absolute Maximum Rating System (IEC 60134).\n\nSymbol\tParameter\tConditions\tMin\tMax\tUnit\nVCC\tsupply voltage\t\t-0.5\t+7.0\tV\nVI\tinput voltage\t\t-0.5\t+7.0\tV\nIIK\tinput clamping current\tVI < -0.5 V\t-20\t-\tmA\nIOK\toutput clamping current\tVO < -0.5 V or VO > VCC + 0.5 V [1]\t-\t\u00b120\tmA\nIO\toutput current\t-0.5 V < VO < VCC + 0.5 V\t-\t\u00b125\tmA\nICC\tsupply current\t\t-\t75\tmA\nIGND\tground current\t-75\t-\tmA\nTstg\tstorage temperature\t\t-65\t+150\t\u00b0C\nPtot\ttotal power dissipation\tTamb = -40 \u00b0C to +125 \u00b0C [2]\t-\t250\tmW\n\n[1] The input and output voltage ratings may be exceeded if the input and output current ratings are observed.\n[2] For SOT353-1 (TSSOP5) package: Ptot derates linearly with 3.3 mW/K above 74 \u00b0C.\n    For SOT753 (SC-74A) package: Ptot derates linearly with 3.8 mW/K above 85 \u00b0C.\n    For SOT8065-1 (XSON5) package: Ptot derates linearly with 3.2 mW/K above 72 \u00b0C.",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 6. Package outline SOT353-1 (TSSOP5)",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Package outline SOT753 (SC-74A)",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 8. Package outline SOT8065-1 (XSON5)",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Ordering information....................................................1\n4. Marking.......................................................................... 2\n5. Functional diagram.......................................................2\n6. Pinning information......................................................2\n6.1. Pinning.........................................................................2\n6.2. Pin description.............................................................3\n7. Functional description................................................. 3\n8. Limiting values............................................................. 3\n9. Recommended operating conditions..........................4\n10. Static characteristics..................................................4\n11. Dynamic characteristics.............................................5\n11.1. Waveform and test circuit.......................................... 6\n12. Package outline.......................................................... 7",
+      "grade": "F",
+      "maker_pn": "74AHC1G32",
+      "part number": "0801-005053"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The 74AHC1G32; 74AHCT1G32 is a single 2-input OR gate. It is a CMOS low power dissipation device with wide supply voltage range from 2.0 V to 5.5 V and overvoltage tolerant inputs to 5.5 V for use in mixed voltage environments.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "Key features include high noise immunity, latch-up performance exceeding 100 mA per JESD 78 Class II Level A, symmetrical output impedance, balanced propagation delays, and ESD protection (HBM: ANSI/ESDA/JEDEC JS-001 class 2 exceeds 2000 V, CDM: ANSI/ESDA/JEDEC JS-002 class C3 exceeds 1000 V).",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "The 74AHC1G32 has CMOS level inputs while the 74AHCT1G32 has TTL level inputs. The device is specified from -40\u00b0C to +125\u00b0C temperature range.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 5 presents the limiting values or absolute maximum ratings for various electrical parameters of the device, in accordance with the Absolute Maximum Rating System (IEC 60134). These ratings specify the maximum allowable values for supply voltage (VCC), input voltage (VI), input clamping current (IIK), output clamping current (IOK), output current (IO), supply current (ICC), ground current (IGND), storage temperature (Tstg), and total power dissipation (Ptot).",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "The input and output voltage ratings may be exceeded if the input and output current ratings are observed. The total power dissipation (Ptot) derates linearly with temperature above a certain threshold, which varies depending on the package type: 3.3 mW/K above 74\u00b0C for SOT353-1 (TSSOP5) package, 3.8 mW/K above 85\u00b0C for SOT753 (SC-74A) package, and 3.2 mW/K above 72\u00b0C for SOT8065-1 (XSON5) package.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "The table provides the minimum and maximum values for each parameter, along with any specific conditions or notes. For example, the supply voltage (VCC) and input voltage (VI) must be between -0.5 V and +7.0 V, the input clamping current (IIK) must not exceed -20 mA when the input voltage is below -0.5 V, and the output clamping current (IOK) must not exceed \u00b120 mA when the output voltage is below -0.5 V or above VCC + 0.5 V.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 6. Package outline SOT353-1 (TSSOP5) - This chunk provides information about the package outline and type for the TSSOP5 package, which is a thin shrink small outline package with 5 leads.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "Fig. 7. Package outline SOT753 (SC-74A) - This chunk describes the package outline for the SC-74A package, which is a small outline transistor package with a compact footprint.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "Fig. 8. Package outline SOT8065-1 (XSON5) - This chunk details the package outline for the XSON5 package, which is an extremely small outline non-leaded package with 5 terminals, suitable for space-constrained applications.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "Package types: TSSOP5, SC-74A, XSON5 - This chunk summarizes the different package types mentioned in the text, including their respective package codes and lead counts.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      },
+      {
+        "content": "Packaging information, package outlines, package types, lead counts - This chunk provides a high-level overview of the content, which covers various aspects of packaging information, such as package outlines, package types, and lead counts for different package configurations.",
+        "part number": "0801-005053.pdf",
+        "grade": "F",
+        "maker_pn": "74AHC1G32"
+      }
+    ]
+  },
+  "part number": "0801-005053"
+}

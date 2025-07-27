@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "component_name": "1N4728A - 1N4761A series",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Low voltage regulator diodes in hermetically sealed small SOD66 (DO-41) glass packages. Working voltage range: 3.3 V to 24 V. Total power dissipation: max. \u2264 1000 mW. Tolerance series: \u00b15%.",
+    "applications": "The datasheet does not explicitly mention main applications for this series of regulator diodes.",
+    "grade": "A",
+    "maker_pn": "1N4728A"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1.1 General description\nLow voltage regulator diodes in hermetically sealed small SOD66 (DO-41) glass packages.\nThe series consists of 22 types with nominal working voltages from 3.3 to 24 V.\n\n1.2 Features\nn Total power dissipation:\n    max. \u2264 1000 mW\nn Tolerance series:\u00b15%\nn Working voltage range:\n    nom. 3.3 V to 24 V\nn Small hermetically sealed glass\n    package",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 7. Characteristics\nTj=25\u00b0C unless otherwise specified.\n\nSymbol Parameter Conditions Min Typ Max Unit\nVF forward voltage IF = 200 mA - - 1.2 V",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 8. Characteristics per type\nTj=25\u00b0C unless otherwise speci\ufb01ed.\n\nType\nnumber\nWorking\nvoltage\nVZ (V)[1]\nTest\ncurrent\nItest\n(mA)\nDifferential\nresistance\nrdif(\u03a9)\nReverse current\nIR (\u00b5A)\nWorking\ncurrent\nIZ (mA)\nNon-repetitive\npeak reverse\ncurrent\nIZSM (mA)[2]\nat Itest at Itest at IZ  IZ (mA)\nNom Max Max Max VR (V) Max Max\n1N4728A 3.3 76 10 400 1 100 1 276 1380\n1N4729A 3.6 69 10 400 1 100 1 252 1260\n... (table continues with data for other types)",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "(1) Tj= 200\u00b0C\n(2) Tj=25\u00b0C\n\nFig 2. Forward current as a function of forward voltage; typical values",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig 3. Package outline SOD66 (DO-41)\n\nReferences Outline\nversion\nEuropean\nprojection Issue date\nIEC JEDEC JEITA\nSOD66 DO-41\nsod066_po\n97-06-20\n09-10-09\n\nUnit\nmm\nmax\nnom\nmin\n0.81 2.6\n25.4\nb\n\nDimensions\n\nNote\n1. The marking band indicates the cathode.\n\nHermetically sealed glass package; axial leaded; 2 leads SOD66\nDG 1\n4.8\nL\n0 2 4 mm\nscale\nG 1L L\nb\n(1)\nk a\nD",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "Limiting values \u2014 Stress above one or more limiting values (as de\ufb01ned in the Absolute Maximum  Ratings System of IEC 60134) may  cause permanent damage  to the device. Limiting values are stress ratings only and operation of the device at these or any other conditions above those given in the Characteristics sections of this document is not implied. Exposure to limiting values for extended periods may affect device reliability.",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1 Product profile\n1.1 General description\n1.2 Features\n1.3 Applications\n1.4 Quick reference data",
+      "grade": "A",
+      "maker_pn": "1N4728A",
+      "part number": "0402-000696"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Low voltage regulator diodes in hermetically sealed small SOD66 (DO-41) glass packages. The series consists of 22 types with nominal working voltages from 3.3 to 24 V.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Total power dissipation: max. \u2264 1000 mW. Tolerance series: \u00b15%. Working voltage range: nom. 3.3 V to 24 V. Small hermetically sealed glass package.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "General description: Low voltage regulator diodes in hermetically sealed small SOD66 (DO-41) glass packages. The series consists of 22 types with nominal working voltages from 3.3 to 24 V. Features: Total power dissipation max. \u2264 1000 mW, Tolerance series \u00b15%, Working voltage range nom. 3.3 V to 24 V, Small hermetically sealed glass package.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Product profile overview: General description of low voltage regulator diodes, Key features including power dissipation, tolerance, voltage range, and package type.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 7 provides the electrical characteristics of the component, including the forward voltage (VF) at a forward current (IF) of 200 mA, which has a maximum value of 1.2 V.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Table 8 lists the characteristics for different types of the component, such as the working voltage (VZ), test current (Itest), differential resistance (rdif), reverse current (IR), working current (IZ), and non-repetitive peak reverse current (IZSM). The table provides the minimum, nominal, and maximum values for these parameters at different operating conditions, such as junction temperature (Tj).",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Figure 2 shows a graph of the forward current as a function of the forward voltage, providing typical values for the component's current-voltage characteristics.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "The electrical characteristics section covers important parameters related to voltage, current, power, and timing specifications, providing detailed information for different operating conditions and component types.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "Limiting values \u2014 Stress above one or more limiting values (as de\ufb01ned in the Absolute Maximum Ratings System of IEC 60134) may cause permanent damage to the device.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Limiting values are stress ratings only and operation of the device at these or any other conditions above those given in the Characteristics sections of this document is not implied.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Exposure to limiting values for extended periods may affect device reliability.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig 3. Package outline SOD66 (DO-41) - This chunk provides information about the package type and outline, specifically the SOD66 (DO-41) package.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "References Outline version European projection Issue date IEC JEDEC JEITA SOD66 DO-41 sod066_po 97-06-20 09-10-09 - This chunk lists the reference standards, outline version, and issue dates for the SOD66 (DO-41) package.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Unit mm max nom min 0.81 2.6 25.4 b Dimensions Note 1. The marking band indicates the cathode. - This chunk provides dimensional information, including units, maximum, nominal, and minimum values, as well as a note about the marking band indicating the cathode.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      },
+      {
+        "content": "Hermetically sealed glass package; axial leaded; 2 leads SOD66 DG 1 4.8 L 0 2 4 mm scale G 1L L b (1) k a D - This chunk describes the package type as a hermetically sealed glass package with axial leads, specifically 2 leads for the SOD66 package. It also includes a scale and dimensions for the package outline.",
+        "part number": "0402-000696.pdf",
+        "grade": "A",
+        "maker_pn": "1N4728A"
+      }
+    ]
+  },
+  "part number": "0402-000696"
+}

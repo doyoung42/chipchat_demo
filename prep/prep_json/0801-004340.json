@@ -1,0 +1,206 @@
+{
+  "metadata": {
+    "component_name": "74HC1G32; 74HCT1G32",
+    "manufacturer": "NXP Semiconductors",
+    "key_specifications": "Single 2-input OR gate, wide supply voltage range (2.0 V to 6.0 V), CMOS/TTL input levels, low power dissipation, high noise immunity, ESD protection up to 2000V HBM",
+    "applications": "The datasheet does not explicitly mention main applications, but as a basic logic gate, the 74HC1G32/74HCT1G32 can be used in a wide range of digital circuits and systems.",
+    "grade": "F",
+    "maker_pn": "74HC1G32"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1.  General description\nThe 74HC1G32; 74HCT1G32 is a single 2-input OR gate. Inputs include clamp diodes. This enables the use of current limiting resistors to interface inputs to voltages in excess of VCC.\n\n2.  Features and benefits\n\u2022 Wide supply voltage range from 2.0 V to 6.0 V\n\u2022 Symmetrical output impedance\n\u2022 High noise immunity\n\u2022 CMOS low power dissipation\n\u2022 Balanced propagation delays\n\u2022 Latch-up performance exceeds 100 mA per JESD78 Class II Level B\n\u2022 Input levels:\n\u2022 For 74HC1G32: CMOS level\n\u2022 For 74HCT1G32: TTL level\n\u2022 Complies with JEDEC standards:\n\u2022 JESD8C (2.7 V to 3.6 V)\n\u2022 JESD7A (2.0 V to 6.0 V)\n\u2022 ESD protection\n\u2022 HBM: ANSI/ESDA/JEDEC JS-001 class 2 exceeds 2000 V\n\u2022 CDM: ANSI/ESDA/JEDEC JS-002 class C3 exceeds 1000 V\n\u2022 Specified from -40\u00b0 C to +85\u00b0 C and from -40\u00b0 C to +125\u00b0 C",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Packaging Information",
+        "Functional Diagram"
+      ],
+      "content": "4.  Marking\nTable 2. Marking codes\n\n5.  Functional diagram\n\n6.  Pinning information\n6.1.  Pinning",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics",
+        "Limiting Values"
+      ],
+      "content": "6.2.  Pin description\nTable 3. Pin description\n\n7.  Functional description\nTable 4. Function table\n\n8.  Limiting values\nTable 5. Limiting values",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "9.  Recommended operating conditions\nTable 6. Recommended operating conditions\nVoltages are referenced to GND (ground = 0 V).\n\n10.  Static characteristics\nTable 7. Static characteristics\nVoltages are referenced to GND (ground = 0 V). All typical values are measured at Tamb = 25 \u00b0C.",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "11.  Dynamic characteristics\nTable 8. Dynamic characteristics\nGND = 0 V; tr = tf \u2264 6.0 ns. All typical values are measured at Tamb = 25 \u00b0C. For test circuit see Fig. 5",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "11.1.  Waveforms and test circuit\n\nFig. 4. The input (A and B) to output (Y) propagation delays\n\nFig. 5. Test circuit for measuring switching times",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 6. Package outline SOT353-1 (TSSOP5)",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Package outline SOT753 (SC-74A)",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Ordering information....................................................1\n4. Marking.......................................................................... 2\n5. Functional diagram.......................................................2\n6. Pinning information......................................................2\n6.1. Pinning.........................................................................2\n6.2. Pin description.............................................................3\n7. Functional description................................................. 3\n8. Limiting values............................................................. 3\n9. Recommended operating conditions..........................4\n10. Static characteristics..................................................4\n11. Dynamic characteristics.............................................5\n11.1. Waveforms and test circuit........................................ 6\n12. Package outline.......................................................... 7\n13. Abbreviations..............................................................9\n14. Revision history..........................................................9\n15. Legal information ......................................................10",
+      "grade": "F",
+      "maker_pn": "74HC1G32",
+      "part number": "0801-004340"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The 74HC1G32; 74HCT1G32 is a single 2-input OR gate. Inputs include clamp diodes, enabling the use of current limiting resistors to interface inputs to voltages in excess of VCC. It features a wide supply voltage range from 2.0 V to 6.0 V, symmetrical output impedance, high noise immunity, and CMOS low power dissipation.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "The 74HC1G32; 74HCT1G32 has balanced propagation delays, latch-up performance exceeding 100 mA per JESD78 Class II Level B, and complies with JEDEC standards JESD8C (2.7 V to 3.6 V) and JESD7A (2.0 V to 6.0 V). It offers ESD protection, with HBM exceeding 2000 V and CDM exceeding 1000 V, and is specified from -40\u00b0C to +85\u00b0C and -40\u00b0C to +125\u00b0C.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "The 74HC1G32 has CMOS level inputs, while the 74HCT1G32 has TTL level inputs. Both devices offer features such as symmetrical output impedance, high noise immunity, low power dissipation, balanced propagation delays, and ESD protection.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "6.2. Pin description\nTable 3. Pin description\n\n7. Functional description\nTable 4. Function table\n\n8. Limiting values\nTable 5. Limiting values",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "9. Recommended operating conditions\nTable 6. Recommended operating conditions\nVoltages are referenced to GND (ground = 0 V).",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "10. Static characteristics\nTable 7. Static characteristics\nVoltages are referenced to GND (ground = 0 V). All typical values are measured at Tamb = 25 \u00b0C.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "11. Dynamic characteristics\nTable 8. Dynamic characteristics\nGND = 0 V; tr = tf \u2264 6.0 ns. All typical values are measured at Tamb = 25 \u00b0C. For test circuit see Fig. 5\n\n11.1. Waveforms and test circuit\n\nFig. 4. The input (A and B) to output (Y) propagation delays\n\nFig. 5. Test circuit for measuring switching times",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "11.1. Waveforms and test circuit: This section likely provides information about the waveforms and test circuits used for measuring the propagation delays and switching times of the electronic component. It may include details on the input signals (A and B), output signal (Y), and the test setup for capturing these waveforms.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "Fig. 4. The input (A and B) to output (Y) propagation delays: This figure illustrates the propagation delays between the input signals (A and B) and the output signal (Y). It visually represents the timing characteristics of the component, which is crucial for understanding its performance and ensuring proper operation in the application circuit.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "Fig. 5. Test circuit for measuring switching times: This figure depicts the test circuit used for measuring the switching times of the electronic component. It likely shows the configuration of the test setup, including the component under test, input signal sources, and measurement equipment. Understanding the test circuit is essential for accurately characterizing the component's switching behavior and verifying its suitability for the target application.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "4. Marking: This section likely provides information about the marking codes used on the electronic component package, including details on how to interpret the codes and what information they convey.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "5. Functional diagram: This section may include a visual representation or diagram that illustrates the functional aspects or internal workings of the electronic component.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "6. Pinning information: This section covers details related to the pinout configuration of the electronic component package. It may include subsections like '6.1. Pinning' which provide specific information about the pin assignments and their functions.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "Package outline diagrams: The text mentions figures 'Fig. 6. Package outline SOT353-1 (TSSOP5)' and 'Fig. 7. Package outline SOT753 (SC-74A)', which are likely diagrams or illustrations depicting the physical outlines and dimensions of different package types for the electronic component.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      },
+      {
+        "content": "Ordering and shipment information: While not explicitly mentioned in the provided text, sections related to ordering information (such as part numbers, ordering codes, and lead times) and shipment specifications (such as packaging materials, quantities, and shipping methods) are often included in packaging information sections of datasheets.",
+        "part number": "0801-004340.pdf",
+        "grade": "F",
+        "maker_pn": "74HC1G32"
+      }
+    ]
+  },
+  "part number": "0801-004340"
+}

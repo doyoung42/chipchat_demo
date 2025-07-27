@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "component_name": "NCR420PAS, NCR421PAS",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Stabilized output current of 10 mA without external resistor, adjustable up to 150 mA with external resistor. High current accuracy at supply voltage variation. Low voltage overhead of 1.4 V. High power dissipation of 530 mW. Supply voltage up to 40 V. Digital PWM input up to 10 kHz frequency for NCR421PAS. AEC-Q101 qualified.",
+    "applications": "Constant current LED driver, generic constant current source, automotive applications (e.g. interior lighting, dashboard, instrumentation, number plate light), paralleling drivers to increase stabilized output current.",
+    "grade": "A",
+    "maker_pn": "NCR420PAS"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1.1.  General description\nLED driver consisting of resistor-equipped NPN transistor with two diodes on one chip in a leadless medium power DFN2020D-6 (SOT1118D) Surface-Mounted Device (SMD) plastic package with visible and solderable side pads.\n\n1.2.  Features and benefits\n\u2022 Stabilized output current of 10 mA without external resistor\n\u2022 Stabilized output current adjustable up to 150 mA when an external resistor is used\n\u2022 High current accuracy at supply voltage variation\n\u2022 Low voltage overhead of 1.4 V\n\u2022 Reduces component count and board space\n\u2022 High power dissipation of 530 mW\n\u2022 Supply voltage up to 40 V\n\u2022 Digital PWM input up to 10 kHz frequency for NCR421PAS\n\u2022 AEC-Q101 qualified\n\n1.3.  Applications\n\u2022 Constant current LED driver\n\u2022 Generic constant current source\n\u2022 Automotive applications (for example: interior lighting, dash board, instrumentation, number plate light)\n\u2022 Increase stabilized output current by paralleling drivers",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 2. Quick reference data\nSymbol Parameter Conditions Min Typ Max Unit\nenable voltage\nNCR420PAS - - 40 V\nVEN\nNCR421PAS - - 4.5 V\nVout output voltage - - 40 V\nstabilized output current\nNCR420PAS Vout = 1.4 V;\nVEN = 24 V\n[1] 9 10 11 mA\nIout\nNCR421PAS Vout = 1.4 V;\nVEN = 3.3 V\n[1] 9 10 11 mA\n[1] Pulse test: tp \u2264 300 \u00b5s; \u03b4 \u2264 0.02",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics",
+        "Mechanical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "Table 6. Limiting values\nIn accordance with the Absolute Maximum Rating System (IEC 60134).\nSymbol Parameter Conditions Min Max Unit\nIout stabilized output current if\nexternal resistor is used\n- 200 mA\nenable voltage\nNCR420PAS - 40 V\nVEN\nNCR421PAS - 4.5 V\nVout output voltage - 40 V\nVR reverse voltage [1] - 0.5 V\n[2] - 370 mW\n[3] - 570 mW\n[4] - 530 mW\nPtot total power dissipation Tamb \u2264 25 \u00b0C\n[5] - 700 mW\nTj junction temperature - 150 \u00b0C\nTamb ambient temperature -55 150 \u00b0C\nTstg storage temperature -65 150 \u00b0C\n\n[1] Between all terminals.\n[2] Device mounted on an FR4 Printed-Circuit Board (PCB), single-side copper, tin-plated and standard footprint.\n[3] Device mounted on an FR4 Printed-Circuit Board (PCB), single-side copper, tin-plated; mounting pad for collector 1 cm2.\n[4] Device mounted on an FR4 Printed-Circuit Board (PCB), 4-layer copper, tin-plated and standard footprint.\n[5] Device mounted on an FR4 Printed-Circuit Board (PCB), 4-layer copper, tin-plated; mounting pad for collector 1 cm2.",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Thermal Characteristics"
+      ],
+      "content": "Table 7. Thermal characteristics\nSymbol Parameter Conditions Min Typ Max Unit\n[1] - - 338 K/W\n[2] - - 219 K/W\n[3] - - 236 K/W\nRth(j-a) thermal resistance from junction to ambient in free air\n[4] - - 179 K/W",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Thermal Characteristics"
+      ],
+      "content": "Fig. 2. Transient thermal impedance from junction to ambient as a function of pulse duration; typical values\n\nFig. 3. Transient thermal impedance from junction to ambient as a function of pulse duration; typical values\n\nFig. 4. Transient thermal impedance from junction to ambient as a function of pulse duration; typical values\n\nFig. 5. Transient thermal impedance from junction to ambient as a function of pulse duration; typical values",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 8. Characteristics\nTamb = 25 \u00b0C unless otherwise specified.\nSymbol Parameter Conditions Min Typ Max Unit\nV(BR)CEO collector-emitter breakdown voltage IC = 1 mA; IB = 0 A 40 - - V\nhFE DC current gain VCE = 1 V; IC = 50 mA [1] 200 350 -\nRint internal resistor IRint = 10 mA 85 95 105 \u03a9\nVRint voltage drop at internal resistor Rint Iout = 10 mA [1] 0.85 0.95 1.05 V\nenable current NCR420PAS VEN = 24 V [1] - 1.2 - mA\nIEN NCR421PAS VEN = 3.3 V [1] - 1.2 - mA\nbias resistor NCR420PAS - 20 - k\u03a9\nRB NCR421PAS - 1.5 - k\u03a9\nstabilized output current NCR420PAS VEN = 24 V; Vout = 1.4 V [1] 9 10 11 mA\nIout NCR421PAS VEN = 3.3 V; Vout = 1.4 V [1] 9 10 11 mA\nstabilized output current NCR420PAS at Rext = 5.1 \u03a9 VEN = 24 V; Vout > 2 V [1] - 150 - mA\nIout NCR421PAS at Rext = 5.1 \u03a9 VEN = 3.3 V; Vout > 2 V [1] - 150 - mA\nVout, min lowest sufficient output voltage overhead: Vout = VCC - VLED Iout> 10 mA - 1.4 - V\nstabilized output current change over ambient temperature NCR420PAS VEN = 24 V; Vout > 2 V [1] - -0.27 - %/K\n\u0394Iout/(Iout x \u0394Tamb) NCR421PAS VEN = 3.3 V; Vout > 2 V [1] - -0.27 - %/K\nstabilized output current change over supply voltage NCR420PAS VEN = 24 V; Vout > 2 V [1] - 1 - %/V\n\u0394Iout/(Iout x \u0394VCC) NCR421PAS VEN = 3.3 V; Vout > 2 V [1] - 1 - %/V",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 18. NCR421PAS: Output current as a function of output voltage; typical values\nFig. 19. NCR421PAS: Output current as a function of output voltage; typical values\nFig. 20. NCR421PAS: Output current as a function of output voltage; typical values\nFig. 21. NCR421PAS: Output current as a function of enable voltage; typical values",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 22. NCR421PAS: Output current as a function of enable voltage; typical values\nFig. 23. NCR421PAS: Output current as a function of enable voltage; typical values\nFig. 24. NCR421PAS: Output current as a function of enable voltage; typical values\nFig. 25. NCR421PAS: Enable current as a function of enable voltage; typical values",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Fig. 26. LED driver application diagram\nFig. 27. Application diagram: PWM dimming function",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "To savely drive currents that are above the limits of the NCR42xPAS, two or more devices can be parallel connected as illustrated in Figure 28. When choosing the same values for the external resistors, the drive current splits equally and the capability of handling excess power is doubled. Both, NCR420PAS and NCR421PAS can be used in this configuration.",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "DFN2020D-6: plastic, thermally enhanced ultra thin and small outline package; no leads; 6 terminals; body 2 x 2 x 0.65 mm SOT1118D",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Reflow soldering footprint for DFN2020D-6 (SOT1118D)",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. Product profile\n1.1. General description\n1.2. Features and benefits\n1.3. Applications\n2. Quick reference data\n3. Pinning information\n4. Ordering information\n5. Marking",
+      "grade": "A",
+      "maker_pn": "NCR420PAS",
+      "part number": "1003-007690"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "LED driver consisting of resistor-equipped NPN transistor with two diodes on one chip in a leadless medium power DFN2020D-6 (SOT1118D) Surface-Mounted Device (SMD) plastic package with visible and solderable side pads. It features a stabilized output current of 10 mA without external resistor, adjustable up to 150 mA with an external resistor, high current accuracy at supply voltage variation, low voltage overhead of 1.4 V, and reduces component count and board space.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The LED driver has a high power dissipation of 530 mW, supply voltage up to 40 V, digital PWM input up to 10 kHz frequency for NCR421PAS model, and is AEC-Q101 qualified. It is suitable for constant current LED driver applications, generic constant current source, automotive applications such as interior lighting, dash board, instrumentation, number plate light, and can increase stabilized output current by paralleling drivers.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The product overview includes general description, key features and benefits, and applications. It covers details such as package type, output current characteristics, voltage specifications, power dissipation, input signal support, qualification, and potential use cases.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 2 provides quick reference data for key electrical parameters such as enable voltage (VEN), output voltage (Vout), and stabilized output current (Iout) for the NCR420PAS and NCR421PAS devices under typical operating conditions. It specifies the minimum, typical, and maximum values for these parameters.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "Table 6 lists the limiting values or absolute maximum ratings for electrical parameters like stabilized output current (Iout), enable voltage (VEN), output voltage (Vout), reverse voltage (VR), total power dissipation (Ptot), junction temperature (Tj), ambient temperature (Tamb), and storage temperature (Tstg). These ratings must not be exceeded to ensure reliable operation and prevent permanent damage to the devices.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "Table 8 provides detailed electrical characteristics of the devices, including collector-emitter breakdown voltage (V(BR)CEO), DC current gain (hFE), internal resistor (Rint), voltage drop across internal resistor (VRint), enable current (IEN), bias resistor (RB), stabilized output current (Iout) under different conditions, minimum output voltage (Vout,min), output current change over temperature (\u0394Iout/(Iout x \u0394Tamb)) and supply voltage (\u0394Iout/(Iout x \u0394VCC)). These characteristics are specified at an ambient temperature of 25\u00b0C unless otherwise noted.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The text also mentions several figures (Fig. 18 to Fig. 25) that provide graphical representations of the output current as a function of output voltage, enable voltage, and enable current for the NCR421PAS device under typical conditions. These figures can be useful for understanding the device's behavior and performance over a range of operating conditions.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Fig. 26. LED driver application diagram. Fig. 27. Application diagram: PWM dimming function.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "To safely drive currents that are above the limits of the NCR42xPAS, two or more devices can be parallel connected as illustrated in Figure 28. When choosing the same values for the external resistors, the drive current splits equally and the capability of handling excess power is doubled.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "Both, NCR420PAS and NCR421PAS can be used in this parallel configuration to drive higher currents safely.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      }
+    ],
+    "Mechanical Characteristics": [
+      {
+        "content": "Table 6 provides limiting values for various parameters of the electronic component in accordance with the Absolute Maximum Rating System (IEC 60134). It includes maximum values for stabilized output current (Iout), enable voltage (VEN), output voltage (Vout), reverse voltage (VR), total power dissipation (Ptot), junction temperature (Tj), ambient temperature (Tamb), and storage temperature (Tstg).",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The maximum total power dissipation (Ptot) varies depending on the ambient temperature (Tamb) and the mounting configuration of the device on the Printed-Circuit Board (PCB). Different values are provided for devices mounted on FR4 PCBs with single-side copper or 4-layer copper, and with different mounting pad sizes for the collector.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The table also includes footnotes providing additional information and conditions for certain parameters, such as the reverse voltage (VR) being applicable between all terminals, and the specific mounting configurations for the different total power dissipation (Ptot) values.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Table 6 provides limiting values for various parameters of the electronic component, including output current, enable voltage, output voltage, reverse voltage, total power dissipation, junction temperature, ambient temperature, and storage temperature. It specifies the minimum and maximum values for these parameters under different conditions.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The table includes footnotes that provide additional details on the conditions for the specified limits, such as the type of printed circuit board (PCB) used for mounting the device and the size of the mounting pad for the collector.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The text also mentions the package type for the component, which is DFN2020D-6: a plastic, thermally enhanced ultra thin and small outline package with no leads, 6 terminals, and a body size of 2 x 2 x 0.65 mm. The package code is SOT1118D.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      },
+      {
+        "content": "The last line provides information on the reflow soldering footprint for the DFN2020D-6 (SOT1118D) package, which is important for manufacturing and assembly processes.",
+        "part number": "1003-007690.pdf",
+        "grade": "A",
+        "maker_pn": "NCR420PAS"
+      }
+    ]
+  },
+  "part number": "1003-007690"
+}

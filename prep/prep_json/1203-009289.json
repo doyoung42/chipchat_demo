@@ -1,0 +1,295 @@
+{
+  "metadata": {
+    "component_name": "TPS62A03 and TPS62A03A",
+    "manufacturer": "Texas Instruments",
+    "key_specifications": "Synchronous step-down DC/DC buck converter, 3A output current, 2.2MHz switching frequency, integrated power switches, power save mode (TPS62A03 only), input voltage 2.5V to 5.5V, soft-start, overcurrent and thermal protection",
+    "applications": "High efficiency compact power supply designs requiring up to 3A output current from a 2.5V to 5.5V input supply",
+    "grade": "F",
+    "maker_pn": "TPS62A03A"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The TPS62A03 and TPS62A03A are synchronous, step-down, buck DC/DC converters designed for high efficiency and compact design size. The devices integrate switches capable of delivering an output current up to 3A. At medium to heavy loads, the devices operate in pulse width modulation (PWM) mode with 2.2MHz switching frequency. At light load, the TPS62A03 automatically enters power save mode (PSM) maintaining high efficiency over the entire load current range. The TPS62A03A variant of this device operates in PWM mode across the whole load current range with a fixed switching frequency. In shutdown, the current consumption is minimal for both devices.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Table 5-1. Pin Functions\nSOT563-6\nTYPE(1) DESCRIPTION\nNAME NO.\nEN 4 I Device enable logic input. Logic high enables the device. Logic low disables the device and turns the device into shutdown. Do not leave the pin floating.\nFB 5 I Feedback pin for the internal control loop. Connect this pin to an external feedback divider.\nGND 1 G Ground pin\nPG 6 O Power-good open-drain output pin. The pullup resistor cannot be connected to any voltage higher than 5.5V. If unused, leave the pin open or connect to GND.\nSW 2 O Switch pin connected to the internal FET switches and inductor terminal. Connect the inductor of the output filter to this pin.\nVIN 3 I Power supply voltage pin",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The TPS62A03x is a high-efficiency, synchronous, step-down converter. The device operates with an adaptive off time with a peak current control scheme. The device operates typically at 2.2MHz frequency pulse width modulation (PWM) at moderate to heavy load currents. Based on the V IN/VOUT ratio, a simple circuit sets the required off time for the low-side MOSFET, making the switching frequency relatively constant regardless of the variation of the input voltage, output voltage, and load current.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary",
+        "Electrical Characteristics"
+      ],
+      "content": "The TPS62A03A version of the device does not have the power saving functionality and preserves the switching frequency at all load conditions. The device offers low input-to-output voltage difference by entering 100% duty cycle mode. In this mode, the high-side MOSFET switch is constantly turned on and the low-side MOSFET is switched off. The minimum input voltage to maintain output regulation, depending on the load current and output voltage, is calculated as: VIN(MIN) = VOUT + IOUT \u00d7 (RDS(ON) + RL)",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "After enabling the device, internal soft-start circuitry ramps up the output voltage, which reaches the nominal output voltage during start-up time, avoiding excessive inrush current and creating a smooth voltage rise slope. The switch current limit prevents the device from high inductor current and from drawing excessive current from the battery or input voltage rail. Excessive current can occur with a shorted or saturated inductor or an overload or shorted output circuit condition. If the inductor current reaches the threshold ILIM, the high-side MOSFET is turned off and the low-side MOSFET is turned on to ramp down the inductor current with an adaptive off time. When this switch current limit is triggered 32 times, the device stops switching to protect the output. The device then automatically starts a new start-up after a typical delay time of 100\u00b5s has passed. This action is named HICCUP short-circuit protection. To avoid misoperation of the device at low input voltages, an undervoltage lockout (UVLO) is implemented, which shuts down the device at voltages lower than VUVLO. The device goes into thermal shutdown and stops switching when the junction temperature exceeds T JSD. When the device temperature falls below the threshold by 20\u00b0C, the device returns to normal operation automatically.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "8.2 Typical Application\nC1\n4.7\u03bcF\nVIN SW\nEN FB\nGND PG\nR1\n200k\nR2\n100k\nCFF\nC2\n22\u03bcF\nVIN\n2.5V to 5.5V\nVOUT\n1.8V / 3A\nL1\n0.47\u03bcH / 1\u03bcH\nTPS62A03, \nTPS62A03A\nOpen \nDrain\n\nFigure 8-1. TPS62A03 Typical Application Circuit\n*CFF is optional",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "8.2.2.1 Setting the Output Voltage\nThe output voltage is set by an external resistor divider according to Equation 2.\nR 1 = R 2 \u00d7 \nV O U T \nV F B \u2212 1 = R 2 \u00d7 \nV O U T \n0.6 V \u2212 1 (2)\nR2 must not be higher than 100k\u03a9 to provide acceptable noise sensitivity.\n\n8.2.2.2 Output Filter Design\nThe inductor and output capacitor together provide a low-pass filter. To simplify this process, Table 8-3 outlines possible inductor and capacitor value combinations. Checked cells represent combinations that are proven for stability by simulation and lab test. Check further combinations for each individual application.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Application Circuits",
+        "Electrical Characteristics"
+      ],
+      "content": "8.2.3 Application Curves\n\n[Several efficiency vs output current graphs for different input/output voltage combinations]",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Figure 8-8. 1.8V Output Efficiency (TPS62A03A)\n\nFigure 8-9. 3.3V Output Efficiency (TPS62A03A)\n\n8.3 Power Supply Recommendations\nThe device is designed to operate from an input voltage supply range from 2.5V to 5.5V. Make sure that the input power supply has a sufficient current rating for the application.\n\n8.4 Layout\n8.4.1 Layout Guidelines\nThe printed-circuit-board (PCB) layout is an important step to maintain the high performance of the TPS62A0x device.\n\u2022 Place the input and output capacitors and the inductor as close as possible to the IC. This action keeps the power traces short. Routing these power traces direct and wide results in low trace resistance and low parasitic inductance.\n\u2022 Connect the low side of the input and output capacitors properly to the GND pin to avoid a ground potential shift.\n\u2022 The sense traces connected to FB is a signal trace. Take special care to avoid noise being induced. Keep these traces away from SW nodes.\n\u2022 Use a common ground. Use GND layers for shielding.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL INFORMATION\nReel Width (W1)\nREEL DIMENSIONS\nA0B0K0WDimension designed to accommodate the component lengthDimension designed to accommodate the component thicknessOverall width of the carrier tapePitch between successive cavity centersDimension designed to accommodate the component width\nTAPE DIMENSIONSK0 P1B0WA0Cavity\n\nQUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE\nPocket QuadrantsSprocket HolesQ1Q1Q2Q2Q3Q3Q4Q4User Direction of Feed\n\nP1ReelDiameter\n\n*All dimensions are nominal\nDevice Package\nType\nPackage\nDrawing\nPins SPQ Reel\nDiameter\n(mm)\nReel\nWidth\nW1 (mm)\nA0\n(mm)\nB0\n(mm)\nK0\n(mm)\nP1\n(mm)\nW\n(mm)\nPin1\nQuadrant\nTPS62A03ADRLR SOT-5X3 DRL 6 4000 180.0 8.4 2.0 1.8 0.75 4.0 8.0 Q3\nTPS62A03DRLR SOT-5X3 DRL 6 4000 180.0 8.4 2.0 1.8 0.75 4.0 8.0 Q3",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL BOX DIMENSIONS\nWidth (mm)\nW LH\n\n*All dimensions are nominal\nDevice Package Type Package Drawing Pins SPQ Length (mm) Width (mm) Height (mm)\nTPS62A03ADRLR SOT-5X3 DRL 6 4000 210.0 185.0 35.0\nTPS62A03DRLR SOT-5X3 DRL 6 4000 210.0 185.0 35.0",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\n1.7\n1.5\n4X 0.5\n2X 1\n6X 0.3\n0.1\n0.6 MAX\n6X 0.18\n0.08\n6X 0.4\n0.2\n0.05\n0.00 TYP\n6X 0.27\n0.15\n2X 0 -10\n2X 4 -15\n1.3\n1.1\n1.7\n1.5\nNOTE 3\nSOT - 0.6 mm max heightDRL0006A\nPLASTIC SMALL OUTLINE",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n0.05 MAX\nAROUND\n0.05 MIN\nAROUND\n6X (0.67)\n6X (0.3)\n(1.48)\n4X (0.5)\n(R0.05) TYP\nSOT - 0.6 mm max heightDRL0006A\nPLASTIC SMALL OUTLINE\nNOTES: (continued)\n5. Publication IPC-7351 may have alternate designs. \n6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.\n7. Land pattern design aligns to IPC-610, Bottom Termination Component (BTC) solder joint inspection criteria.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(1.48)\n4X (0.5)\n6X (0.67)\n6X (0.3)\n(R0.05) TYP\nSOT - 0.6 mm max heightDRL0006A\nPLASTIC SMALL OUTLINE\nNOTES: (continued)\n8. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate\n   design recommendations. \n9. Board assembly site may have different recommendations for stencil design.",
+      "grade": "F",
+      "maker_pn": "TPS62A03A",
+      "part number": "1203-009289"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The TPS62A03 and TPS62A03A are synchronous, step-down, buck DC/DC converters designed for high efficiency and compact design size. The devices integrate switches capable of delivering an output current up to 3A. At medium to heavy loads, the devices operate in pulse width modulation (PWM) mode with 2.2MHz switching frequency.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "At light load, the TPS62A03 automatically enters power save mode (PSM) maintaining high efficiency over the entire load current range. The TPS62A03A variant of this device operates in PWM mode across the whole load current range with a fixed switching frequency. In shutdown, the current consumption is minimal for both devices.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The TPS62A03x is a high-efficiency, synchronous, step-down converter. The device operates with an adaptive off time with a peak current control scheme. The device operates typically at 2.2MHz frequency pulse width modulation (PWM) at moderate to heavy load currents. Based on the V IN/VOUT ratio, a simple circuit sets the required off time for the low-side MOSFET, making the switching frequency relatively constant regardless of the variation of the input voltage, output voltage, and load current.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The TPS62A03A version of the device does not have the power saving functionality and preserves the switching frequency at all load conditions. The device offers low input-to-output voltage difference by entering 100% duty cycle mode. In this mode, the high-side MOSFET switch is constantly turned on and the low-side MOSFET is switched off. The minimum input voltage to maintain output regulation, depending on the load current and output voltage, is calculated as: VIN(MIN) = VOUT + IOUT \u00d7 (RDS(ON) + RL)",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The TPS62A03A version of the device does not have the power saving functionality and preserves the switching frequency at all load conditions. The device offers low input-to-output voltage difference by entering 100% duty cycle mode. In this mode, the high-side MOSFET switch is constantly turned on and the low-side MOSFET is switched off. The minimum input voltage to maintain output regulation, depending on the load current and output voltage, is calculated as: VIN(MIN) = VOUT + IOUT \u00d7 (RDS(ON) + RL). After enabling the device, internal soft-start circuitry ramps up the output voltage, which reaches the nominal output voltage during start-up time, avoiding excessive inrush current and creating a smooth voltage rise slope.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The switch current limit prevents the device from high inductor current and from drawing excessive current from the battery or input voltage rail. Excessive current can occur with a shorted or saturated inductor or an overload or shorted output circuit condition. If the inductor current reaches the threshold ILIM, the high-side MOSFET is turned off and the low-side MOSFET is turned on to ramp down the inductor current with an adaptive off time. When this switch current limit is triggered 32 times, the device stops switching to protect the output. The device then automatically starts a new start-up after a typical delay time of 100\u00b5s has passed. This action is named HICCUP short-circuit protection. To avoid misoperation of the device at low input voltages, an undervoltage lockout (UVLO) is implemented, which shuts down the device at voltages lower than VUVLO. The device goes into thermal shutdown and stops switching when the junction temperature exceeds T JSD. When the device temperature falls below the threshold by 20\u00b0C, the device returns to normal operation automatically.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The output voltage is set by an external resistor divider according to Equation 2. R1 = R2 \u00d7 (VOUT / (VFB - 1)) = R2 \u00d7 (VOUT / 0.6V - 1) (2). R2 must not be higher than 100k\u03a9 to provide acceptable noise sensitivity. The inductor and output capacitor together provide a low-pass filter. To simplify this process, Table 8-3 outlines possible inductor and capacitor value combinations. Checked cells represent combinations that are proven for stable operation by simulation and lab testing.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The device is designed to operate from an input voltage supply range from 2.5V to 5.5V. Make sure that the input power supply has a sufficient current rating for the application. The printed-circuit-board (PCB) layout is an important step to maintain the high performance of the TPS62A0x device. Place the input and output capacitors and the inductor as close as possible to the IC to keep the power traces short. Connect the low side of the input and output capacitors properly to the GND pin to avoid a ground potential shift. The sense traces connected to FB are signal traces, so take special care to avoid noise being induced by keeping these traces away from SW nodes. Use a common ground and GND layers for shielding.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "8.2 Typical Application: This section provides a typical application circuit for the TPS62A03/TPS62A03A device, which is a step-down converter. The circuit diagram shows the essential components required for the converter, including the input and output capacitors, inductor, feedback resistors, and an optional feed-forward capacitor. The circuit is designed to convert an input voltage range of 2.5V to 5.5V to a 1.8V output at 3A load current.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "8.2.2.1 Setting the Output Voltage: This subsection explains how to set the desired output voltage using an external resistor divider. It provides the equation to calculate the resistor values (R1 and R2) based on the target output voltage (VOUT) and the feedback voltage (VFB) of the device. It also mentions a recommended maximum value for R2 to ensure acceptable noise sensitivity.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "8.2.2.2 Output Filter Design: This subsection discusses the design of the output filter, which consists of the inductor and output capacitor. It provides a table with recommended combinations of inductor and capacitor values that have been proven to be stable through simulations and lab tests. The table serves as a guide for selecting appropriate component values for the output filter in various applications.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "8.2.3 Application Curves: This subsection likely contains efficiency vs. output current graphs for different input and output voltage combinations. These graphs provide valuable information for evaluating the efficiency performance of the device under various operating conditions, which is crucial for optimizing power conversion and thermal management in the application.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "After enabling the device, internal soft-start circuitry ramps up the output voltage, which reaches the nominal output voltage during start-up time, avoiding excessive inrush current and creating a smooth voltage rise slope. The switch current limit prevents the device from high inductor current and from drawing excessive current from the battery or input voltage rail.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "Excessive current can occur with a shorted or saturated inductor or an overload or shorted output circuit condition. If the inductor current reaches the threshold ILIM, the high-side MOSFET is turned off and the low-side MOSFET is turned on to ramp down the inductor current with an adaptive off time. When this switch current limit is triggered 32 times, the device stops switching to protect the output.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The device then automatically starts a new start-up after a typical delay time of 100\u00b5s has passed. This action is named HICCUP short-circuit protection. To avoid misoperation of the device at low input voltages, an undervoltage lockout (UVLO) is implemented, which shuts down the device at voltages lower than VUVLO.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The device goes into thermal shutdown and stops switching when the junction temperature exceeds T JSD. When the device temperature falls below the threshold by 20\u00b0C, the device returns to normal operation automatically.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Table 5-1 provides details on the pin functions of the SOT563-6 package, including the pin names, numbers, types (input/output/ground), and descriptions. It covers pins like EN (enable), FB (feedback), GND (ground), PG (power good), SW (switch), and VIN (input voltage).",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The text includes information on tape and reel specifications for packaging and shipping the SOT563-6 package. It provides dimensions for the reel (diameter, width), tape (cavity dimensions, pitch, width), and quadrant assignments for pin 1 orientation. It also lists the specific dimensions for the TPS62A03ADRLR and TPS62A03DRLR models.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "Tape and reel box dimensions are provided, including the length, width, and height for the TPS62A03ADRLR and TPS62A03DRLR models when packaged for shipping.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "The package outline drawing and dimensions are given for the SOT563-6 (DRL0006A) plastic small outline package, with details on the maximum height and various dimensional measurements.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      },
+      {
+        "content": "Example board layout and stencil design details are provided for the SOT563-6 package, including recommendations for solder mask tolerances, land pattern design, and stencil aperture design. These are important for proper assembly and manufacturing of the component on a printed circuit board.",
+        "part number": "1203-009289.pdf",
+        "grade": "F",
+        "maker_pn": "TPS62A03A"
+      }
+    ]
+  },
+  "part number": "1203-009289"
+}

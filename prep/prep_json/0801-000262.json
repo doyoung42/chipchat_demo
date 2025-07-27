@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "component_name": "74ABT08",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Quad 2-input AND gate, 4.5 V to 5.5 V supply voltage, BiCMOS high speed, IOFF circuitry for partial power-down mode, ESD protection up to 2000 V HBM and 1000 V CDM, -40 \u00b0C to +85 \u00b0C temperature range",
+    "applications": "The datasheet does not explicitly mention main applications, but as a quad 2-input AND gate, it can be used in various digital logic circuits and systems.",
+    "grade": "B",
+    "maker_pn": "74ABT08D"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1.  General description\nThe 74ABT08 is a quad 2-input AND gate. This device is fully specified for partial power down applications using IOFF. The IOFF circuitry disables the output, preventing the potentially damaging backflow current through the device when it is powered down.\n\n2.  Features and benefits\n\u2022 Supply voltage range from 4.5 V to 5.5 V\n\u2022 BiCMOS high speed and output drive\n\u2022 Direct interface with TTL levels\n\u2022 IOFF circuitry provides partial Power-down mode operation\n\u2022 Latch-up protection exceeds 500 mA per JESD78B class II level A\n\u2022 ESD protection:\n    \u2022 HBM: ANSI/ESDA/JEDEC JS-001 class 2 exceeds 2000 V\n    \u2022 CDM: ANSI/ESDA/JEDEC JS-002 class C3 exceeds 1000 V\n\u2022 Specified from -40 \u00b0C to +85 \u00b0C",
+      "grade": "B",
+      "maker_pn": "74ABT08D",
+      "part number": "0801-000262"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Functional diagram",
+        "Pinning information"
+      ],
+      "content": "4.  Functional diagram\n\n5.  Pinning information\n5.1.  Pinning\n\n5.2.  Pin description\nTable 2. Pin description\nSymbol Pin Description\n1A, 2A, 3A, 4A 1, 4, 9, 12 data input\n1B, 2B, 3B, 4B 2, 5, 10, 13 data input\n1Y, 2Y, 3Y, 4Y 3, 6, 8, 11 data output\nGND 7 ground (0 V)\nVCC 14 supply voltage",
+      "grade": "B",
+      "maker_pn": "74ABT08D",
+      "part number": "0801-000262"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Functional description",
+        "Limiting values",
+        "Recommended operating conditions"
+      ],
+      "content": "6.  Functional description\nTable 3. Function table\nH = HIGH voltage level; L = LOW voltage level; X = don't care.\nInput Output\nnA nB nY\nL X L\nX L L\nH H H\n\n7.  Limiting values\nTable 4. Limiting values\nIn accordance with the Absolute Maximum Rating System (IEC 60134).\n\n8.  Recommended operating conditions\nTable 5. Operating conditions\nVoltages are referenced to GND (ground = 0 V).",
+      "grade": "B",
+      "maker_pn": "74ABT08D",
+      "part number": "0801-000262"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TSSOP14: plastic thin shrink small outline package; 14 leads; body width 4.4 mm SOT402-1",
+      "grade": "B",
+      "maker_pn": "74ABT08D",
+      "part number": "0801-000262"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Nexperia 74ABT08\nQuad 2-input AND gate\n\n1. General description\n2. Features and benefits\n3. Ordering information",
+      "grade": "B",
+      "maker_pn": "74ABT08D",
+      "part number": "0801-000262"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The 74ABT08 is a quad 2-input AND gate. This device is fully specified for partial power down applications using IOFF. The IOFF circuitry disables the output, preventing the potentially damaging backflow current through the device when it is powered down.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      },
+      {
+        "content": "Key features and benefits of the 74ABT08 include: Supply voltage range from 4.5 V to 5.5 V, BiCMOS high speed and output drive, direct interface with TTL levels, IOFF circuitry for partial Power-down mode operation, latch-up protection exceeding 500 mA per JESD78B class II level A, ESD protection (HBM: ANSI/ESDA/JEDEC JS-001 class 2 exceeds 2000 V, CDM: ANSI/ESDA/JEDEC JS-002 class C3 exceeds 1000 V), and operation specified from -40 \u00b0C to +85 \u00b0C.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      },
+      {
+        "content": "The 74ABT08 is a quad 2-input AND gate with IOFF circuitry for partial power-down mode operation, preventing backflow current when powered down. It features a supply voltage range of 4.5 V to 5.5 V, BiCMOS high speed and output drive, TTL level interface, latch-up protection, and ESD protection.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      },
+      {
+        "content": "Key specifications of the 74ABT08 quad 2-input AND gate include: IOFF circuitry for partial power-down mode, 4.5 V to 5.5 V supply voltage range, BiCMOS high speed and output drive, TTL level interface, latch-up protection exceeding 500 mA, HBM ESD protection exceeding 2000 V, CDM ESD protection exceeding 1000 V, and operation from -40 \u00b0C to +85 \u00b0C.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "TSSOP14: plastic thin shrink small outline package; 14 leads; body width 4.4 mm SOT402-1. This chunk describes the package type as TSSOP14, which is a plastic thin shrink small outline package with 14 leads and a body width of 4.4 mm. The package code is SOT402-1.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      },
+      {
+        "content": "TSSOP14 package: plastic thin shrink small outline package with 14 leads and a body width of 4.4 mm, coded as SOT402-1. This chunk provides details about the TSSOP14 package, including its material (plastic), package type (thin shrink small outline), number of leads (14), body width (4.4 mm), and package code (SOT402-1).",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      },
+      {
+        "content": "Plastic TSSOP14 package with 14 leads, 4.4 mm body width, and package code SOT402-1. This chunk identifies the package as a plastic TSSOP14 package with 14 leads, a body width of 4.4 mm, and a package code of SOT402-1.",
+        "part number": "0801-000262.pdf",
+        "grade": "B",
+        "maker_pn": "74ABT08D"
+      }
+    ]
+  },
+  "part number": "0801-000262"
+}

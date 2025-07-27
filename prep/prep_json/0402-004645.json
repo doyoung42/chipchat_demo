@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "component_name": "BZX58550 series",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Low-current voltage regulator diodes in SOD523 package, power dissipation \u2264 300 mW, voltage range 1.8 V to 51 V, \u00b1 2% and \u00b1 5% tolerance series, low test current (50 \u03bcA) for low bias and portable battery applications",
+    "applications": "Low-current general regulation functions",
+    "grade": "C",
+    "maker_pn": "BZX58550-B1V8"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1.  General description\nLow-current voltage regulator diodes in an SOD523 (SC-79) ultra small and flat lead Surface-Mounted Device (SMD) plastic package.\n\n2.  Features and benefits\n\u2022 Total power dissipation: \u2264 300 mW\n\u2022 Two tolerance series: \u00b1 2 % and approximately \u00b1 5 %\n\u2022 Working voltage range: nominal 1.8 V to 51 V\n\u2022 Specified at a low test current (50 \u03bcA), ideal for low bias and portable battery-powered applications\n\u2022 BZX58550-B11 to -C51: Intentional minor rise of leakage current for optimized fast switching and noise reduction [AN90031]\n\n3.  Applications\n\u2022 Low-current general regulation functions\n\n4.  Quick reference data\nTable 1. Quick reference data\nSymbol Parameter Conditions Min Typ Max Unit\nVF forward voltage IF = 10 mA [1] - - 0.9 V\nPtot total power dissipation Tamb \u2264 25 \u00b0C [2] - - 300 mW",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Ordering Information",
+        "Marking"
+      ],
+      "content": "6.  Ordering information\nTable 3. Ordering information\nPackageType number\nName Description Version\nBZX58550 series SC-79 plastic, surface-mounted package; 2 leads; 1.2 mm x 0.8 mm x 0.6 mm body SOD523\n\n7.  Marking\nTable 4. Marking Codes",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Limiting Values",
+        "Thermal Characteristics",
+        "Electrical Characteristics"
+      ],
+      "content": "8.  Limiting values\nTable 5. Limiting values\n\n9.  Thermal characteristics\nTable 6. Thermal characteristics\n\n10.  Characteristics\nTable 7. Electrical characteristics\nTj = 25 \u00b0C unless otherwise specified.\nSymbol Parameter Conditions Max Unit\nVF forward voltage IF = 10 mA [1] 0.9 V",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 8. Electrical characteristics per type: BZX58550-B1V8 to BZX58550-C36\nTj = 25 \u00b0C unless otherwise specified.\n\nWorking voltage\nVZ (V)\nDifferential\nresistance\nrdiff (\u03a9)\nTemperature\ncoefficient\nSZ (mV/K)\nDiode\ncapacitance\nCd (pF)\nReverse current\nIR (\u00b5A)\n\nIZ = 50 \u00b5A IZ = 1\nmA\nIZ = 5\nmA\nIZ = 5 mA f = 1 MHz\nVR = 0 V\n\nBZX58550-\nxxx\nSel.\nMin Max Max Max Max VR (V) Min Max Max",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Working voltage\nVZ (V)\nDifferential\nresistance\nrdiff (\u03a9)\nTemperature\ncoefficient\nSZ (mV/K)\nDiode\ncapacitance\nCd (pF)\nReverse current\nIR (\u00b5A)\n\nIZ = 50 \u00b5A IZ = 1\nmA\nIZ = 5\nmA\nIZ = 5 mA f = 1 MHz\nVR = 0 V\n\nBZX58550-\nxxx\nSel.\nMin Max Max Max Max VR (V) Min Max Max",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 9. Electrical characteristics per type: BZX58550-B39 to BZX58550-C51\nTj = 25 \u00b0C unless otherwise specified.\n\nWorking voltage\nVZ (V)\nDifferential\nresistance\nrdiff (\u03a9)\nTemperature\ncoefficient\nSZ (mV/K)\nDiode\ncapacitance\nCd (pF)\nReverse current\nIR (\u00b5A)\n\nIZ = 50 \u00b5A IZ = 0.5\nmA\nIZ = 2\nmA\nIZ = 2 mA f = 1 MHz\nVR = 0 V\n\nBZX58550-\nxxx\nSel.\nMin Max Max Max Max VR (V) Min Max Max",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Fig. 3. Forward current as a function of forward voltage; typical values (BZX58550-B/C6V8)\n\nFig. 4. Forward current as a function of forward voltage; typical values (BZX58550-B/C7V5)\n\nFig. 5. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C1V8 to BZX58550-B/C6V8)\n\nFig. 6. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C7V5 to BZX58550-B/C10)",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Electrical Characteristics",
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C11 to BZX58550-B/C36)\n\nFig. 8. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C39 to BZX58550-B/C51)\n\nFig. 9. Package outline SOD523 (SC-79)",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 10. Reflow soldering footprint for SOD523 (SC-79)",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Applications.................................................................. 1\n4. Quick reference data ....................................................1\n5. Pinning information......................................................1\n6. Ordering information....................................................2\n7. Marking.......................................................................... 2\n8. Limiting values............................................................. 3\n9. Thermal characteristics............................................... 3\n10. Characteristics............................................................3\n11. Package outline.......................................................... 8\n12. Soldering..................................................................... 9",
+      "grade": "C",
+      "maker_pn": "BZX58550-B1V8",
+      "part number": "0402-004645"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Low-current voltage regulator diodes in an SOD523 (SC-79) ultra small and flat lead Surface-Mounted Device (SMD) plastic package. Total power dissipation: \u2264 300 mW, two tolerance series: \u00b1 2 % and approximately \u00b1 5 %, working voltage range: nominal 1.8 V to 51 V, specified at a low test current (50 \u03bcA), ideal for low bias and portable battery-powered applications. Used for low-current general regulation functions.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Features and benefits include total power dissipation up to 300 mW, two tolerance series (\u00b1 2 % and approximately \u00b1 5 %), working voltage range from 1.8 V to 51 V, specified at low test current of 50 \u03bcA for low bias and portable battery-powered applications, intentional minor rise of leakage current for optimized fast switching and noise reduction [AN90031].",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Quick reference data: forward voltage (VF) at 10 mA is typically 0.9 V max, total power dissipation (Ptot) at ambient temperature \u2264 25 \u00b0C is 300 mW max. Comes in an SOD523 (SC-79) ultra small and flat lead SMD plastic package. Used for low-current general regulation functions in portable battery-powered applications.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "8. Limiting values (Table 5) provide the maximum allowable values for parameters such as voltage, current, and power dissipation to ensure safe operation of the device. 9. Thermal characteristics (Table 6) describe the thermal behavior of the device, including parameters like thermal resistance and maximum operating temperature.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "10. Electrical characteristics (Tables 7-9) provide detailed specifications for various electrical parameters under different operating conditions. These include forward voltage, reverse current, differential resistance, temperature coefficient, and diode capacitance across different voltage ranges and current levels. The tables are divided based on the specific device type (BZX58550-xxx).",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Figures 3-8 graphically illustrate the typical behavior of forward current vs. forward voltage and reverse current vs. reverse voltage for different device types within the BZX58550 series. These curves provide a visual representation of the electrical characteristics described in the tables.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Figure 9 shows the package outline for the SOD523 (SC-79) package, providing dimensional information for physical implementation and integration of the device.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 7. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C11 to BZX58550-B/C36). Fig. 8. Reverse current as a function of reverse voltage; typical values (BZX58550-B/C39 to BZX58550-B/C51). These figures provide information about the reverse current characteristics of the device for different voltage ranges, which is important for understanding the device's behavior and selecting the appropriate model.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Fig. 9. Package outline SOD523 (SC-79). This figure shows the physical dimensions and outline of the SOD523 (SC-79) package, which is crucial information for PCB design and layout.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      },
+      {
+        "content": "Fig. 10. Reflow soldering footprint for SOD523 (SC-79). This figure provides the recommended footprint and land pattern for reflow soldering the SOD523 (SC-79) package, which is essential for proper assembly and manufacturing.",
+        "part number": "0402-004645.pdf",
+        "grade": "C",
+        "maker_pn": "BZX58550-B1V8"
+      }
+    ]
+  },
+  "part number": "0402-004645"
+}

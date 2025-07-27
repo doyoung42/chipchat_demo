@@ -1,0 +1,265 @@
+{
+  "metadata": {
+    "component_name": "SN74AHC1G09-Q1",
+    "manufacturer": "Texas Instruments",
+    "key_specifications": "AEC-Q100 qualified automotive single 2-input positive-AND gate with open-drain output, 2 V to 5.5 V operating range, 10-\u03bcA max ICC, 6 ns max tpd at 5 V, \u00b18-mA output drive at 5 V, 250 mA latch-up performance",
+    "applications": "Combining power good signals, enabling digital signals",
+    "grade": "A",
+    "maker_pn": "SN74AHC1G09-Q1"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "SN74AHC1G09-Q1 Automotive Single 2\u2013Input Positive-AND Gate With Open-Drain Output\n\n1 Features\n\u2022 AEC-Q100 Qualified for automotive applications:\n\u2013 Device temperature grade 1:\n\u201340\u00b0C to +125\u00b0C, TA\n\u2013 Device HBM ESD Classification Level 2\n\u2013 Device CDM ESD Classification Level C6\n\u2022 Operating range from 2 V to 5.5 V\n\u2022 Low power consumption, 10-\u00b5A maximum ICC\n\u2022 Maximum tpd of 6 ns at 5 V\n\u2022 \u00b18-mA output drive at 5 V\n\u2022 Latch-up performance exceeds 250 mA per JESD 17\n\n2 Applications\n\u2022 Combining power good signals\n\u2022 Enable digital signals\n\n3 Description\nThe SN74AHC1G09-Q1 is a single 2-input positive-AND gate with an open drain output configuration. The device performs the Boolean logic Y = A \u00d7 B in positive logic.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "5 Pin Configuration and Functions\n\nFigure 5-1. DBV or DCK Package, 5-Pin SOT-23 or SC70 (Top View)\n\nTable 5-1. Pin Functions\nPIN\nTYPE(1) DESCRIPTION\nNAME NO.\nA 1 I Input\nB 2 I Input\nGND 3 \u2014 Ground\nVCC 5 \u2014 Power pin\nY 4 O Output\n(1) I = input, O = output",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Figure 7-1. Load Circuit and Voltage Waveforms",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "8.1 Overview\nThe SN74AHC1G09-Q1 device contains one open-drain positive-AND gate with a maximum sink current of 8 mA. A wide operating range of 2 V to 5.5 V enables this device to be used in many different systems, and a low tpd qualifies this device to be used in high-speed applications.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "9.2 Typical Application\n\nFigure 9-1. Typical Application Diagram",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "9.2.3 Application Curves\nFigure 9-2. ICC vs Input Voltage\n\n9.3 Power Supply Recommendations\nThe power supply can be any voltage between the minimum and maximum supply voltage rating located in Recommended Operating Conditions. \nEach V CC pin should have a good bypass capacitor to prevent power disturbance. For devices with a single supply, a 0.1-\u03bcF capacitor is recommended; if there are multiple V CC pins, then a 0.01- \u03bcF or 0.022-\u03bcF capacitor is recommended for each power pin. It is acceptable to parallel multiple bypass capacitors to reject different frequencies of noise. 0.1-\u03bcF and 1-\u03bcF capacitors are commonly used in parallel. The bypass capacitor should be installed as close to the power pin as possible for best results.\n\n9.4 Layout\n9.4.1 Layout Guidelines\nWhen using multiple bit logic devices, inputs must never float. In many cases, functions or parts of functions of digital logic devices are unused (for example, when only two inputs of a triple-input AND gate are used, or only 3 of the 4 buffer gates are used). Such input pins must not be left unconnected because the undefined voltages at the outside connections result in undefined operational states.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL INFORMATION\n\nReel Width (W1)\nREEL DIMENSIONS\nA0B0K0WDimension designed to accommodate the component lengthDimension designed to accommodate the component thicknessOverall width of the carrier tapePitch between successive cavity centersDimension designed to accommodate the component width\nTAPE DIMENSIONSK0 P1B0WA0Cavity\n\nQUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE\nPocket QuadrantsSprocket HolesQ1Q1Q2Q2Q3Q3Q4Q4User Direction of Feed\n\nP1ReelDiameter\n\n*All dimensions are nominal\nDevice Package\nType\nPackage\nDrawing\nPins SPQ Reel\nDiameter\n(mm)\nReel\nWidth\nW1 (mm)\nA0\n(mm)\nB0\n(mm)\nK0\n(mm)\nP1\n(mm)\nW\n(mm)\nPin1\nQuadrant\nSN74AHC1G09QDBVRQ1 SOT-23 DBV 5 3000 180.0 8.4 3.2 3.2 1.4 4.0 8.0 Q3\nSN74AHC1G09QDCKRQ1 SC70 DCK 5 3000 178.0 9.0 2.4 2.5 1.2 4.0 8.0 Q3",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL BOX DIMENSIONS\nWidth (mm)\nW LH\n\n*All dimensions are nominal\nDevice Package Type Package Drawing Pins SPQ Length (mm) Width (mm) Height (mm)\nSN74AHC1G09QDBVRQ1 SOT-23 DBV 5 3000 210.0 185.0 35.0\nSN74AHC1G09QDCKRQ1 SC70 DCK 5 3000 190.0 190.0 30.0",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\nC\n0.22\n0.08 TYP\n0.25\n3.0\n2.6\n2X 0.95\n1.9\n1.45\n0.90\n0.15\n0.00 TYP\n5X 0.5\n0.3\n0.6\n0.3 TYP\n8\n0  TYP\n1.9\n(0.1)\n(0.15)\n4X 0 -15\n4X 4 -15\nA\n3.05\n2.75\nB1.75\n1.45\n(1.1)\nSOT-23 - 1.45 mm max heightDBV0005A\nSMALL OUTLINE TRANSISTOR",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n0.07 MAX\nAROUND\n0.07 MIN\nAROUND\n5X (1.1)\n5X (0.6)\n(2.6)\n(1.9)\n2X (0.95)\n(R0.05) TYP\nSOT-23 - 1.45 mm max heightDBV0005A\nSMALL OUTLINE TRANSISTOR\n\nNOTES: (continued)\n\n6. Publication IPC-7351 may have alternate designs.\n7. Solder mask tolerances between and around signal pads can vary based on board fabrication site.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(2.6)\n(1.9)\n2X(0.95)\n5X (1.1)\n5X (0.6)\n(R0.05) TYP\nSOT-23 - 1.45 mm max heightDBV0005A\nSMALL OUTLINE TRANSISTOR\n\nNOTES: (continued)\n\n8. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate\n     design recommendations.\n9. Board assembly site may have different recommendations for stencil design.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\nC\n0.22\n0.08 TYP\n0.15\n2.4\n1.8\n2X 0.65\n1.3\n1.1 MAX\n0.1\n0.0 TYP\n5X 0.33\n0.15\nNOTE 5\n0.1 C A B\n0.46\n0.26 TYP\n8\n0  TYP\n1.3\n4X 0 -12\n4X 4 -15\nA\n2.15\n1.85\nB1.4\n1.1\n(0.9)\n(0.15)\n(0.1)\nSOT - 1.1 max heightDCK0005A\nSMALL OUTLINE TRANSISTOR",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n0.07 MAX\nAROUND\n0.07 MIN\nAROUND\n5X (0.95)\n5X (0.4)\n(2.2)\n(1.3)\n2X (0.65)\n(R0.05) TYP\nSOT - 1.1 max heightDCK0005A\nSMALL OUTLINE TRANSISTOR\n\nNOTES: (continued)\n7. Publication IPC-7351 may have alternate designs.\n8. Solder mask tolerances between and around signal pads can vary based on board fabrication site.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(2.2)\n(1.3)\n2X(0.65)\n5X (0.95)\n5X (0.4)\n(R0.05) TYP\nSOT - 1.1 max heightDCK0005A\nSMALL OUTLINE TRANSISTOR\n\nNOTES: (continued)\n9. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate design recommendations.\n10. Board assembly site may have different recommendations for stencil design.",
+      "grade": "A",
+      "maker_pn": "SN74AHC1G09-Q1",
+      "part number": "0801-008200"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "SN74AHC1G09-Q1 Automotive Single 2\u2013Input Positive-AND Gate With Open-Drain Output is an AEC-Q100 qualified device for automotive applications with a temperature range of -40\u00b0C to +125\u00b0C. It has a low power consumption of 10-\u03bcA maximum ICC and a maximum propagation delay (tpd) of 6 ns at 5 V. The device features an operating range from 2 V to 5.5 V, \u00b18-mA output drive at 5 V, and latch-up performance exceeding 250 mA per JESD 17.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "The SN74AHC1G09-Q1 is a single 2-input positive-AND gate with an open drain output configuration, performing the Boolean logic Y = A \u00d7 B in positive logic. It is suitable for applications such as combining power good signals and enabling digital signals.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "The SN74AHC1G09-Q1 device contains one open-drain positive-AND gate with a maximum sink current of 8 mA. Its wide operating range of 2 V to 5.5 V enables it to be used in many different systems, and its low propagation delay qualifies it for high-speed applications.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Figure 7-1 shows the load circuit and voltage waveforms for the electrical characteristics of the component. The load circuit diagram illustrates the configuration for measuring various electrical parameters such as voltage, current, and power specifications.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "The voltage waveforms depicted in Figure 7-1 provide insights into the timing characteristics of the component, including rise and fall times, pulse widths, and propagation delays. These timing parameters are crucial for understanding the component's performance in various applications.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "In addition to the load circuit and voltage waveforms, the electrical characteristics section may include tables or graphs presenting specific values or ranges for parameters like supply voltage, input/output voltages, input/output currents, and power consumption under different operating conditions.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "The electrical characteristics data, including the load circuit, voltage waveforms, and tabulated specifications, enable designers to evaluate the component's suitability for their application requirements, ensuring proper integration and reliable operation within the desired electrical constraints.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "9.2 Typical Application: This section likely provides information about a typical application circuit or implementation example for the electronic component being described. It may include a circuit diagram (Figure 9-1) and details about the typical usage or configuration of the component.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "9.2.3 Application Curves: This subsection likely contains graphs or plots (such as Figure 9-2, which shows ICC vs Input Voltage) that illustrate the performance or behavior of the component in a typical application scenario.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "9.3 Power Supply Recommendations: This section provides guidelines and recommendations for properly powering the electronic component. It covers topics such as acceptable supply voltage ranges, bypass capacitor selection and placement, and best practices for ensuring a stable and clean power supply for the component.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "9.4 Layout: This section discusses layout considerations and guidelines for effectively implementing the electronic component on a printed circuit board (PCB) or in a system design.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "9.4.1 Layout Guidelines: This subsection likely provides specific recommendations and best practices for laying out the component on a PCB, such as ensuring proper input connections, avoiding floating inputs, and other layout considerations to ensure proper operation and functionality.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "The text provides information about the pin configuration and functions of a 5-pin SOT-23 or SC70 package. It includes a diagram showing the top view of the package and a table listing the pin names, numbers, types (input/output), and descriptions.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "Details are given for tape and reel packaging, including reel dimensions, tape dimensions, and quadrant assignments for pin 1 orientation in the tape. Specific dimensions are provided for the SN74AHC1G09QDBVRQ1 and SN74AHC1G09QDCKRQ1 packages in tabular form.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "Tape and reel box dimensions are listed for the two package types, including length, width, and height measurements. The text also includes detailed package outline drawings with dimensions for both the SOT-23 (DBV) and SC70 (DCK) packages.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "Example board layout and stencil design guidelines are provided, with notes on solder mask tolerances, alternate design recommendations from IPC standards, and potential variations based on the board assembly site.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      },
+      {
+        "content": "The information covers key aspects of packaging for these specific component types, including physical dimensions, tape and reel specifications, and guidelines for PCB layout and stencil design during board assembly.",
+        "part number": "0801-008200.pdf",
+        "grade": "A",
+        "maker_pn": "SN74AHC1G09-Q1"
+      }
+    ]
+  },
+  "part number": "0801-008200"
+}

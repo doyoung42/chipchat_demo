@@ -1,0 +1,466 @@
+{
+  "metadata": {
+    "component_name": "24XX Series I2C Serial EEPROMs",
+    "manufacturer": "Microchip Technology Inc.",
+    "key_specifications": "128-bit through 1024 Kbit devices, single 1.7V to 5.5V supply, low-power CMOS, 2-wire I2C interface, 400 kHz (24LCXX/24AAXX) or 1 MHz (24FCXX) clock speeds, page write buffer, hardware write protection, 1 million erase/write cycles, >200 year data retention",
+    "applications": "The 24XX series EEPROMs are ideally suited for applications requiring non-volatile storage and minimal power consumption, such as industrial equipment, consumer electronics, automotive systems, and Internet of Things (IoT) devices.",
+    "grade": "F",
+    "maker_pn": "24AA00"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Features:\n\u2022 128-bit through 1024 Kbit Devices\n\u2022 Single Supply with Operation Down to 1.7V for 24AAXX Devices\n\u2022 Low-Power CMOS Technology:\n- 1 mA active current, typical\n-1 \u03bcA standby current, typical (I-temp)\n\u2022 2-Wire Serial Interface Bus, I2C\u2122 Compatible\n\u2022 Schmitt Trigger Inputs for Noise Suppression\n\u2022 Output Slope Control to Eliminate Ground Bounce\n\u2022400 kHz (\u2265 2.5V): 24LCXX and 24AAXX\n\u20221 MHz (\u2265 2.5V) and 400 kHz (1.7V): 24FCXX\n\u2022 Self-Timed Write Cycle (including Auto-Erase)\n\u2022 Page Write Buffer\n\u2022 Hardware Write-Protect Available on Most Devices\n\u2022 Factory Programming (QTP) Available\n\u2022 ESD Protection >4,000V\n\u2022 1 Million Erase/Write Cycles\n\u2022 Data Retention >200 years",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Product Summary",
+        "Electrical Characteristics"
+      ],
+      "content": "TABLE 1-1: DEVICE SELECTION TABLE\nPart Number VCC Range\tMax. Clock Frequency\tPage Size\tWrite-Protect Array\tFunctional Address Pins\tTemp. Range\tPackages(5)",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "TABLE 1-1: DEVICE SELECTION TABLE (CONTINUED)\nPart Number VCC Range\tMax. Clock Frequency\tPage Size\tWrite-Protect Array\tFunctional Address Pins\tTemp. Range\tPackages(5)",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Absolute Maximum Ratings (\u2020)\nVCC.............................................................................................................................................................................6.5V\nAll inputs and outputs w.r.t. VSS ......................................................................................................... -0.6V to VCC +1.0V\nStorage temperature ...............................................................................................................................-65\u00b0C to +150\u00b0C\nAmbient temperature with power applied................................................................................................-40\u00b0C to +125\u00b0C\nESD protection on all pins ......................................................................................................................................................\u2265 4k V\n\nTABLE 2-1: DC CHARACTERISTICS",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "TABLE 2-2: AC CHARACTERISTICS \u2013 ALL EXCEPT 24XX00, 24C01C AND 24C02C",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "TABLE 2-2: AC CHARACTERISTICS \u2013 ALL EXCEPT 24XX00, 24C01C AND 24C02C (CONTINUED)",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "TABLE 2-3: AC CHARACTERISTICS \u2013 24XX00, 24C01C AND 24C02C\nAll Parameters apply across all recommended operating ranges unless otherwise noted\n\nIndustrial (I): TA = -40\u00b0C to +85\u00b0C, VCC = 1.7V to 5.5V\nAutomotive (E): TA = -40\u00b0C to +125\u00b0C, VCC = 4.5V to 5.5V\n\n[Table with detailed AC timing characteristics for different VCC ranges]",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "FIGURE 2-1: EXAMPLE BUS TIMING DATA",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "3.0 PIN DESCRIPTIONS\n\nThe descriptions of the pins are listed in Table 3-1.\n\nTABLE 3-1: PIN FUNCTION TABLE\n\n[Table listing pin functions for different package types]",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Functional Description"
+      ],
+      "content": "Each 24XX device supports a bidirectional, 2-wire bus and data transmission protocol. A device that sends data onto the bus is defined as a transmitter, while a device receiving data is defined as a receiver. The bus has to be controlled by a master device which generates the Serial Clock (SCL), controls the bus access and generates the Start and Stop conditions, while the 24XX works as slave. Both master and slave can operate as transmitter or receiver, but the master device determines which mode is activated.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Bus Characteristics"
+      ],
+      "content": "The following bus protocol has been defined:\n\n\u2022 Data transfer may be initiated only when the bus is not busy.\n\u2022 During data transfer, the data line must remain stable whenever the clock line is high. Changes in the data line while the clock line is high will be interpreted as a Start or Stop condition.\n\n5.1 Bus Not Busy (A)\nBoth data and clock lines remain high.\n\n5.2 Start Data Transfer (B)\nA high-to-low transition of the SDA line while the clock (SCL) is high determines a Start condition. All commands must be preceded by a Start condition.\n\n5.3 Stop Data Transfer (C)\nA low-to-high transition of the SDA line while the clock (SCL) is high determines a Stop condition. All operations must be ended with a Stop condition.\n\n5.4 Data Valid (D)\nThe state of the data line represents valid data when, after a Start condition, the data line is stable for the duration of the high period of the clock signal.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Bus Characteristics"
+      ],
+      "content": "5.5 Acknowledge\nEach receiving device, when addressed, is obliged to generate an acknowledge after the reception of each byte. The master device must generate an extra clock pulse which is associated with this Acknowledge bit.\n\nThe device that acknowledges has to pull down the SDA line during the acknowledge clock pulse in such a way that the SDA line is stable low during the high period of the acknowledge related clock pulse. Of course, setup and hold times must be taken into account. During reads, a master must signal an end-of-data to the slave by not generating an Acknowledge bit on the last byte that has been clocked out of the slave. In this case, the slave (24XX) will leave the data line high to enable the master to generate the Stop condition (Figure 5-2).\n\nNote: During a write cycle, the 24XX will not acknowledge commands.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "A control byte is the first byte received following the Start condition from the master device (Figure 5-3). The control byte begins with a four-bit control code. For the 24XX, this is set as '1010' binary for read and write operations. The next three bits of the control byte are the block-select bits (B2, B1, B0). They are used by the master device to select which of the 256-word blocks of memory are to be accessed. These bits are in effect the three Most Significant bits of the word address.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "A control byte is the first byte received following the Start condition from the master device (Figure 5-4). The control byte begins with a 4-bit control code. For the 24XX, this is set as '1010' binary for read and write operations. The next three bits of the control byte are the Chip Select bits (A2, A1, A0). The Chip Select bits allow the use of up to eight 24XX devices on the same bus and are used to select which device is accessed. The Chip Select bits in the control byte must correspond to the logic levels on the corresponding A2, A1 and A0 pins for the device to respond. These bits are, in effect, the three Most Significant bits of the word address.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Chip Select bits A2, A1 and A0 can be used to expand the contiguous address space by adding up to eight 24XXs on the same bus. Software can use the three address bits of the control byte as the three Most Significant bits of the address byte. For example, in the 24XX32 devices, software can use A0 of the control byte as address bit A12; A1 as address bit A13; and A2 as address bit A14 (Table 5-1). It is not possible to sequentially read across device boundaries.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 16,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.0 WRITE OPERATIONS\n6.1 Byte Write\nA byte write operation begins with a Start condition from the master followed by the four-bit control code (see Figure 6-1 and Figure 6-2). The next 3 bits are either the Block Address bits (for devices without address pins) or the Chip Select bits (for devices with address pins). Then the master transmitter clocks the R/W bit (which is a logic low) onto the bus. The slave then generates an Acknowledge bit during the ninth clock cycle.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 17,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.2 Page Write\nThe write control byte, word address byte(s), and the first data byte are transmitted to the 24XX in much the same way as in a byte write (see Figure 6-3 and Figure 6-4). The exception is that instead of generating a Stop condition, the master transmits up to one page of bytes, which is temporarily stored in the on-chip page buffer. This data is then written into memory once the master has transmitted a Stop condition.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 18,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "7.0 ACKNOWLEDGE POLLING\nSince the device will not acknowledge commands during a write cycle, this can be used to determine when the cycle is complete (This feature can be used to maximize bus throughput). Once the Stop condition for a Write command has been issued from the master, the device initiates the internally timed write cycle. ACK polling can be initiated immediately. This involves the master sending a Start condition, followed by the control byte for a Write command (R/W = 0). If the device is still busy with the write cycle, then no ACK will be returned.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "8.0 READ OPERATION\nRead operations are initiated in much the same way as write operations with the exception that the R/W  bit of the control byte is set to '1'. There are three basic types of read operations: current address read, random read and sequential read.\n\n8.1 Current Address Read\nThe 24XX contains an address counter that maintains the address of the last byte accessed, internally incremented by '1'. Therefore, if the previous read or write operation was to address 'n' (n is any legal address), the next current address read operation would access data from address n + 1.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "8.2 Random Read\nRandom read operations allow the master to access any memory location in a random manner. To perform this type of read operation, the byte address must first be set. This is done by sending the byte address to the 24XX as part of a write operation (R/W bit set to '0'). Once the byte address is sent, the master generates a Start condition following the acknowledge. This terminates the write operation, but not before the internal address counter is set. The master then issues the control byte again, but with the R/W bit set to a '1'. The 24XX will then issue an acknowledge and transmit the 8-bit data byte.\n\n8.3 Sequential Read\nSequential reads are initiated in the same way as a random read except that after the 24XX transmits the first data byte, the master issues an acknowledge as opposed to the Stop condition used in a random read. This acknowledge directs the 24XX to transmit the next sequentially addressed data byte (Figure 8-4). Following the final byte transmitted to the master, the master will NOT generate an acknowledge but will generate a Stop condition.",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead DFN Example : \nXXXXXXX\nT/XXXXX\nYYWW\n24AA128\nI/MF\n0528\n1L7NNN\n3e",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Example:5-Lead SOT-23\nXXNN 5EL7\n\n5-Lead SOT-23 Package Marking \nDevice Comm. \nMarking\nIndust. \nMarking Device Comm. \nMarking\nIndust. \nMarking\nE-Temp \nMarking Device Comm. \nMarking\nIndust. \nMarking\nE-Temp \nMarking\n24AA00 A0NN B0NN 24LC00 L0NN M0NN N0NN 24C00 C0NN D0NN E0NN\n24AA01 A1NN B1NN 24LC01B L1NN M1NN N1NN\n24AA02 A2NN B2NN 24LC02B L2NN M2NN N2NN\n24AA04 A3NN B3NN 24LC04B L3NN M3NN N3NN\n24AA08 A4NN B4NN 24LC08B L4NN M4NN N4NN\n24AA16 A5NN B5NN 24LC16B L5NN M5NN N5NN",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 27,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead MSOP (150 mil) Example:\nXXXXXXXT\nYWWNNN\n4L8BI \n2281L7\n\n8-Lead MSOP Package Marking \nDevice Line 1 \nMarking Device Line 1 \nMarking Device Line 1 \nMarking Device Line 1 \nMarking\n24AA01 4A01T 24LC01B 4L1BT\n24AA014 4A14T 24LC014 4L14T\n24C01C 4C1CT\n24AA02 4A02T 24LC02B 4L2BT\n24AA024 4A24T 24LC024 4L24T\n24AA025 4A25T 24LC025 4L25T\n24C02C 4C2CT\n24AA04 4A04T 24LC04B 4L4BT\n24AA08 4A08T 24LC08B 4L8BT\n24AA16 4A16T 24LC16B 4L16T\n24AA32A 4A32AT 24LC32A 4L32AT\n24AA64 4A64T 24LC64 4L64T 24FC64 4F64T\n24AA128 4A128T 24LC128 4L128T 24FC128 4F128T\n24AA256 4A256T 24LC256 4L256T 24FC256 4F256T",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 28,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Example:\n8-Lead TSSOP Package Marking \nDevice Line 1 \nMarking Device Line 1 \nMarking Device Line 1 \nMarking Device Line 1 \nMarking\n24AA00 4A00 24LC00 4L00 24C00 4C00\n24AA01 4A01 24LC01B 4L1B\n24AA014 4A14 24LC014 4L14\n24C01C 4C1C\n24AA02 4A02 24LC02B 4L02\n24AA024 4A24 24LC024 4L24\n24AA025 4A25 24LC025 4L25\n24C02C 4C2C\n24AA04 4A04 24LC04B 4L04\n24AA08 4A08 24LC08B 4L08\n24AA16 4A16 24LC16B 4L16\n24AA32A 4AA 24LC32A 4LA\n24AA64 4AB 24LC64 4LB 24FC64 4FB\n24AA128 4AC 24LC128 4LC 24FC128 4FC\n24AA256 4AD 24LC256 4LD 24FC256 4FD",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 29,
+      "categories": [
+        "Mechanical Characteristics"
+      ],
+      "content": "8-Lead Plastic Dual In-Line (P) \u2013 300 mil Body [PDIP]\n\nNumber of Pins N 8\nPitch e .100 BSC\nTop to Seating Plane A \u2013 \u2013 .210\nMolded Package Thickness A2 .115 .130 .195\nBase to Seating Plane A1 .015 \u2013 \u2013\nShoulder to Shoulder Width E .290 .310 .325\nMolded Package Width E1 .240 .250 .280\nOverall Length D .348 .365 .400\nTip to Seating Plane L .115 .130 .150\nLead Thickness c .008 .010 .015\nUpper Lead Width b1 .040 .060 .070\nLower Lead Width b .014 .018 .022\nOverall Row Spacing  \u00a7 eB \u2013 \u2013 .430",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Mechanical Characteristics"
+      ],
+      "content": "8-Lead Plastic Small Outline (SN) \u2013 Narrow, 3.90 mm Body [SOIC]\n\nNumber of Pins N 8\nPitch e 1.27 BSC\nOverall Height A \u2013 \u2013 1.75\nMolded Package Thickness A2 1.25 \u2013 \u2013\nStandoff  \n\u00a7 A1 0.10 \u2013 0.25\nOverall Width E 6.00 BSC\nMolded Package Width E1 3.90 BSC\nOverall Length D 4.90 BSC\nChamfer (optional) h 0.25 \u2013 0.50\nFoot Length L 0.40 \u2013 1.27\nFootprint L1 1.04 REF\nFoot Angle \u03c6 0\u00b0 \u2013 8\u00b0\nLead Thickness c 0.17 \u2013 0.25\nLead Width b 0.31 \u2013 0.51\nMold Draft Angle Top \u03b1 5\u00b0 \u2013 15\u00b0\nMold Draft Angle Bottom \u03b2 5\u00b0 \u2013 15\u00b0",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 31,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead Plastic Dual Flat, No Lead Package (MC) \u2013 2x3x0.9 mm Body [DFN]\n\nUnits MILLIMETERS\nDimension Limits MIN NOM MAX\nNumber of Pins N 8\nPitch e 0.50 BSC\nOverall Height A 0.80 0.90 1.00\nStandoff A1 0.00 0.02 0.05\nContact Thickness A3 0.20 REF\nOverall Length D 2.00 BSC\nOverall Width E 3.00 BSC\nExposed Pad Length D2 1.30 \u2013 1.75\nExposed Pad Width E2 1.50 \u2013 1.90\nContact Width b 0.18 0.25 0.30\nContact Length L 0.30 0.40 0.50\nContact-to-Exposed Pad K 0.20 \u2013 \u2013",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead Plastic Dual Flat, No Lead Package (MF) \u2013 6x5 mm Body [DFN-S]\n\nUnits MILLIMETERS\nDimension Limits MIN NOM MAX\nNumber of Pins N 8\nPitch e 1.27 BSC\nOverall Height A 0.80 0.85 1.00\nStandoff A1 0.00 0.01 0.05\nContact Thickness A3 0.20 REF\nOverall Length D 5.00 BSC\nOverall Width E 6.00 BSC\nExposed Pad Length D2 3.90 4.00 4.10\nExposed Pad Width E2 2.20 2.30 2.40\nContact Width b 0.35 0.40 0.48\nContact Length L 0.50 0.60 0.75\nContact-to-Exposed Pad K 0.20 \u2013 \u2013",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "5-Lead Plastic Small Outline Transistor (OT) [SOT-23]\n\nUnits MILLIMETERS\nDimension Limits MIN NOM MAX\nNumber of Pins N 5\nLead Pitch e 0.95 BSC\nOutside Lead Pitch e1 1.90 BSC\nOverall Height A 0.90 \u2013 1.45\nMolded Package Thickness A2 0.89 \u2013 1.30\nStandoff A1 0.00 \u2013 0.15\nOverall Width E 2.20 \u2013 3.20\nMolded Package Width E1 1.30 \u2013 1.80\nOverall Length D 2.70 \u2013 3.10\nFoot Length L 0.10 \u2013 0.60\nFootprint L1 0.35 \u2013 0.80\nFoot Angle \u03c6 0\u00b0 \u2013 30\u00b0\nLead Thickness c 0.08 \u2013 0.26\nLead Width b 0.20 \u2013 0.51",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 34,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead Plastic Micro Small Outline Package (MS) [MSOP]\n\nUnits MILLIMETERS\nDimension Limits MIN NOM MAX\nNumber of Pins N 8\nPitch e 0.65 BSC\nOverall Height A \u2013 \u2013 1.10\nMolded Package Thickness A2 0.75 0.85 0.95\nStandoff A1 0.00 \u2013 0.15\nOverall Width E 4.90 BSC\nMolded Package Width E1 3.00 BSC\nOverall Length D 3.00 BSC\nFoot Length L 0.40 0.60 0.80\nFootprint L1 0.95 REF\nFoot Angle \u03c6 0\u00b0 \u2013 8\u00b0\nLead Thickness c 0.08 \u2013 0.23\nLead Width b 0.22 \u2013 0.40",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 35,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "8-Lead Plastic Thin Shrink Small Outline (ST) \u2013 4.4 mm Body [TSSOP]\n\nUnits MILLIMETERS\nDimension Limits MIN NOM MAX\nNumber of Pins N 8\nPitch e 0.65 BSC\nOverall Height A \u2013 \u2013 1.20\nMolded Package Thickness A2 0.80 1.00 1.05\nStandoff A1 0.05 \u2013 0.15\nOverall Width E 6.40 BSC\nMolded Package Width E1 4.30 4.40 4.50\nMolded Package Length D 2.90 3.00 3.10\nFoot Length L 0.45 0.60 0.75\nFootprint L1 1.00 REF\nFoot Angle \u03c6 0\u00b0 \u2013 8\u00b0\nLead Thickness c 0.09 \u2013 0.20\nLead Width b 0.19 \u2013 0.30",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    },
+    {
+      "page_number": 39,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "PART NO. X /XX\n\nDevice: See Table 1-1\nTemperature Range:\nI = -40\u00b0C to +85\u00b0C\nE = -40\u00b0C to +125\u00b0C\nPackaging Medium:\nT = Tape and Reel\nBlank = Tube\nPackage:\nP = Plastic DIP (300 mil body), 8-lead\nSN = Plastic SOIC (3.90 mm body), 8-lead\nSM = Plastic SOIC (208 mil body), 8-lead\nST = Plastic TSSOP (4.4 mm), 8-lead\nMS = MSOP (3.0 mm), 8-lead\nOT = SOT-23, 5-lead (Tape and Reel only)\nMC = 2x3 mm DFN, 8-lead (Tape and Reel only)\nMF = 5x6 mm DFN, 8-lead",
+      "grade": "F",
+      "maker_pn": "24AA00",
+      "part number": "1103-000998"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Features: 128-bit through 1024 Kbit Devices, Single Supply with Operation Down to 1.7V for 24AAXX Devices, Low-Power CMOS Technology with 1 mA active current and 1 \u03bcA standby current (I-temp), 2-Wire Serial Interface Bus (I2C\u2122 Compatible), Schmitt Trigger Inputs for Noise Suppression, Output Slope Control to Eliminate Ground Bounce, 400 kHz (\u2265 2.5V) for 24LCXX and 24AAXX, 1 MHz (\u2265 2.5V) and 400 kHz (1.7V) for 24FCXX.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "Self-Timed Write Cycle (including Auto-Erase), Page Write Buffer, Hardware Write-Protect Available on Most Devices, Factory Programming (QTP) Available, ESD Protection >4,000V, 1 Million Erase/Write Cycles, Data Retention >200 years. Device selection table with part number, VCC range, max clock frequency, page size, write-protect array, functional address pins, temperature range, and packages.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "Pin descriptions table listing pin functions for different package types. Part number naming convention with device type, temperature range, packaging medium, and package details like DIP, SOIC, TSSOP, MSOP, SOT-23, and DFN packages.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The provided text contains information about device selection tables, absolute maximum ratings, DC characteristics, and detailed AC timing characteristics for different voltage ranges and temperature ranges. It covers parameters such as supply voltage range, maximum clock frequency, page size, write-protect array, functional address pins, temperature range, and package types for various part numbers.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "The text discusses control bytes, which are the first bytes received following the Start condition from the master device. It explains the structure of the control byte, including the control code, block-select bits (for devices without address pins), and chip select bits (for devices with address pins). It also describes how the chip select bits can be used to expand the contiguous address space by adding multiple devices on the same bus.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "The text covers write operations, including byte write and page write. It explains the process of byte write, where the master transmits the control byte, word address byte(s), and data byte, followed by a Stop condition. For page write, the master transmits up to one page of bytes, which are temporarily stored in the on-chip page buffer and then written into memory after a Stop condition is transmitted.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "The text discusses acknowledge polling, which can be used to determine when a write cycle is complete. It explains that the device will not acknowledge commands during a write cycle, and the master can initiate acknowledge polling by sending a Start condition followed by the control byte for a Write command. If the device is still busy with the write cycle, no acknowledge will be returned.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "The text covers read operations, including current address read, random read, and sequential read. It explains how the address counter maintains the address of the last byte accessed, and how random read operations allow the master to access any memory location by first setting the byte address. Sequential reads are initiated similarly to random reads, but the master issues an acknowledge after each data byte to receive the next sequentially addressed data byte.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "FIGURE 2-1: EXAMPLE BUS TIMING DATA - This figure illustrates the timing diagram for a bus communication protocol, showing the timing requirements and specifications for signals like clock, data, and control lines.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "FIGURE 2-1: EXAMPLE BUS TIMING DATA - This diagram provides a visual representation of the bus timing parameters, such as setup and hold times, signal propagation delays, and clock cycles, which are crucial for ensuring proper synchronization and data transfer in the application circuit.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "FIGURE 2-1: EXAMPLE BUS TIMING DATA - The timing diagram serves as a reference for designing and implementing the application circuit, ensuring that the bus communication adheres to the specified timing constraints and operates correctly within the system.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      }
+    ],
+    "Mechanical Characteristics": [
+      {
+        "content": "8-Lead Plastic Dual In-Line (P) \u2013 300 mil Body [PDIP]: Dimensions and specifications for an 8-pin plastic dual in-line package with a 300 mil body, including number of pins, pitch, package thickness, width, length, lead thickness and width, and row spacing.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "8-Lead Plastic Small Outline (SN) \u2013 Narrow, 3.90 mm Body [SOIC]: Dimensions and specifications for an 8-pin plastic small outline integrated circuit package with a narrow 3.90 mm body, including number of pins, pitch, overall height, package thickness, standoff, width, length, chamfer, foot length and angle, lead thickness and width, and mold draft angles.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "Mechanical characteristics such as package dimensions, form factor, mounting information, and specifications related to the physical structure and assembly of electronic components, including details on pin count, lead configuration, body size, and dimensional tolerances.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "Key parameters for surface mount and through-hole packages, including pitch, overall height, package thickness, width, length, lead thickness and width, standoff, chamfer, foot length and angle, and mold draft angles, which are crucial for proper mounting, clearance, and assembly.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "8-Lead DFN and 5-Lead SOT-23 package marking details: This chunk covers the package marking conventions and examples for 8-lead DFN (Dual Flat No-lead) and 5-lead SOT-23 (Small Outline Transistor) packages. It includes device commercial and industrial markings, as well as specific examples of markings for various memory devices.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "8-Lead MSOP and TSSOP package marking details: This chunk provides the package marking information for 8-lead MSOP (Micro Small Outline Package) and TSSOP (Thin Shrink Small Outline Package) packages. It includes line 1 markings for different memory devices in these package types.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "8-Lead DFN (2x3x0.9 mm) and DFN-S (6x5 mm) package dimensions: This chunk covers the detailed package dimensions and specifications for 8-lead DFN packages in two body sizes: 2x3x0.9 mm and 6x5 mm. It includes dimensions such as overall height, width, length, pin pitch, and exposed pad size.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "5-Lead SOT-23 and 8-Lead MSOP package dimensions: This chunk provides the package dimensions and specifications for 5-lead SOT-23 and 8-lead MSOP packages. It includes details such as lead pitch, overall height, width, length, foot length, lead thickness, and lead width.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      },
+      {
+        "content": "8-Lead TSSOP (4.4 mm) package dimensions: This chunk focuses on the package dimensions and specifications for the 8-lead TSSOP package with a 4.4 mm body size. It covers details like overall height, width, length, pin pitch, foot length, lead thickness, and lead width.",
+        "part number": "1103-000998.pdf",
+        "grade": "F",
+        "maker_pn": "24AA00"
+      }
+    ]
+  },
+  "part number": "1103-000998"
+}

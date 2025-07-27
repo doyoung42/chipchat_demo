@@ -1,0 +1,157 @@
+{
+  "metadata": {
+    "component_name": "74HC1G02",
+    "manufacturer": "Nexperia",
+    "key_specifications": "2-input NOR gate, supply voltage range 2.0 V to 6.0 V, propagation delay 7 ns to 135 ns depending on supply voltage and load capacitance, wide operating temperature range -40\u00b0C to +125\u00b0C",
+    "applications": "The datasheet does not explicitly mention main applications, but being a basic 2-input NOR gate logic IC, it can be used in a wide variety of digital logic circuits and systems.",
+    "grade": "D",
+    "maker_pn": "74HC1G02"
+  },
+  "page_summaries": [
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 7. Static characteristics\nVoltages are referenced to GND (ground = 0 V). All typical values are measured at Tamb = 25 \u00b0C.\n\n-40 \u00b0C to +85 \u00b0C -40 \u00b0C to +125 \u00b0CSymbol Parameter Conditions\nMin Typ Max Min Max\nUnit\n74HC1G02\nVCC = 2.0 V 1.5 1.2 - 1.5 - V\nVCC = 4.5 V 3.15 2.4 - 3.15 - V\nVIH HIGH-level input\nvoltage\nVCC = 6.0 V 4.2 3.2 - 4.2 - V\n... (table content truncated for brevity)",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 8. Dynamic characteristics\nGND = 0 V; tr = tf \u2264 6.0 ns; All typical values are measured at Tamb = 25 \u00b0C. For test circuit see Fig. 5\n\n-40 \u00b0C to +85 \u00b0C -40 \u00b0C to +125 \u00b0CSymbol Parameter Conditions\nMin Typ Max Min Max\nUnit\n74HC1G02\nA and B to Y; see Fig. 4 [1]\nVCC = 2.0 V; CL = 50 pF - 25 115 - 135 ns\nVCC = 4.5 V; CL = 50 pF - 9 23 - 27 ns\nVCC = 5.0 V; CL = 15 pF - 7 - - - ns\ntpd propagation delay\nVCC = 6.0 V; CL = 50 pF - 8 20 - 23 ns\n... (table and figure descriptions truncated)",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "ReferencesOutline\nversion\nEuropean\nprojection Issue date\nIEC JEDEC JEITA\nSOT353-1 SC-88AMO-203\nsot353-1_po\n21-12-15\n21-12-16\nUnit\nmm max\nmin\n1.1 0.1 0.30 0.25 2.2 0.65 1.3\nA\n\n... (package outline drawing and dimensions truncated)",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Plastic surface-mounted package; 5 leads SOT753\nUNIT A1 bp c D E HE Lp Q ywv\nmm 0.100 \n0.013\n0.40 \n0.25\n3.1 \n2.7\n0.26 \n0.10\n1.7 \n1.3\ne\n0.95 3.0 \n2.5 0.2 0.10.2\nDIMENSIONS (mm are the original dimensions)\n0.6 \n0.2\n0.33 \n0.23\nA\n1.1 \n0.9",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "XSON5:  Plastic thermal enhanced extremely thin small outline package with\nside-wettable flanks (SWF); no leads; 5 terminals; body 1.1 \u00d7 0.85 \u00d7 0.5 mm",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "Table 9. Abbreviations\nAcronym Description\nANSI American National Standards Institute\nCDM Charged Device Model\nCMOS Complementary Metal Oxide Semiconductor\nDUT Device Under Test\nESD ElectroStatic Discharge\nESDA ElectroStatic Discharge Association\nHBM Human Body Model\nJEDEC Joint Electron Device Engineering Council\nTTL Transistor-Transistor Logic",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Ordering information....................................................1\n4. Marking.......................................................................... 2\n5. Functional diagram.......................................................2\n6. Pinning information......................................................2\n6.1. Pinning.........................................................................2\n6.2. Pin description.............................................................2\n7. Functional description................................................. 3\n8. Limiting values............................................................. 3\n9. Recommended operating conditions..........................3\n10. Static characteristics..................................................4\n11. Dynamic characteristics.............................................5\n11.1. Waveforms and test circuit........................................ 5\n12. Package outline.......................................................... 6\n13. Abbreviations..............................................................9\n14. Revision history..........................................................9",
+      "grade": "D",
+      "maker_pn": "74HC1G02",
+      "part number": "0801-005970"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "Table 9. Abbreviations: This section provides a list of abbreviations and their descriptions, including ANSI (American National Standards Institute), CDM (Charged Device Model), CMOS (Complementary Metal Oxide Semiconductor), DUT (Device Under Test), ESD (ElectroStatic Discharge), ESDA (ElectroStatic Discharge Association), HBM (Human Body Model), JEDEC (Joint Electron Device Engineering Council), and TTL (Transistor-Transistor Logic).",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "1. General description, 2. Features and benefits, 3. Ordering information: These sections likely provide an overview of the product, its key features and advantages, and information on how to order or purchase the product.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "4. Marking, 5. Functional diagram, 6. Pinning information (6.1. Pinning, 6.2. Pin description): These sections cover the physical marking or labeling on the product, a diagram illustrating its functionality, and details about the product's pins, including their arrangement and descriptions.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "7. Functional description, 8. Limiting values, 9. Recommended operating conditions: These sections explain how the product functions, its limiting values or specifications, and the recommended operating conditions for optimal performance.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "10. Static characteristics, 11. Dynamic characteristics (11.1. Waveforms and test circuit), 12. Package outline: These sections provide information about the product's static and dynamic characteristics, including waveforms, test circuits, and details about the package or enclosure.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 7 provides the static characteristics, including the minimum, typical, and maximum values for high-level input voltage (VIH) across different operating voltage ranges (VCC) and temperature ranges (-40 \u00b0C to +85 \u00b0C and -40 \u00b0C to +125 \u00b0C). The table covers the 74HC1G02 logic gate and specifies the conditions for measuring the typical values (Tamb = 25 \u00b0C).",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "Table 8 presents the dynamic characteristics, such as the propagation delay (tpd), for the 74HC1G02 logic gate. It provides the minimum, typical, and maximum values for tpd under different conditions, including VCC, load capacitance (CL), and temperature ranges (-40 \u00b0C to +85 \u00b0C and -40 \u00b0C to +125 \u00b0C). The table specifies the test conditions, including GND = 0 V, rise and fall times (tr = tf \u2264 6.0 ns), and the typical values measured at Tamb = 25 \u00b0C.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "The tables cover essential electrical characteristics, including static parameters like input voltage levels and dynamic parameters like propagation delays. The data is provided for different operating conditions, such as supply voltage ranges, load capacitances, and temperature ranges, allowing designers to understand the device's behavior under various circumstances.",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "ReferencesOutline version European projection Issue date IEC JEDEC JEITA SOT353-1 SC-88AMO-203 sot353-1_po 21-12-15 21-12-16 Unit mm max min 1.1 0.1 0.30 0.25 2.2 0.65 1.3 A ... (package outline drawing and dimensions truncated)",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "Plastic surface-mounted package; 5 leads SOT753 UNIT A1 bp c D E HE Lp Q ywv mm 0.100 0.013 0.40 0.25 3.1 2.7 0.26 0.10 1.7 1.3 e 0.95 3.0 2.5 0.2 0.10.2 DIMENSIONS (mm are the original dimensions) 0.6 0.2 0.33 0.23 A 1.1 0.9",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      },
+      {
+        "content": "XSON5: Plastic thermal enhanced extremely thin small outline package with side-wettable flanks (SWF); no leads; 5 terminals; body 1.1 \u00d7 0.85 \u00d7 0.5 mm",
+        "part number": "0801-005970.pdf",
+        "grade": "D",
+        "maker_pn": "74HC1G02"
+      }
+    ]
+  },
+  "part number": "0801-005970"
+}

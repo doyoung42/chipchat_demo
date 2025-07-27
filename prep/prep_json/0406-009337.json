@@ -1,0 +1,178 @@
+{
+  "metadata": {
+    "component_name": "BZX84WCx Zener Voltage Regulator Diode",
+    "manufacturer": "Nexperia",
+    "key_specifications": "Total power dissipation: 360mW (max), Low I/O capacitance: 80pF (max), Low leakage current: 0.6\u03bcA (max), Tolerance: \u00b15%, Temperature range: -55\u00b0C to +150\u00b0C, Zener voltages ranging from 8.2V to 39V",
+    "applications": "Voltage regulation, Over-voltage protection",
+    "grade": "B",
+    "maker_pn": "BZX84WC8V2"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "BZX84WCx Zener Voltage Regulator Diode in SC-70\n1 Features\n\u2022 Total power dissipation: 360mW (max)\n\u2022 Low I/O capacitance: 80pF (max)\n\u2022 Low leakage current: 0.6\u03bcA (max)\n\u2022 Tolerance: \u00b15%\n\u2022 Temperature range: -55\u00b0C to +150\u00b0C\n\u2022 Leaded package used for automatic optical inspection (AOI)\n2 Applications\n\u2022 Voltage regulation\n\u2022 Over-voltage protection\n3 Description\nThe BZX84WCx is a family of voltage regulating diodes in a SC-70 package. The diodes are available in Zener voltages ranging from 8.2V to 39V.",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6 Specifications\n6.1 Absolute Maximum Ratings\nover operating free-air temperature range (unless otherwise noted) (1)\nMIN MAX UNIT\nPD (2) (3) Total Power Dissipation 360 mW\nIF Forward Current 200 mA\nTA Ambient Operating Temperature -55 150 \u00b0C\nTstg Storage Temperature -65 155 \u00b0C\n\n6.2 Recommended Operating Conditions\nover operating free-air temperature range (unless otherwise noted)\nMIN NOM MAX UNIT\nVF Forward Voltage IF = 10mA 0.9 V\nTA Operating free-air temperature -55 150 \u00b0C",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Thermal Information",
+        "Electrical Characteristics"
+      ],
+      "content": "6.3 Thermal Information\nTHERMAL METRIC (1)\nBZX84WCx\nUNITDCK (SC-70)\n3 PINS\nR\u03b8JA Junction-to-ambient thermal resistance 345.0 \u00b0C/W\nR\u03b8JC(top) Junction-to-case (top) thermal resistance 223.0 \u00b0C/W\nR\u03b8JB Junction-to-board thermal resistance 159.0 \u00b0C/W\n\u03a8JT Junction-to-top characterization parameter 113.6 \u00b0C/W\n\u03a8JB Junction-to-board characterization parameter 157.9 \u00b0C/W\nR\u03b8JC(bot) Junction-to-case (bottom) thermal resistance N/A \u00b0C/W\n\n6.4 Electrical Characteristics\nAt TA = 25\u00b0C (unless otherwise noted)\nPart Number\nZener Voltage\nVZ (V) at IZ\nZener Impedance\nZZT (\u03a9) at IZ\nReverse Leakage \nCurrent\nIR (\u00b5A)\nTemperature \nCoefficient\nSZ (mV/C) at IZ\nCapacitance\nCD (pF) (1)\nMIN TYP MAX IZ (mA) MAX IZ (mA) MAX VR (V) MAX IZ (mA) MAX\nBZX84WC8V2 7.79 8.2 8.61 5 15 5 0.6 5.75 6.2 5 80\nBZX84WC15V 14.25 15 15.75 5 30 5 0.03 10.5 13 5 50\nBZX84WC27V 25.65 27 28.35 2 80 2 0.03 18.9 25.3 2 35\nBZX84WC39V 37.05 39 40.95 2 130 2 0.03 27.3 41.2 2 25",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Typical Characteristics"
+      ],
+      "content": "6.5 Typical Characteristics",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "BZX84WC15VDCKR Active Production SC70 (DCK) | 3 3000 | LARGE T&R Yes SN Level-1-260C-UNLIM -55 to 150 1UM\nBZX84WC27VDCKR Active Production SC70 (DCK) | 3 3000 | LARGE T&R Yes SN Level-1-260C-UNLIM -55 to 150 1UN\nBZX84WC39VDCKR Active Production SC70 (DCK) | 3 3000 | LARGE T&R Yes SN Level-1-260C-UNLIM -55 to 150 1T3\nBZX84WC8V2DCKR Active Production SC70 (DCK) | 3 3000 | LARGE T&R Yes SN Level-1-260C-UNLIM -55 to 150 1T1",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "\u2022 Automotive : BZX84WC15V-Q1 , BZX84WC27V-Q1 , BZX84WC39V-Q1 , BZX84WC8V2-Q1\n\nNOTE: Qualified Version Definitions:\n\u2022 Automotive - Q100 devices qualified for high-reliability automotive applications targeting zero defects",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "BZX84WC15VDCKR SC70 DCK 3 3000 180.0 8.4 2.3 2.75 1.2 4.0 8.0 Q3\nBZX84WC27VDCKR SC70 DCK 3 3000 180.0 8.4 2.3 2.75 1.2 4.0 8.0 Q3\nBZX84WC39VDCKR SC70 DCK 3 3000 180.0 8.4 2.3 2.75 1.2 4.0 8.0 Q3\nBZX84WC8V2DCKR SC70 DCK 3 3000 180.0 8.4 2.3 2.75 1.2 4.0 8.0 Q3",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE MATERIALS INFORMATION\n\nTAPE AND REEL BOX DIMENSIONS\n\nWidth (mm)\nW LH\n\n*All dimensions are nominal\nDevice Package Type Package Drawing Pins SPQ Length (mm) Width (mm) Height (mm)\nBZX84WC15VDCKR SC70 DCK 3 3000 210.0 185.0 35.0\nBZX84WC27VDCKR SC70 DCK 3 3000 210.0 185.0 35.0\nBZX84WC39VDCKR SC70 DCK 3 3000 210.0 185.0 35.0\nBZX84WC8V2DCKR SC70 DCK 3 3000 210.0 185.0 35.0",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\n\nC\n0.22\n0.08 TYP\n0.15\n2.4\n1.8\n0.65\n1.1 MAX\n0.1\n0.0 TYP\n3X 0.30\n0.15\n0.46\n0.26 TYP\n8\n0  TYP\n1.3\n4X 0 -12\n4X 4 -15\nA\n2.15\n1.85\nB1.4\n1.1\n(0.9)\n\nSOT-SC70 - 1.1 max heightDCK0003A\nSMALL OUTLINE TRANSISTOR SC70\n\nNOTES:\n\n1. All linear dimensions are in millimeters. Any dimensions in parenthesis are for reference only. Dimensioning and tolerancing\n    per ASME Y14.5M.\n2. This drawing is subject to change without notice.\n3. Body dimensions do not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not exceed\n    0.25mm per side",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n\n0.07 MAX\nAROUND\n0.07 MIN\nAROUND\n3X (0.95)3X (0.4)\n(2.2)\n(1.3)\n(0.65)\n(R0.05) TYP\n\nSOT-SC70 - 1.1 max heightDCK0003A\nSMALL OUTLINE TRANSISTOR SC70\n\nNOTES: (continued)\n\n4. Publication IPC-7351 may have alternate designs.\n5. Solder mask tolerances between and around signal pads can vary based on board fabrication site.\n\nSYMM\nLAND PATTERN EXAMPLE\nEXPOSED METAL SHOWN\nSCALE:18X\n\nSOLDER MASK\nOPENING\n\nMETAL UNDER\nSOLDER MASK\n\nSOLDER MASK\nDEFINED\n\nEXPOSED METAL\n\nMETALSOLDER MASK\nOPENING\n\nNON SOLDER MASK\nDEFINED\n(PREFERRED)",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(2.2)\n(1.3)\n(0.65)\n3X (0.95)3X (0.4)\n(R0.05) TYP\nSOT-SC70 - 1.1 max heightDCK0003A\nSMALL OUTLINE TRANSISTOR SC70\n4220745/F   11/2024\n\nNOTES: (continued)\n\n6. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate\n     design recommendations.\n7. Board assembly site may have different recommendations for stencil design.\n\nSOLDER PASTE EXAMPLE\nBASED ON 0.125 THICK STENCIL\nSCALE:18X\nSYMM\nPKG\n1\n3\n2",
+      "grade": "B",
+      "maker_pn": "BZX84WC8V2",
+      "part number": "0406-009337"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The BZX84WCx is a family of Zener voltage regulator diodes in a SC-70 leaded package designed for automatic optical inspection (AOI). It features a low total power dissipation of 360mW (max), low I/O capacitance of 80pF (max), and low leakage current of 0.6\u03bcA (max). The diodes have a voltage tolerance of \u00b15% and an operating temperature range of -55\u00b0C to +150\u00b0C.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "The BZX84WCx Zener diodes are suitable for voltage regulation and over-voltage protection applications. They are available in Zener voltages ranging from 8.2V to 39V, with automotive-qualified versions (Q1) available for high-reliability applications targeting zero defects.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "Key features of the BZX84WCx Zener diodes include low power dissipation of 360mW (max), low I/O capacitance of 80pF (max), low leakage current of 0.6\u03bcA (max), voltage tolerance of \u00b15%, and a wide temperature range of -55\u00b0C to +150\u00b0C. The leaded SC-70 package is designed for automatic optical inspection (AOI).",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "The BZX84WCx family of Zener voltage regulator diodes in SC-70 package is suitable for voltage regulation and over-voltage protection applications, with automotive-qualified versions available for high-reliability applications targeting zero defects. The diodes offer low power dissipation, low capacitance, low leakage current, and a wide temperature range.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "6.1 Absolute Maximum Ratings: Specifies the maximum allowable voltage, current, power dissipation, and temperature ratings for the device. This includes the total power dissipation (PD), forward current (IF), ambient operating temperature (TA), and storage temperature (Tstg) limits.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "6.2 Recommended Operating Conditions: Provides the recommended operating conditions for forward voltage (VF) and operating free-air temperature (TA) range.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "6.3 Thermal Information: Provides thermal metrics such as junction-to-ambient thermal resistance (R\u03b8JA), junction-to-case thermal resistance (R\u03b8JC), junction-to-board thermal resistance (R\u03b8JB), and junction-to-top/board characterization parameters (\u03a8JT, \u03a8JB) for different package types.",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      },
+      {
+        "content": "6.4 Electrical Characteristics: Specifies the key electrical parameters for different part numbers, including zener voltage (VZ), zener impedance (ZZT), reverse leakage current (IR), temperature coefficient (SZ), and capacitance (CD) at specified test conditions (current and voltage levels).",
+        "part number": "0406-009337.pdf",
+        "grade": "B",
+        "maker_pn": "BZX84WC8V2"
+      }
+    ]
+  },
+  "part number": "0406-009337"
+}

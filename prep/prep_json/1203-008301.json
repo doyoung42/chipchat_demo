@@ -1,0 +1,441 @@
+{
+  "metadata": {
+    "component_name": "TPS5430/TPS5431",
+    "manufacturer": "Texas Instruments",
+    "key_specifications": "Wide input voltage range (5.5V to 36V for TPS5430, 5.5V to 23V for TPS5431), up to 3A continuous output current, high efficiency up to 95%, wide adjustable output voltage range down to 1.22V, fixed 500kHz switching frequency, integrated 100m\u03a9 MOSFET switch, protection features like overcurrent limiting, overvoltage protection, thermal shutdown, -40\u00b0C to 125\u00b0C operating temperature range, available in small 8-pin SO PowerPAD package",
+    "applications": "Consumer devices (set-top boxes, DVDs, LCD/plasma displays), industrial and car audio power supplies, battery chargers, high-power LED supplies, 12V and 24V distributed power systems",
+    "grade": "B",
+    "maker_pn": "TPS5430"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "TPS543x 3A, Wide Input Range, Step-Down Converter\n\n1 Features\n\u2022 Wide input voltage range:\n\u2013 TPS5430: 5.5V to 36V\n\u2013 TPS5431: 5.5V to 23V\n\u2022 Up to 3A continuous (4A peak) output current\n\u2022 High efficiency up to 95% enabled by 100m\u03a9 integrated MOSFET switch\n\u2022 Wide output voltage range: adjustable down to 1.22V with 1.5% initial accuracy\n\u2022 Internal compensation minimizes external parts count\n\u2022 Fixed 500kHz switching frequency for small filter size\n\u2022 Improved line regulation and transient response by input voltage feedforward\n\u2022 System protected by overcurrent limiting, overvoltage protection, and thermal shutdown\n\u2022 \u201340\u00b0C to 125\u00b0C operating junction temperature range\n\u2022 Available in small thermally enhanced 8-pin SO PowerPAD\u2122 integrated circuit package\n\u2022 Create a custom design using the TPS5430 with the WEBENCH\u00ae Power Designer\n\n2 Applications\n\u2022 Consumer: set-top box, DVD, LCD displays\n\u2022 Industrial and car audio power supplies\n\u2022 Battery chargers, high-power LED supply\n\u2022 12V and 24V distributed power systems\n\n3 Description\nThe TPS543x is a high-output-current PWM converter that integrates a low-resistance, high-side N-channel MOSFET. Included on the substrate with the listed features are a high-performance voltage error amplifier that provides tight voltage regulation accuracy under transient conditions; an undervoltage-lockout circuit to prevent start-up until the input voltage reaches 5.5V; an internally set slow-start circuit to limit inrush currents; and a voltage feed-forward circuit to improve the transient response.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "4 Pin Configuration and Functions\n\nFigure 4-1. DDA Package 8-Pin SOIC with Thermal Pad Top View\n\nTable 4-1. Pin Functions\nPIN\nTYPE DESCRIPTION\nNAME NO.\nBOOT 1 O Boost capacitor for the high-side FET gate driver. Connect 0.01 \u03bcF low ESR capacitor from BOOT pin to PH pin.\nNC 2, 3 \u2014 Not connected internally.\nVSENSE 4 I Feedback voltage for the regulator. Connect to output voltage divider.\nENA 5 I On and off control. Below 0.5 V, the device stops switching. Float the pin to enable.\nGND 6 \u2014 Ground. Connect to DAP.\nVIN 7 \u2014 Input supply voltage. Bypass VIN pin to GND pin close to device package with a high quality, low ESR ceramic capacitor.\nPH 8 I Source of the high side power MOSFET. Connected to external inductor and diode.\nDAP \u2014 GND pin must be connected to the exposed pad for proper operation.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics",
+        "Reliability and Environmental Conditions"
+      ],
+      "content": "5.1 Absolute Maximum Ratings\nOver operating junction temperature range (unless otherwise noted) (1)\nMIN MAX UNIT\nInput voltage VIN(2) to GND, TPS5430  \u20130.3 40 V\nInput voltage VIN to GND, TPS5431 \u20130.3 25 V\n...\n\n5.2 ESD Ratings\nVALUE UNIT\nV(ESD) Electrostatic discharge\nHuman-body model (HBM), per ANSI/ESDA/JEDEC \nJS-001(1) \u00b12000\nV\nCharged-device model (CDM), per JEDEC specification \nJESD22-C101(2)   \u00b1750\n\n5.3 Recommended Operating Conditions\nOver operating junction temperature range (unless otherwise noted)\nMIN NOM MAX UNIT\nInput voltage Input voltage range, TPS5430       5.5 36 V\nInput voltage Input voltage range, TPS5431 5.5 23 V\nTJ Operating junction temperature -40 125 \u00b0C\n\n5.4 Thermal Information (DDA Package)\nTHERMAL METRIC(1)\nTPS543X \nUNITDDA (HSOIC)\n8 PINs\nR\u03b8JA Junction-to-ambient thermal resistance (TPS5430EVM)(2)        45 \u00b0C/W\nR\u03b8JA Junction-to-ambient thermal resistance (JESD 51-7)(3)     42.3 \u00b0C/W\n...",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "5.5 Electrical Characteristics\nTJ = \u201340\u00b0C to +125\u00b0C, VIN = 5.5 V to 36 V. Typical values are at TJ = 25\u00b0C and VIN = 12 V (unless otherwise noted)\nPARAMETER TEST CONDITIONS MIN TYP MAX UNIT\nSUPPLY VOLTAGE (VIN PIN)\nIQ(VIN) VIN quiescent current       Non-switching, VSENSE = 2V, PH pin open 2 4.4 mA\nISD(VIN) VIN shutdown supply current       Shutdown, ENA = 0 V 15 50 \u00b5A\n...\nTHERMAL SHUTDOWN\nTJ(SD) Thermal shutdown threshold (1) Temperature rising 135 162 \u00b0C\nTJ(HYS) Thermal shutdown hysteresis (1) 14 \u00b0C\n(1) Parameter specified by design, statistical analysis and production testing of correlated parameters. Not production tested.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "5.6 Typical Characteristics\n\n[This page contains several graphs and charts showing typical electrical characteristics like oscillator frequency vs temperature, quiescent current vs temperature, shutdown current vs input voltage, voltage reference vs temperature, on resistance vs temperature, and internal slow start time vs temperature.]",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Figure 5-7. Minimum Controllable On Time vs. Junction Temperature\n\nFigure 5-8. Minimum Controllable Duty Ratio vs. Junction Temperature",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The TPS543x is a 3-A, step-down (buck) regulator with an integrated high-side n-channel MOSFET. The TPS5431 is intended to operate from power rails up to 23 V and the TPS5430 up to 36 V. These devices implement constant-frequency voltage-mode control with voltage feed forward for improved line regulation and line transient response. Internal compensation reduces design complexity and external component count.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.3.1 Oscillator Frequency\nThe internal free running oscillator sets the PWM switching frequency at 500 kHz. The 500 kHz switching frequency allows less output inductance for the same output ripple requirement resulting in a smaller output inductor.\n\n6.3.2 Voltage Reference\nThe voltage reference system produces a precision reference signal by scaling the output of a temperature stable bandgap circuit. The bandgap and scaling circuits are trimmed during production testing to an output of 1.221 V at room temperature.\n\n6.3.3 Enable (ENA) and Internal Slow Start\nThe ENA pin provides electrical on/off control of the regulator. After the ENA pin voltage exceeds the threshold voltage, the regulator starts operation and the internal slow start begins to ramp. If the ENA pin voltage is pulled below the threshold voltage, the regulator stops switching and the internal slow start resets. Connecting the pin to ground or to any voltage less than 0.5 V will disable the regulator and activate the shutdown mode. The quiescent current of the TPS543x in shutdown mode is typically 15 \u03bcA.\n\n6.3.4 Undervoltage Lockout (UVLO)\nThe TPS543x incorporate an undervoltage lockout circuit to keep the device disabled when VIN (the input voltage) is below the UVLO start voltage threshold. During power up, internal circuits are held inactive and the internal slow start is grounded until VIN exceeds the UVLO start threshold voltage. After the UVLO start threshold voltage is reached, the internal slow start is released and device start-up begins. The device operates until VIN falls below the UVLO stop threshold voltage. The typical hysteresis in the UVLO comparator is 350 mV.\n\n6.3.5 Boost Capacitor (BOOT)\nConnect a 0.01 \u03bcF low-ESR ceramic capacitor between the BOOT pin and PH pin. This capacitor provides the gate drive voltage for the high-side MOSFET. X7R or X5R grade dielectrics are recommended due to their stable values over temperature.\n\n6.3.6 Output Feedback (VSENSE) and Internal Compensation\nThe output voltage of the regulator is set by feeding back the center point voltage of an external resistor divider network to the VSENSE pin. In steady-state operation, the VSENSE pin voltage must be equal to the voltage reference 1.221 V.\n\nThe TPS543x implements internal compensation to simplify the regulator design. Because the TPS543x uses voltage mode control, a type 3 compensation network has been designed on chip to provide a high crossover frequency and a high phase margin for good stability. See the Internal Compensation Network in the applications section for more details.\n\n6.3.7 Voltage Feed-Forward\nThe internal voltage feed-forward provides a constant dc power stage gain despite any variations with the input voltage. This greatly simplifies the stability analysis and improves the transient response. Voltage feed forward varies the peak ramp voltage inversely with the input voltage so that the modulator and power stage gain are constant at the feed forward gain...",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "The typical feed forward gain of TPS543x is 25.\n\n6.3.8 Pulse-Width-Modulation (PWM) Control\nThe regulator employs a fixed frequency pulse-width-modulator (PWM) control method. First, the feedback voltage (VSENSE pin voltage) is compared to the constant voltage reference by the high gain error amplifier and compensation network to produce a error voltage. Then, the error voltage is compared to the ramp voltage by the PWM comparator. In this way, the error voltage magnitude is converted to a pulse width which is the duty cycle. Finally, the PWM output is fed into the gate drive circuit to control the on-time of the high-side MOSFET.\n\n6.3.9 Overcurrent Limiting\nOvercurrent limiting is implemented by sensing the drain-to-source voltage across the high-side MOSFET. The drain to source voltage is then compared to a voltage level representing the overcurrent threshold limit. If the drain-to-source voltage exceeds the overcurrent threshold limit, the overcurrent indicator is set true.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "6.4.1 Operation near Minimum Input Voltage\nThe TPS543x is recommended to operate with input voltages above 5.5 V. The typical VIN UVLO threshold is 5.3 V and the device can operate at input voltages down to the UVLO voltage. At input voltages below the actual UVLO voltage the device will not switch.\n\n6.4.2 Operation with ENA control\nThe enable start threshold voltage is 1.3 V max. With ENA held below the 0.5 V minimum stop threshold voltage the TPS543x is disabled and switching is inhibited even if VIN is above its UVLO threshold. The quiescent current is reduced in this state. If the ENA voltage is increased above the max start threshold while V (VIN) is above the UVLO threshold, the device becomes active. Switching is enabled and the slow-start sequence is initiated.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The TPS543x is a 3-A, step down regulator with an integrated high side MOSFET. This device is typically used to convert a higher DC voltage to a lower DC voltage with a maximum available output current of 3 A. Example applications are: High Density Point-of-Load Regulators for Set-top Box, DVD, LCD and Plasma Displays, High Power LED Supply, Car Audio, Battery Chargers, and other 12-V and 24-V Distributed Power Systems.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 7-1 shows the schematic for a typical TPS5430 application. The TPS5430 can provide up to 3 A output current at a nominal output voltage of 5 V. For proper thermal performance, the DAP underneath the device must be soldered down to the printed-circuit board.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 15,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "To calculate the minimum value of the output inductor, use Equation 4: LMIN = (VOUT(MAX) * (VIN(MAX) - VOUT)) / (VIN(max) * KIND * IOUT * FSW). For this design example use KIND = 0.2 and the minimum inductor value is calculated to be 12.5 \u03bcH. The next highest standard value is 15 \u03bcH, which is used in this design.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 19,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "The performance graphs ( Figure 7-2 through Figure 7-8) are applicable to the circuit in Figure 7-1. Ta= 25 \u00b0C. unless otherwise specified.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 20,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 7-8. Startup Waveform, VIN and VOUT.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 21,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 7-9. 10-V \u2013 35-V Input to 5-V Output Application Circuit\n\nDESIGN PARAMETER EXAMPLE VALUE\nInput voltage range 10 V to 35 V\nOutput voltage 5 V\nInput ripple voltage 300 mV\nOutput ripple voltage 30 mV\nOutput current rating 3 A\nOperating frequency 500 kHz",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 22,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 7-10 shows an application circuit using the wide input voltage range of the TPS5431.\n\n+9-21 VVINC1ENAVINENANCNCGNDDAPBOOTPHVSNS\nU1TPS5431DDAC20.01 Fm L118 HmD1B340AC3220 Fm\nR23.24 kW\n5 VVOUTR110 kW\nC3 = Sanyo POSCAP 10TP220M 649\n\n5237 1",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 23,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "Figure 7-11 shows an application circuit using all ceramic capacitors for the input and output filters.\n\nVIN 10 24 V-C14.7 Fm L115 Hm\nR110 kWR25.9 kWR3549 W C61500 pF\nU1TPS5430DDAVINGNDVSNSPHBOOTDAPEN 3.3 VVOUTC20.01 Fm D1MRBS340C3100 Fm\nC70.1 FmC4150 pF\nVIN7 12 45 8369ENANCNC",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 24,
+      "categories": [
+        "Electrical Characteristics",
+        "Application Circuits"
+      ],
+      "content": "When using ceramic output filer capacitors, the recommended LC resonant frequency must be no more than 7 kHz. Because the output inductor is already selected at 15 \u03bcH, this limits the minimum output capacitor value to:\n\nC (MIN)O /c179 1\n2\n(2 x\u25a1\u25a17000)\u25a1\u25a1\u25a1x\u25a1\u25a1L/c112 O\n\nThe minimum capacitor value is calculated to be 34 \u03bcF. For this circuit a larger value of capacitor yields better transient response. A single 100 \u03bcF output capacitor is used for C3.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 25,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "For additional information on external compensation of the TPS5430, TPS5431 or other wide voltage range devices, see the Using TPS5410/20/30/31 With Aluminum/Ceramic Output Capacitors application report.\n\n7.3 Power Supply Recommendations\nThe TPS5430 is designed to operate from an input voltage supply range between 5.5 V and 36 V. The TPS5431 is designed to operate from an input voltage supply range between 5.5 V and 23 V. This input supply must remain within the input voltage supply range. If the input supply is located more than a few inches from the TPS543x converter bulk capacitance can be required in addition to the ceramic bypass capacitors. An electrolytic capacitor with a value of 100 \u03bcF is a typical choice.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 26,
+      "categories": [
+        "Application Circuits"
+      ],
+      "content": "7.4.1 Layout Guidelines\nConnect a low ESR ceramic bypass capacitor to the VIN pin. Care must be taken to minimize the loop area formed by the bypass capacitor connections, the VIN pin, and the TPS543x ground pin. The best way to do this is to extend the top side ground area from under the device adjacent to the VIN trace, and place the bypass capacitor as close as possible to the VIN pin. The minimum recommended bypass capacitance is 4.7 \u03bcF ceramic with a X5R or X7R dielectric.\n\nThere must be a ground area on the top layer directly underneath the IC, with an exposed area for connection to the DAP. Use vias to connect this ground area to any internal ground planes. Use additional vias at the ground side of the input and output filter capacitors as well. The GND pin must be tied to the PCB ground by connecting it to the ground area under the device as shown below.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 28,
+      "categories": [],
+      "content": "\u2022 Updated WEBENCH\u00ae links throughout the data sheet. Added \"integrated circuit\" when the PowerPAD\u2122 package is mentioned. Changed MOSFET resistance 110m\u03a9 to100m\u03a9. Changed IQ from 18\u03bcA to 15\u03bcA.",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 30,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\nC\nTYP6.2\n5.8\n1.7 MAX\n6X 1.27\n8X 0.51\n0.31\n2X\n3.81\nTYP0.25\n0.10\n0 - 8\n0.15\n0.00\n2.6\n2.0\n3.1\n2.5\n0.25\nGAGE PLANE\n1.27\n0.40\nA\nNOTE 3\n5.0\n4.8\nB 4.0\n3.8\n4221637/B   03/2016\nPowerPAD    SOIC - 1.7 mm max heightDDA0008J\nPLASTIC SMALL OUTLINE",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 31,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n(5.4)\n0.07 MAX\nALL AROUND\n0.07 MIN\nALL AROUND\n8X (1.55)\n8X (0.6)\n6X (1.27)\n(2.95)\nNOTE 9\n(4.9)\nNOTE 9\n(2.6)\n(3.1)\nSOLDER MASK\nOPENING\n( ) TYP\nVIA\n0.2\n(1.3) TYP\n(1.3)\nTYP",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 32,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n8X (1.55)\n8X (0.6)\n6X (1.27)\n(5.4)\n(2.6)\n(3.1)\nBASED ON\n0.127 THICK\nSTENCIL",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 33,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OPTION ADDENDUM\nwww.ti.com 20-May-2025\nPACKAGING INFORMATION\n\nOrderable part number Status\n(1)\nMaterial type\n(2)\nPackage | Pins Package qty | Carrier RoHS\n(3)\nLead finish/\nBall material\n(4)\nMSL rating/\nPeak reflow\n(5)\nOp temp (\u00b0C) Part marking\n(6)\nTPS5430DDA Active Production SO PowerPAD\n(DDA) | 8\n75 | TUBE Yes NIPDAU | NIPDAUAG\n| NIPDAU\nLevel-1-260C-UNLIM -40 to 125 5430\nTPS5430DDAG4 Active Production SO PowerPAD\n(DDA) | 8\n75 | TUBE Yes NIPDAU Level-1-260C-UNLIM -40 to 125 5430\nTPS5430DDAR Active Production SO PowerPAD\n(DDA) | 8\n2500 | LARGE T&R Yes NIPDAU | NIPDAUAG\n| NIPDAU\nLevel-1-260C-UNLIM -40 to 125 5430\nTPS5430DDARG4 Active Production SO PowerPAD\n(DDA) | 8\n2500 | LARGE T&R Yes NIPDAU Level-1-260C-UNLIM -40 to 125 5430\nTPS5431DDA Active Production SO PowerPAD\n(DDA) | 8\n75 | TUBE Yes NIPDAU | NIPDAUAG\n| NIPDAU\nLevel-1-260C-UNLIM -40 to 125 5431\nTPS5431DDAG4 Active Production SO PowerPAD\n(DDA) | 8\n75 | TUBE Yes NIPDAU Level-1-260C-UNLIM -40 to 125 5431\nTPS5431DDAR Active Production SO PowerPAD\n(DDA) | 8\n2500 | LARGE T&R Yes NIPDAU | NIPDAUAG\n| NIPDAU\nLevel-1-260C-UNLIM -40 to 125 5431\nTPS5431DDARG4 Active Production SO PowerPAD\n(DDA) | 8\n2500 | LARGE T&R Yes NIPDAU Level-1-260C-UNLIM -40 to 125 5431",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 35,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL INFORMATION\nReel Width (W1)\nREEL DIMENSIONS\nA0B0K0WDimension designed to accommodate the component lengthDimension designed to accommodate the component thicknessOverall width of the carrier tapePitch between successive cavity centersDimension designed to accommodate the component width\nTAPE DIMENSIONSK0 P1B0WA0Cavity\nQUADRANT ASSIGNMENTS FOR PIN 1 ORIENTATION IN TAPE\nPocket QuadrantsSprocket HolesQ1Q1Q2Q2Q3Q3Q4Q4User Direction of Feed\nP1ReelDiameter\n\n*All dimensions are nominal\nDevice Package\nType\nPackage\nDrawing\nPins SPQ Reel\nDiameter\n(mm)\nReel\nWidth\nW1 (mm)\nA0\n(mm)\nB0\n(mm)\nK0\n(mm)\nP1\n(mm)\nW\n(mm)\nPin1\nQuadrant\nTPS5430DDAR SO\nPowerPAD\nDDA 8 2500 330.0 12.8 6.4 5.2 2.1 8.0 12.0 Q1",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 36,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "TAPE AND REEL BOX DIMENSIONS\nWidth (mm)\nW LH\n\n*All dimensions are nominal\nDevice Package Type Package Drawing Pins SPQ Length (mm) Width (mm) Height (mm)\nTPS5430DDAR SO PowerPAD DDA 8 2500 366.0 364.0 50.0",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    },
+    {
+      "page_number": 37,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE MATERIALS INFORMATION\n\nwww.ti.com 21-May-2025\n\nTUBE\n\nL - Tube length\nT - Tube height\nW - Tube width\nB - Alignment groove width\n\n*All dimensions are nominal\nDevice Package Name Package Type Pins SPQ L (mm) W (mm) T (\u00b5m) B (mm)\nTPS5430DDA DDA HSOIC 8 75 517 7.87 635 4.25\nTPS5430DDA DDA HSOIC 8 75 506.6 8 3940 4.32\nTPS5430DDA DDA HSOIC 8 75 508 12.19 510 7.88\nTPS5430DDAG4 DDA HSOIC 8 75 517 7.87 635 4.25\nTPS5430DDAG4 DDA HSOIC 8 75 508 12.19 510 7.88\nTPS5430DDAG4 DDA HSOIC 8 75 506.6 8 3940 4.32\nTPS5430DDAR DDA HSOIC 8 2500 508 12.19 510 7.88\nTPS5430DDARG4 DDA HSOIC 8 2500 508 12.19 510 7.88\nTPS5431DDA DDA HSOIC 8 75 508 12.19 510 7.88\nTPS5431DDA DDA HSOIC 8 75 506.6 8 3940 4.32\nTPS5431DDA DDA HSOIC 8 75 517 7.87 635 4.25\nTPS5431DDAG4 DDA HSOIC 8 75 508 12.19 510 7.88\nTPS5431DDAG4 DDA HSOIC 8 75 506.6 8 3940 4.32\nTPS5431DDAG4 DDA HSOIC 8 75 517 7.87 635 4.25\nTPS5431DDAR DDA HSOIC 8 2500 508 12.19 510 7.88\nTPS5431DDARG4 DDA HSOIC 8 2500 508 12.19 510 7.88\nPack Materials-Page 3",
+      "grade": "B",
+      "maker_pn": "TPS5430",
+      "part number": "1203-008301"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The TPS543x is a high-output-current PWM converter that integrates a low-resistance, high-side N-channel MOSFET. It features a wide input voltage range (5.5V to 36V for TPS5430, 5.5V to 23V for TPS5431), up to 3A continuous (4A peak) output current, and high efficiency up to 95% enabled by a 100m\u03a9 integrated MOSFET switch.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The TPS543x has a wide output voltage range that is adjustable down to 1.22V with 1.5% initial accuracy. It includes internal compensation to minimize external parts count, a fixed 500kHz switching frequency for small filter size, and improved line regulation and transient response by input voltage feedforward.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The TPS543x is a 3-A, step-down (buck) regulator with an integrated high-side n-channel MOSFET. It implements constant-frequency voltage-mode control with voltage feed forward for improved line regulation and line transient response. The device is protected by overcurrent limiting, overvoltage protection, and thermal shutdown, and has an operating junction temperature range of -40\u00b0C to 125\u00b0C.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The TPS543x is available in a small thermally enhanced 8-pin SO PowerPAD\u2122 integrated circuit package. It can be used in consumer applications like set-top boxes, DVD players, and LCD displays, as well as industrial and car audio power supplies, battery chargers, high-power LED supplies, and 12V and 24V distributed power systems.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "The text provides information about the pin configuration, functions, and package details of the TPS543x device. It covers the absolute maximum ratings, ESD ratings, recommended operating conditions, and thermal information for the device.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The electrical characteristics section details various parameters such as supply voltage specifications (quiescent current, shutdown current), thermal shutdown thresholds, oscillator frequency, voltage reference details, enable and slow start behavior, undervoltage lockout, boost capacitor requirements, output feedback and internal compensation, voltage feed-forward, pulse-width modulation control, and overcurrent limiting.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The text also explains operational considerations like behavior near minimum input voltage, operation with enable control, and guidelines for selecting the output capacitor value based on the resonant frequency requirement with ceramic capacitors. Typical characteristic graphs are provided for various parameters like oscillator frequency, quiescent current, shutdown current, voltage reference, on resistance, and internal slow start time over temperature ranges.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The internal functional details covered include the voltage reference system, enable and slow start mechanism, undervoltage lockout circuit, boost capacitor purpose, output feedback and internal compensation network, voltage feed-forward technique, pulse-width modulation control method, and overcurrent limiting implementation by sensing the high-side MOSFET drain-source voltage.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      }
+    ],
+    "Application Circuits": [
+      {
+        "content": "Figure 7-1 shows the schematic for a typical TPS5430 application. The TPS5430 can provide up to 3 A output current at a nominal output voltage of 5 V. For proper thermal performance, the DAP underneath the device must be soldered down to the printed-circuit board. To calculate the minimum value of the output inductor, use Equation 4: LMIN = (VOUT(MAX) * (VIN(MAX) - VOUT)) / (VIN(max) * KIND * IOUT * FSW). For this design example use KIND = 0.2 and the minimum inductor value is calculated to be 12.5 \u03bcH. The next highest standard value is 15 \u03bcH, which is used in this design. The performance graphs ( Figure 7-2 through Figure 7-8) are applicable to the circuit in Figure 7-1. Ta= 25 \u00b0C. unless otherwise specified.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "Figure 7-9 shows a 10-V \u2013 35-V input to 5-V output application circuit with design parameters: Input voltage range 10 V to 35 V, Output voltage 5 V, Input ripple voltage 300 mV, Output ripple voltage 30 mV, Output current rating 3 A, Operating frequency 500 kHz. Figure 7-10 shows an application circuit using the wide input voltage range of the TPS5431.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "Figure 7-11 shows an application circuit using all ceramic capacitors for the input and output filters. When using ceramic output filer capacitors, the recommended LC resonant frequency must be no more than 7 kHz. Because the output inductor is already selected at 15 \u03bcH, this limits the minimum output capacitor value to: C (MIN)O /c179 1 2 (2 x\u25a1\u25a17000)\u25a1\u25a1\u25a1x\u25a1\u25a1L/c112 O. The minimum capacitor value is calculated to be 34 \u03bcF. For this circuit a larger value of capacitor yields better transient response. A single 100 \u03bcF output capacitor is used for C3.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The TPS5430 is designed to operate from an input voltage supply range between 5.5 V and 36 V. The TPS5431 is designed to operate from an input voltage supply range between 5.5 V and 23 V. This input supply must remain within the input voltage supply range. If the input supply is located more than a few inches from the TPS543x converter bulk capacitance can be required in addition to the ceramic bypass capacitors. An electrolytic capacitor with a value of 100 \u03bcF is a typical choice.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "Connect a low ESR ceramic bypass capacitor to the VIN pin. Care must be taken to minimize the loop area formed by the bypass capacitor connections, the VIN pin, and the TPS543x ground pin. The best way to do this is to extend the top side ground area from under the device adjacent to the VIN trace, and place the bypass capacitor as close as possible to the VIN pin. The minimum recommended bypass capacitance is 4.7 \u03bcF ceramic with a X5R or X7R dielectric. There must be a ground area on the top layer directly underneath the IC, with an exposed area for connection to the DAP. Use vias to connect this ground area to any internal ground planes. Use additional vias at the ground side of the input and output filter capacitors as well. The GND pin must be tied to the PCB ground by connecting it to the ground area under the device.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      }
+    ],
+    "Reliability and Environmental Conditions": [
+      {
+        "content": "5.1 Absolute Maximum Ratings: Over operating junction temperature range (unless otherwise noted) (1) MIN MAX UNIT Input voltage VIN(2) to GND, TPS5430  \u20130.3 40 V Input voltage VIN to GND, TPS5431 \u20130.3 25 V",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "5.2 ESD Ratings: VALUE UNIT V(ESD) Electrostatic discharge Human-body model (HBM), per ANSI/ESDA/JEDEC JS-001(1) \u00b12000 V Charged-device model (CDM), per JEDEC specification JESD22-C101(2)   \u00b1750",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "5.3 Recommended Operating Conditions: Over operating junction temperature range (unless otherwise noted) MIN NOM MAX UNIT Input voltage Input voltage range, TPS5430       5.5 36 V Input voltage Input voltage range, TPS5431 5.5 23 V TJ Operating junction temperature -40 125 \u00b0C",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "5.4 Thermal Information (DDA Package): THERMAL METRIC(1) TPS543X UNITDDA (HSOIC) 8 PINs R\u03b8JA Junction-to-ambient thermal resistance (TPS5430EVM)(2)        45 \u00b0C/W R\u03b8JA Junction-to-ambient thermal resistance (JESD 51-7)(3)     42.3 \u00b0C/W",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "The text provides detailed information about the package outline and dimensions of the SOIC (Small Outline Integrated Circuit) package. It includes specifications such as the maximum height, pin pitch, and package body size. Additionally, it provides example board layout and stencil design guidelines for proper mounting and soldering of the component.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The text contains an extensive table listing various orderable part numbers for the TPS5430 and TPS5431 integrated circuits. For each part number, it provides details such as package type (SOIC with PowerPAD), number of pins, package quantity, carrier type (tube or tape & reel), RoHS compliance, lead finish material, moisture sensitivity level (MSL) rating, peak reflow temperature, operating temperature range, and part marking.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The text includes specifications for tape and reel packaging, including reel dimensions (width, diameter), cavity dimensions (A0, B0, K0), pitch between cavities (P1), and tape width (W). It also shows a diagram illustrating the quadrant assignments for pin 1 orientation in the tape pocket. Additionally, it provides tape and reel box dimensions (length, width, height) for specific part numbers.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      },
+      {
+        "content": "The text provides information about tube packaging dimensions for various part numbers. It includes details such as tube length (L), tube height (T), tube width (W), and alignment groove width (B). This information is crucial for handling and storage of the components in tube packaging.",
+        "part number": "1203-008301.pdf",
+        "grade": "B",
+        "maker_pn": "TPS5430"
+      }
+    ]
+  },
+  "part number": "1203-008301"
+}

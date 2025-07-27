@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "component_name": "JW5143/JW5143P",
+    "manufacturer": "N/A (not explicitly stated in the text)",
+    "key_specifications": "100V, 3.5A Current Limit, Async. Step-Down Converter with Low IQ, 6V to 100V Operating Input Range, 3.5A Peak Current Limit, Very Low Quiescent Current: 20uA, Fixed 300kHz Switching Frequency (JW5143), Adjustable Switching Frequency from 100kHz to 600kHz (JW5143P), Input Under Voltage Lockout, Current Run-away Protection, Output Short Protection, Thermal Protection, Available in ESOP-8 Package",
+    "applications": "GPS Tracker, E-bike, Telecom/Networking Power",
+    "grade": "F",
+    "maker_pn": "JW5143"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "JW5143/JW5143P \n 100V, 3.5A Current Limit \n          Async. Step-Down Converter with Low IQ \n\nDESCRIPTION\nThe JW5143 and JW5143P are monolithic buck switching regulators based on COT architecture. Operating with an input range of 6V~100V, JW5143 and JW5143P integrate high-side N-Channel MOSFET with a peak current limit of 3.5A. At light loads, the regulator operates in low frequency to maintain high efficiency. \nJW5143 and JW5143P guarantee robustness with output short protection, thermal protection, current run-away protection, input under voltage lockout. JW5143 and JW5143P are available in ESOP-8 package, which provide a compact solution with minimal external components.\n\nFEATURES\n- 6V to 100V Operating Input Range\n- 3.5A Peak Current Limit\n- Very Low Quiescent Current: 20uA\n- Fixed 300kHz Switching Frequency (JW5143)\n- Adjustable Switching Frequency from 100kHz to 600kHz (JW5143P)\n- Input Under Voltage Lockout\n- Current Run-away Protection\n- Output Short Protection\n- Thermal Protection\n- Available in ESOP-8 Package\n\nAPPLICATIONS\n- GPS Tracker\n- E-bike\n- Telecom/Networking Power",
+      "grade": "F",
+      "maker_pn": "JW5143",
+      "part number": "1203-001348"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The JW5143 and JW5143P are monolithic buck switching regulators based on COT architecture. Operating with an input range of 6V~100V, JW5143 and JW5143P integrate high-side N-Channel MOSFET with a peak current limit of 3.5A. At light loads, the regulator operates in low frequency to maintain high efficiency.",
+        "part number": "1203-001348.pdf",
+        "grade": "F",
+        "maker_pn": "JW5143"
+      },
+      {
+        "content": "JW5143 and JW5143P guarantee robustness with output short protection, thermal protection, current run-away protection, input under voltage lockout. JW5143 and JW5143P are available in ESOP-8 package, which provide a compact solution with minimal external components.",
+        "part number": "1203-001348.pdf",
+        "grade": "F",
+        "maker_pn": "JW5143"
+      },
+      {
+        "content": "Key features include 6V to 100V operating input range, 3.5A peak current limit, very low quiescent current of 20uA, fixed 300kHz switching frequency (JW5143) or adjustable switching frequency from 100kHz to 600kHz (JW5143P), input under voltage lockout, current run-away protection, output short protection, and thermal protection.",
+        "part number": "1203-001348.pdf",
+        "grade": "F",
+        "maker_pn": "JW5143"
+      },
+      {
+        "content": "Potential applications of JW5143 and JW5143P include GPS trackers, e-bikes, and telecom/networking power systems.",
+        "part number": "1203-001348.pdf",
+        "grade": "F",
+        "maker_pn": "JW5143"
+      }
+    ]
+  },
+  "part number": "1203-001348"
+}

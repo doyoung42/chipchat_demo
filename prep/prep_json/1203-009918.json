@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "component_name": "JW5262NF",
+    "manufacturer": "N/A (not explicitly stated in the text)",
+    "key_specifications": "2A, 6V, 1.5MHz Synchronous Step-Down Converter, 2.6V-6.0V input range, up to 97% peak efficiency, 1% feedback voltage accuracy, internal soft-start, input under voltage lockout, current run-away protection, short circuit protection, thermal protection",
+    "applications": "5V or 3.3V Point of Load Conversion, Set Top Boxes, Telecom/Networking Systems, Storage Equipment, GPU/DDR Power Supply",
+    "grade": "F",
+    "maker_pn": "JW5262NF"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "JW5262NF \n 2A, 6V, 1.5MHz \n          Synchronous Step-Down Converter \n\nDESCRIPTION \nThe JW5262NF is a monolithic buck switching regulator based on constant on-time (COT) control for fast transient response. Operating with an input range of 2.6V-6.0V, the JW5262NF delivers 2A of continuous output current with integrated P-Channel and N-Channel MOSFETs. The internal synchronous power switches provide high efficiency. At light loads, JW5262NF operates in forced CCM to maintain low output ripples.\n\nThe JW5262NF guarantees robustness with hiccup output short-circuit protection, start-up current run-away protection and input under voltage lockout, and thermal protection.\n\nThe JW5262NF is available in 5-pin SOT23-5 package, which provides a compact solution with minimal external components.\n\nFEATURES\n- 2.6V to 6.0V Operating Input Range\n- Up to 2A Output Current\n- Up to 97% Peak Efficiency\n- 1% Feedback Voltage Accuracy\n- Internal Soft-start\n- 1.5MHz Switching Frequency\n- Input Under Voltage Lockout\n- Current Run-away Protection\n- Short Circuit Protection\n- Thermal Protection\n- Available in SOT23-5 Package\n\nAPPLICATIONS\n- 5V or 3.3V Point of Load Conversion\n- Set Top Boxes\n- Telecom/Networking Systems\n- Storage Equipment\n- GPU/DDR Power Supply",
+      "grade": "F",
+      "maker_pn": "JW5262NF",
+      "part number": "1203-009918"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "JW5262NF is a 2A, 6V, 1.5MHz synchronous step-down converter. It is a monolithic buck switching regulator based on constant on-time (COT) control for fast transient response, operating with an input range of 2.6V-6.0V and delivering 2A of continuous output current with integrated P-Channel and N-Channel MOSFETs.",
+        "part number": "1203-009918.pdf",
+        "grade": "F",
+        "maker_pn": "JW5262NF"
+      },
+      {
+        "content": "The JW5262NF features high efficiency with internal synchronous power switches, forced CCM operation at light loads for low output ripples, and robustness with hiccup output short-circuit protection, start-up current run-away protection, input under voltage lockout, and thermal protection.",
+        "part number": "1203-009918.pdf",
+        "grade": "F",
+        "maker_pn": "JW5262NF"
+      },
+      {
+        "content": "Key features of the JW5262NF include 2.6V to 6.0V operating input range, up to 2A output current, up to 97% peak efficiency, 1% feedback voltage accuracy, internal soft-start, 1.5MHz switching frequency, input under voltage lockout, current run-away protection, short circuit protection, and thermal protection. It is available in a compact SOT23-5 package.",
+        "part number": "1203-009918.pdf",
+        "grade": "F",
+        "maker_pn": "JW5262NF"
+      },
+      {
+        "content": "The JW5262NF is suitable for applications such as 5V or 3.3V point of load conversion, set top boxes, telecom/networking systems, storage equipment, and GPU/DDR power supply.",
+        "part number": "1203-009918.pdf",
+        "grade": "F",
+        "maker_pn": "JW5262NF"
+      }
+    ]
+  },
+  "part number": "1203-009918"
+}

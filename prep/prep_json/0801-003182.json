@@ -1,0 +1,185 @@
+{
+  "metadata": {
+    "component_name": "74AHC02; 74AHCT02",
+    "manufacturer": "Nexperia",
+    "key_specifications": "High-speed Si-gate CMOS device, quad 2-input NOR function, pin compatible with Low-power Schottky TTL (LSTTL), supply voltage range 2.0 V to 5.5 V, operating temperature range -40\u00b0C to +125\u00b0C",
+    "applications": "The datasheet does not explicitly mention main applications, but being a quad 2-input NOR gate, it can be used in various digital logic circuits and systems.",
+    "grade": "D",
+    "maker_pn": "74AHC02"
+  },
+  "page_summaries": [
+    {
+      "page_number": 1,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "The 74AHC02; 74AHCT02 is a high-speed Si-gate CMOS device and is pin compatible with Low-power Schottky TTL (LSTTL). It is specified in compliance with JEDEC standard No. 7-A. The 74AHC02; 74AHCT02 provides a quad 2-input NOR function.",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 2,
+      "categories": [
+        "Functional Description",
+        "Pinning Information"
+      ],
+      "content": "Fig. 1. Logic symbol\n\nFig. 2. IEC logic symbol\n\nFig. 3. Logic diagram (one gate)\n\nTable 2. Pin description\nSymbol Pin Description\n1Y, 2Y, 3Y, 4Y 1, 4, 10, 13 data output\n1A, 2A, 3A, 4A 2, 5, 8, 11 data input\n1B, 2B, 3B, 4B 3, 6, 9, 12 data input\nGND 7 ground (0 V)\nVCC 14 supply voltage",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 3,
+      "categories": [
+        "Functional Description",
+        "Limiting Values",
+        "Recommended Operating Conditions"
+      ],
+      "content": "Table 3. Function table\nH = HIGH voltage level; L = LOW voltage level; X = don't care.\nInput Output\nnA nB nY\nL L H\nX H L\nH X L\n\nTable 4. Limiting values\n...\n\nTable 5. Operating conditions\n74AHC02 74AHCT02 Unit\nSymbol Parameter Conditions\nMin Typ Max Min Typ Max\nVCC supply voltage 2.0 5.0 5.5 4.5 5.0 5.5 V\nVI input voltage 0 - 5.5 0 - 5.5 V\nVO output voltage 0 - VCC 0 - VCC V\nTamb ambient temperature -40 +25 +125 -40 +25 +125 \u00b0C\nVCC = 3.0 V to 3.6 V - - 100 - - - ns/V\n\u0394t/\u0394V input transition rise and fall rate\nVCC = 4.5 V to 5.5 V - - 20 - - 20 ns/V",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Table 6. Static characteristics\nAt recommended operating conditions; voltages are referenced to GND (ground = 0 V).\n\n25 \u00b0C -40 \u00b0C to\n+85 \u00b0C\n-40 \u00b0C to\n+125 \u00b0C\nSymbol Parameter Conditions\nMin Typ Max Min Max Min Max\nUnit\n74AHC02\nVCC = 2.0 V 1.5 - - 1.5 - 1.5 - V\nVCC = 3.0 V 2.1 - - 2.1 - 2.1 - V\nVIH HIGH-level\ninput voltage\nVCC = 5.5 V 3.85 - - 3.85 - 3.85 - V\n... (remaining static characteristic details)",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics",
+        "Dynamic Characteristics"
+      ],
+      "content": "Table 7. Dynamic characteristics\nVoltages are referenced to GND (ground = 0 V); for test circuit see Fig. 5.\n\n25 \u00b0C -40 \u00b0C to\n+85 \u00b0C\n-40 \u00b0C to\n+125 \u00b0C\nSymbol Parameter Conditions\nMin Typ[1] Max Min Max Min Max\nUnit\n74AHC02\nnA, nB to nY; see Fig. 4 [2]\nVCC = 3.0 V to 3.6 V; CL = 15 pF - 3.9 7.9 1.0 9.5 1.0 10.0 ns\n... (remaining dynamic characteristic details)",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Dynamic Characteristics"
+      ],
+      "content": "10.1.  Waveforms\n\n001aah085\ntPHLtPLH\nVM\nVM\nnY output\nnA, nB input\nVI\nGND\nVOH\nVOL\n\nMeasurement points are given in Table 8.\nVOL and VOH are typical voltage output levels that occur with the output load.\n\n001aah768\ntW\ntW\ntr\ntrtf\nVM\nVI\nnegative\npulse\nGND\nVI\npositive\npulse\nGND\n10 %\n90 %\n90 %\n10 %\nVM VM\nVM\ntf\nVCC\nDUT\nRT\nVI VO\nCL\nG\n\nTest data is given in Table 9.\nDefinitions test circuit:\nRT = termination resistance should be equal to output impedance Zo of the pulse generator.\nCL = load capacitance including jig and probe capacitance.\n\nTable 9. Test data\nInput Load Type\nVI tr, tf CL\nTest\n74AHC02 VCC \u2264 3.0 ns 15 pF, 50 pF tPLH, tPHL\n74AHCT02 3.0 V \u2264 3.0 ns 15 pF, 50 pF tPLH, tPHL",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 7,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 6. Package outline SOT108-1 (SO14)",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 8,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 7. Package outline SOT402-1 (TSSOP14)",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 9,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Fig. 8. Package outline SOT762-1 (DHVQFN14)",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Product Summary"
+      ],
+      "content": "1. General description......................................................1\n2. Features and benefits .................................................. 1\n3. Ordering information....................................................1\n4. Functional diagram.......................................................2\n5. Pinning information......................................................2\n6. Functional description................................................. 3\n7. Limiting values............................................................. 3\n8. Recommended operating conditions..........................3\n9. Static characteristics....................................................4\n10. Dynamic characteristics............................................ 5\n11. Package outline.......................................................... 7",
+      "grade": "D",
+      "maker_pn": "74AHC02",
+      "part number": "0801-003182"
+    }
+  ],
+  "category_chunks": {
+    "Product Summary": [
+      {
+        "content": "The 74AHC02; 74AHCT02 is a high-speed Si-gate CMOS device and is pin compatible with Low-power Schottky TTL (LSTTL). It is specified in compliance with JEDEC standard No. 7-A.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "The 74AHC02; 74AHCT02 provides a quad 2-input NOR function.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "It is a high-speed CMOS device with quad 2-input NOR function, pin compatible with Low-power Schottky TTL, and compliant with JEDEC standard No. 7-A.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      }
+    ],
+    "Electrical Characteristics": [
+      {
+        "content": "Table 6. Static characteristics. At recommended operating conditions; voltages are referenced to GND (ground = 0 V). Describes the minimum, typical, and maximum values for HIGH-level input voltage (VIH) at different operating voltages (VCC = 2.0 V, 3.0 V, 5.5 V) and temperature ranges (25 \u00b0C, -40 \u00b0C to +85 \u00b0C, -40 \u00b0C to +125 \u00b0C).",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "Table 7. Dynamic characteristics. Voltages are referenced to GND (ground = 0 V); for test circuit see Fig. 5. Provides the minimum, typical, and maximum values for propagation delay (nA, nB to nY) at different operating voltages (VCC = 3.0 V to 3.6 V), load capacitance (CL = 15 pF), and temperature ranges (25 \u00b0C, -40 \u00b0C to +85 \u00b0C, -40 \u00b0C to +125 \u00b0C).",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "The tables describe the electrical characteristics of a component, including static characteristics like input voltage levels and dynamic characteristics like propagation delays. The values are provided for different operating conditions, such as supply voltage and temperature ranges, to ensure proper operation within the specified limits.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Fig. 6. Package outline SOT108-1 (SO14). This chunk provides information about the package outline for the SO14 (Small Outline Integrated Circuit) package type, which is a common surface-mount package used for integrated circuits.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "Fig. 7. Package outline SOT402-1 (TSSOP14). This chunk provides information about the package outline for the TSSOP14 (Thin Shrink Small Outline Package) package type, which is a smaller and thinner variation of the SOIC package.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "Fig. 8. Package outline SOT762-1 (DHVQFN14). This chunk provides information about the package outline for the DHVQFN14 (Dual Heated Vapor Phase Reflow, Quad Flat No-Lead) package type, which is a type of QFN (Quad Flat No-lead) package designed for enhanced thermal and electrical performance.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      },
+      {
+        "content": "Package outlines, package types, and package codes. This chunk summarizes the content, which includes package outlines and package type codes for three different package types: SO14, TSSOP14, and DHVQFN14. These package types are commonly used for integrated circuits and electronic components.",
+        "part number": "0801-003182.pdf",
+        "grade": "D",
+        "maker_pn": "74AHC02"
+      }
+    ]
+  },
+  "part number": "0801-003182"
+}

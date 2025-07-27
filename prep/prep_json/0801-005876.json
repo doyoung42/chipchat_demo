@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "component_name": "SN74AUC2G32",
+    "manufacturer": "Texas Instruments",
+    "key_specifications": "Dual 2-input positive-OR gate, VSSOP and SSOP packages, various operating voltages (1.8V, 2.5V), propagation delays, power dissipation values provided.",
+    "applications": "The datasheet does not explicitly mention main applications, but as a basic logic gate, the SN74AUC2G32 can be used in a wide range of digital circuit designs requiring OR logic functions.",
+    "grade": "E",
+    "maker_pn": "SN74AUC2G32"
+  },
+  "page_summaries": [
+    {
+      "page_number": 4,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "Switching Characteristics\nOperating Characteristics\nover recommended operating free-air temperature range, CL = 15 pF (unless otherwise noted) (see Figure 1)\n\nFrom (Input) To (Output), tpd A or B Y, Typical values at different VCC voltages\n\nover recommended operating free-air temperature range, CL = 30 pF (unless otherwise noted) (see Figure 1)\n\nFrom (Input) To (Output), tpd A or B Y, Min/Typ/Max values at VCC = 1.8V and 2.5V\n\nTA = 25\u00b0C, Power dissipation Cpd at f = 10 MHz for different VCC values",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 5,
+      "categories": [
+        "Electrical Characteristics"
+      ],
+      "content": "PARAMETER MEASUREMENT INFORMATION\n\nDetailed notes on measurement conditions, load circuits, voltage waveforms for propagation delay times, pulse duration, enable/disable times, setup/hold times.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 6,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "Orderable part numbers, package types, pins, package quantities, carrier types, RoHS compliance, lead finish/ball material, moisture sensitivity levels, peak reflow temperatures, operating temperatures, and part markings for SN74AUC2G32 dual 2-input positive-OR gate.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 10,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n0.05 MAX\nALL AROUND\n0.05 MIN\nALL AROUND\n8X (0.85)\n8X (0.3)\n6X (0.5)\n(3.1)\n(R0.05) TYP\nVSSOP - 0.9 mm max heightDCU0008A\nSMALL OUTLINE PACKAGE\nNOTES: (continued)\n5. Publication IPC-7351 may have alternate designs. \n6. Solder mask tolerances between and around signal pads can vary based on board fabrication site.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 11,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n8X (0.85)\n8X (0.3)\n6X (0.5)\n(3.1)\n(R0.05) TYP\nVSSOP - 0.9 mm max heightDCU0008A\nSMALL OUTLINE PACKAGE\nNOTES: (continued)\n7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate\n   design recommendations.   \n8. Board assembly site may have different recommendations for stencil design.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 12,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "PACKAGE OUTLINE\nC\n4.25\n3.75 TYP\n1.3\n1.0\n6X 0.65\n8X 0.30\n0.15\n2X\n1.95\n(0.15) TYP\n0 - 8\n0.1\n0.0\n0.25\nGAGE PLANE\n0.6\n0.2\nA\n3.15\n2.75\nNOTE 3\nB 2.9\n2.7\nNOTE 4\nSSOP - 1.3 mm max heightDCT0008A\nSMALL OUTLINE PACKAGE\nNOTES:\n1. All linear dimensions are in millimeters. Dimensions in parenthesis are for reference only. Dimensioning and tolerancing\n   per ASME Y14.5M. \n2. This drawing is subject to change without notice. \n3. This dimension does not include mold flash, protrusions, or gate burrs. Mold flash, protrusions, or gate burrs shall not\n   exceed 0.15 mm per side. \n4. This dimension does not include interlead flash. Interlead flash shall not exceed 0.25 mm per side.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 13,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE BOARD LAYOUT\n(3.8)\n0.07 MAX\nALL AROUND\n0.07 MIN\nALL AROUND\n8X (1.1)\n8X (0.4)\n6X (0.65)\n(R0.05)\nTYP",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    },
+    {
+      "page_number": 14,
+      "categories": [
+        "Packaging Information"
+      ],
+      "content": "EXAMPLE STENCIL DESIGN\n(3.8)\n6X (0.65)\n8X (0.4)\n8X (1.1)\nNOTES: (continued)\n7. Laser cutting apertures with trapezoidal walls and rounded corners may offer better paste release. IPC-7525 may have alternate\n   design recommendations.\n8. Board assembly site may have different recommendations for stencil design.",
+      "grade": "E",
+      "maker_pn": "SN74AUC2G32",
+      "part number": "0801-005876"
+    }
+  ],
+  "category_chunks": {
+    "Electrical Characteristics": [
+      {
+        "content": "Switching Characteristics: Operating Characteristics over recommended operating free-air temperature range, CL = 15 pF (unless otherwise noted) (see Figure 1). From (Input) To (Output), tpd A or B Y, Typical values at different VCC voltages.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      },
+      {
+        "content": "Switching Characteristics: Operating Characteristics over recommended operating free-air temperature range, CL = 30 pF (unless otherwise noted) (see Figure 1). From (Input) To (Output), tpd A or B Y, Min/Typ/Max values at VCC = 1.8V and 2.5V. TA = 25\u00b0C, Power dissipation Cpd at f = 10 MHz for different VCC values.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      },
+      {
+        "content": "PARAMETER MEASUREMENT INFORMATION: Detailed notes on measurement conditions, load circuits, voltage waveforms for propagation delay times, pulse duration, enable/disable times, setup/hold times.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      }
+    ],
+    "Packaging Information": [
+      {
+        "content": "Orderable part numbers, package types (VSSOP, SSOP), pins, package quantities, carrier types, RoHS compliance, lead finish/ball material, moisture sensitivity levels, peak reflow temperatures, operating temperatures, and part markings for SN74AUC2G32 dual 2-input positive-OR gate.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      },
+      {
+        "content": "Package outline dimensions, board layout guidelines, and stencil design recommendations for VSSOP and SSOP packages, including pad sizes, package height, solder mask tolerances, and paste release considerations based on IPC standards.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      },
+      {
+        "content": "Notes on package outline dimensions, including details on mold flash, protrusions, gate burrs, and interlead flash tolerances for VSSOP and SSOP packages.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      },
+      {
+        "content": "Example board layout and stencil design illustrations for VSSOP and SSOP packages, showing pad sizes, package outlines, and recommended solder mask and paste release patterns.",
+        "part number": "0801-005876.pdf",
+        "grade": "E",
+        "maker_pn": "SN74AUC2G32"
+      }
+    ]
+  },
+  "part number": "0801-005876"
+}
