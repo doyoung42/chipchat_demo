@@ -31,9 +31,9 @@ class VectorstoreManager:
         
         # Initialize embeddings (CPU only for Google Colab compatibility)
         embedding_kwargs = {'model_name': model_name}
-        if hf_token:
-            embedding_kwargs['huggingface_api_token'] = hf_token
-            
+        # Note: HuggingFaceEmbeddings now uses environment variables (HF_TOKEN, HUGGINGFACE_API_KEY)
+        # instead of direct token parameter
+        
         # Always use CPU for stability and compatibility
         embedding_kwargs['model_kwargs'] = {'device': 'cpu'}
         self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)

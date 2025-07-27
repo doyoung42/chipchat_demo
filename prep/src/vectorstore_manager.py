@@ -19,9 +19,6 @@ class VectorstoreManager:
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
         
-        # Load HuggingFace token from various sources
-        hf_token = self._load_hf_token()
-        
         # Load parameters from param.json
         param_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'misc', 'param.json')
         with open(param_path, 'r') as f:
@@ -35,15 +32,15 @@ class VectorstoreManager:
         os.makedirs(self.params['folders']['vectorstore_folder'], exist_ok=True)
         
         # Initialize embeddings (CPU only for Google Colab compatibility)
-        embedding_kwargs = {'model_name': self.model_name}
-        if hf_token:
-            embedding_kwargs['huggingface_api_token'] = hf_token
-            
-        # Always use CPU for stability and compatibility
-        embedding_kwargs['model_kwargs'] = {'device': 'cpu'}
+        # Load HuggingFace token to environment variables (but don't pass as parameter)
+        self._load_hf_token()  # This sets environment variables only
         
         try:
-            self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)
+            # Use only basic parameters - let HuggingFaceEmbeddings use environment variables
+            self.embeddings = HuggingFaceEmbeddings(
+                model_name=self.model_name,
+                model_kwargs={'device': 'cpu'}
+            )
             self.logger.info("✅ 임베딩 모델 초기화 완료 (device: cpu)")
         except Exception as e:
             self.logger.error(f"❌ 임베딩 모델 초기화 실패: {str(e)}")
@@ -84,7 +81,7 @@ class VectorstoreManager:
                 except Exception as e:
                     self.logger.warning(f"키 파일 로드 실패 {key_path}: {str(e)}")
         
-        # Set environment variable if token found
+        # Set environment variable if token found (but don't pass as parameter)
         if hf_token:
             os.environ['HF_TOKEN'] = hf_token
             os.environ['HUGGINGFACE_API_KEY'] = hf_token
