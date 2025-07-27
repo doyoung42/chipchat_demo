@@ -6,11 +6,10 @@ from typing import List, Dict, Any, Optional
 from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
-import faiss
 
 class VectorstoreManager:
     def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
-        """벡터 스토어 관리자 초기화"""
+        """벡터 스토어 관리자 초기화 (CPU 전용)"""
         # Setup logging
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
@@ -18,25 +17,15 @@ class VectorstoreManager:
         # Load HuggingFace token from various sources
         hf_token = self._load_hf_token()
         
-        # Initialize embeddings
+        # Initialize embeddings (CPU only for Google Colab compatibility)
         embedding_kwargs = {'model_name': model_name}
         if hf_token:
             embedding_kwargs['huggingface_api_token'] = hf_token
             
-        # Try to use GPU if available, fallback to CPU
-        try:
-            embedding_kwargs['model_kwargs'] = {'device': 'cuda'}
-            self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)
-            self.use_gpu = True
-            self.logger.info("Using GPU for embeddings")
-            
-            # Configure FAISS to use GPU
-            self.res = faiss.StandardGpuResources()
-        except Exception as e:
-            self.logger.warning(f"GPU not available, using CPU: {str(e)}")
-            embedding_kwargs['model_kwargs'] = {'device': 'cpu'}
-            self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)
-            self.use_gpu = False
+        # Always use CPU for stability and compatibility
+        embedding_kwargs['model_kwargs'] = {'device': 'cpu'}
+        self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)
+        self.logger.info("✅ 임베딩 모델 초기화 완료 (device: cpu)")
         
         self.model_name = model_name
     
@@ -53,6 +42,33 @@ class VectorstoreManager:
                     hf_token = st.secrets.get("hf_token", "")
             except ImportError:
                 pass
+        
+        if not hf_token:
+            # Try loading from key.json files (prep and main)
+            key_paths = [
+                # Check prep folder first
+                os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'prep', 'misc', 'key.json'),
+                # Check current project root
+                os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'misc', 'key.json')
+            ]
+            
+            for key_path in key_paths:
+                try:
+                    if os.path.exists(key_path):
+                        with open(key_path, 'r') as f:
+                            keys = json.load(f)
+                        hf_token = keys.get('huggingface_api_key', '')
+                        if hf_token:
+                            self.logger.info(f"✅ HuggingFace 토큰을 {key_path}에서 로드함")
+                            break
+                except Exception as e:
+                    self.logger.warning(f"키 파일 로드 실패 {key_path}: {str(e)}")
+        
+        # Set environment variable if token found
+        if hf_token:
+            os.environ['HF_TOKEN'] = hf_token
+            os.environ['HUGGINGFACE_API_KEY'] = hf_token
+            self.logger.info("✅ HuggingFace 토큰 환경변수 설정 완료")
         
         return hf_token if hf_token else None
     
@@ -154,58 +170,46 @@ class VectorstoreManager:
         
         # Create vectorstore from documents
         if documents:
-            self.logger.info(f"Creating vectorstore with {len(documents)} documents")
+            self.logger.info(f"📄 총 {len(documents)}개 문서로 벡터스토어 생성 중... (CPU 모드)")
             vectorstore = FAISS.from_documents(documents, self.embeddings)
             
-            # Move index to GPU if available
-            if self.use_gpu and hasattr(vectorstore, 'index'):
-                try:
-                    vectorstore.index = faiss.index_cpu_to_gpu(self.res, 0, vectorstore.index)
-                    self.logger.info("Moved vectorstore index to GPU")
-                except Exception as e:
-                    self.logger.warning(f"Failed to move index to GPU: {str(e)}")
+            # FAISS index is always CPU for CPU-only mode
+            self.logger.info("✅ 벡터스토어 생성 완료 (CPU 모드)")
             
             return vectorstore
         else:
             # Create empty vectorstore if no documents
-            self.logger.warning("No documents found, creating empty vectorstore")
+            self.logger.warning("⚠️ 문서가 없어 빈 벡터스토어 생성")
             return FAISS.from_texts(["No data available"], self.embeddings)
     
     def save_vectorstore(self, vectorstore: FAISS, path: str):
         """벡터 스토어를 파일로 저장"""
         try:
-            # Move index to CPU before saving if using GPU
-            if self.use_gpu and hasattr(vectorstore, 'index'):
-                vectorstore.index = faiss.index_gpu_to_cpu(vectorstore.index)
+            # FAISS index is always CPU for CPU-only mode
+            self.logger.info("💾 벡터스토어 저장 중 (CPU 모드)")
             
             # Ensure directory exists
             Path(path).parent.mkdir(parents=True, exist_ok=True)
             
             vectorstore.save_local(path)
-            self.logger.info(f"Vectorstore saved to {path}")
+            self.logger.info(f"✅ 벡터스토어 저장 완료: {path}")
             
         except Exception as e:
-            self.logger.error(f"Error saving vectorstore: {str(e)}")
+            self.logger.error(f"❌ 벡터스토어 저장 실패: {str(e)}")
             raise
     
     def load_vectorstore(self, path: str) -> FAISS:
         """저장된 벡터 스토어를 로드"""
         try:
+            self.logger.info(f"벡터스토어 로드 중: {path}")
             vectorstore = FAISS.load_local(
                 path, 
                 self.embeddings,
                 allow_dangerous_deserialization=True  # Required for FAISS loading
             )
             
-            # Move index to GPU after loading if available
-            if self.use_gpu and hasattr(vectorstore, 'index'):
-                try:
-                    vectorstore.index = faiss.index_cpu_to_gpu(self.res, 0, vectorstore.index)
-                    self.logger.info("Moved loaded vectorstore index to GPU")
-                except Exception as e:
-                    self.logger.warning(f"Failed to move loaded index to GPU: {str(e)}")
-            
-            self.logger.info(f"Vectorstore loaded from {path}")
+            # FAISS index is always CPU for CPU-only mode
+            self.logger.info("✅ 벡터스토어 로드 완료 (CPU 모드)")
             return vectorstore
             
         except Exception as e:
@@ -267,7 +271,7 @@ class VectorstoreManager:
             info = {
                 'total_documents': vectorstore.index.ntotal if hasattr(vectorstore, 'index') else 0,
                 'embedding_model': self.model_name,
-                'device': 'GPU' if self.use_gpu else 'CPU'
+                'device': 'CPU'  # Always CPU for CPU-only mode
             }
             
             # Get sample metadata keys if documents exist
