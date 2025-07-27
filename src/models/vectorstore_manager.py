@@ -19,9 +19,6 @@ class VectorstoreManager:
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
         
-        # Load HuggingFace token from various sources
-        hf_token = self._load_hf_token()
-        
         # Use vectorstore path from settings (automatically detects environment)
         self.vectorstore_folder = str(PATHS['vectorstore'])
         self.logger.info(f"✅ 벡터스토어 경로 설정: {self.vectorstore_folder}")
@@ -29,15 +26,19 @@ class VectorstoreManager:
         # Create vectorstore folder if it doesn't exist
         os.makedirs(self.vectorstore_folder, exist_ok=True)
         
-        # Initialize embeddings (CPU only for Google Colab compatibility)
-        embedding_kwargs = {'model_name': model_name}
-        # Note: HuggingFaceEmbeddings now uses environment variables (HF_TOKEN, HUGGINGFACE_API_KEY)
-        # instead of direct token parameter
+        # Load HuggingFace token to environment variables (but don't pass as parameter)
+        self._load_hf_token()  # This sets environment variables only
         
-        # Always use CPU for stability and compatibility
-        embedding_kwargs['model_kwargs'] = {'device': 'cpu'}
-        self.embeddings = HuggingFaceEmbeddings(**embedding_kwargs)
-        self.logger.info("✅ 임베딩 모델 초기화 완료 (device: cpu)")
+        try:
+            # Use only basic parameters - let HuggingFaceEmbeddings use environment variables
+            self.embeddings = HuggingFaceEmbeddings(
+                model_name=model_name,
+                model_kwargs={'device': 'cpu'}
+            )
+            self.logger.info("✅ 임베딩 모델 초기화 완료 (device: cpu)")
+        except Exception as e:
+            self.logger.error(f"❌ 임베딩 모델 초기화 실패: {str(e)}")
+            raise
         
         self.model_name = model_name
     
