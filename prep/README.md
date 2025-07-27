@@ -61,7 +61,3 @@ pip install -r requirements.txt
 - API 키는 절대 공개 저장소에 커밋하지 마세요
 - 대용량 PDF 파일 처리 시 메모리 사용량에 주의하세요
 - Google Colab 세션 시간 제한에 주의하세요
-
-## 라이선스
-
-MIT License 

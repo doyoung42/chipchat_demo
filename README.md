@@ -80,7 +80,7 @@ PDF 데이터시트를 벡터 데이터베이스로 변환합니다.
 
 ```bash
 # 저장소 클론
-git clone https://github.com/yourusername/chipchat.git
+git clone https://github.com/doyoung42/chipchat.git
 cd chipchat
 
 # 패키지 설치  
@@ -134,6 +134,3 @@ chipchat/
 - [전처리 도구 사용법](./prep/README.md)
 - [시스템 구조 상세](./docs/system_architecture.md)
 
-## 📄 라이선스
-
-MIT License 
