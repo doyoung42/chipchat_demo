@@ -10,6 +10,18 @@ import pandas as pd
 import sys
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
+# 로깅 시스템 임포트 (가능하면)
+try:
+    from src.utils.logger import get_logger
+    USE_ADVANCED_LOGGING = True
+    logger = get_logger()
+    logger.info("Streamlit 앱 시작")
+except ImportError:
+    USE_ADVANCED_LOGGING = False
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info("기본 로깅 시스템 사용")
+
 # Page configuration
 st.set_page_config(
     page_title="ChipChat - 데이터시트 챗봇",
@@ -160,24 +172,51 @@ def initialize_managers_full():
     progress_bar = st.progress(0)
     status_text = st.empty()
     
+    # 로깅 데코레이터 사용 (가능하면)
+    if USE_ADVANCED_LOGGING and hasattr(logger, 'measure_time'):
+        measure_time = logger.measure_time
+    else:
+        def measure_time(name):
+            def decorator(func):
+                def wrapper(*args, **kwargs):
+                    start = time.time()
+                    result = func(*args, **kwargs)
+                    elapsed = time.time() - start
+                    logger.info(f"{name} 완료: {elapsed:.2f}초")
+                    return result
+                return wrapper
+            return decorator
+    
     try:
         status_text.info("🔄 1/3 ChatManager 초기화 중...")
         progress_bar.progress(10)
         
+        @measure_time("ChatManager 초기화")
+        def init_chat_manager():
+            from src.models.chat_manager import ChatManager
+            return ChatManager(provider="openai")
+        
         start_time = time.time()
-        from src.models.chat_manager import ChatManager
-        chat_manager = ChatManager(provider="openai")
+        chat_manager = init_chat_manager()
         elapsed = time.time() - start_time
         
         status_text.success(f"✅ 1/3 ChatManager 초기화 완료 ({elapsed:.1f}초)")
         progress_bar.progress(30)
         time.sleep(0.5)
         
-        status_text.info("🔄 2/3 VectorstoreManager 초기화 중... (임베딩 모델 다운로드, 시간이 오래 걸릴 수 있습니다)")
+        # 캐싱된 모델 사용 시 더 빠른 메시지 표시
+        if USE_ADVANCED_LOGGING:
+            status_text.info("🔄 2/3 VectorstoreManager 초기화 중... (캐시 확인 중)")
+        else:
+            status_text.info("🔄 2/3 VectorstoreManager 초기화 중... (임베딩 모델 다운로드, 시간이 오래 걸릴 수 있습니다)")
+        
+        @measure_time("VectorstoreManager 초기화")
+        def init_vectorstore_manager():
+            from src.models.vectorstore_manager import VectorstoreManager
+            return VectorstoreManager()
         
         start_time = time.time()
-        from src.models.vectorstore_manager import VectorstoreManager
-        vectorstore_manager = VectorstoreManager()
+        vectorstore_manager = init_vectorstore_manager()
         elapsed = time.time() - start_time
         
         status_text.success(f"✅ 2/3 VectorstoreManager 초기화 완료 ({elapsed:.1f}초)")
@@ -192,9 +231,19 @@ def initialize_managers_full():
         progress_bar.empty()
         status_text.empty()
         
+        # 성능 요약 표시 (가능하면)
+        if USE_ADVANCED_LOGGING and hasattr(logger, 'get_performance_summary'):
+            perf_summary = logger.get_performance_summary()
+            if perf_summary:
+                st.sidebar.markdown("### 📊 초기화 성능")
+                for op, stats in perf_summary.items():
+                    if "초기화" in op:
+                        st.sidebar.metric(op, f"{stats['avg_time']:.1f}초")
+        
         return chat_manager, vectorstore_manager, None
         
     except Exception as e:
+        logger.error(f"매니저 초기화 실패: {str(e)}", extra={"error": str(e)})
         progress_bar.empty()
         status_text.error(f"❌ 매니저 초기화 실패: {str(e)}")
         return None, None, str(e)
@@ -242,12 +291,27 @@ def initialize_agent(_chat_manager, _vectorstore_manager, _vectorstore, chipdb_p
 def main():
     st.title("💬 ChipChat - 데이터시트 챗봇")
     
+    # 로깅 시작
+    if USE_ADVANCED_LOGGING:
+        logger.info("ChipChat 메인 페이지 로드", extra={
+            "session_id": st.session_state.get('session_id', 'unknown')
+        })
+    
     # Initialize session state
     if 'paths' not in st.session_state:
         st.session_state.paths = setup_paths()
+        logger.info("경로 설정 완료", extra=st.session_state.paths)
     
     if 'api_keys' not in st.session_state:
         st.session_state.api_keys = load_api_keys()
+        api_key_status = {k: bool(v) for k, v in st.session_state.api_keys.items()}
+        logger.info("API 키 로드 완료", extra=api_key_status)
+    
+    # 세션 ID 생성 (로깅용)
+    if 'session_id' not in st.session_state:
+        import uuid
+        st.session_state.session_id = str(uuid.uuid4())[:8]
+        logger.info(f"새 세션 시작: {st.session_state.session_id}")
     
     # 모드 선택을 제일 먼저
     st.markdown("### 🎯 모드 선택")

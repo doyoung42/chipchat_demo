@@ -8,6 +8,21 @@ from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.schema import Document
 from ..config.settings import PATHS
 
+# Google Colab 환경 감지
+try:
+    from google.colab import drive
+    IS_COLAB = True
+except ImportError:
+    IS_COLAB = False
+
+# 로거와 모델 캐시 임포트 (있으면)
+try:
+    from ..utils.logger import get_logger
+    from ..utils.model_cache import get_model_cache
+    USE_ADVANCED_FEATURES = True
+except ImportError:
+    USE_ADVANCED_FEATURES = False
+
 class VectorstoreManager:
     def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
         """벡터 스토어 관리자 초기화 (CPU 전용)
@@ -17,7 +32,14 @@ class VectorstoreManager:
         """
         # Setup logging
         logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(__name__)
+        
+        # 고급 로거 사용 가능하면 사용
+        if USE_ADVANCED_FEATURES:
+            self.logger = get_logger()
+            self._init_with_cache = self._init_with_advanced_features
+        else:
+            self.logger = logging.getLogger(__name__)
+            self._init_with_cache = self._init_basic
         
         # Use vectorstore path from settings (automatically detects environment)
         self.vectorstore_folder = str(PATHS['vectorstore'])
@@ -29,6 +51,42 @@ class VectorstoreManager:
         # Load HuggingFace token to environment variables (but don't pass as parameter)
         self._load_hf_token()  # This sets environment variables only
         
+        # 모델 초기화 (캐싱 지원)
+        self.model_name = model_name
+        self._init_with_cache(model_name)
+    
+    def _init_with_advanced_features(self, model_name: str):
+        """고급 기능을 사용한 초기화 (캐싱 포함)"""
+        try:
+            model_cache = get_model_cache()
+            
+            # 캐시 확인 및 로드
+            if model_cache.is_model_cached(model_name):
+                self.logger.info(f"캐시된 모델 사용: {model_name}")
+                model_cache.load_model_from_cache(model_name)
+            
+            # 모델 초기화 측정
+            @self.logger.measure_time("임베딩 모델 초기화")
+            def init_embeddings():
+                return HuggingFaceEmbeddings(
+                    model_name=model_name,
+                    model_kwargs={'device': 'cpu'}
+                )
+            
+            self.embeddings = init_embeddings()
+            self.logger.info("✅ 임베딩 모델 초기화 완료 (device: cpu)")
+            
+            # 캐시에 저장 (처음 다운로드한 경우)
+            if not model_cache.is_model_cached(model_name):
+                self.logger.info("새로 다운로드한 모델을 캐시에 저장 중...")
+                model_cache.save_model_to_cache(model_name)
+                
+        except Exception as e:
+            self.logger.error(f"❌ 임베딩 모델 초기화 실패: {str(e)}")
+            raise
+    
+    def _init_basic(self, model_name: str):
+        """기본 초기화 (캐싱 없음)"""
         try:
             # Use only basic parameters - let HuggingFaceEmbeddings use environment variables
             self.embeddings = HuggingFaceEmbeddings(
@@ -39,8 +97,6 @@ class VectorstoreManager:
         except Exception as e:
             self.logger.error(f"❌ 임베딩 모델 초기화 실패: {str(e)}")
             raise
-        
-        self.model_name = model_name
     
     def _load_hf_token(self) -> Optional[str]:
         """Load HuggingFace token from various sources"""
