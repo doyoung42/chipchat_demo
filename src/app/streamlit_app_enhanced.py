@@ -10,6 +10,10 @@ import pandas as pd
 import sys
 sys.path.append(str(Path(__file__).parent.parent.parent))
 
+from src.models.chat_manager import ChatManager
+from src.models.vectorstore_manager import VectorstoreManager
+from src.models.langgraph_agent import ChipChatAgent
+
 # Page configuration
 st.set_page_config(
     page_title="ChipChat Enhanced - 개선된 버전",

@@ -5,6 +5,14 @@ import pandas as pd
 from pathlib import Path
 from typing import List, Dict, Any
 
+# Import from the new directory structure
+import sys
+sys.path.append(str(Path(__file__).parent.parent.parent))
+
+from src.models.chat_manager import ChatManager
+from src.models.vectorstore_manager import VectorstoreManager
+from src.models.langgraph_agent import ChipChatAgent
+
 # Page configuration
 st.set_page_config(
     page_title="ChipChat Lite - 경량화 버전",
