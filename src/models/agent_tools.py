@@ -15,6 +15,8 @@ from langchain.schema import Document
 
 from .vectorstore_manager import VectorstoreManager
 from .llm_manager import LLMManager
+from .pdf_processor import PDFProcessor
+from .session_vectorstore import SessionVectorstoreManager
 
 
 class ChipChatTools:
@@ -26,6 +28,16 @@ class ChipChatTools:
         self.vectorstore_manager = vectorstore_manager
         self.vectorstore = vectorstore
         self.llm_manager = llm_manager
+        
+        # PDF 프로세서 초기화
+        try:
+            self.pdf_processor = PDFProcessor(llm_manager)
+        except ImportError as e:
+            print(f"⚠️ PDF 처리 기능을 사용할 수 없습니다: {e}")
+            self.pdf_processor = None
+        
+        # 세션 벡터스토어 매니저 초기화
+        self.session_manager = SessionVectorstoreManager(vectorstore_manager)
         
         # Load chipDB.csv
         try:
@@ -86,6 +98,7 @@ class ChipChatTools:
     def search_vectorstore(self, query: str, part_number: str = "", category: str = "", k: int = 5) -> str:
         """
         Search the vectorstore for detailed technical information about components.
+        Searches both base vectorstore and session-uploaded documents.
         Use this for detailed questions about specific components, electrical characteristics, etc.
         
         Args:
@@ -105,13 +118,17 @@ class ChipChatTools:
             if category:
                 filters['category'] = category
             
-            # Search vectorstore
+            # Search both base and session vectorstores
             if filters:
                 docs = self.vectorstore_manager.search_with_filters(
-                    self.vectorstore, query, filters=filters, k=k
+                    self.vectorstore, query, filters=filters, k=k//2
                 )
+                # Add session results
+                session_docs = self.session_manager.search_session_vectorstore(query, k//2)
+                docs.extend(session_docs)
             else:
-                docs = self.vectorstore.similarity_search(query, k=k)
+                # Combined search (session + base)
+                docs = self.session_manager.search_combined(self.vectorstore, query, k)
             
             if not docs:
                 return f"🔍 No detailed information found for '{query}'"
@@ -121,7 +138,20 @@ class ChipChatTools:
             
             for i, doc in enumerate(docs, 1):
                 metadata = doc.metadata
-                result += f"**Source {i}: {metadata.get('component_name', 'Unknown')}**\n"
+                
+                # 세션 문서인지 확인
+                try:
+                    import streamlit as st
+                    is_session_doc = any(
+                        uploaded_doc['filename'] == metadata.get('filename', '')
+                        for uploaded_doc in getattr(st.session_state, 'uploaded_documents', [])
+                    )
+                except ImportError:
+                    is_session_doc = False
+                
+                source_prefix = "🆕 [업로드된 문서]" if is_session_doc else "📚 [기본 DB]"
+                
+                result += f"**{source_prefix} Source {i}: {metadata.get('component_name', 'Unknown')}**\n"
                 result += f"📁 File: {metadata.get('filename', 'Unknown')}\n"
                 result += f"🏷️ Part: {metadata.get('maker_pn', 'Unknown')}\n"
                 result += f"📂 Category: {metadata.get('category', 'Unknown')}\n"
@@ -135,7 +165,7 @@ class ChipChatTools:
     @tool
     def process_new_pdf(self, pdf_content: bytes, filename: str) -> str:
         """
-        Process a new PDF upload through the prep pipeline and add to vectorstore.
+        Process a new PDF upload and add to session vectorstore.
         Use this when user uploads a new datasheet or asks to add new component data.
         
         Args:
@@ -146,52 +176,33 @@ class ChipChatTools:
             Status of processing and integration
         """
         try:
-            # Create temporary directory for processing
-            with tempfile.TemporaryDirectory() as temp_dir:
-                temp_path = Path(temp_dir)
-                pdf_path = temp_path / filename
+            if self.pdf_processor is None:
+                return "❌ PDF 처리 기능을 사용할 수 없습니다. pypdf 패키지를 설치해주세요."
+            
+            # 세션 벡터스토어에 PDF 추가
+            result = self.session_manager.add_pdf_to_session(
+                pdf_content, filename, self.pdf_processor
+            )
+            
+            if result['success']:
+                doc_info = result['document_info']
+                processed_data = result['processed_data']
                 
-                # Save PDF to temporary location
-                with open(pdf_path, 'wb') as f:
-                    f.write(pdf_content)
+                # chipDB.csv 업데이트 (옵션)
+                try:
+                    self._update_chip_db(processed_data, filename)
+                except Exception as e:
+                    print(f"⚠️ chipDB.csv 업데이트 실패: {e}")
                 
-                # Import prep modules
-                import sys
-                prep_path = Path.cwd() / 'prep' / 'src'
-                if prep_path.exists():
-                    sys.path.append(str(prep_path))
-                
-                from prep.src.pdf_processor import PDFProcessor
-                from prep.src.llm_manager import LLMManager as PrepLLMManager
-                
-                # Initialize prep LLM manager
-                prep_llm = PrepLLMManager(
-                    provider=self.llm_manager.provider,
-                    model_name=self.llm_manager.model_name
-                )
-                
-                # Process PDF
-                processor = PDFProcessor(prep_llm)
-                
-                # Process single PDF
-                result_data = processor.process_single_pdf(pdf_path)
-                
-                if not result_data:
-                    return f"❌ Failed to process PDF: {filename}"
-                
-                # Add to vectorstore
-                vectorstore_updated = self._add_to_vectorstore([result_data])
-                
-                if vectorstore_updated:
-                    # Update chipDB.csv if metadata extracted
-                    self._update_chip_db(result_data, filename)
-                    
-                    return f"✅ Successfully processed and added {filename} to the database!\n" \
-                           f"📊 Component: {result_data.get('metadata', {}).get('component_name', 'Unknown')}\n" \
-                           f"🏭 Manufacturer: {result_data.get('metadata', {}).get('manufacturer', 'Unknown')}\n" \
-                           f"📚 Added to vectorstore for detailed searches"
-                else:
-                    return f"⚠️ Processed {filename} but failed to add to vectorstore"
+                return f"✅ Successfully processed and added {filename} to your session!\n\n" \
+                       f"📊 **Component:** {doc_info['component_name']}\n" \
+                       f"🏭 **Manufacturer:** {doc_info['manufacturer']}\n" \
+                       f"📄 **Pages:** {doc_info['total_pages']}\n" \
+                       f"📦 **Chunks:** {doc_info['total_chunks']}\n" \
+                       f"🕐 **Uploaded:** {doc_info['uploaded_at'][:19]}\n\n" \
+                       f"💡 This document is now available for detailed searches in your session!"
+            else:
+                return f"❌ Failed to process PDF {filename}: {result['error']}"
                     
         except Exception as e:
             return f"❌ Error processing PDF {filename}: {str(e)}"

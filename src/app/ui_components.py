@@ -114,4 +114,52 @@ def add_chat_message(role: str, content: str):
     """채팅 메시지 추가"""
     st.session_state.messages.append({"role": role, "content": content})
     with st.chat_message(role):
-        st.markdown(content) 
+        st.markdown(content)
+
+def show_pdf_upload():
+    """PDF 업로드 UI 컴포넌트"""
+    st.subheader("📄 PDF 업로드")
+    
+    uploaded_file = st.file_uploader(
+        "데이터시트 PDF 업로드",
+        type=['pdf'],
+        help="새로운 부품 데이터시트를 업로드하면 자동으로 처리되어 검색에 추가됩니다."
+    )
+    
+    return uploaded_file
+
+def show_session_documents():
+    """세션에 업로드된 문서 목록 표시"""
+    if hasattr(st.session_state, 'uploaded_documents') and st.session_state.uploaded_documents:
+        with st.expander("📁 업로드된 문서", expanded=False):
+            for i, doc in enumerate(st.session_state.uploaded_documents):
+                col1, col2, col3 = st.columns([3, 2, 1])
+                
+                with col1:
+                    st.text(f"📄 {doc['filename']}")
+                    st.caption(f"{doc['component_name']} ({doc['manufacturer']})")
+                
+                with col2:
+                    st.text(f"📄 {doc['total_pages']}페이지")
+                    st.caption(f"📦 {doc['total_chunks']}청크")
+                
+                with col3:
+                    if st.button("🗑️", key=f"remove_doc_{i}", help="문서 제거"):
+                        return doc['filename']  # 제거할 파일명 반환
+            
+            # 세션 클리어 버튼
+            if st.button("🗑️ 모든 문서 삭제", type="secondary"):
+                return "clear_all"
+    
+    return None
+
+def show_upload_status(status_message: str, status_type: str = "info"):
+    """업로드 상태 표시"""
+    if status_type == "success":
+        st.success(status_message)
+    elif status_type == "error":
+        st.error(status_message)
+    elif status_type == "warning":
+        st.warning(status_message)
+    else:
+        st.info(status_message) 

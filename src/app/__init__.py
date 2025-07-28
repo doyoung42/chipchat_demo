@@ -13,7 +13,10 @@ from .ui_components import (
     show_chat_controls,
     show_agent_info,
     init_chat_container,
-    add_chat_message
+    add_chat_message,
+    show_pdf_upload,
+    show_session_documents,
+    show_upload_status
 )
 
 # Import initialization functions
@@ -33,6 +36,9 @@ __all__ = [
     'show_agent_info',
     'init_chat_container',
     'add_chat_message',
+    'show_pdf_upload',
+    'show_session_documents',
+    'show_upload_status',
     'setup_paths',
     'load_api_keys',
     'initialize_managers',
