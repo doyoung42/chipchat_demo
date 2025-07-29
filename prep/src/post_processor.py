@@ -11,7 +11,7 @@ class PostProcessor:
         """Initialize Post Processor
         
         Args:
-            base_folder: Base folder path for processing (defaults to Google Drive structure)
+            base_folder: Base folder path for processing (if None, reads from param.json)
         """
         # Setup logging
         logging.basicConfig(
@@ -22,14 +22,32 @@ class PostProcessor:
         
         # Set base folder paths
         if base_folder is None:
-            # Default Google Drive structure
-            self.base_folder = Path('/content/drive/MyDrive')
+            # Read from param.json
+            try:
+                param_path = Path(__file__).parent.parent / 'misc' / 'param.json'
+                with open(param_path, 'r') as f:
+                    params = json.load(f)
+                
+                # Use result_json_folder as base for most operations
+                result_json_folder = params['pdf_processing']['folders']['result_json_folder']
+                pdf_folder = params['pdf_processing']['folders']['pdf_folder']
+                
+                self.base_folder = Path(result_json_folder).parent  # Get parent directory
+                self.pdf_folder = Path(pdf_folder)
+                self.json_folder = Path(result_json_folder)
+                
+            except Exception as e:
+                self.logger.warning(f"Failed to read param.json: {e}, using default paths")
+                # Fallback to default relative paths
+                self.base_folder = Path.cwd()  # Assume running from prep folder
+                self.pdf_folder = self.base_folder / 'datasheets'
+                self.json_folder = self.base_folder / 'prep_json'
         else:
             self.base_folder = Path(base_folder)
+            self.pdf_folder = self.base_folder / 'datasheets'
+            self.json_folder = self.base_folder / 'prep_json'
             
         # Define folder paths
-        self.pdf_folder = self.base_folder / 'datasheets'
-        self.json_folder = self.base_folder / 'prep_json'
         self.pre_json_folder = self.json_folder / 'pre_json'
         self.merged_json_folder = self.json_folder / 'merged_json'
         self.modified_json_folder = self.json_folder / 'modified_json'

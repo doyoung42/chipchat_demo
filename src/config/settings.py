@@ -3,61 +3,83 @@ Configuration settings for the ChipChat application.
 Supports both local and Google Colab environments.
 """
 import os
+import json
 from pathlib import Path
-from typing import Dict, Any, Optional
-from dotenv import load_dotenv
+from typing import Optional
 
-# Load environment variables
-load_dotenv()
-
-def detect_environment() -> str:
-    """Detect current environment (local or colab)"""
+def get_project_settings():
+    """프로젝트 설정을 config.json에서 읽어오는 함수"""
     try:
-        import google.colab
-        return "colab"
-    except ImportError:
-        return "local"
+        from ..utils.config_manager import get_config_manager
+        config = get_config_manager()
+        
+        # 현재 환경의 경로들 가져오기
+        paths = config.get_paths()
+        
+        return {
+            'BASE_DIR': Path(paths.get('base_path', '.')),
+            'PREP_JSON_FOLDER': Path(paths.get('prep_json_folder', './prep_json')),
+            'VECTORSTORE_FOLDER': Path(paths.get('vectorstore_folder', './vectorstore')), 
+            'PROMPT_TEMPLATES_FOLDER': Path(paths.get('prompt_templates_folder', './prompt_templates')),
+            'MODEL_CACHE_FOLDER': Path(paths.get('model_cache_folder', './hf_model_cache')),
+            'LOGS_FOLDER': Path(paths.get('logs_folder', './logs')),
+            'EMBEDDING_MODEL': config.get_embedding_model(),
+            'SUPPORTED_MODELS': config.get_supported_models(),
+            'USE_GOOGLE_DRIVE': config.get_environment() == 'google_drive'
+        }
+    except Exception as e:
+        # config.json 읽기 실패 시 기본값 반환
+        print(f"Warning: Failed to read config.json: {e}")
+        return get_default_settings()
 
-def get_base_paths() -> Dict[str, Path]:
-    """Get base paths based on environment"""
-    env = detect_environment()
-    
-    if env == "colab":
-        # Google Colab paths
+def get_default_settings():
+    """기본 설정값 반환 (config.json 읽기 실패 시 사용)"""
+    # 환경 감지
+    try:
+        from google.colab import drive
+        # Google Colab 환경
         base_dir = Path('/content/drive/MyDrive')
-        return {
-            'base': base_dir,
-            'vectorstore': base_dir / 'vectorstore',
-            'json_data': base_dir / 'prep_json',
-            'prompt_templates': base_dir / 'prompt_templates',
-            'uploads': base_dir / 'uploads'
-        }
-    else:
-        # Local environment paths
-        base_dir = Path(__file__).parent.parent.parent
-        return {
-            'base': base_dir,
-            'vectorstore': base_dir / 'vectorstore',
-            'json_data': base_dir / 'prep' / 'prep_json',
-            'prompt_templates': base_dir / 'prompt_templates',
-            'uploads': base_dir / 'uploads'
-        }
+        use_google_drive = True
+    except ImportError:
+        # 로컬 환경
+        base_dir = Path('.')
+        use_google_drive = False
+    
+    return {
+        'BASE_DIR': base_dir,
+        'PREP_JSON_FOLDER': base_dir / 'prep_json',
+        'VECTORSTORE_FOLDER': base_dir / 'vectorstore',
+        'PROMPT_TEMPLATES_FOLDER': base_dir / 'prompt_templates',
+        'MODEL_CACHE_FOLDER': base_dir / 'hf_model_cache',
+        'LOGS_FOLDER': base_dir / ('chipchat_logs' if use_google_drive else 'logs'),
+        'EMBEDDING_MODEL': 'sentence-transformers/all-MiniLM-L6-v2',
+        'SUPPORTED_MODELS': {
+            'openai': ['gpt-4o-mini', 'gpt-4o', 'gpt-3.5-turbo'],
+            'claude': ['claude-3-sonnet', 'claude-3-haiku', 'claude-3-opus']
+        },
+        'USE_GOOGLE_DRIVE': use_google_drive
+    }
 
-# Get paths based on environment
-PATHS = get_base_paths()
+# 프로젝트 설정 로드
+SETTINGS = get_project_settings()
 
-# Create directories if they don't exist
-for path in PATHS.values():
-    if path != PATHS['base']:
-        path.mkdir(parents=True, exist_ok=True)
+# 개별 설정값들을 모듈 레벨에서 접근 가능하도록 export
+BASE_DIR = SETTINGS['BASE_DIR']
+PREP_JSON_FOLDER = SETTINGS['PREP_JSON_FOLDER']
+VECTORSTORE_FOLDER = SETTINGS['VECTORSTORE_FOLDER']
+PROMPT_TEMPLATES_FOLDER = SETTINGS['PROMPT_TEMPLATES_FOLDER']
+MODEL_CACHE_FOLDER = SETTINGS['MODEL_CACHE_FOLDER']
+LOGS_FOLDER = SETTINGS['LOGS_FOLDER']
+EMBEDDING_MODEL = SETTINGS['EMBEDDING_MODEL']
+SUPPORTED_MODELS = SETTINGS['SUPPORTED_MODELS']
+USE_GOOGLE_DRIVE = SETTINGS['USE_GOOGLE_DRIVE']
 
 # Model settings
-EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 
 # LLM Configuration
-LLM_CONFIG: Dict[str, Any] = {
+LLM_CONFIG = {
     "openai": {
         "models": {
             "gpt-4o-mini": {
@@ -84,26 +106,26 @@ LLM_CONFIG: Dict[str, Any] = {
     },
     "claude": {
         "models": {
-            "claude-3-sonnet-20240229": {
-                "model_name": "claude-3-sonnet-20240229",
+            "claude-3-sonnet": {
+                "model_name": "claude-3-sonnet",
                 "temperature": 0.1,
                 "max_tokens": 2000,
                 "description": "Balanced performance and speed"
             },
-            "claude-3-haiku-20240307": {
-                "model_name": "claude-3-haiku-20240307",
+            "claude-3-haiku": {
+                "model_name": "claude-3-haiku",
                 "temperature": 0.1,
                 "max_tokens": 2000,
                 "description": "Fastest Claude model"
             },
-            "claude-3-opus-20240229": {
-                "model_name": "claude-3-opus-20240229",
+            "claude-3-opus": {
+                "model_name": "claude-3-opus",
                 "temperature": 0.1,
                 "max_tokens": 2000,
                 "description": "Most capable Claude model"
             }
         },
-        "default_model": "claude-3-sonnet-20240229",
+        "default_model": "claude-3-sonnet",
         "api_url": "https://api.anthropic.com/v1/messages"
     }
 }
@@ -176,7 +198,7 @@ def get_api_keys() -> Dict[str, Optional[str]]:
     return api_keys
 
 # Environment info
-ENVIRONMENT = detect_environment()
+ENVIRONMENT = SETTINGS['USE_GOOGLE_DRIVE'] and 'colab' or 'local'
 
 # Logging configuration
 LOGGING_CONFIG = {

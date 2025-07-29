@@ -1,0 +1,31 @@
+{
+    "environment": {
+        "use_google_drive": false,
+        "description": "Environment selection: true for Google Drive (Colab), false for local"
+    },
+    "paths": {
+        "google_drive": {
+            "base_path": "/content/drive/MyDrive",
+            "prep_json_folder": "/content/drive/MyDrive/prep_json",
+            "vectorstore_folder": "/content/drive/MyDrive/vectorstore",
+            "prompt_templates_folder": "/content/drive/MyDrive/prompt_templates",
+            "model_cache_folder": "/content/drive/MyDrive/hf_model_cache",
+            "logs_folder": "/content/drive/MyDrive/chipchat_logs"
+        },
+        "local": {
+            "base_path": ".",
+            "prep_json_folder": "./prep_json",
+            "vectorstore_folder": "./vectorstore",
+            "prompt_templates_folder": "./prompt_templates",
+            "model_cache_folder": "./hf_model_cache",
+            "logs_folder": "./logs"
+        }
+    },
+    "models": {
+        "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+        "supported_llm": {
+            "openai": ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"],
+            "claude": ["claude-3-sonnet", "claude-3-haiku", "claude-3-opus"]
+        }
+    }
+} 

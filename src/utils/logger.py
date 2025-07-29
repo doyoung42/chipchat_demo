@@ -7,14 +7,28 @@ from typing import Optional, Dict, Any
 import functools
 import traceback
 
-class GoogleDriveLogger:
-    """Google Drive와 연동되는 로깅 시스템"""
+class ChipChatLogger:
+    """ChipChat 시스템용 고급 로거"""
     
-    def __init__(self, log_dir: str = "/content/drive/MyDrive/chipchat_logs"):
+    def __init__(self, log_dir: Optional[str] = None):
         """
         Args:
-            log_dir: Google Drive 내 로그 저장 경로
+            log_dir: 로그 파일이 저장될 디렉토리 (None이면 config.json에서 읽어옴)
         """
+        if log_dir is None:
+            # config.json에서 로그 디렉토리 읽어오기
+            try:
+                from .config_manager import get_config_manager
+                config = get_config_manager()
+                log_dir = config.get_path('logs_folder')
+            except Exception:
+                # config.json 읽기 실패 시 환경 감지로 폴백
+                try:
+                    from google.colab import drive
+                    log_dir = "/content/drive/MyDrive/chipchat_logs"
+                except ImportError:
+                    log_dir = "./logs"
+        
         self.log_dir = Path(log_dir)
         self.log_dir.mkdir(parents=True, exist_ok=True)
         
@@ -201,7 +215,7 @@ class GoogleDriveLogger:
 # 글로벌 로거 인스턴스
 _logger_instance = None
 
-def get_logger(log_dir: Optional[str] = None) -> GoogleDriveLogger:
+def get_logger(log_dir: Optional[str] = None) -> ChipChatLogger:
     """싱글톤 로거 인스턴스 반환"""
     global _logger_instance
     
@@ -214,6 +228,6 @@ def get_logger(log_dir: Optional[str] = None) -> GoogleDriveLogger:
             except ImportError:
                 log_dir = "./logs"
         
-        _logger_instance = GoogleDriveLogger(log_dir)
+        _logger_instance = ChipChatLogger(log_dir)
     
     return _logger_instance 

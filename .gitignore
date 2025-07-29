@@ -44,3 +44,9 @@ Thumbs.db
 prep/prep_data/
 prep/datasheets/
 prep/prep_json/
+datasheets/
+hf_model_cache/
+prep_json/
+vectorstore/
+prompt_templates/
+logs/

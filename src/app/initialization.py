@@ -1,179 +1,91 @@
 """
-Initialization functions for the ChipChat app
+Streamlit 앱 초기화 모듈
 """
+
 import os
 import streamlit as st
 from pathlib import Path
-from typing import Dict, Optional, Tuple, Any
-import time
+from typing import Dict, Any
 
-# 로깅 시스템 임포트
-try:
-    from src.utils.logger import get_logger
-    USE_ADVANCED_LOGGING = True
-    logger = get_logger()
-except ImportError:
-    USE_ADVANCED_LOGGING = False
-    import logging
-    logger = logging.getLogger(__name__)
+def initialize_app_config():
+    """앱 설정 초기화"""
+    try:
+        from ..utils.config_manager import get_config_manager
+        config = get_config_manager()
+        
+        # 현재 환경 가져오기
+        use_google_drive = config.get_environment() == 'google_drive'
+        paths = config.get_paths()
+        
+        # Streamlit 환경변수 설정
+        os.environ['USE_GOOGLE_DRIVE'] = str(use_google_drive)
+        os.environ['VECTORSTORE_PATH'] = paths.get('vectorstore_folder', './vectorstore')
+        os.environ['JSON_FOLDER_PATH'] = paths.get('prep_json_folder', './prep_json')
+        os.environ['PROMPT_TEMPLATES_PATH'] = paths.get('prompt_templates_folder', './prompt_templates')
+        os.environ['MODEL_CACHE_DIR'] = paths.get('model_cache_folder', './hf_model_cache')
+        
+        # 필요한 디렉토리 생성
+        config.create_directories()
+        
+        return {
+            'environment': config.get_environment(),
+            'paths': paths,
+            'embedding_model': config.get_embedding_model(),
+            'supported_models': config.get_supported_models()
+        }
+        
+    except Exception as e:
+        st.error(f"설정 초기화 실패: {e}")
+        # 폴백 설정
+        return initialize_fallback_config()
 
-def setup_paths() -> Dict[str, str]:
-    """환경에 따른 경로 설정"""
+def initialize_fallback_config():
+    """config.json 읽기 실패 시 폴백 설정"""
     # 환경 감지
     try:
         from google.colab import drive
-        env = "colab"
-    except ImportError:
-        env = "local"
-    
-    if env == "colab":
         # Google Colab 환경
+        use_google_drive = True
         base_path = Path('/content/drive/MyDrive')
         paths = {
-            'vectorstore_path': str(base_path / 'vectorstore'),
-            'json_folder_path': str(base_path / 'prep_json'),
-            'prompt_templates_path': str(base_path / 'prompt_templates'),
-            'chipdb_path': str(base_path / 'prep_json' / 'chipDB.csv')
+            'base_path': str(base_path),
+            'prep_json_folder': str(base_path / 'prep_json'),
+            'vectorstore_folder': str(base_path / 'vectorstore'),
+            'prompt_templates_folder': str(base_path / 'prompt_templates'),
+            'model_cache_folder': str(base_path / 'hf_model_cache'),
+            'logs_folder': str(base_path / 'chipchat_logs')
         }
-    else:
+    except ImportError:
         # 로컬 환경
-        base_path = Path.cwd()
+        use_google_drive = False
+        base_path = Path('.')
         paths = {
-            'vectorstore_path': str(base_path / 'vectorstore'),
-            'json_folder_path': str(base_path / 'prep' / 'prep_json'),
-            'prompt_templates_path': str(base_path / 'prompt_templates'),
-            'chipdb_path': str(base_path / 'prep' / 'prep_json' / 'chipDB.csv')
+            'base_path': str(base_path),
+            'prep_json_folder': str(base_path / 'prep_json'),
+            'vectorstore_folder': str(base_path / 'vectorstore'),
+            'prompt_templates_folder': str(base_path / 'prompt_templates'),
+            'model_cache_folder': str(base_path / 'hf_model_cache'),
+            'logs_folder': str(base_path / 'logs')
         }
     
-    # 환경 변수로도 설정
-    for key, value in paths.items():
-        env_key = key.upper()
-        if env_key in os.environ:
-            paths[key] = os.environ[env_key]
+    # 환경변수 설정
+    os.environ['USE_GOOGLE_DRIVE'] = str(use_google_drive)
+    os.environ['VECTORSTORE_PATH'] = paths['vectorstore_folder']
+    os.environ['JSON_FOLDER_PATH'] = paths['prep_json_folder']
+    os.environ['PROMPT_TEMPLATES_PATH'] = paths['prompt_templates_folder']
+    os.environ['MODEL_CACHE_DIR'] = paths['model_cache_folder']
     
-    return paths
-
-def load_api_keys() -> Dict[str, str]:
-    """API 키 로드"""
-    api_keys = {}
+    # 필요한 디렉토리 생성
+    for key, path_str in paths.items():
+        if key != 'base_path':
+            Path(path_str).mkdir(parents=True, exist_ok=True)
     
-    # 환경 변수에서 먼저 시도
-    api_keys['openai'] = os.environ.get('OPENAI_API_KEY', '')
-    api_keys['anthropic'] = os.environ.get('ANTHROPIC_API_KEY', '')
-    api_keys['huggingface'] = os.environ.get('HF_TOKEN', '')
-    
-    # Streamlit secrets에서 시도
-    if hasattr(st, 'secrets'):
-        api_keys['openai'] = api_keys['openai'] or st.secrets.get("openai_api_key", "")
-        api_keys['anthropic'] = api_keys['anthropic'] or st.secrets.get("anthropic_api_key", "")
-        api_keys['huggingface'] = api_keys['huggingface'] or st.secrets.get("hf_token", "")
-    
-    return api_keys
-
-@st.cache_resource
-def initialize_managers(provider: str = "openai", model_name: Optional[str] = None) -> Tuple[Any, Any, Any, Optional[str]]:
-    """매니저들 초기화 (캐싱됨)"""
-    progress_bar = st.progress(0)
-    status_text = st.empty()
-    
-    # 로깅 데코레이터 사용
-    if USE_ADVANCED_LOGGING and hasattr(logger, 'measure_time'):
-        measure_time = logger.measure_time
-    else:
-        def measure_time(name):
-            def decorator(func):
-                def wrapper(*args, **kwargs):
-                    start = time.time()
-                    result = func(*args, **kwargs)
-                    elapsed = time.time() - start
-                    logger.info(f"{name} 완료: {elapsed:.2f}초")
-                    return result
-                return wrapper
-            return decorator
-    
-    try:
-        # ChatManager 초기화
-        status_text.info("🔄 1/3 ChatManager 초기화 중...")
-        progress_bar.progress(10)
-        
-        @measure_time("ChatManager 초기화")
-        def init_chat_manager():
-            from src.models.chat_manager import ChatManager
-            return ChatManager(provider=provider, model_name=model_name)
-        
-        chat_manager = init_chat_manager()
-        progress_bar.progress(30)
-        
-        # VectorstoreManager 초기화
-        status_text.info("🔄 2/3 VectorstoreManager 초기화 중... (캐시 확인 중)")
-        
-        @measure_time("VectorstoreManager 초기화")
-        def init_vectorstore_manager():
-            from src.models.vectorstore_manager import VectorstoreManager
-            return VectorstoreManager()
-        
-        vectorstore_manager = init_vectorstore_manager()
-        progress_bar.progress(60)
-        
-        # Vectorstore 로드
-        status_text.info("🔄 3/3 Vectorstore 로드 중...")
-        
-        @measure_time("Vectorstore 로드")
-        def load_vs():
-            paths = st.session_state.get('paths', setup_paths())
-            vectorstore_path = paths['vectorstore_path']
-            
-            if Path(vectorstore_path).exists():
-                return vectorstore_manager.load_vectorstore(vectorstore_path)
-            else:
-                # JSON 파일에서 생성 시도
-                json_folder = paths['json_folder_path']
-                if Path(json_folder).exists():
-                    json_data = vectorstore_manager.load_json_files(json_folder)
-                    if json_data:
-                        vectorstore = vectorstore_manager.create_vectorstore(json_data)
-                        Path(vectorstore_path).parent.mkdir(parents=True, exist_ok=True)
-                        vectorstore_manager.save_vectorstore(vectorstore, vectorstore_path)
-                        return vectorstore
-                
-                raise ValueError("벡터스토어나 JSON 파일을 찾을 수 없습니다.")
-        
-        vectorstore = load_vs()
-        progress_bar.progress(100)
-        
-        status_text.success("✅ 모든 구성 요소 초기화 완료!")
-        time.sleep(1)
-        
-        # UI 정리
-        progress_bar.empty()
-        status_text.empty()
-        
-        return chat_manager, vectorstore_manager, vectorstore, None
-        
-    except Exception as e:
-        logger.error(f"매니저 초기화 실패: {str(e)}", extra={"error": str(e)})
-        progress_bar.empty()
-        status_text.error(f"❌ 초기화 실패: {str(e)}")
-        return None, None, None, str(e)
-
-@st.cache_resource
-def initialize_agent(_chat_manager, _vectorstore_manager, _vectorstore, chipdb_path: str) -> Tuple[Any, Optional[str]]:
-    """LangGraph 에이전트 초기화"""
-    try:
-        if not Path(chipdb_path).exists():
-            return None, f"chipDB.csv not found at {chipdb_path}"
-        
-        from src.models.langgraph_agent import ChipChatAgent
-        agent = ChipChatAgent(
-            csv_path=chipdb_path,
-            vectorstore_manager=_vectorstore_manager,
-            vectorstore=_vectorstore,
-            llm_manager=_chat_manager.llm_manager
-        )
-        
-        logger.info("LangGraph 에이전트 초기화 완료")
-        return agent, None
-        
-    except Exception as e:
-        logger.error(f"에이전트 초기화 실패: {str(e)}")
-        return None, str(e) 
+    return {
+        'environment': 'google_drive' if use_google_drive else 'local',
+        'paths': paths,
+        'embedding_model': 'sentence-transformers/all-MiniLM-L6-v2',
+        'supported_models': {
+            'openai': ['gpt-4o-mini', 'gpt-4o', 'gpt-3.5-turbo'],
+            'claude': ['claude-3-sonnet', 'claude-3-haiku', 'claude-3-opus']
+        }
+    } 

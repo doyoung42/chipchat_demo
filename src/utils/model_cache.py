@@ -12,11 +12,25 @@ from .logger import get_logger
 class HFModelCache:
     """HuggingFace 모델을 Google Drive에 캐싱하는 시스템"""
     
-    def __init__(self, cache_dir: str = "/content/drive/MyDrive/hf_model_cache"):
+    def __init__(self, cache_dir: Optional[str] = None):
         """
         Args:
-            cache_dir: Google Drive 내 모델 캐시 디렉토리
+            cache_dir: 모델 캐시 디렉토리 (None이면 환경변수나 환경 감지로 자동 설정)
         """
+        if cache_dir is None:
+            # 환경변수에서 캐시 디렉토리 확인
+            cache_dir = os.environ.get('MODEL_CACHE_DIR')
+            
+            if cache_dir is None:
+                # 환경 감지로 기본값 설정
+                try:
+                    from google.colab import drive
+                    # Google Colab 환경
+                    cache_dir = "/content/drive/MyDrive/hf_model_cache"
+                except ImportError:
+                    # 로컬 환경
+                    cache_dir = "./hf_model_cache"
+        
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         
@@ -229,12 +243,20 @@ def get_model_cache(cache_dir: Optional[str] = None) -> HFModelCache:
     
     if _model_cache_instance is None:
         if cache_dir is None:
-            # 환경 감지
+            # config.json에서 캐시 디렉토리 읽어오기
             try:
-                from google.colab import drive
-                cache_dir = "/content/drive/MyDrive/hf_model_cache"
-            except ImportError:
-                cache_dir = "./model_cache"
+                from .config_manager import get_config_manager
+                config = get_config_manager()
+                cache_dir = config.get_path('model_cache_folder')
+            except Exception:
+                # config.json 읽기 실패 시 환경 감지로 폴백
+                try:
+                    from google.colab import drive
+                    # Google Colab 환경
+                    cache_dir = "/content/drive/MyDrive/hf_model_cache"
+                except ImportError:
+                    # 로컬 환경
+                    cache_dir = "./hf_model_cache"
         
         _model_cache_instance = HFModelCache(cache_dir)
     
