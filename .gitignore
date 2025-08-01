@@ -30,6 +30,10 @@ wheels/
 prep/misc/key.json
 tokens.json
 
+# User settings (new)
+user_settings.json
+.streamlit/secrets.toml
+
 # IDE
 .idea/
 .vscode/
@@ -40,13 +44,22 @@ tokens.json
 .DS_Store
 Thumbs.db
 
-# Userdata
-prep/prep_data/
+# Input data and user uploads
 prep/datasheets/
-prep/prep_json/
 datasheets/
-hf_model_cache/
+
+# Processing outputs (generated files)
+prep/prep_json/
+prep/vectorstore/
 prep_json/
 vectorstore/
+
+# System generated files
+hf_model_cache/
 prompt_templates/
+prompts/
 logs/
+.streamlit/
+
+# Legacy data folders (if any remain)
+prep/prep_data/

@@ -197,6 +197,49 @@ class PostProcessor:
                                 if "fake_grade" in page_summary:
                                     page_summary["grade"] = page_summary.pop("fake_grade")
                     
+                    # Enhance category chunks with metadata for better retrieval
+                    part_number = data.get("part number", "")
+                    grade = data.get("grade", "")
+                    spec = data.get("spec", "")
+                    
+                    # Get metadata from metadata section as well
+                    if "metadata" in data and isinstance(data["metadata"], dict):
+                        metadata = data["metadata"]
+                        if not part_number and "part_number" in metadata:
+                            part_number = metadata["part_number"]
+                        if not grade and "grade" in metadata:
+                            grade = metadata["grade"]
+                        if not spec and "spec" in metadata:
+                            spec = metadata["spec"]
+                    
+                    # Enhance category chunks with metadata
+                    if "category_chunks" in data and isinstance(data["category_chunks"], dict):
+                        enhanced_category_chunks = {}
+                        for category, chunks in data["category_chunks"].items():
+                            if isinstance(chunks, list):
+                                enhanced_chunks = []
+                                for chunk in chunks:
+                                    # Add metadata context to each chunk for better retrieval
+                                    enhanced_chunk = chunk
+                                    metadata_prefix = []
+                                    
+                                    if part_number:
+                                        metadata_prefix.append(f"Part Number: {part_number}")
+                                    if grade:
+                                        metadata_prefix.append(f"Grade: {grade}")
+                                    if spec:
+                                        metadata_prefix.append(f"Spec: {spec}")
+                                    
+                                    if metadata_prefix:
+                                        metadata_str = " | ".join(metadata_prefix)
+                                        enhanced_chunk = f"[{metadata_str}] {chunk}"
+                                    
+                                    enhanced_chunks.append(enhanced_chunk)
+                                enhanced_category_chunks[category] = enhanced_chunks
+                            else:
+                                enhanced_category_chunks[category] = chunks
+                        data["category_chunks"] = enhanced_category_chunks
+                    
                     # Save normalized JSON
                     output_path = target_folder / json_file.name
                     with open(output_path, 'w', encoding='utf-8') as f:

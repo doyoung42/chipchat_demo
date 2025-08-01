@@ -292,7 +292,16 @@ class LLMManager:
             result = json.loads(response)
             chunks = result.get('chunks', [])
             
-            return chunks
+            # Enhance chunks with part number information for better retrieval
+            enhanced_chunks = []
+            for chunk in chunks:
+                enhanced_chunk = chunk
+                if target_part_number:
+                    # Add part number context to each chunk for better retrieval
+                    enhanced_chunk = f"[Part Number: {target_part_number}] {chunk}"
+                enhanced_chunks.append(enhanced_chunk)
+            
+            return enhanced_chunks
         except json.JSONDecodeError:
             # Return empty list if JSON parsing fails
             return []

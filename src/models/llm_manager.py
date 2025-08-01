@@ -5,6 +5,13 @@ from typing import Dict, List, Any, Optional
 import requests
 from pathlib import Path
 
+# PromptManager import (try-except for backwards compatibility)
+try:
+    from ..utils.prompt_manager import get_prompt_manager
+    PROMPT_MANAGER_AVAILABLE = True
+except ImportError:
+    PROMPT_MANAGER_AVAILABLE = False
+
 class LLMManager:
     def __init__(self, provider: str = "openai", model_name: str = None):
         """Initialize LLM Manager with multi-provider support
@@ -32,6 +39,18 @@ class LLMManager:
         
         # Configure API settings
         self._configure_api()
+        
+        # Initialize prompt manager if available
+        if PROMPT_MANAGER_AVAILABLE:
+            try:
+                self.prompt_manager = get_prompt_manager()
+                self.logger.info("PromptManager initialized successfully")
+            except Exception as e:
+                self.logger.warning(f"Failed to initialize PromptManager: {e}")
+                self.prompt_manager = None
+        else:
+            self.prompt_manager = None
+            self.logger.info("PromptManager not available, using default prompts")
     
     def _load_api_keys(self) -> Dict[str, str]:
         """Load API keys from various sources"""
@@ -136,12 +155,20 @@ class LLMManager:
         Returns:
             Generated response
         """
-        # Default prompts if not provided
-        if not pre_prompt:
-            pre_prompt = "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다. 제공된 컨텍스트 정보를 기반으로 질문에 정확하고 상세하게 답변하세요."
-        
-        if not post_prompt:
-            post_prompt = "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요. 정보가 불충분하다면 그 점을 명시하세요."
+        # Default prompts if not provided - use PromptManager if available
+        if not pre_prompt or not post_prompt:
+            if self.prompt_manager:
+                system_prompts = self.prompt_manager.get_system_prompts("default")
+                if not pre_prompt:
+                    pre_prompt = system_prompts.get("pre_prompt", "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다.")
+                if not post_prompt:
+                    post_prompt = system_prompts.get("post_prompt", "검색된 정보를 바탕으로 명확하게 답변해주세요.")
+            else:
+                # Fallback to hardcoded prompts if PromptManager not available
+                if not pre_prompt:
+                    pre_prompt = "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다. 제공된 컨텍스트 정보를 기반으로 질문에 정확하고 상세하게 답변하세요."
+                if not post_prompt:
+                    post_prompt = "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요. 정보가 불충분하다면 그 점을 명시하세요."
         
         # Construct prompt
         if context:

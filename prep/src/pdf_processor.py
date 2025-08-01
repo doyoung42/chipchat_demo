@@ -338,16 +338,8 @@ class PDFProcessor:
         
         self.logger.info(f"Saved page summaries: {summary_path}")
         
-        # Save final results based on output format settings
-        if self.params['output_formats']['save_summary_only']:
-            result_path = Path(self.params['folders']['result_json_folder']) / f"{pdf_path.stem}_R1.json"
-            with open(result_path, 'w', encoding='utf-8') as f:
-                json.dump(final_result, f, indent=2, ensure_ascii=False)
-            self.logger.info(f"Saved final result: {result_path}")
-        
+        # Save final results - only save combined format to avoid duplication
         if self.params['output_formats']['save_combined']:
-            # Here you could implement additional combined output format if needed
-            # For now, just use the same format as summary_only
             result_path = Path(self.params['folders']['result_json_folder']) / f"{pdf_path.stem}_combined.json"
             with open(result_path, 'w', encoding='utf-8') as f:
                 json.dump(final_result, f, indent=2, ensure_ascii=False)

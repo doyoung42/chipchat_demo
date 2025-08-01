@@ -16,6 +16,7 @@ from langgraph.graph.message import add_messages
 from .agent_tools import ChipChatTools
 from .llm_manager import LLMManager
 from .vectorstore_manager import VectorstoreManager
+from ..utils.prompt_manager import get_prompt_manager
 
 
 class AgentState(TypedDict):
@@ -35,6 +36,9 @@ class ChipChatAgent:
                  vectorstore, llm_manager: LLMManager):
         """Initialize the agent with tools and LLM"""
         self.llm_manager = llm_manager
+        
+        # Initialize prompt manager
+        self.prompt_manager = get_prompt_manager()
         
         # Initialize tools
         self.tools = ChipChatTools(
@@ -80,41 +84,23 @@ class ChipChatAgent:
         """Classify the user query to determine intent"""
         query = state["query"]
         
-        classification_prompt = f"""
-        Analyze this user query and classify it into one or more categories:
-        
-        Query: "{query}"
-        
-        Categories:
-        1. COMPONENT_LIST: User wants to list/find components with specific functionality
-           Examples: "what components do voltage regulation", "list all power converters"
-           
-        2. TECHNICAL_DETAIL: User wants detailed technical information about specific components
-           Examples: "W25Q32JV electrical characteristics", "voltage specifications of LM324"
-           
-        3. PDF_UPLOAD: User wants to upload/add new PDF datasheets
-           Examples: "add new datasheet", "upload PDF", "process new component"
-           
-        4. HYBRID: Combination of above (e.g., find components then get details)
-        
-        Return ONLY the primary category name (COMPONENT_LIST, TECHNICAL_DETAIL, PDF_UPLOAD, or HYBRID).
-        If multiple categories apply, return HYBRID.
-        """
-        
         try:
+            # Get classification prompt from template
+            classification_prompt = self.prompt_manager.get_classification_prompt(query)
+            
             response = self.llm_manager._call_llm(classification_prompt, temperature=0.1)
             query_type = response.strip().upper()
             
-            # Validate classification
-            valid_types = ["COMPONENT_LIST", "TECHNICAL_DETAIL", "PDF_UPLOAD", "HYBRID"]
+            # Validate classification using prompt manager
+            valid_types = self.prompt_manager.get_valid_classifications()
             if query_type not in valid_types:
-                query_type = "HYBRID"  # Default fallback
+                query_type = self.prompt_manager.get_fallback_classification()
                 
             self.logger.info(f"Query classified as: {query_type}")
             
         except Exception as e:
             self.logger.error(f"Classification error: {str(e)}")
-            query_type = "HYBRID"  # Safe fallback
+            query_type = self.prompt_manager.get_fallback_classification()
         
         state["query_type"] = query_type
         return state
