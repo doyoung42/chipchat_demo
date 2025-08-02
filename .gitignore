@@ -29,10 +29,9 @@ wheels/
 .env
 prep/misc/key.json
 tokens.json
-
-# User settings (new)
 user_settings.json
 .streamlit/secrets.toml
+prep/config.json
 
 # IDE
 .idea/
