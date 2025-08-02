@@ -20,7 +20,7 @@ def initialize_app_config():
         # Streamlit 환경변수 설정
         os.environ['USE_GOOGLE_DRIVE'] = str(use_google_drive)
         os.environ['VECTORSTORE_PATH'] = paths.get('vectorstore_folder', './vectorstore')
-        os.environ['JSON_FOLDER_PATH'] = paths.get('prep_json_folder', './prep_json')
+        os.environ['JSON_FOLDER_PATH'] = paths.get('prep_json_folder', './prep/prep_json')
         os.environ['PROMPT_TEMPLATES_PATH'] = paths.get('prompt_templates_folder', './prompt_templates')
         os.environ['MODEL_CACHE_DIR'] = paths.get('model_cache_folder', './hf_model_cache')
         
@@ -99,16 +99,16 @@ def setup_paths():
         paths = config.get_paths()
         
         # ChipDB 경로 추가
-        paths['chipdb_path'] = str(Path(paths.get('prep_json_folder', './prep_json')) / 'chipDB.csv')
+        paths['chipdb_path'] = str(Path(paths.get('prep_json_folder', './prep/prep_json')) / 'chipDB.csv')
         
         return paths
     except Exception as e:
         st.error(f"경로 설정 실패: {e}")
         # 폴백 경로
         return {
-            'vectorstore_folder': './vectorstore',
-            'prep_json_folder': './prep_json',
-            'chipdb_path': './prep_json/chipDB.csv'
+            'vectorstore_folder': './prep/vectorstore',
+            'prep_json_folder': './prep/prep_json',
+            'chipdb_path': './prep/prep_json/chipDB.csv'
         }
 
 
@@ -143,7 +143,11 @@ def initialize_managers(provider: str, model_name: str):
         vectorstore_path = Path(paths['vectorstore_folder'])
         
         if vectorstore_path.exists() and any(vectorstore_path.iterdir()):
-            vectorstore = vectorstore_manager.load_vectorstore(str(vectorstore_path))
+            # 설정에서 vectorstore 이름 가져오기
+            from ..utils.config_manager import ConfigManager
+            config = ConfigManager()
+            vectorstore_name = config.get_vectorstore_name()
+            vectorstore = vectorstore_manager.load_vectorstore(vectorstore_name)
         else:
             st.warning("벡터스토어가 없습니다. prep_json 폴더에서 생성하겠습니다.")
             json_folder = paths['prep_json_folder']

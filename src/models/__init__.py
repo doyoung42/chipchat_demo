@@ -6,7 +6,7 @@ Models package for the Datasheet Analyzer.
 from .chat_manager import ChatManager
 from .llm_manager import LLMManager
 from .vectorstore_manager import VectorstoreManager
-from .langgraph_agent import LangGraphAgent
+from .langgraph_agent import ChipChatAgent
 from .agent_tools import ChipChatTools
 
 # Additional models
@@ -17,7 +17,7 @@ __all__ = [
     'ChatManager',
     'LLMManager', 
     'VectorstoreManager',
-    'LangGraphAgent',
+    'ChipChatAgent',
     'ChipChatTools',
     'PDFProcessor',
     'SessionVectorstoreManager'

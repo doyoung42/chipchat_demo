@@ -66,7 +66,11 @@ def get_cached_vectorstore(vectorstore_path: str, vectorstore_manager=None):
         vectorstore_path_obj = Path(vectorstore_path)
         
         if vectorstore_path_obj.exists() and any(vectorstore_path_obj.iterdir()):
-            vectorstore = vectorstore_manager.load_vectorstore(str(vectorstore_path_obj))
+            # 설정에서 vectorstore 이름 가져오기
+            from .config_manager import ConfigManager
+            config = ConfigManager()
+            vectorstore_name = config.get_vectorstore_name()
+            vectorstore = vectorstore_manager.load_vectorstore(vectorstore_name)
             logger.info(f"Vectorstore 캐시 로드 완료: {vectorstore_path}")
             return vectorstore
         else:
@@ -112,7 +116,7 @@ def get_cached_paths():
         paths = config.get_paths()
         
         # ChipDB 경로 추가
-        paths['chipdb_path'] = str(Path(paths.get('prep_json_folder', './prep_json')) / 'chipDB.csv')
+        paths['chipdb_path'] = str(Path(paths.get('prep_json_folder', './prep/prep_json')) / 'chipDB.csv')
         
         logger.info("경로 설정 캐시 생성 완료")
         return paths
@@ -120,9 +124,9 @@ def get_cached_paths():
         logger.error(f"경로 설정 캐시 생성 실패: {e}")
         # 폴백 경로
         return {
-            'vectorstore_folder': './vectorstore',
-            'prep_json_folder': './prep_json',
-            'chipdb_path': './prep_json/chipDB.csv'
+            'vectorstore_folder': './prep/vectorstore',
+            'prep_json_folder': './prep/prep_json',
+            'chipdb_path': './prep/prep_json/chipDB.csv'
         }
 
 

@@ -13,8 +13,8 @@ sys.path.append(str(Path(__file__).parent.parent.parent))
 # Import modules
 from src.utils.user_settings_manager import get_user_settings_manager
 from src.app.initialization import setup_paths, load_api_keys, initialize_managers, initialize_agent
+from src.app.simple_initialization import create_simple_initializer
 from src.utils.optimized_loaders import (
-    initialize_optimized_managers, initialize_optimized_agent, 
     get_cached_paths, get_cached_api_keys, clear_all_caches, clear_model_caches
 )
 
@@ -33,7 +33,6 @@ except:
 # Page configuration
 st.set_page_config(
     page_title="ChipChat - 데이터시트 챗봇",
-    page_icon="💬",
     layout="wide",
     initial_sidebar_state="collapsed"  # 사이드바 기본 숨김
 )
@@ -41,8 +40,8 @@ st.set_page_config(
 
 def show_settings_page():
     """설정 페이지를 표시합니다."""
-    st.title("⚙️ ChipChat 설정")
-    st.caption("🔧 LLM 모델 선택 및 기본 설정")
+    st.title("ChipChat 설정")
+    st.caption("LLM 모델 선택 및 기본 설정")
     
     settings_manager = get_user_settings_manager()
     current_settings = settings_manager.load_settings()
@@ -53,23 +52,23 @@ def show_settings_page():
     st.markdown("---")
     
     # API 키 상태 표시
-    st.subheader("🔑 API 키 상태")
+    st.subheader("API 키 상태")
     
     col1, col2, col3 = st.columns(3)
     with col1:
-        openai_status = "✅ 설정됨" if api_keys.get('openai') else "❌ 미설정"
+        openai_status = "설정됨" if api_keys.get('openai') else "미설정"
         st.metric("OpenAI", openai_status)
     
     with col2:
-        claude_status = "✅ 설정됨" if api_keys.get('anthropic') else "❌ 미설정"
+        claude_status = "설정됨" if api_keys.get('anthropic') else "미설정"
         st.metric("Claude", claude_status)
     
     with col3:
-        hf_status = "✅ 설정됨" if api_keys.get('huggingface') else "❌ 미설정"
+        hf_status = "설정됨" if api_keys.get('huggingface') else "미설정"
         st.metric("HuggingFace", hf_status)
     
     if not any(api_keys.values()):
-        st.error("🚨 최소 하나 이상의 API 키가 필요합니다!")
+        st.error("최소 하나 이상의 API 키가 필요합니다!")
         st.markdown("""
         **API 키 설정 방법:**
         1. main.ipynb의 3단계에서 API 키를 입력하세요
@@ -83,7 +82,7 @@ def show_settings_page():
     st.markdown("---")
     
     # LLM 모델 설정
-    st.subheader("🤖 LLM 모델 설정")
+    st.subheader("LLM 모델 설정")
     
     supported_models = settings_manager.get_supported_models()
     current_llm = current_settings.get("llm", {})
@@ -104,7 +103,7 @@ def show_settings_page():
         current_provider = provider_options[0]
     
     selected_provider = st.selectbox(
-        "🏢 LLM Provider 선택",
+        "LLM Provider 선택",
         options=provider_options,
         index=provider_options.index(current_provider) if current_provider in provider_options else 0,
         format_func=lambda x: "OpenAI" if x == "openai" else "Claude"
@@ -123,7 +122,7 @@ def show_settings_page():
         current_index = 0
     
     selected_model = st.selectbox(
-        "🎯 모델 선택",
+        "모델 선택",
         options=model_names,
         index=current_index,
         format_func=lambda x: model_displays[model_names.index(x)] if x in model_names else x
@@ -132,7 +131,7 @@ def show_settings_page():
     st.markdown("---")
     
     # 고급 설정
-    with st.expander("🔧 고급 설정", expanded=False):
+    with st.expander("고급 설정", expanded=False):
         advanced_settings = current_settings.get("advanced", {})
         
         temperature = st.slider(
@@ -164,25 +163,25 @@ def show_settings_page():
         
         # 캐시 관리 섹션
         st.markdown("---")
-        st.subheader("🧹 캐시 관리")
+        st.subheader("캐시 관리")
         st.markdown("성능 향상을 위해 모델과 데이터를 캐시합니다. 문제가 발생하면 캐시를 정리해보세요.")
         
         col_cache1, col_cache2 = st.columns(2)
         
         with col_cache1:
-            if st.button("🗑️ 전체 캐시 정리", help="모든 캐시를 지웁니다"):
-                with st.spinner("🔄 전체 캐시 정리 중..."):
+            if st.button("전체 캐시 정리", help="모든 캐시를 지웁니다"):
+                with st.spinner("전체 캐시 정리 중..."):
                     if clear_all_caches():
-                        st.success("✅ 모든 캐시가 정리되었습니다!")
+                        st.success("모든 캐시가 정리되었습니다!")
                         logger.info("All caches cleared by user")
                     else:
-                        st.error("❌ 캐시 정리에 실패했습니다.")
+                        st.error("캐시 정리에 실패했습니다.")
         
         with col_cache2:
             from src.utils.optimized_loaders import get_cache_info
             cache_info = get_cache_info()
             
-            with st.popover("ℹ️ 캐시 정보"):
+            with st.popover("캐시 정보"):
                 st.markdown("**캐시된 함수들:**")
                 for func_name in cache_info["cached_functions"]:
                     st.markdown(f"• `{func_name}`")
@@ -196,7 +195,7 @@ def show_settings_page():
     col1, col2, col3 = st.columns([1, 1, 1])
     
     with col1:
-        if st.button("💾 설정 저장", type="primary", use_container_width=True):
+        if st.button("설정 저장", type="primary", use_container_width=True):
             # 모델 변경 여부 확인
             model_changed = (
                 selected_provider != current_llm.get("provider") or 
@@ -212,40 +211,40 @@ def show_settings_page():
             new_settings["advanced"]["k_documents"] = k_documents
             
             if settings_manager.save_settings(new_settings):
-                st.success("✅ 설정이 저장되었습니다!")
+                st.success("설정이 저장되었습니다!")
                 
                 # 모델이 변경된 경우 관련 캐시 정리
                 if model_changed:
-                    with st.spinner("🔄 모델 캐시 정리 중..."):
+                    with st.spinner("모델 캐시 정리 중..."):
                         if clear_model_caches(selected_provider, selected_model):
-                            st.success("🧹 모델 캐시가 정리되었습니다!")
+                            st.success("모델 캐시가 정리되었습니다!")
                             logger.info(f"Model caches cleared for: {selected_provider}/{selected_model}")
                         else:
-                            st.warning("⚠️ 모델 캐시 정리에 실패했습니다.")
+                            st.warning("모델 캐시 정리에 실패했습니다.")
                 
                 st.session_state.settings_changed = True
                 logger.info(f"Settings saved: {selected_provider}/{selected_model}")
             else:
-                st.error("❌ 설정 저장에 실패했습니다.")
+                st.error("설정 저장에 실패했습니다.")
     
     with col2:
-        if st.button("🚀 챗봇 시작", use_container_width=True):
+        if st.button("챗봇 시작", use_container_width=True):
             st.session_state.page = "chat"
             st.session_state.settings_applied = False
             st.rerun()
     
     with col3:
-        if st.button("🔄 기본값 복원", use_container_width=True):
+        if st.button("기본값 복원", use_container_width=True):
             if settings_manager.reset_to_defaults():
-                st.success("✅ 기본 설정으로 복원되었습니다!")
+                st.success("기본 설정으로 복원되었습니다!")
                 st.rerun()
             else:
-                st.error("❌ 설정 복원에 실패했습니다.")
+                st.error("설정 복원에 실패했습니다.")
     
     # 현재 설정 정보 표시
     st.markdown("---")
     
-    with st.expander("📊 현재 설정 정보", expanded=False):
+    with st.expander("현재 설정 정보", expanded=False):
         st.json({
             "LLM Provider": selected_provider,
             "Model": selected_model,
@@ -262,15 +261,15 @@ def show_chat_page():
     # 상단 설정 버튼
     col1, col2, col3 = st.columns([1, 6, 1])
     with col1:
-        if st.button("⚙️ 설정", help="설정 페이지로 이동"):
+        if st.button("설정", help="설정 페이지로 이동"):
             st.session_state.page = "settings"
             st.rerun()
     
     with col2:
-        st.title("💬 ChipChat - 데이터시트 챗봇")
+        st.title("ChipChat - 데이터시트 챗봇")
     
     with col3:
-        if st.button("🔄 새로고침", help="챗 세션 초기화"):
+        if st.button("새로고침", help="챗 세션 초기화"):
             # 챗 관련 세션 상태 초기화
             for key in ['messages', 'chat_manager', 'vectorstore_manager', 'vectorstore', 'agent']:
                 if key in st.session_state:
@@ -278,117 +277,87 @@ def show_chat_page():
             st.session_state.settings_applied = False
             st.rerun()
     
-    st.caption("🤖 LangGraph 기반 멀티에이전트 시스템")
+    st.caption("LangGraph 기반 멀티에이전트 시스템")
     
-    # 설정 로드 및 시스템 초기화 (무한루프 방지)
+    # 시스템 초기화 (단순화)
     if not st.session_state.get('settings_applied', False):
-        # 초기화 시도 횟수 추적
-        if "init_attempts" not in st.session_state:
-            st.session_state.init_attempts = 0
-        
-        # 최대 3회 시도 후 설정 페이지로 이동
-        if st.session_state.init_attempts >= 3:
-            st.error("❌ 시스템 초기화에 반복적으로 실패했습니다.")
-            st.markdown("**가능한 해결 방법:**")
-            st.markdown("1. API 키가 올바르게 설정되었는지 확인")
-            st.markdown("2. 필요한 파일들(chipDB.csv, vectorstore 등)이 존재하는지 확인")
-            st.markdown("3. 설정을 다시 확인하고 저장")
-            
-            col1, col2 = st.columns(2)
-            with col1:
-                if st.button("⚙️ 설정 페이지로 이동", type="primary"):
-                    st.session_state.page = "settings"
-                    st.session_state.init_attempts = 0  # 카운터 리셋
-                    st.session_state.settings_applied = False
-                    st.rerun()
-            
-            with col2:
-                if st.button("🔄 다시 시도"):
-                    st.session_state.init_attempts = 0  # 카운터 리셋
-                    st.session_state.settings_applied = False
-                    st.rerun()
-            return
-        
-        st.session_state.init_attempts += 1
-        
-        with st.spinner(f"🔧 시스템 초기화 중... (시도 {st.session_state.init_attempts}/3)"):
+        with st.spinner("시스템 초기화 중..."):
             try:
+                # 1단계: 기본 설정 로드
                 settings_manager = get_user_settings_manager()
                 settings = settings_manager.load_settings()
                 llm_config = settings_manager.get_llm_config(settings)
                 
-                # 캐시된 경로 및 API 키 설정 (최적화)
+                # 2단계: 필수 파일 확인
                 st.session_state.paths = get_cached_paths()
+                chipdb_path = Path(st.session_state.paths['chipdb_path'])
+                vectorstore_path = Path(st.session_state.paths['vectorstore_folder'])
+                
+                # 필수 파일 체크
+                missing_files = []
+                if not chipdb_path.exists():
+                    missing_files.append(f"ChipDB 파일: {chipdb_path}")
+                if not vectorstore_path.exists() or not any(vectorstore_path.iterdir()):
+                    missing_files.append(f"Vectorstore: {vectorstore_path}")
+                
+                if missing_files:
+                    st.error("시스템 초기화 실패: 필수 파일이 누락되었습니다")
+                    for file in missing_files:
+                        st.markdown(f"- {file}")
+                    
+                    st.markdown("**해결 방법:**")
+                    st.markdown("1. main.ipynb의 전처리 단계를 먼저 실행하세요")
+                    st.markdown("2. prep_json 폴더에 chipDB.csv가 있는지 확인하세요")
+                    st.markdown("3. vectorstore 폴더에 벡터 데이터가 있는지 확인하세요")
+                    return
+                
+                # 3단계: API 키 확인
                 st.session_state.api_keys = get_cached_api_keys()
+                if not any(st.session_state.api_keys.values()):
+                    st.error("API 키가 필요합니다. 설정 페이지에서 API 키를 확인해주세요.")
+                    if st.button("설정 페이지로 이동"):
+                        st.session_state.page = "settings"
+                        st.rerun()
+                    return
                 
-                # LLM 설정 표시
-                st.info(f"🤖 사용 중인 모델: {llm_config['provider'].upper()} - {llm_config['model_name']}")
+                # 4단계: 단순화된 초기화 사용
+                st.info(f"사용 중인 모델: {llm_config['provider'].upper()} - {llm_config['model_name']}")
                 
-                # 최적화된 매니저 초기화 (캐싱 활용)
-                chat_manager, vectorstore_manager, vectorstore, error = initialize_optimized_managers(
-                    provider=llm_config['provider'], 
-                    model_name=llm_config['model_name']
+                # SimpleInitializer 사용
+                initializer = create_simple_initializer()
+                success, components, error = initializer.initialize_all(
+                    provider=llm_config['provider'],
+                    model_name=llm_config['model_name'],
+                    paths=st.session_state.paths,
+                    api_keys=st.session_state.api_keys
                 )
                 
-                if error:
-                    st.error(f"❌ 매니저 초기화 실패: {error}")
-                    if st.session_state.init_attempts >= 3:
-                        return  # 최대 시도 횟수 도달 시 위의 오류 처리로 이동
-                    else:
-                        st.warning(f"🔄 {3 - st.session_state.init_attempts}회 더 시도합니다...")
-                        time.sleep(1)  # 잠시 대기
-                        st.rerun()
-                        return
-                
-                # 최적화된 에이전트 초기화 (캐싱 활용)
-                agent, agent_error = initialize_optimized_agent(
-                    chat_manager, vectorstore_manager, vectorstore,
-                    st.session_state.paths['chipdb_path']
-                )
-                
-                if agent_error:
-                    st.error(f"❌ 에이전트 초기화 실패: {agent_error}")
-                    if st.session_state.init_attempts >= 3:
-                        return  # 최대 시도 횟수 도달 시 위의 오류 처리로 이동
-                    else:
-                        st.warning(f"🔄 {3 - st.session_state.init_attempts}회 더 시도합니다...")
-                        time.sleep(1)  # 잠시 대기
-                        st.rerun()
-                        return
+                if not success:
+                    st.error(f"시스템 초기화 실패: {error}")
+                    return
                 
                 # 세션 상태에 저장
-                st.session_state.chat_manager = chat_manager
-                st.session_state.vectorstore_manager = vectorstore_manager
-                st.session_state.vectorstore = vectorstore
-                st.session_state.agent = agent
+                st.session_state.chat_manager = components['chat_manager']
+                st.session_state.vectorstore_manager = components['vectorstore_manager']
+                st.session_state.vectorstore = components['vectorstore']
+                st.session_state.agent = components['agent']
                 st.session_state.settings_applied = True
-                st.session_state.init_attempts = 0  # 성공 시 카운터 리셋
                 
                 logger.info("챗 페이지 초기화 완료")
+                st.success("시스템 초기화 완료!")
                 
             except Exception as e:
-                st.error(f"❌ 초기화 중 예상치 못한 오류: {str(e)}")
+                st.error(f"초기화 중 오류 발생: {str(e)}")
                 logger.error(f"챗 페이지 초기화 오류: {str(e)}")
                 
-                if st.session_state.init_attempts >= 3:
-                    return  # 최대 시도 횟수 도달 시 위의 오류 처리로 이동
-                else:
-                    st.warning(f"🔄 {3 - st.session_state.init_attempts}회 더 시도합니다...")
-                    time.sleep(1)  # 잠시 대기
-                    st.rerun()
-                    return
-    
-    # API 키 확인
-    if not any(st.session_state.api_keys.values()):
-        st.error("🚨 API 키가 필요합니다!")
-        st.markdown("설정 페이지에서 API 키를 확인해주세요.")
-        if st.button("⚙️ 설정 페이지로 이동"):
-            st.session_state.page = "settings"
-            st.rerun()
-        return
+                st.markdown("**문제 해결 방법:**")
+                st.markdown("1. main.ipynb를 처음부터 다시 실행하세요")
+                st.markdown("2. API 키가 올바르게 설정되었는지 확인하세요") 
+                st.markdown("3. 필요한 라이브러리가 모두 설치되었는지 확인하세요")
+                return
     
     # PDF 업로드 섹션
-    st.markdown("### 📄 PDF 업로드")
+    st.markdown("### PDF 업로드")
     
     uploaded_file = st.file_uploader(
         "새로운 데이터시트 PDF를 업로드하세요",
@@ -403,10 +372,10 @@ def show_chat_page():
         # 중복 체크
         existing_files = [doc['filename'] for doc in st.session_state.get('uploaded_documents', [])]
         if uploaded_file.name in existing_files:
-            st.warning(f"⚠️ '{uploaded_file.name}' 파일이 이미 업로드되어 있습니다.")
+            st.warning(f"'{uploaded_file.name}' 파일이 이미 업로드되어 있습니다.")
         else:
             # PDF 처리
-            with st.spinner(f"📄 {uploaded_file.name} 처리 중..."):
+            with st.spinner(f"{uploaded_file.name} 처리 중..."):
                 try:
                     # PDF 내용 읽기
                     pdf_content = uploaded_file.read()
@@ -418,24 +387,24 @@ def show_chat_page():
                         # process_new_pdf 도구 직접 호출
                         result = st.session_state.agent.tools.process_new_pdf(pdf_content, uploaded_file.name)
                         
-                        if "✅ Successfully processed" in result:
+                        if "Successfully processed" in result:
                             st.success(result)
                             logger.info(f"PDF 처리 완료: {uploaded_file.name}")
                         else:
                             st.error(result)
                             logger.error(f"PDF 처리 실패: {uploaded_file.name}")
                     else:
-                        st.error("❌ 에이전트가 초기화되지 않았습니다.")
+                        st.error("에이전트가 초기화되지 않았습니다.")
                         logger.error("PDF 처리 실패: 에이전트 없음")
                         
                 except Exception as e:
-                    error_msg = f"❌ PDF 처리 중 오류: {str(e)}"
+                    error_msg = f"PDF 처리 중 오류: {str(e)}"
                     st.error(error_msg)
                     logger.error(f"PDF 처리 오류: {str(e)}")
     
     # 채팅 인터페이스
     st.markdown("---")
-    st.markdown("### 💬 질의응답")
+    st.markdown("### 질의응답")
     
     # 채팅 히스토리 초기화
     if "messages" not in st.session_state:
@@ -455,7 +424,7 @@ def show_chat_page():
         
         # 에이전트 응답 생성
         with st.chat_message("assistant"):
-            with st.spinner("🤔 생각 중..."):
+            with st.spinner("생각 중..."):
                 try:
                     # 에이전트 실행
                     response = st.session_state.agent.process_query(prompt, None)
@@ -476,7 +445,7 @@ def show_chat_page():
                     })
                     
                 except Exception as e:
-                    error_msg = f"❌ 오류가 발생했습니다: {str(e)}"
+                    error_msg = f"오류가 발생했습니다: {str(e)}"
                     st.error(error_msg)
                     st.session_state.messages.append({
                         "role": "assistant", 
@@ -493,7 +462,7 @@ def main():
     
     # 과도한 재시도 방지 (최대 3회)
     if st.session_state.rerun_counter > 3:
-        st.error("❌ 페이지 초기화에 문제가 발생했습니다. 페이지를 새로고침해주세요.")
+        st.error("페이지 초기화에 문제가 발생했습니다. 페이지를 새로고침해주세요.")
         st.markdown("**문제 해결 방법:**")
         st.markdown("1. 브라우저 새로고침 (F5 또는 Ctrl+R)")
         st.markdown("2. 브라우저 캐시 삭제")
@@ -505,15 +474,15 @@ def main():
     try:
         settings_manager = get_user_settings_manager()
     except Exception as e:
-        st.error(f"❌ 설정 관리자 초기화 실패: {e}")
+        st.error(f"설정 관리자 초기화 실패: {e}")
         st.markdown("user_settings.json 파일에 문제가 있을 수 있습니다.")
-        if st.button("🔄 설정 파일 초기화"):
+        if st.button("설정 파일 초기화"):
             try:
                 from pathlib import Path
                 Path("user_settings.json").unlink(missing_ok=True)
-                st.success("✅ 설정 파일이 초기화되었습니다. 페이지를 새로고침해주세요.")
+                st.success("설정 파일이 초기화되었습니다. 페이지를 새로고침해주세요.")
             except Exception as e2:
-                st.error(f"❌ 설정 파일 초기화 실패: {e2}")
+                st.error(f"설정 파일 초기화 실패: {e2}")
         st.stop()
         return
     
@@ -550,11 +519,11 @@ def main():
         elif st.session_state.page == "chat":
             show_chat_page()
     except Exception as e:
-        st.error(f"❌ 페이지 렌더링 중 오류 발생: {str(e)}")
+        st.error(f"페이지 렌더링 중 오류 발생: {str(e)}")
         logger.error(f"페이지 렌더링 오류: {str(e)}")
         
         # 오류 발생 시 설정 페이지로 안전하게 이동
-        if st.button("🔧 설정 페이지로 이동"):
+        if st.button("설정 페이지로 이동"):
             st.session_state.page = "settings"
             # 문제가 있는 세션 상태들 정리
             problematic_keys = ['chat_manager', 'vectorstore_manager', 'vectorstore', 'agent', 'settings_applied']

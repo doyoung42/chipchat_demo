@@ -51,13 +51,9 @@ datasheets/
 # Processing outputs (generated files)
 prep/prep_json/
 prep/vectorstore/
-prep_json/
-vectorstore/
 
 # System generated files
 hf_model_cache/
-prompt_templates/
-prompts/
 logs/
 .streamlit/
 

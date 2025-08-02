@@ -10,7 +10,8 @@ from pathlib import Path
 
 from langchain.schema import HumanMessage, AIMessage
 from langgraph.graph import StateGraph, END
-from langgraph.prebuilt import ToolExecutor, ToolInvocation
+# ToolNode는 현재 구현에서 사용하지 않음 (커스텀 tool execution 사용)
+# from langgraph.prebuilt import ToolNode
 from langgraph.graph.message import add_messages
 
 from .agent_tools import ChipChatTools
@@ -48,8 +49,8 @@ class ChipChatAgent:
             llm_manager=llm_manager
         )
         
-        # Create tool executor
-        self.tool_executor = ToolExecutor(self.tools.get_tools())
+        # Note: 현재 구현은 커스텀 tool execution 방식을 사용함
+        # ToolNode 대신 _execute_tools 메서드에서 직접 tool을 호출
         
         # Setup logging
         logging.basicConfig(level=logging.INFO)

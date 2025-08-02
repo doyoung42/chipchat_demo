@@ -53,23 +53,67 @@ class LLMManager:
             self.logger.info("PromptManager not available, using default prompts")
     
     def _load_api_keys(self) -> Dict[str, str]:
-        """Load API keys from various sources"""
+        """Load API keys from all available sources: environment variables, streamlit secrets, and tokens.json"""
         keys = {}
         
-        # Try loading from environment variables first
+        # 1. Try loading from environment variables first
         keys['openai'] = os.environ.get('OPENAI_API_KEY', '')
         keys['anthropic'] = os.environ.get('ANTHROPIC_API_KEY', '')
         keys['huggingface'] = os.environ.get('HF_TOKEN', '')
         
-        # Try loading from streamlit secrets if available
+        # 2. Try loading from streamlit secrets if available
         try:
             import streamlit as st
-            if hasattr(st, 'secrets'):
-                keys['openai'] = keys['openai'] or st.secrets.get("openai_api_key", "")
-                keys['anthropic'] = keys['anthropic'] or st.secrets.get("anthropic_api_key", "")
-                keys['huggingface'] = keys['huggingface'] or st.secrets.get("hf_token", "")
+            if hasattr(st, 'secrets') and st.secrets:
+                # Use direct access and handle KeyError
+                try:
+                    keys['openai'] = keys['openai'] or st.secrets["openai_api_key"]
+                except KeyError:
+                    pass
+                
+                try:
+                    keys['anthropic'] = keys['anthropic'] or st.secrets["anthropic_api_key"]
+                except KeyError:
+                    pass
+                
+                try:
+                    keys['huggingface'] = keys['huggingface'] or st.secrets["hf_token"]
+                except KeyError:
+                    pass
+                    
+                self.logger.info("Streamlit secrets 로드 완료")
         except ImportError:
-            pass
+            self.logger.info("Streamlit이 사용 불가능하여 환경변수만 사용")
+        except Exception as e:
+            self.logger.warning(f"Streamlit secrets 로드 실패: {e}")
+        
+        # 3. Try loading from TokenManager (tokens.json) as fallback
+        try:
+            # Import relative to current package
+            import sys
+            from pathlib import Path
+            
+            # Add project root to path if needed
+            project_root = Path(__file__).parent.parent.parent
+            if str(project_root) not in sys.path:
+                sys.path.append(str(project_root))
+            
+            from src.config.token_manager import TokenManager
+            token_manager = TokenManager()
+            
+            keys['openai'] = keys['openai'] or token_manager.get_token('openai') or ''
+            keys['anthropic'] = keys['anthropic'] or token_manager.get_token('anthropic') or ''
+            keys['huggingface'] = keys['huggingface'] or token_manager.get_token('huggingface') or ''
+            
+            self.logger.info("TokenManager에서 API 키 로드 시도 완료")
+            
+        except Exception as e:
+            self.logger.warning(f"TokenManager에서 API 키 로드 실패: {e}")
+        
+        # Log API key status (without revealing the keys)
+        self.logger.info(f"API 키 상태 - OpenAI: {'✓' if keys['openai'] else '✗'}, "
+                        f"Anthropic: {'✓' if keys['anthropic'] else '✗'}, "
+                        f"HuggingFace: {'✓' if keys['huggingface'] else '✗'}")
         
         return keys
     
@@ -77,7 +121,13 @@ class LLMManager:
         """Configure API settings based on provider"""
         if self.provider == "openai":
             if not self.api_keys['openai']:
-                raise ValueError("OpenAI API key not found")
+                error_msg = (
+                    "OpenAI API 키를 찾을 수 없습니다. "
+                    "main.ipynb의 3단계에서 API 키를 설정하거나 "
+                    "환경변수 OPENAI_API_KEY를 설정해주세요."
+                )
+                self.logger.error(error_msg)
+                raise ValueError(error_msg)
             
             self.api_url = "https://api.openai.com/v1/chat/completions"
             self.headers = {
@@ -87,7 +137,13 @@ class LLMManager:
             
         elif self.provider == "claude":
             if not self.api_keys['anthropic']:
-                raise ValueError("Anthropic API key not found")
+                error_msg = (
+                    "Claude (Anthropic) API 키를 찾을 수 없습니다. "
+                    "main.ipynb의 3단계에서 API 키를 설정하거나 "
+                    "환경변수 ANTHROPIC_API_KEY를 설정해주세요."
+                )
+                self.logger.error(error_msg)
+                raise ValueError(error_msg)
             
             self.api_url = "https://api.anthropic.com/v1/messages"
             self.headers = {
@@ -96,7 +152,9 @@ class LLMManager:
                 "anthropic-version": "2023-06-01"
             }
         else:
-            raise ValueError(f"Unsupported provider: {self.provider}")
+            error_msg = f"지원하지 않는 LLM provider입니다: {self.provider}"
+            self.logger.error(error_msg)
+            raise ValueError(error_msg)
     
     def _call_llm(self, prompt: str, temperature: float = 0.7, max_tokens: int = 2000) -> str:
         """Call LLM API with provider-specific formatting
@@ -160,30 +218,30 @@ class LLMManager:
             if self.prompt_manager:
                 system_prompts = self.prompt_manager.get_system_prompts("default")
                 if not pre_prompt:
-                    pre_prompt = system_prompts.get("pre_prompt", "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다.")
+                    pre_prompt = system_prompts.get("pre_prompt", "You are a professional assistant specializing in electronic component datasheets. Provide accurate and detailed responses based on the provided context information.")
                 if not post_prompt:
-                    post_prompt = system_prompts.get("post_prompt", "검색된 정보를 바탕으로 명확하게 답변해주세요.")
+                    post_prompt = system_prompts.get("post_prompt", "Provide a clear and concise answer based on the retrieved information.")
             else:
                 # Fallback to hardcoded prompts if PromptManager not available
                 if not pre_prompt:
-                    pre_prompt = "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다. 제공된 컨텍스트 정보를 기반으로 질문에 정확하고 상세하게 답변하세요."
+                    pre_prompt = "You are a professional assistant specializing in electronic component datasheets. Provide accurate and detailed responses based on the provided context information."
                 if not post_prompt:
-                    post_prompt = "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요. 정보가 불충분하다면 그 점을 명시하세요."
+                    post_prompt = "Provide a clear and concise answer based on the retrieved information. If the information is insufficient or unclear, explicitly state what information is missing."
         
         # Construct prompt
         if context:
             prompt = f"""{pre_prompt}
 
-컨텍스트 정보:
+Context Information:
 {context}
 
-질문: {query}
+User Question: {query}
 
 {post_prompt}"""
         else:
             prompt = f"""{pre_prompt}
 
-질문: {query}
+User Question: {query}
 
 {post_prompt}"""
         

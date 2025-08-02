@@ -8,18 +8,18 @@
             "base_path": "/content/drive/MyDrive",
             "prep_json_folder": "/content/drive/MyDrive/prep_json",
             "vectorstore_folder": "/content/drive/MyDrive/vectorstore",
-            "prompt_templates_folder": "/content/drive/MyDrive/prompt_templates",
+            "prompt_templates_folder": "/content/drive/MyDrive/prompts",
             "model_cache_folder": "/content/drive/MyDrive/hf_model_cache",
             "logs_folder": "/content/drive/MyDrive/chipchat_logs",
-            "prep_datasheets_folder": "/content/drive/MyDrive/prep/datasheets",
-            "prep_prep_json_folder": "/content/drive/MyDrive/prep/prep_json",
-            "prep_vectorstore_folder": "/content/drive/MyDrive/prep/vectorstore"
+            "prep_datasheets_folder": "/content/drive/MyDrive/datasheets",
+            "prep_prep_json_folder": "/content/drive/MyDrive/prep_json",
+            "prep_vectorstore_folder": "/content/drive/MyDrive/vectorstore"
         },
         "local": {
             "base_path": ".",
-            "prep_json_folder": "./prep_json",
-            "vectorstore_folder": "./vectorstore",
-            "prompt_templates_folder": "./prompt_templates",
+            "prep_json_folder": "./prep/prep_json",
+            "vectorstore_folder": "./prep/vectorstore",
+            "prompt_templates_folder": "./prompts",
             "model_cache_folder": "./hf_model_cache",
             "logs_folder": "./logs",
             "prep_datasheets_folder": "./prep/datasheets",
@@ -27,11 +27,22 @@
             "prep_vectorstore_folder": "./prep/vectorstore"
         }
     },
+    "vectorstore": {
+        "default_name": "datasheet_vectors_final"
+    },
     "models": {
         "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
         "supported_llm": {
-            "openai": ["gpt-4o-mini", "gpt-4o", "gpt-3.5-turbo"],
-            "claude": ["claude-3-sonnet-20240229", "claude-3-haiku-20240307", "claude-3-opus-20240229"]
+            "openai": [
+                "gpt-4o-mini",
+                "gpt-4o",
+                "gpt-3.5-turbo"
+            ],
+            "claude": [
+                "claude-3-sonnet-20240229",
+                "claude-3-haiku-20240307",
+                "claude-3-opus-20240229"
+            ]
         }
     },
     "pdf_processing": {
@@ -43,4 +54,4 @@
             "save_combined": true
         }
     }
-} 
+}

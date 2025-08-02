@@ -40,8 +40,8 @@ class ChatManager:
             self.logger.error(f"Error loading prompt template: {str(e)}")
             # Return default template
             return {
-                "pre": "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다.",
-                "post": "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요."
+                "pre": "You are a professional assistant specializing in electronic component datasheets.",
+                "post": "Provide a clear and concise answer based on the retrieved information."
             }
     
     def save_prompt_template(self, template: Dict, template_path: str):

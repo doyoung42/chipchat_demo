@@ -5,7 +5,7 @@ Supports both local and Google Colab environments.
 import os
 import json
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Dict
 
 def get_project_settings():
     """프로젝트 설정을 config.json에서 읽어오는 함수"""
@@ -18,8 +18,8 @@ def get_project_settings():
         
         return {
             'BASE_DIR': Path(paths.get('base_path', '.')),
-            'PREP_JSON_FOLDER': Path(paths.get('prep_json_folder', './prep_json')),
-            'VECTORSTORE_FOLDER': Path(paths.get('vectorstore_folder', './vectorstore')), 
+            'PREP_JSON_FOLDER': Path(paths.get('prep_json_folder', './prep/prep_json')),
+            'VECTORSTORE_FOLDER': Path(paths.get('vectorstore_folder', './prep/vectorstore')), 
             'PROMPT_TEMPLATES_FOLDER': Path(paths.get('prompt_templates_folder', './prompt_templates')),
             'MODEL_CACHE_FOLDER': Path(paths.get('model_cache_folder', './hf_model_cache')),
             'LOGS_FOLDER': Path(paths.get('logs_folder', './logs')),
@@ -47,9 +47,9 @@ def get_default_settings():
     
     return {
         'BASE_DIR': base_dir,
-        'PREP_JSON_FOLDER': base_dir / 'prep_json',
-        'VECTORSTORE_FOLDER': base_dir / 'vectorstore',
-        'PROMPT_TEMPLATES_FOLDER': base_dir / 'prompt_templates',
+        'PREP_JSON_FOLDER': base_dir / 'prep' / 'prep_json',
+        'VECTORSTORE_FOLDER': base_dir / 'prep' / 'vectorstore',
+        'PROMPT_TEMPLATES_FOLDER': base_dir / 'prompts',
         'MODEL_CACHE_FOLDER': base_dir / 'hf_model_cache',
         'LOGS_FOLDER': base_dir / ('chipchat_logs' if use_google_drive else 'logs'),
         'EMBEDDING_MODEL': 'sentence-transformers/all-MiniLM-L6-v2',
@@ -73,6 +73,16 @@ LOGS_FOLDER = SETTINGS['LOGS_FOLDER']
 EMBEDDING_MODEL = SETTINGS['EMBEDDING_MODEL']
 SUPPORTED_MODELS = SETTINGS['SUPPORTED_MODELS']
 USE_GOOGLE_DRIVE = SETTINGS['USE_GOOGLE_DRIVE']
+
+# PATHS 딕셔너리 (기존 코드 호환성을 위해)
+PATHS = {
+    'base': BASE_DIR,
+    'prep_json': PREP_JSON_FOLDER,
+    'vectorstore': VECTORSTORE_FOLDER,
+    'prompt_templates': PROMPT_TEMPLATES_FOLDER,
+    'model_cache': MODEL_CACHE_FOLDER,
+    'logs': LOGS_FOLDER
+}
 
 # Model settings
 CHUNK_SIZE = 1000
@@ -162,38 +172,67 @@ PDF_PROCESSING_CONFIG = {
 
 # Default prompt templates
 DEFAULT_PROMPT_TEMPLATES = {
-    "korean": {
-        "pre": "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다. 제공된 컨텍스트 정보를 기반으로 질문에 정확하고 상세하게 답변하세요.",
-        "post": "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요. 정보가 불충분하다면 그 점을 명시하세요."
+    "default": {
+        "pre": "You are a professional assistant specializing in electronic component datasheets. Provide accurate and detailed responses based on the provided context information. Always maintain technical accuracy and cite specific information from the datasheets when available.",
+        "post": "Provide a clear and concise answer based on the retrieved information. If the information is insufficient or unclear, explicitly state what information is missing and suggest what additional details might be needed."
     },
     "english": {
         "pre": "You are an expert assistant that answers questions about electronic component datasheets. Please provide accurate and detailed responses based on the provided context information.",
         "post": "Please provide a clear and concise answer based on the retrieved information. If the information is insufficient, please specify that."
     },
     "technical": {
-        "pre": "당신은 전자공학 전문가입니다. 데이터시트의 기술적 세부사항을 정확히 분석하고 전문적인 답변을 제공하세요.",
-        "post": "기술적 정확성을 우선시하여 답변하고, 관련 수치나 사양이 있다면 구체적으로 명시하세요."
+        "pre": "You are an electronics engineering expert specializing in component analysis. Analyze datasheet technical specifications with precision and provide comprehensive technical responses. Focus on electrical characteristics, performance parameters, and implementation considerations.",
+        "post": "Prioritize technical accuracy in your response. Include specific numerical values, specifications, and technical details when available. If presenting electrical characteristics, include units and operating conditions."
     }
 }
 
 # API Keys configuration
 def get_api_keys() -> Dict[str, Optional[str]]:
-    """Get API keys from environment variables or streamlit secrets"""
+    """Get API keys from all available sources: environment variables, streamlit secrets, and tokens.json"""
     api_keys = {
-        'openai': os.environ.get('OPENAI_API_KEY'),
-        'anthropic': os.environ.get('ANTHROPIC_API_KEY'), 
-        'huggingface': os.environ.get('HF_TOKEN')
+        'openai': None,
+        'anthropic': None, 
+        'huggingface': None
     }
     
-    # Try to load from streamlit secrets if available
+    # 1. Try environment variables first
+    api_keys['openai'] = os.environ.get('OPENAI_API_KEY')
+    api_keys['anthropic'] = os.environ.get('ANTHROPIC_API_KEY')
+    api_keys['huggingface'] = os.environ.get('HF_TOKEN')
+    
+    # 2. Try to load from streamlit secrets if available
     try:
         import streamlit as st
-        if hasattr(st, 'secrets'):
+        if hasattr(st, 'secrets') and st.secrets:
             api_keys['openai'] = api_keys['openai'] or st.secrets.get("openai_api_key")
             api_keys['anthropic'] = api_keys['anthropic'] or st.secrets.get("anthropic_api_key")
             api_keys['huggingface'] = api_keys['huggingface'] or st.secrets.get("hf_token")
     except ImportError:
         pass
+    except Exception as e:
+        print(f"Warning: Failed to load streamlit secrets: {e}")
+    
+    # 3. Try to load from TokenManager (tokens.json) as fallback
+    try:
+        from .token_manager import TokenManager
+        token_manager = TokenManager()
+        
+        api_keys['openai'] = api_keys['openai'] or token_manager.get_token('openai')
+        api_keys['anthropic'] = api_keys['anthropic'] or token_manager.get_token('anthropic')
+        api_keys['huggingface'] = api_keys['huggingface'] or token_manager.get_token('huggingface')
+        
+        print("✅ TokenManager에서 API 키 로드 시도 완료")
+        
+    except Exception as e:
+        print(f"Warning: Failed to load from TokenManager: {e}")
+    
+    # Log API key status (without revealing the keys)
+    status = {
+        'openai': '✅' if api_keys['openai'] else '❌',
+        'anthropic': '✅' if api_keys['anthropic'] else '❌', 
+        'huggingface': '✅' if api_keys['huggingface'] else '❌'
+    }
+    print(f"🔑 API 키 상태: OpenAI {status['openai']}, Claude {status['anthropic']}, HuggingFace {status['huggingface']}")
     
     return api_keys
 

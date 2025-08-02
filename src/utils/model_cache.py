@@ -10,13 +10,15 @@ import zipfile
 from .logger import get_logger
 
 class HFModelCache:
-    """HuggingFace 모델을 Google Drive에 캐싱하는 시스템"""
+    """HuggingFace 모델 캐싱 시스템"""
     
     def __init__(self, cache_dir: Optional[str] = None):
         """
         Args:
             cache_dir: 모델 캐시 디렉토리 (None이면 환경변수나 환경 감지로 자동 설정)
         """
+        # 환경 감지
+        self.is_colab = False
         if cache_dir is None:
             # 환경변수에서 캐시 디렉토리 확인
             cache_dir = os.environ.get('MODEL_CACHE_DIR')
@@ -26,10 +28,15 @@ class HFModelCache:
                 try:
                     from google.colab import drive
                     # Google Colab 환경
+                    self.is_colab = True
                     cache_dir = "/content/drive/MyDrive/hf_model_cache"
                 except ImportError:
                     # 로컬 환경
+                    self.is_colab = False
                     cache_dir = "./hf_model_cache"
+        else:
+            # cache_dir이 Google Drive 경로인지 확인
+            self.is_colab = "/content/drive" in str(cache_dir) or "/drive/MyDrive" in str(cache_dir)
         
         self.cache_dir = Path(cache_dir)
         self.cache_dir.mkdir(parents=True, exist_ok=True)
@@ -41,9 +48,13 @@ class HFModelCache:
         # HuggingFace 캐시 디렉토리 설정
         self.hf_cache_dir = Path.home() / '.cache' / 'huggingface'
         
+        # 환경에 따른 로깅 메시지 설정
+        self.cache_storage_name = "Google Drive" if self.is_colab else "로컬 캐시"
+        
         self.logger.info("HF 모델 캐시 시스템 초기화", extra={
             "cache_dir": str(self.cache_dir),
-            "hf_cache_dir": str(self.hf_cache_dir)
+            "hf_cache_dir": str(self.hf_cache_dir),
+            "environment": "Colab" if self.is_colab else "Local"
         })
     
     def _load_cache_metadata(self) -> Dict[str, Any]:
@@ -87,107 +98,129 @@ class HFModelCache:
         
         return False
     
-    @get_logger().measure_time("모델 Google Drive 저장")
     def save_model_to_cache(self, model_name: str, local_model_path: Optional[Path] = None):
-        """로컬 HF 캐시의 모델을 Google Drive에 저장"""
-        try:
-            model_hash = self._get_model_hash(model_name)
-            cache_filename = f"{model_name.replace('/', '_')}_{model_hash}.zip"
-            cache_file_path = self.cache_dir / cache_filename
-            
-            # HuggingFace 캐시에서 모델 찾기
-            if local_model_path is None:
-                # transformers 캐시 디렉토리 확인
-                transformers_cache = self.hf_cache_dir / 'hub'
-                if not transformers_cache.exists():
-                    self.logger.error(f"HF 캐시 디렉토리를 찾을 수 없음: {transformers_cache}")
-                    return False
+        """로컬 HF 캐시의 모델을 캐시에 저장"""
+        # 환경에 따른 동적 로깅
+        operation_name = f"모델 {self.cache_storage_name} 저장"
+        
+        @get_logger().measure_time(operation_name)
+        def _save_operation():
+            try:
+                model_hash = self._get_model_hash(model_name)
+                cache_filename = f"{model_name.replace('/', '_')}_{model_hash}.zip"
+                cache_file_path = self.cache_dir / cache_filename
                 
-                # 모델 관련 파일들 찾기
-                model_files = []
-                model_name_safe = model_name.replace('/', '--')
+                # HuggingFace 캐시에서 모델 찾기
+                if local_model_path is None:
+                    # transformers 캐시 디렉토리 확인
+                    transformers_cache = self.hf_cache_dir / 'hub'
+                    if not transformers_cache.exists():
+                        self.logger.error(f"HF 캐시 디렉토리를 찾을 수 없음: {transformers_cache}")
+                        return False
+                    
+                    # 모델 관련 파일들 찾기
+                    model_files = []
+                    model_name_safe = model_name.replace('/', '--')
+                    
+                    for item in transformers_cache.iterdir():
+                        if model_name_safe in str(item):
+                            model_files.append(item)
+                    
+                    if not model_files:
+                        self.logger.error(f"로컬 캐시에서 모델을 찾을 수 없음: {model_name}")
+                        return False
+                else:
+                    model_files = [local_model_path]
                 
-                for item in transformers_cache.iterdir():
-                    if model_name_safe in str(item):
-                        model_files.append(item)
+                self.logger.info(f"모델 파일 압축 중: {len(model_files)}개 항목")
                 
-                if not model_files:
-                    self.logger.error(f"로컬 캐시에서 모델을 찾을 수 없음: {model_name}")
-                    return False
-            else:
-                model_files = [local_model_path]
-            
-            self.logger.info(f"모델 파일 압축 중: {len(model_files)}개 항목")
-            
-            # ZIP 파일로 압축
-            with zipfile.ZipFile(cache_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
-                for file_path in model_files:
-                    if file_path.is_file():
-                        arcname = file_path.name
-                        zipf.write(file_path, arcname)
-                        self.logger.debug(f"압축 추가: {arcname}")
-                    elif file_path.is_dir():
-                        for root, dirs, files in os.walk(file_path):
-                            for file in files:
-                                file_path_full = Path(root) / file
-                                arcname = str(file_path_full.relative_to(file_path.parent))
-                                zipf.write(file_path_full, arcname)
-            
-            # 메타데이터 업데이트
-            self.cache_metadata[model_name] = {
-                'filename': cache_filename,
-                'cached_at': datetime.now().isoformat(),
-                'size_bytes': cache_file_path.stat().st_size,
-                'model_hash': model_hash
-            }
-            self._save_cache_metadata()
-            
-            self.logger.info(f"모델 캐시 저장 완료: {model_name}", extra={
-                "cache_file": str(cache_file_path),
-                "size_mb": f"{cache_file_path.stat().st_size / 1024 / 1024:.2f}"
-            })
-            
-            return True
-            
-        except Exception as e:
-            self.logger.error(f"모델 캐시 저장 실패: {e}")
-            return False
+                # ZIP 파일로 압축
+                with zipfile.ZipFile(cache_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
+                    for file_path in model_files:
+                        if file_path.is_file():
+                            arcname = file_path.name
+                            zipf.write(file_path, arcname)
+                            self.logger.debug(f"압축 추가: {arcname}")
+                        elif file_path.is_dir():
+                            for root, dirs, files in os.walk(file_path):
+                                for file in files:
+                                    file_path_full = Path(root) / file
+                                    arcname = str(file_path_full.relative_to(file_path.parent))
+                                    zipf.write(file_path_full, arcname)
+                
+                # 메타데이터 업데이트
+                self.cache_metadata[model_name] = {
+                    'filename': cache_filename,
+                    'cached_at': datetime.now().isoformat(),
+                    'size_bytes': cache_file_path.stat().st_size,
+                    'model_hash': model_hash
+                }
+                self._save_cache_metadata()
+                
+                self.logger.info(f"모델 캐시 저장 완료: {model_name}", extra={
+                    "cache_file": str(cache_file_path),
+                    "size_mb": f"{cache_file_path.stat().st_size / 1024 / 1024:.2f}"
+                })
+                
+                # 사용자에게 저장 위치 표시
+                size_mb = cache_file_path.stat().st_size / 1024 / 1024
+                print(f"✅ 모델이 {self.cache_storage_name}에 저장되었습니다!")
+                print(f"📁 저장 위치: {cache_file_path}")
+                print(f"💾 파일 크기: {size_mb:.2f} MB")
+                
+                return True
+                
+            except Exception as e:
+                self.logger.error(f"모델 캐시 저장 실패: {e}")
+                return False
+        
+        return _save_operation()
     
-    @get_logger().measure_time("모델 Google Drive 로드")
     def load_model_from_cache(self, model_name: str) -> bool:
-        """Google Drive에서 모델을 로컬 HF 캐시로 복원"""
-        try:
-            if model_name not in self.cache_metadata:
-                self.logger.error(f"캐시 메타데이터에 모델이 없음: {model_name}")
+        """캐시에서 모델을 로컬 HF 캐시로 복원"""
+        # 환경에 따른 동적 로깅
+        operation_name = f"모델 {self.cache_storage_name} 로드"
+        
+        @get_logger().measure_time(operation_name)
+        def _load_operation():
+            try:
+                if model_name not in self.cache_metadata:
+                    self.logger.error(f"캐시 메타데이터에 모델이 없음: {model_name}")
+                    return False
+                
+                cache_info = self.cache_metadata[model_name]
+                cache_file_path = self.cache_dir / cache_info['filename']
+                
+                if not cache_file_path.exists():
+                    self.logger.error(f"캐시 파일이 존재하지 않음: {cache_file_path}")
+                    return False
+                
+                # HuggingFace 캐시 디렉토리 준비
+                transformers_cache = self.hf_cache_dir / 'hub'
+                transformers_cache.mkdir(parents=True, exist_ok=True)
+                
+                self.logger.info(f"캐시 파일 압축 해제 중: {cache_file_path}")
+                
+                # ZIP 파일 압축 해제
+                with zipfile.ZipFile(cache_file_path, 'r') as zipf:
+                    zipf.extractall(transformers_cache)
+                
+                self.logger.info(f"모델 캐시 로드 완료: {model_name}", extra={
+                    "cache_file": str(cache_file_path),
+                    "target_dir": str(transformers_cache)
+                })
+                
+                # 사용자에게 로드 완료 알림
+                print(f"✅ 모델을 {self.cache_storage_name}에서 로드했습니다!")
+                print(f"📁 로드 위치: {transformers_cache}")
+                
+                return True
+                
+            except Exception as e:
+                self.logger.error(f"모델 캐시 로드 실패: {e}")
                 return False
-            
-            cache_info = self.cache_metadata[model_name]
-            cache_file_path = self.cache_dir / cache_info['filename']
-            
-            if not cache_file_path.exists():
-                self.logger.error(f"캐시 파일이 존재하지 않음: {cache_file_path}")
-                return False
-            
-            # HuggingFace 캐시 디렉토리 준비
-            transformers_cache = self.hf_cache_dir / 'hub'
-            transformers_cache.mkdir(parents=True, exist_ok=True)
-            
-            self.logger.info(f"캐시 파일 압축 해제 중: {cache_file_path}")
-            
-            # ZIP 파일 압축 해제
-            with zipfile.ZipFile(cache_file_path, 'r') as zipf:
-                zipf.extractall(transformers_cache)
-            
-            self.logger.info(f"모델 캐시 로드 완료: {model_name}", extra={
-                "cache_file": str(cache_file_path),
-                "target_dir": str(transformers_cache)
-            })
-            
-            return True
-            
-        except Exception as e:
-            self.logger.error(f"모델 캐시 로드 실패: {e}")
-            return False
+        
+        return _load_operation()
     
     def get_cache_info(self) -> Dict[str, Any]:
         """캐시 정보 반환"""

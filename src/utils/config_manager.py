@@ -15,7 +15,7 @@ class ConfigManager:
             # 프로젝트 루트 디렉토리에서 config.json 찾기
             current_file = Path(__file__)
             project_root = current_file.parent.parent.parent  # src/utils에서 프로젝트 루트로
-            self.config_path = project_root / 'config.json'
+            self.config_path = project_root / 'prep/config.json'
         else:
             self.config_path = Path(config_path)
         
@@ -69,6 +69,14 @@ class ConfigManager:
     def get_supported_models(self) -> Dict[str, list]:
         """지원되는 LLM 모델들 반환"""
         return self.get_model_config().get('supported_llm', {})
+    
+    def get_vectorstore_config(self) -> Dict[str, Any]:
+        """벡터스토어 설정 반환"""
+        return self.config.get('vectorstore', {})
+    
+    def get_vectorstore_name(self) -> str:
+        """기본 벡터스토어 이름 반환"""
+        return self.get_vectorstore_config().get('default_name', 'datasheet_vectors_final')
     
     def create_directories(self):
         """필요한 디렉토리들을 생성"""

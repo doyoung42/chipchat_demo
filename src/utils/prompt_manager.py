@@ -12,12 +12,21 @@ from typing import Dict, Any, Optional
 class PromptManager:
     """프롬프트 템플릿 로더 및 관리자"""
     
-    def __init__(self, prompts_dir: str = "./prompts"):
+    def __init__(self, prompts_dir: str = None):
         """
         Args:
-            prompts_dir: 프롬프트 템플릿이 저장된 디렉토리 경로
+            prompts_dir: 프롬프트 템플릿이 저장된 디렉토리 경로 (None이면 config에서 읽기)
         """
-        self.prompts_dir = Path(prompts_dir)
+        if prompts_dir is None:
+            # config에서 prompt_templates_folder 경로 가져오기
+            try:
+                from ..config.settings import PROMPT_TEMPLATES_FOLDER
+                self.prompts_dir = Path(PROMPT_TEMPLATES_FOLDER)
+            except:
+                # 폴백: 기본 prompts 폴더 사용
+                self.prompts_dir = Path("./prompts")
+        else:
+            self.prompts_dir = Path(prompts_dir)
         self.logger = logging.getLogger(__name__)
         
         # 프롬프트 캐시
@@ -45,14 +54,23 @@ class PromptManager:
         # system_prompts.json
         system_prompts_template = {
             "default": {
-                "pre_prompt": "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다. 제공된 컨텍스트 정보를 기반으로 질문에 정확하고 상세하게 답변하세요.",
-                "post_prompt": "검색된 정보를 바탕으로 명확하고 간결하게 답변해주세요. 정보가 불충분하다면 그 점을 명시하세요.",
+                "pre_prompt": "You are a professional assistant specializing in electronic component datasheets. Provide accurate and detailed responses based on the provided context information. Always maintain technical accuracy and cite specific information from the datasheets when available.",
+                "post_prompt": "Provide a clear and concise answer based on the retrieved information. If the information is insufficient or unclear, explicitly state what information is missing and suggest what additional details might be needed.",
                 "description": "Default system prompts for general component queries"
             },
             "english": {
                 "pre_prompt": "You are an expert assistant that answers questions about electronic component datasheets. Please provide accurate and detailed responses based on the provided context information.",
                 "post_prompt": "Please provide a clear and concise answer based on the retrieved information. If the information is insufficient, please specify that.",
                 "description": "English system prompts for international users"
+            },
+            "technical": {
+                "pre_prompt": "You are an electronics engineering expert specializing in component analysis. Analyze datasheet technical specifications with precision and provide comprehensive technical responses. Focus on electrical characteristics, performance parameters, and implementation considerations.",
+                "post_prompt": "Prioritize technical accuracy in your response. Include specific numerical values, specifications, and technical details when available. If presenting electrical characteristics, include units and operating conditions.",
+                "description": "Technical expert system prompts for detailed specifications"
+            },
+            "response_generation": {
+                "prompt": "Generate a comprehensive response by combining the tool results intelligently. Format the response with clear sections and include relevant technical details. If multiple tools were used, organize the information logically and ensure coherence between different data sources.",
+                "description": "Prompt for generating final responses from multiple tool results"
             }
         }
         
@@ -119,8 +137,8 @@ class PromptManager:
         if not prompts:
             # 기본 프롬프트로 폴백
             prompts = self._system_prompts_cache.get("default", {
-                "pre_prompt": "당신은 전자 부품 데이터시트에 대해 응답하는 전문 도우미입니다.",
-                "post_prompt": "검색된 정보를 바탕으로 명확하게 답변해주세요."
+                "pre_prompt": "You are a professional assistant specializing in electronic component datasheets. Provide accurate and detailed responses based on the provided context information.",
+                "post_prompt": "Provide a clear and concise answer based on the retrieved information."
             })
         
         return {
